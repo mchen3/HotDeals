@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6006FF45161FC711006E031C /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC491161E5EC40046245F /* ItemCell.xib */; };
+		6006FF46161FC715006E031C /* DealsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC48D161E5EC40046245F /* DealsViewController.xib */; };
+		6006FF47161FC71A006E031C /* DealsItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC498161E5EC40046245F /* DealsItemViewController.xib */; };
+		6006FF48161FC71F006E031C /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC49A161E5EC40046245F /* NewsViewController.xib */; };
+		60146208161FCA30004FAB65 /* DealMaker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60146206161FCA30004FAB65 /* DealMaker.xcdatamodeld */; };
+		602874E816211E3C00EE51B0 /* DealsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 602874E716211E3C00EE51B0 /* DealsViewController.m */; };
+		605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC488161E5EC40046245F /* CategoryPicker.m */; };
+		605AC4A3161E5F710046245F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC490161E5EC40046245F /* ItemCell.m */; };
+		605AC4A4161E5F710046245F /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC48F161E5EC40046245F /* ImageStore.m */; };
+		605AC4A6161E5F710046245F /* Items.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC49E161E5ECE0046245F /* Items.m */; };
+		605AC4A7161E5F710046245F /* ItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC49F161E5ECE0046245F /* ItemStore.m */; };
+		605AC4AA161E5F710046245F /* ParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC4A1161E5ECE0046245F /* ParseTableController.m */; };
+		605AC4AB161E5F710046245F /* DealsItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC497161E5EC40046245F /* DealsItemViewController.m */; };
+		605AC4AC161E5F710046245F /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC499161E5EC40046245F /* NewsViewController.m */; };
+		60A91AFA15D952C80068CCF2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91AF915D952C80068CCF2 /* Parse.framework */; };
+		60A91AFD15D953430068CCF2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91AFC15D953430068CCF2 /* AudioToolbox.framework */; };
+		60A91AFF15D9534C0068CCF2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91AFE15D9534C0068CCF2 /* CFNetwork.framework */; };
+		60A91B0115D953740068CCF2 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91B0015D953740068CCF2 /* libz.1.1.3.dylib */; };
+		60A91B0315D953880068CCF2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91B0215D953880068CCF2 /* MobileCoreServices.framework */; };
+		60A91B0515D953920068CCF2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91B0415D953920068CCF2 /* QuartzCore.framework */; };
+		60A91B0715D9539C0068CCF2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91B0615D9539C0068CCF2 /* Security.framework */; };
+		60A91B0915D953A10068CCF2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91B0815D953A10068CCF2 /* StoreKit.framework */; };
+		60A91B0B15D953A80068CCF2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91B0A15D953A80068CCF2 /* SystemConfiguration.framework */; };
+		60B48F4715A892F000A52C2E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B48F4615A892F000A52C2E /* UIKit.framework */; };
+		60B48F4915A892F000A52C2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B48F4815A892F000A52C2E /* Foundation.framework */; };
+		60B48F4B15A892F000A52C2E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B48F4A15A892F000A52C2E /* CoreGraphics.framework */; };
+		60B48F5115A892F000A52C2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F4F15A892F000A52C2E /* InfoPlist.strings */; };
+		60B48F5315A892F000A52C2E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B48F5215A892F000A52C2E /* main.m */; };
+		60B48F5715A892F000A52C2E /* DealAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B48F5615A892F000A52C2E /* DealAppDelegate.m */; };
+		60B48F7815A89E8200A52C2E /* Hypno.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7415A89E8200A52C2E /* Hypno.png */; };
+		60B48F7915A89E8200A52C2E /* Hypno@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7515A89E8200A52C2E /* Hypno@2x.png */; };
+		60B48F7A15A89E8200A52C2E /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7615A89E8200A52C2E /* Time.png */; };
+		60B48F7B15A89E8200A52C2E /* Time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7715A89E8200A52C2E /* Time@2x.png */; };
+		60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FD86A315BF23FC000BDCCB /* CoreData.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		60146207161FCA30004FAB65 /* DealMaker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DealMaker.xcdatamodel; sourceTree = "<group>"; };
+		602874E716211E3C00EE51B0 /* DealsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DealsViewController.m; path = HotDeals/DealsViewController.m; sourceTree = "<group>"; };
+		602874EB16211F0D00EE51B0 /* ItemViewController copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ItemViewController copy.h"; path = "HotDeals/ItemViewController copy.h"; sourceTree = "<group>"; };
+		602874EC16211F0D00EE51B0 /* ItemViewController copy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ItemViewController copy.m"; path = "HotDeals/ItemViewController copy.m"; sourceTree = "<group>"; };
+		605AC487161E5EC40046245F /* CategoryPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CategoryPicker.h; path = HotDeals/CategoryPicker.h; sourceTree = "<group>"; };
+		605AC488161E5EC40046245F /* CategoryPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CategoryPicker.m; path = HotDeals/CategoryPicker.m; sourceTree = "<group>"; };
+		605AC489161E5EC40046245F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = HotDeals/Constants.h; sourceTree = "<group>"; };
+		605AC48A161E5EC40046245F /* DealViewController copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DealViewController copy.h"; path = "HotDeals/DealViewController copy.h"; sourceTree = "<group>"; };
+		605AC48B161E5EC40046245F /* DealViewController copy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DealViewController copy.m"; path = "HotDeals/DealViewController copy.m"; sourceTree = "<group>"; };
+		605AC48C161E5EC40046245F /* DealsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DealsViewController.h; path = HotDeals/DealsViewController.h; sourceTree = "<group>"; };
+		605AC48D161E5EC40046245F /* DealsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DealsViewController.xib; path = HotDeals/DealsViewController.xib; sourceTree = "<group>"; };
+		605AC48E161E5EC40046245F /* ImageStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImageStore.h; path = HotDeals/ImageStore.h; sourceTree = "<group>"; };
+		605AC48F161E5EC40046245F /* ImageStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ImageStore.m; path = HotDeals/ImageStore.m; sourceTree = "<group>"; };
+		605AC490161E5EC40046245F /* ItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ItemCell.m; path = HotDeals/ItemCell.m; sourceTree = "<group>"; };
+		605AC491161E5EC40046245F /* ItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ItemCell.xib; path = HotDeals/ItemCell.xib; sourceTree = "<group>"; };
+		605AC492161E5EC40046245F /* Items.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Items.h; path = HotDeals/Items.h; sourceTree = "<group>"; };
+		605AC493161E5EC40046245F /* ItemsArchive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ItemsArchive.h; path = HotDeals/ItemsArchive.h; sourceTree = "<group>"; };
+		605AC494161E5EC40046245F /* ItemsArchive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ItemsArchive.m; path = HotDeals/ItemsArchive.m; sourceTree = "<group>"; };
+		605AC495161E5EC40046245F /* ItemStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ItemStore.h; path = HotDeals/ItemStore.h; sourceTree = "<group>"; };
+		605AC496161E5EC40046245F /* DealsItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DealsItemViewController.h; path = HotDeals/DealsItemViewController.h; sourceTree = "<group>"; };
+		605AC497161E5EC40046245F /* DealsItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DealsItemViewController.m; path = HotDeals/DealsItemViewController.m; sourceTree = "<group>"; };
+		605AC498161E5EC40046245F /* DealsItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DealsItemViewController.xib; path = HotDeals/DealsItemViewController.xib; sourceTree = "<group>"; };
+		605AC499161E5EC40046245F /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = HotDeals/NewsViewController.m; sourceTree = "<group>"; };
+		605AC49A161E5EC40046245F /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsViewController.xib; path = HotDeals/NewsViewController.xib; sourceTree = "<group>"; };
+		605AC49B161E5EC40046245F /* ParseTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ParseTableController.h; path = HotDeals/ParseTableController.h; sourceTree = "<group>"; };
+		605AC49D161E5ECE0046245F /* ItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ItemCell.h; path = HotDeals/ItemCell.h; sourceTree = "<group>"; };
+		605AC49E161E5ECE0046245F /* Items.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Items.m; path = HotDeals/Items.m; sourceTree = "<group>"; };
+		605AC49F161E5ECE0046245F /* ItemStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ItemStore.m; path = HotDeals/ItemStore.m; sourceTree = "<group>"; };
+		605AC4A0161E5ECE0046245F /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = HotDeals/NewsViewController.h; sourceTree = "<group>"; };
+		605AC4A1161E5ECE0046245F /* ParseTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ParseTableController.m; path = HotDeals/ParseTableController.m; sourceTree = "<group>"; };
+		60A91AF915D952C80068CCF2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		60A91AFC15D953430068CCF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		60A91AFE15D9534C0068CCF2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		60A91B0015D953740068CCF2 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		60A91B0215D953880068CCF2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		60A91B0415D953920068CCF2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		60A91B0615D9539C0068CCF2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		60A91B0815D953A10068CCF2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		60A91B0A15D953A80068CCF2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		60B48F4215A892F000A52C2E /* DealMaker1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DealMaker1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60B48F4615A892F000A52C2E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		60B48F4815A892F000A52C2E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		60B48F4A15A892F000A52C2E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		60B48F4E15A892F000A52C2E /* DealMaker1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DealMaker1-Info.plist"; sourceTree = "<group>"; };
+		60B48F5015A892F000A52C2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		60B48F5215A892F000A52C2E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		60B48F5415A892F000A52C2E /* DealMaker1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DealMaker1-Prefix.pch"; sourceTree = "<group>"; };
+		60B48F5515A892F000A52C2E /* DealAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DealAppDelegate.h; sourceTree = "<group>"; };
+		60B48F5615A892F000A52C2E /* DealAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DealAppDelegate.m; sourceTree = "<group>"; };
+		60B48F7415A89E8200A52C2E /* Hypno.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hypno.png; sourceTree = "<group>"; };
+		60B48F7515A89E8200A52C2E /* Hypno@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hypno@2x.png"; sourceTree = "<group>"; };
+		60B48F7615A89E8200A52C2E /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
+		60B48F7715A89E8200A52C2E /* Time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Time@2x.png"; sourceTree = "<group>"; };
+		60FD86A315BF23FC000BDCCB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		60B48F3F15A892F000A52C2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60A91B0B15D953A80068CCF2 /* SystemConfiguration.framework in Frameworks */,
+				60A91B0915D953A10068CCF2 /* StoreKit.framework in Frameworks */,
+				60A91B0715D9539C0068CCF2 /* Security.framework in Frameworks */,
+				60A91B0515D953920068CCF2 /* QuartzCore.framework in Frameworks */,
+				60A91B0315D953880068CCF2 /* MobileCoreServices.framework in Frameworks */,
+				60A91B0115D953740068CCF2 /* libz.1.1.3.dylib in Frameworks */,
+				60B48F4B15A892F000A52C2E /* CoreGraphics.framework in Frameworks */,
+				60A91AFF15D9534C0068CCF2 /* CFNetwork.framework in Frameworks */,
+				60A91AFD15D953430068CCF2 /* AudioToolbox.framework in Frameworks */,
+				60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */,
+				60B48F4715A892F000A52C2E /* UIKit.framework in Frameworks */,
+				60B48F4915A892F000A52C2E /* Foundation.framework in Frameworks */,
+				60A91AFA15D952C80068CCF2 /* Parse.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		601B096815B74220000AC5C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				60146206161FCA30004FAB65 /* DealMaker.xcdatamodeld */,
+				605AC48E161E5EC40046245F /* ImageStore.h */,
+				605AC48F161E5EC40046245F /* ImageStore.m */,
+				605AC492161E5EC40046245F /* Items.h */,
+				605AC49E161E5ECE0046245F /* Items.m */,
+				605AC493161E5EC40046245F /* ItemsArchive.h */,
+				605AC494161E5EC40046245F /* ItemsArchive.m */,
+				605AC49F161E5ECE0046245F /* ItemStore.m */,
+				605AC495161E5EC40046245F /* ItemStore.h */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		602874ED16211F5100EE51B0 /* copy */ = {
+			isa = PBXGroup;
+			children = (
+				605AC48A161E5EC40046245F /* DealViewController copy.h */,
+				605AC48B161E5EC40046245F /* DealViewController copy.m */,
+				602874EB16211F0D00EE51B0 /* ItemViewController copy.h */,
+				602874EC16211F0D00EE51B0 /* ItemViewController copy.m */,
+			);
+			name = copy;
+			sourceTree = "<group>";
+		};
+		60B48F3715A892F000A52C2E = {
+			isa = PBXGroup;
+			children = (
+				60E5238515E182CA00D532FA /* MISC */,
+				601B096815B74220000AC5C0 /* Model */,
+				60E5238415E182AD00D532FA /* View */,
+				60E5238215E1829000D532FA /* Controllers */,
+				60B48F7315A89E8200A52C2E /* Images */,
+				60B48F4C15A892F000A52C2E /* DealMaker1 */,
+				60B48F4515A892F000A52C2E /* Frameworks */,
+				60B48F4315A892F000A52C2E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		60B48F4315A892F000A52C2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60B48F4215A892F000A52C2E /* DealMaker1.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60B48F4515A892F000A52C2E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60A91B0A15D953A80068CCF2 /* SystemConfiguration.framework */,
+				60A91B0815D953A10068CCF2 /* StoreKit.framework */,
+				60A91B0615D9539C0068CCF2 /* Security.framework */,
+				60A91B0415D953920068CCF2 /* QuartzCore.framework */,
+				60A91B0215D953880068CCF2 /* MobileCoreServices.framework */,
+				60A91B0015D953740068CCF2 /* libz.1.1.3.dylib */,
+				60A91AFE15D9534C0068CCF2 /* CFNetwork.framework */,
+				60A91AFC15D953430068CCF2 /* AudioToolbox.framework */,
+				60A91AF915D952C80068CCF2 /* Parse.framework */,
+				60FD86A315BF23FC000BDCCB /* CoreData.framework */,
+				60B48F4615A892F000A52C2E /* UIKit.framework */,
+				60B48F4815A892F000A52C2E /* Foundation.framework */,
+				60B48F4A15A892F000A52C2E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60B48F4C15A892F000A52C2E /* DealMaker1 */ = {
+			isa = PBXGroup;
+			children = (
+				60B48F5515A892F000A52C2E /* DealAppDelegate.h */,
+				60B48F5615A892F000A52C2E /* DealAppDelegate.m */,
+				60B48F4D15A892F000A52C2E /* Supporting Files */,
+			);
+			path = DealMaker1;
+			sourceTree = "<group>";
+		};
+		60B48F4D15A892F000A52C2E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60B48F4E15A892F000A52C2E /* DealMaker1-Info.plist */,
+				60B48F4F15A892F000A52C2E /* InfoPlist.strings */,
+				60B48F5215A892F000A52C2E /* main.m */,
+				60B48F5415A892F000A52C2E /* DealMaker1-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60B48F7315A89E8200A52C2E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				60B48F7415A89E8200A52C2E /* Hypno.png */,
+				60B48F7515A89E8200A52C2E /* Hypno@2x.png */,
+				60B48F7615A89E8200A52C2E /* Time.png */,
+				60B48F7715A89E8200A52C2E /* Time@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		60E5238215E1829000D532FA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				602874ED16211F5100EE51B0 /* copy */,
+				605AC48C161E5EC40046245F /* DealsViewController.h */,
+				602874E716211E3C00EE51B0 /* DealsViewController.m */,
+				605AC49B161E5EC40046245F /* ParseTableController.h */,
+				605AC4A1161E5ECE0046245F /* ParseTableController.m */,
+				605AC496161E5EC40046245F /* DealsItemViewController.h */,
+				605AC497161E5EC40046245F /* DealsItemViewController.m */,
+				605AC4A0161E5ECE0046245F /* NewsViewController.h */,
+				605AC499161E5EC40046245F /* NewsViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		60E5238415E182AD00D532FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				605AC491161E5EC40046245F /* ItemCell.xib */,
+				605AC48D161E5EC40046245F /* DealsViewController.xib */,
+				605AC498161E5EC40046245F /* DealsItemViewController.xib */,
+				605AC49A161E5EC40046245F /* NewsViewController.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		60E5238515E182CA00D532FA /* MISC */ = {
+			isa = PBXGroup;
+			children = (
+				605AC487161E5EC40046245F /* CategoryPicker.h */,
+				605AC488161E5EC40046245F /* CategoryPicker.m */,
+				605AC489161E5EC40046245F /* Constants.h */,
+				605AC49D161E5ECE0046245F /* ItemCell.h */,
+				605AC490161E5EC40046245F /* ItemCell.m */,
+			);
+			name = MISC;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		60B48F4115A892F000A52C2E /* DealMaker1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60B48F5A15A892F000A52C2E /* Build configuration list for PBXNativeTarget "DealMaker1" */;
+			buildPhases = (
+				60B48F3E15A892F000A52C2E /* Sources */,
+				60B48F3F15A892F000A52C2E /* Frameworks */,
+				60B48F4015A892F000A52C2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DealMaker1;
+			productName = DealMaker1;
+			productReference = 60B48F4215A892F000A52C2E /* DealMaker1.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		60B48F3915A892F000A52C2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Deal;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 60B48F3C15A892F000A52C2E /* Build configuration list for PBXProject "HotDeals" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 60B48F3715A892F000A52C2E;
+			productRefGroup = 60B48F4315A892F000A52C2E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				60B48F4115A892F000A52C2E /* DealMaker1 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		60B48F4015A892F000A52C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6006FF48161FC71F006E031C /* NewsViewController.xib in Resources */,
+				6006FF47161FC71A006E031C /* DealsItemViewController.xib in Resources */,
+				6006FF46161FC715006E031C /* DealsViewController.xib in Resources */,
+				6006FF45161FC711006E031C /* ItemCell.xib in Resources */,
+				60B48F5115A892F000A52C2E /* InfoPlist.strings in Resources */,
+				60B48F7815A89E8200A52C2E /* Hypno.png in Resources */,
+				60B48F7915A89E8200A52C2E /* Hypno@2x.png in Resources */,
+				60B48F7A15A89E8200A52C2E /* Time.png in Resources */,
+				60B48F7B15A89E8200A52C2E /* Time@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60B48F3E15A892F000A52C2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */,
+				605AC4A3161E5F710046245F /* ItemCell.m in Sources */,
+				605AC4A4161E5F710046245F /* ImageStore.m in Sources */,
+				605AC4A6161E5F710046245F /* Items.m in Sources */,
+				605AC4A7161E5F710046245F /* ItemStore.m in Sources */,
+				605AC4AA161E5F710046245F /* ParseTableController.m in Sources */,
+				605AC4AB161E5F710046245F /* DealsItemViewController.m in Sources */,
+				605AC4AC161E5F710046245F /* NewsViewController.m in Sources */,
+				60B48F5315A892F000A52C2E /* main.m in Sources */,
+				60B48F5715A892F000A52C2E /* DealAppDelegate.m in Sources */,
+				60146208161FCA30004FAB65 /* DealMaker.xcdatamodeld in Sources */,
+				602874E816211E3C00EE51B0 /* DealsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		60B48F4F15A892F000A52C2E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60B48F5015A892F000A52C2E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		60B48F5815A892F000A52C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		60B48F5915A892F000A52C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		60B48F5B15A892F000A52C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DealMaker1/DealMaker1-Prefix.pch";
+				INFOPLIST_FILE = "DealMaker1/DealMaker1-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		60B48F5C15A892F000A52C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DealMaker1/DealMaker1-Prefix.pch";
+				INFOPLIST_FILE = "DealMaker1/DealMaker1-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60B48F3C15A892F000A52C2E /* Build configuration list for PBXProject "HotDeals" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60B48F5815A892F000A52C2E /* Debug */,
+				60B48F5915A892F000A52C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60B48F5A15A892F000A52C2E /* Build configuration list for PBXNativeTarget "DealMaker1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60B48F5B15A892F000A52C2E /* Debug */,
+				60B48F5C15A892F000A52C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		60146206161FCA30004FAB65 /* DealMaker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				60146207161FCA30004FAB65 /* DealMaker.xcdatamodel */,
+			);
+			currentVersion = 60146207161FCA30004FAB65 /* DealMaker.xcdatamodel */;
+			name = DealMaker.xcdatamodeld;
+			path = HotDeals/DealMaker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 60B48F3915A892F000A52C2E /* Project object */;
+}
