@@ -243,8 +243,7 @@
 		// otherwise you could be saving the object twice.
 		// because the isNew already saves the object
 		
-		
-		
+
 	//	NSString *testParse1 = [parseObject objectForKey:@"name"];
 	//	NSLog(@"viewdiddisappear 1  %@", testParse1);
 		

@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "DealMaker1/DealAppDelegate.m"
-         timestampString = "371076528.16099"
+         timestampString = "371774037.275199"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
+         startingLineNumber = "60"
+         endingLineNumber = "60"
          landmarkName = "-application:didFinishLaunchingWithOptions:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -314,13 +314,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "DealMaker1/DealAppDelegate.m"
-         timestampString = "371216838.348545"
+         timestampString = "371774037.275199"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "42"
-         endingLineNumber = "42"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
          landmarkName = "-application:didFinishLaunchingWithOptions:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "HotDeals/UserViewController.m"
+         timestampString = "371799023.179366"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "126"
+         endingLineNumber = "126">
       </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>

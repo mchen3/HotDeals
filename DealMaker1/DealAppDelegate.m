@@ -8,6 +8,7 @@
 
 #import "DealAppDelegate.h"
 #import "DealsViewController.h"
+#import "UserViewController.h"
 #import "NewsViewController.h"
 #import "ItemStore.h"
 #import "Parse/Parse.h"
@@ -35,24 +36,32 @@
     // Set up a navigational controller and initialize with DealViewController
     // Add DealViewController to a Navigational Controller
     DealsViewController *dealViewController = [[DealsViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:dealViewController];
-    
+    UINavigationController *dealNavController = [[UINavigationController alloc] initWithRootViewController:dealViewController];
     // Set the tab name for the Deals View Controller
-    UITabBarItem *dealTabBar = [[UITabBarItem alloc] initWithTitle:@"Deal of the day"
-																														 image:nil tag:nil];
-    [navController setTabBarItem:dealTabBar];
-
+    UITabBarItem *dealTabBar = [[UITabBarItem alloc] initWithTitle:@"Deal of the day" image:nil tag:nil];
+    [dealNavController setTabBarItem:dealTabBar];
+		
+		
+		// Create the UserViewController with its navController
+		UserViewController *userViewController = [[UserViewController alloc] init];
+		UINavigationController *userNavController = [[UINavigationController alloc]
+				initWithRootViewController:userViewController];
+		// Set the tab name for the UserViewController
+		UITabBarItem *userTabBar = [[UITabBarItem alloc]
+				initWithTitle:@"User" image:nil tag:nil];
+		[userNavController setTabBarItem:userTabBar];
+		
     // Create the NewsViewController
     NewsViewController *newsViewController = [[NewsViewController alloc] init];
     // Set the tab name for the News View Controller
-    UITabBarItem *newsTabBar = [[UITabBarItem alloc] initWithTitle:@"News" image:nil tag:nil];
+    UITabBarItem *newsTabBar = [[UITabBarItem alloc]
+								initWithTitle:@"News" image:nil tag:nil];
     [newsViewController setTabBarItem:newsTabBar];
 		
 		// Create the TabBarController and initialize with our controllers
     UITabBarController *tarBarController = [[UITabBarController alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:navController, newsViewController, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, newsViewController, nil];
     [tarBarController setViewControllers:viewControllers];
-    
     [[self window] setRootViewController:tarBarController];
     
     // Override point for customization after application launch.

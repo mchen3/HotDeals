@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		600118CC1628AB5C009E019D /* UserPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600118CA1628AB5C009E019D /* UserPostViewController.m */; };
+		600118CD1628AB5C009E019D /* UserPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 600118CB1628AB5C009E019D /* UserPostViewController.xib */; };
 		6006FF45161FC711006E031C /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC491161E5EC40046245F /* ItemCell.xib */; };
 		6006FF46161FC715006E031C /* DealsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC48D161E5EC40046245F /* DealsViewController.xib */; };
 		6006FF47161FC71A006E031C /* DealsItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC498161E5EC40046245F /* DealsItemViewController.xib */; };
@@ -40,10 +42,15 @@
 		60B48F7915A89E8200A52C2E /* Hypno@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7515A89E8200A52C2E /* Hypno@2x.png */; };
 		60B48F7A15A89E8200A52C2E /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7615A89E8200A52C2E /* Time.png */; };
 		60B48F7B15A89E8200A52C2E /* Time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7715A89E8200A52C2E /* Time@2x.png */; };
+		60EA6FCD162749E600A1B765 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6FCB162749E600A1B765 /* UserViewController.m */; };
+		60EA6FCE162749E600A1B765 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA6FCC162749E600A1B765 /* UserViewController.xib */; };
 		60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FD86A315BF23FC000BDCCB /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		600118C91628AB5C009E019D /* UserPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPostViewController.h; path = HotDeals/UserPostViewController.h; sourceTree = "<group>"; };
+		600118CA1628AB5C009E019D /* UserPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPostViewController.m; path = HotDeals/UserPostViewController.m; sourceTree = "<group>"; };
+		600118CB1628AB5C009E019D /* UserPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserPostViewController.xib; path = HotDeals/UserPostViewController.xib; sourceTree = "<group>"; };
 		60146207161FCA30004FAB65 /* DealMaker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DealMaker.xcdatamodel; sourceTree = "<group>"; };
 		602874E716211E3C00EE51B0 /* DealsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DealsViewController.m; path = HotDeals/DealsViewController.m; sourceTree = "<group>"; };
 		602874EB16211F0D00EE51B0 /* ItemViewController copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ItemViewController copy.h"; path = "HotDeals/ItemViewController copy.h"; sourceTree = "<group>"; };
@@ -97,6 +104,9 @@
 		60B48F7515A89E8200A52C2E /* Hypno@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hypno@2x.png"; sourceTree = "<group>"; };
 		60B48F7615A89E8200A52C2E /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
 		60B48F7715A89E8200A52C2E /* Time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Time@2x.png"; sourceTree = "<group>"; };
+		60EA6FCA162749E600A1B765 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = HotDeals/UserViewController.h; sourceTree = "<group>"; };
+		60EA6FCB162749E600A1B765 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = HotDeals/UserViewController.m; sourceTree = "<group>"; };
+		60EA6FCC162749E600A1B765 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserViewController.xib; path = HotDeals/UserViewController.xib; sourceTree = "<group>"; };
 		60FD86A315BF23FC000BDCCB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -229,12 +239,16 @@
 			isa = PBXGroup;
 			children = (
 				602874ED16211F5100EE51B0 /* copy */,
-				605AC48C161E5EC40046245F /* DealsViewController.h */,
-				602874E716211E3C00EE51B0 /* DealsViewController.m */,
 				605AC49B161E5EC40046245F /* ParseTableController.h */,
 				605AC4A1161E5ECE0046245F /* ParseTableController.m */,
+				605AC48C161E5EC40046245F /* DealsViewController.h */,
+				602874E716211E3C00EE51B0 /* DealsViewController.m */,
 				605AC496161E5EC40046245F /* DealsItemViewController.h */,
 				605AC497161E5EC40046245F /* DealsItemViewController.m */,
+				60EA6FCA162749E600A1B765 /* UserViewController.h */,
+				60EA6FCB162749E600A1B765 /* UserViewController.m */,
+				600118C91628AB5C009E019D /* UserPostViewController.h */,
+				600118CA1628AB5C009E019D /* UserPostViewController.m */,
 				605AC4A0161E5ECE0046245F /* NewsViewController.h */,
 				605AC499161E5EC40046245F /* NewsViewController.m */,
 			);
@@ -247,6 +261,8 @@
 				605AC491161E5EC40046245F /* ItemCell.xib */,
 				605AC48D161E5EC40046245F /* DealsViewController.xib */,
 				605AC498161E5EC40046245F /* DealsItemViewController.xib */,
+				60EA6FCC162749E600A1B765 /* UserViewController.xib */,
+				600118CB1628AB5C009E019D /* UserPostViewController.xib */,
 				605AC49A161E5EC40046245F /* NewsViewController.xib */,
 			);
 			name = View;
@@ -324,6 +340,8 @@
 				60B48F7915A89E8200A52C2E /* Hypno@2x.png in Resources */,
 				60B48F7A15A89E8200A52C2E /* Time.png in Resources */,
 				60B48F7B15A89E8200A52C2E /* Time@2x.png in Resources */,
+				60EA6FCE162749E600A1B765 /* UserViewController.xib in Resources */,
+				600118CD1628AB5C009E019D /* UserPostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +364,8 @@
 				60B48F5715A892F000A52C2E /* DealAppDelegate.m in Sources */,
 				60146208161FCA30004FAB65 /* DealMaker.xcdatamodeld in Sources */,
 				602874E816211E3C00EE51B0 /* DealsViewController.m in Sources */,
+				60EA6FCD162749E600A1B765 /* UserViewController.m in Sources */,
+				600118CC1628AB5C009E019D /* UserPostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
