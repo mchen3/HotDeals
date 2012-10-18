@@ -30,6 +30,8 @@
         // Set the title of the nav bar
         [[self navigationItem] setTitle:@"Deals"];
         
+		/* DEL
+		 There is no edit or delete for the DVC
         // Add a right bar button of type 'ADD' programmically
         // to add items to the table
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
@@ -41,7 +43,8 @@
         // But you have a UIViewController that doesn't have a
         // table view as its view so you need to override the 
         // setEditing:animated method 
-        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];				
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];	
+		*/
 		}
     return self;
 }
@@ -68,7 +71,10 @@
 		// Add the wall posts tableview as a subview with view containment (new in iOS 5.0):
 		self.parseTableController = [[ParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
 		[self addChildViewController:self.parseTableController];
-		self.parseTableController.view.frame = CGRectMake(0.f, 150.f, 320.f, 208.f);
+		self.parseTableController.view.frame = CGRectMake(0.f, 60.f, 320.f, 300.f);
+		
+
+		
 		[self.view addSubview:self.parseTableController.view];
 		
 		// Parse Query Table with ItemCell
@@ -116,9 +122,10 @@
 		
 }
 
-// ???
+// DEL
+// There is no edit or delete button for DVC
 #pragma mark - NavBar buttons
-
+/*
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
@@ -154,7 +161,8 @@
 		ItemViewController *ivc = [[ItemViewController alloc] initWithName:YES];
 		[ivc setItem:item];
 		*/
-		
+
+/*
 		// Add a new Parse object and pass it to ItemViewController
 		PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
 		DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] initWithName:YES];
@@ -187,7 +195,8 @@
 		}];
 		[self presentViewController:navController animated:YES completion:nil];
 }
-
+*/
+ 
 #pragma mark - UITableView actions
 
 // User presses delete when the table view is in edit mode
