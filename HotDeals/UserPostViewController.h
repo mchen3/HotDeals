@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-
+ 
 @interface UserPostViewController : UIViewController <UITextFieldDelegate,  UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
 		
@@ -23,6 +23,8 @@
 }
 
 -(id)initWithName:(BOOL)isNew;
+- (IBAction)takePicture:(id)sender;
+- (IBAction)backgroundTouched:(id)sender;
 
 @property (nonatomic, strong) PFObject *parseObject;
 @property (nonatomic, copy) void (^dismissBlock)(void);

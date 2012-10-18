@@ -7,6 +7,7 @@
 //
 
 #import "UserPostViewController.h"
+#import "ImageStore.h"
 
 @interface UserPostViewController ()
 
@@ -23,6 +24,7 @@
 - (id)initWithName:(BOOL)isNew
 {
 		self = [self initWithNibName:@"UserPostViewController" bundle:nil];
+		
 		
 		// ? hide the tab bar
 		self.hidesBottomBarWhenPushed = YES;
@@ -62,11 +64,24 @@
 		[[self presentingViewController] dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
 
+
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated
 {
+		// Load the Parse objects 
 		[nameField setText:[self.parseObject objectForKey:@"name"]];
+		
+		// Load image through imageKey
+		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
+		if (imageKey) {
+				UIImage *image = [[ImageStore defaultImageStore] imageForKey:imageKey];
+				[imageView setImage:image];
+		}
+		else {
+				[imageView setImage:nil];
+		}
+		
 		
 		
 }
@@ -124,10 +139,98 @@
     // e.g. self.myOutlet = nil;
 }
 
+
+#pragma mark - Interface
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+// Touch background view to dismiss keyboard
+- (IBAction)backgroundTouched:(id)sender {
+		[[self view] endEditing:YES];
+}
+
+// Press enter on the keyboard to dismiss UITextField
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+		[textField resignFirstResponder];
+		return true;
+}
+
+// UITextView doesn't have a delegate method
+// for pressing the return key like UITextField
+// so you use this workaroun delegate method, textView:shouldChange
+// to dimiss the keyboard when you press return
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+        
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+
+
+
+#pragma mark - Camera
+
+- (IBAction)takePicture:(id)sender {
+
+		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+		
+		if ([UIImagePickerController isSourceTypeAvailable:
+				 UIImagePickerControllerSourceTypeCamera]) {
+				[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+		} else {
+				[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+		}
+		
+		[imagePicker setDelegate:self];
+		[self presentModalViewController:imagePicker animated:YES];
+}
+
+
+
+// Delegate for UIImagePickerController
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+		// Get picked image from info dictionary
+		UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+		
+		// Create a CFUUID object - it knows how to create a unique identifier strings
+		CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
+		
+		// Create a string from unique identifier
+		CFStringRef newUniqueIDString =
+				CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+		
+		// Need to bridge CFStringRef to NSString
+		NSString *key = (__bridge NSString *)newUniqueIDString;
+		
+		// If this is a new item parseObject has not been created
+		// can't set any values to nil
+		[self.parseObject setObject:key forKey:@"imageKey"];
+		
+		// Store image in the ImageStore and on Parse servers with this key
+		[[ImageStore defaultImageStore] setImage:image forKey:key];
+		
+		CFRelease(newUniqueIDString);
+		CFRelease(newUniqueID);
+		
+		[self dismissViewControllerAnimated:YES completion:^{
+				
+		}];
+}
+
+
+
+
 
 @end
 
