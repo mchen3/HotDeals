@@ -144,8 +144,8 @@
 				605AC49E161E5ECE0046245F /* Items.m */,
 				605AC493161E5EC40046245F /* ItemsArchive.h */,
 				605AC494161E5EC40046245F /* ItemsArchive.m */,
-				605AC49F161E5ECE0046245F /* ItemStore.m */,
 				605AC495161E5EC40046245F /* ItemStore.h */,
+				605AC49F161E5ECE0046245F /* ItemStore.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";

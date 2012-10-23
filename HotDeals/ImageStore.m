@@ -75,6 +75,7 @@
 		[userPhoto setObject:key forKey:@"imageKey"];
 		[userPhoto setObject:[PFUser currentUser] forKey:@"user"];
 		
+		
 		[userPhoto saveInBackground];
 		
 		

@@ -10,10 +10,12 @@
 #import "ItemCell.h"
 #import "DealsItemViewController.h"
 
+
 @implementation ParseTableController
 
 
 @synthesize reloadTableBlock;
+@synthesize DealBasedOn;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -126,6 +128,48 @@
  
    //  [query orderByAscending:@"createdAt"];
 		[query orderByDescending:@"createdAt"];
+		
+	
+		/*
+		PFUser *user = [PFUser currentUser];
+		[query whereKey:@"user" equalTo:user];
+		*/
+
+		
+		
+		
+		if ([DealBasedOn isEqualToString:@"user"]) {
+					
+	//	[query orderByDescending:@"createdAt"];
+
+					
+		// Bug you are using current user
+		// User has been created but it hasn't been saved on the Parse server
+		PFUser *user = [PFUser currentUser];
+				
+				
+				
+				// Check if a user has been created (on the server) else there
+				// will be an error from the query
+				if (user.objectId) {
+						[query whereKey:@"user" equalTo:user];
+					}
+				 else {
+						// Else user hasn't even been saved to the Parse server, 
+						// return a empty table
+						[query whereKey:@"user" equalTo:@""];
+				}
+				
+		
+		
+		}
+		
+		 else if ([DealBasedOn isEqualToString:@"location"]) {
+			//	 [query orderByAscending:@"createdAt"];
+				 [query orderByDescending:@"createdAt"];
+
+		 }
+		
  
     return query;
 }
@@ -270,8 +314,14 @@
 		}];
 		
 		
-		
+		// ???? Customize the animation of when hiding the toolbar
+    dealsItemViewController.hidesBottomBarWhenPushed = YES;
+
+
 		[self.navigationController pushViewController:dealsItemViewController animated:YES];
+		
+		
+		
 		
 }
 

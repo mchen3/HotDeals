@@ -102,6 +102,12 @@
 		// cannot save objects that are nil
 		if (nameString) {
 				[self.parseObject setObject:nameString forKey:@"name"];
+				
+				// Associate the parseObject with this user
+				PFUser *user = [PFUser currentUser];
+				[self.parseObject setObject:user forKey:@"user"];
+				
+				
 		}
 		
 		// Save in viewdiddisappear instead of in the save function

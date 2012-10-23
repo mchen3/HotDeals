@@ -9,8 +9,12 @@
 #import <Parse/Parse.h>
 
 @interface ParseTableController : PFQueryTableViewController
+{
+		NSString *DealBasedOn;
+}
 
 
 @property (nonatomic, copy) void (^reloadTableBlock)(void);
+@property (nonatomic, readwrite) NSString *DealBasedOn;
 
 @end

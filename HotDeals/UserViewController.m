@@ -56,11 +56,18 @@
 		
 		// Add the wall posts tableView as a subview with view containment (new in iOS 5.0);
 		self.parseTableController = [[ParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
+		
+		// Configure parse to display deals based on UserID
+		[self.parseTableController setDealBasedOn:@"user"];
+		
 		[self addChildViewController:self.parseTableController];
 		[self.view addSubview:self.parseTableController.view];
 		self.parseTableController.view.frame = CGRectMake(0.f, 150.f, 320.f, 208.f);
 		[self.parseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 		[self.parseTableController.tableView setSeparatorColor:[UIColor redColor]];
+		
+		
+		
 		
 }
 
