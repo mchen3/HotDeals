@@ -24,13 +24,20 @@
 		// Parse configuration
 		[Parse setApplicationId:@"OVEj0O0vxy0Moy3COwIkFGCDUYNcBDhrY54NnzYD" clientKey:@"jxiwzGxKF9Sa47YxlcpksL4RdVVX50dkKpqhiS7h"];		
 		
-		/* Parse Access Control */
 		
+		
+		
+		/* Parse Access Control */
 		[PFUser enableAutomaticUser];
+		
+		// Optionally enable public read access by default.
     PFACL *defaultACL = [PFACL ACL];
-    // Optionally enable public read access by default.
-    // [defaultACL setPublicReadAccess:YES];
+		[defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+		
+		
+	
+		
 		
 		
     // Set up a navigational controller and initialize with DealViewController

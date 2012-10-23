@@ -27,9 +27,7 @@
 }
 
 - (IBAction)backgroundTouched:(id)sender;
-- (IBAction)takePicture:(id)sender;
 - (id)initWithName:(BOOL)isNew;
-- (IBAction)showCategory:(id)sender;
 
 
 @property (nonatomic, strong) Items *item;
