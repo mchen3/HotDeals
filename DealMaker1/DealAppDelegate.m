@@ -12,6 +12,7 @@
 #import "NewsViewController.h"
 #import "ItemStore.h"
 #import "Parse/Parse.h"
+#import "LocationDataManager.h"
 
 @implementation DealAppDelegate
 
@@ -36,6 +37,8 @@
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
 		
 		
+		// Start the location data for this device
+		[LocationDataManager sharedLocation];
 	
 		
 		

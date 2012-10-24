@@ -245,7 +245,7 @@
 		
 
 	//	NSString *testParse1 = [parseObject objectForKey:@"name"];
-	//	NSLog(@"viewdiddisappear 1  %@", testParse1);
+	//	 NSLog(@"viewdiddisappear 1  %@", testParse1);
 		
 		// Save the Parse objects in case the objects were edited.
 		

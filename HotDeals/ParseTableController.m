@@ -130,40 +130,27 @@
 		[query orderByDescending:@"createdAt"];
 		
 	
-		/*
-		PFUser *user = [PFUser currentUser];
-		[query whereKey:@"user" equalTo:user];
-		*/
-
-		
-		
-		
+		// Return a query based on a User ID
 		if ([DealBasedOn isEqualToString:@"user"]) {
-					
-	//	[query orderByDescending:@"createdAt"];
-
-					
-		// Bug you are using current user
-		// User has been created but it hasn't been saved on the Parse server
+										
 		PFUser *user = [PFUser currentUser];
 				
-				
-				
-				// Check if a user has been created (on the server) else there
-				// will be an error from the query
+				// If user.objectId is nil, then the user hasn't been saved
+				// on the Parse server. There will be an exception if you query
+				// with a user.objectId that is nil i.e. unsaved
 				if (user.objectId) {
 						[query whereKey:@"user" equalTo:user];
+				//  Multiple contraints on a query
+				//  [query whereKey:@"name" equalTo:@"test"];
 					}
 				 else {
-						// Else user hasn't even been saved to the Parse server, 
-						// return a empty table
+						// Else user hasn't been saved to the
+						// Parse server, return a empty table
 						[query whereKey:@"user" equalTo:@""];
 				}
-				
-		
-		
 		}
 		
+		// Return a query based upon a location
 		 else if ([DealBasedOn isEqualToString:@"location"]) {
 			//	 [query orderByAscending:@"createdAt"];
 				 [query orderByDescending:@"createdAt"];

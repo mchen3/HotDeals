@@ -44,6 +44,8 @@
 		60B48F7B15A89E8200A52C2E /* Time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7715A89E8200A52C2E /* Time@2x.png */; };
 		60EA6FCD162749E600A1B765 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6FCB162749E600A1B765 /* UserViewController.m */; };
 		60EA6FCE162749E600A1B765 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA6FCC162749E600A1B765 /* UserViewController.xib */; };
+		60F423D016389A91004EB95A /* LocationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F423CF16389A91004EB95A /* LocationDataManager.m */; };
+		60F423D716389BE8004EB95A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F423D616389BE8004EB95A /* CoreLocation.framework */; };
 		60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FD86A315BF23FC000BDCCB /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +109,9 @@
 		60EA6FCA162749E600A1B765 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = HotDeals/UserViewController.h; sourceTree = "<group>"; };
 		60EA6FCB162749E600A1B765 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = HotDeals/UserViewController.m; sourceTree = "<group>"; };
 		60EA6FCC162749E600A1B765 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserViewController.xib; path = HotDeals/UserViewController.xib; sourceTree = "<group>"; };
+		60F423CE16389A91004EB95A /* LocationDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationDataManager.h; path = HotDeals/LocationDataManager.h; sourceTree = "<group>"; };
+		60F423CF16389A91004EB95A /* LocationDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationDataManager.m; path = HotDeals/LocationDataManager.m; sourceTree = "<group>"; };
+		60F423D616389BE8004EB95A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		60FD86A315BF23FC000BDCCB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -115,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60F423D716389BE8004EB95A /* CoreLocation.framework in Frameworks */,
 				60A91B0B15D953A80068CCF2 /* SystemConfiguration.framework in Frameworks */,
 				60A91B0915D953A10068CCF2 /* StoreKit.framework in Frameworks */,
 				60A91B0715D9539C0068CCF2 /* Security.framework in Frameworks */,
@@ -164,6 +170,7 @@
 		60B48F3715A892F000A52C2E = {
 			isa = PBXGroup;
 			children = (
+				60F423D616389BE8004EB95A /* CoreLocation.framework */,
 				60E5238515E182CA00D532FA /* MISC */,
 				601B096815B74220000AC5C0 /* Model */,
 				60E5238415E182AD00D532FA /* View */,
@@ -241,6 +248,8 @@
 				602874ED16211F5100EE51B0 /* copy */,
 				605AC49B161E5EC40046245F /* ParseTableController.h */,
 				605AC4A1161E5ECE0046245F /* ParseTableController.m */,
+				60F423CE16389A91004EB95A /* LocationDataManager.h */,
+				60F423CF16389A91004EB95A /* LocationDataManager.m */,
 				605AC48C161E5EC40046245F /* DealsViewController.h */,
 				602874E716211E3C00EE51B0 /* DealsViewController.m */,
 				605AC496161E5EC40046245F /* DealsItemViewController.h */,
@@ -366,6 +375,7 @@
 				602874E816211E3C00EE51B0 /* DealsViewController.m in Sources */,
 				60EA6FCD162749E600A1B765 /* UserViewController.m in Sources */,
 				600118CC1628AB5C009E019D /* UserPostViewController.m in Sources */,
+				60F423D016389A91004EB95A /* LocationDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

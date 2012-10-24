@@ -8,6 +8,7 @@
 
 #import "UserPostViewController.h"
 #import "ImageStore.h"
+#import "LocationDataManager.h"
 
 @interface UserPostViewController ()
 
@@ -106,9 +107,18 @@
 				// Associate the parseObject with this user
 				PFUser *user = [PFUser currentUser];
 				[self.parseObject setObject:user forKey:@"user"];
-				
-				
 		}
+		
+		
+		// Find the location for this user and save the location to parse
+		CLLocation *location = [LocationDataManager sharedLocation].currentLocation;
+		NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
+		
+		CLLocationCoordinate2D coordinate = [LocationDataManager sharedLocation].currentLocation.coordinate;
+		NSLog(@"Los");
+		
+
+		
 		
 		// Save in viewdiddisappear instead of in the save function
 		[self.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
