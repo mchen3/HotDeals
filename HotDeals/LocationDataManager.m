@@ -66,10 +66,9 @@
 		[self.locationManager startUpdatingLocation];
 		
 		
-		
-		
 		CLLocation *location = self.locationManager.location;
 		if (location) {
+				NSLog(@"locationManager.location");
 				self.currentLocation = location;
 		}
 		
@@ -85,8 +84,8 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
 		
-		NSLog(@"Update location");
-		self.currentLocation = newLocation;
+		NSLog(@"didUpdate location");
+	//	self.currentLocation = newLocation;
 		
 		[self stopUpdatingCurrentLocation];
 		
@@ -116,22 +115,36 @@
 - (void)reverseGeocoding {
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init ];
 		
-		
 		NSLog(@"Geocode");
+		/*Testing locations
+		CLLocationCoordinate2D coord =
+				CLLocationCoordinate2DMake(40.79, -73.81);
+		CLLocation *testLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+		NSString *lat = [[NSNumber numberWithDouble:self.currentPlacemark.location.coordinate.latitude] stringValue];
 		
+		NSString *lon = [[NSNumber numberWithDouble:self.currentPlacemark.location.coordinate.longitude]stringValue];
+		*/
+
 		[geocoder reverseGeocodeLocation:self.currentLocation completionHandler:
 		 ^(NSArray *placemarks, NSError *error) {
 				 if (error) {
-						 NSLog(@"Error");
+						 NSLog(@"Error in geocode");
 						 return ;
 				 }
 				 
-				 CLPlacemark *placemark = [placemarks objectAtIndex:0];
-				 self.currentPlacemark = placemark;
+				CLPlacemark *placemark = [placemarks objectAtIndex:0];
+				self.currentPlacemark = placemark;
 				 
-				 NSLog(@"%@, %@, %@, %@, %@", placemark.country ,placemark.locality, placemark.administrativeArea, placemark.subAdministrativeArea, placemark.postalCode);
+				NSLog(@"Locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@ ", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country);
 				 
-				 NSLog(@"Test9");
+				 // Notify DealViewController's subview ParseTableController
+				 // that the location data is ready. The location data is
+				 // needed when you query the parse server.
+				 dispatch_async(dispatch_get_main_queue(), ^{
+						 [[NSNotificationCenter defaultCenter] postNotificationName:@"locationReady" object:nil];
+				 });
+				 
+				 
 		 }];
 		
 }

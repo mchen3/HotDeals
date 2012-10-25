@@ -2,17 +2,22 @@
 //  MyTableController.m
 //  ParseStarterProject
 //
-//  Created by James Yu on 12/29/11.
+//  Created by Mike Chen on 7/14/12.
 //  Copyright (c) 2011 Parse Inc. All rights reserved.
 //
 
 #import "ParseTableController.h"
 #import "ItemCell.h"
 #import "DealsItemViewController.h"
+#import "LocationDataManager.h"
+
+@interface ParseTableController ()
 
 
+@end
+
+#pragma mark -
 @implementation ParseTableController
-
 
 @synthesize reloadTableBlock;
 @synthesize DealBasedOn;
@@ -52,6 +57,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+		
+		// Register to be notified when the location data is ready.
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDataReady) name:@"locationReady" object:nil];
 		}
 
 - (void)viewDidUnload
@@ -59,6 +67,9 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+		
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+										name:@"locationReady" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,6 +112,11 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)dealloc {
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+										name:@"locationReady" object:nil];
+}
+
 #pragma mark - Parse
 
 - (void)objectsDidLoad:(NSError *)error {
@@ -127,12 +143,13 @@
     }
  
    //  [query orderByAscending:@"createdAt"];
-		[query orderByDescending:@"createdAt"];
 		
-	
+		
 		// Return a query based on a User ID
 		if ([DealBasedOn isEqualToString:@"user"]) {
 										
+		[query orderByDescending:@"createdAt"];
+
 		PFUser *user = [PFUser currentUser];
 				
 				// If user.objectId is nil, then the user hasn't been saved
@@ -150,14 +167,24 @@
 				}
 		}
 		
-		// Return a query based upon a location
-		 else if ([DealBasedOn isEqualToString:@"location"]) {
-			//	 [query orderByAscending:@"createdAt"];
-				 [query orderByDescending:@"createdAt"];
-
-		 }
+		// Return a query based upon a locality of current user
+		else if ([DealBasedOn isEqualToString:@"location"]) {
+				 
+				// Pull the location data from LocationDataManager
+				NSString *usersCurrentLocality =
+						[LocationDataManager sharedLocation].currentPlacemark.locality;
+				
+				if (usersCurrentLocality) {
+						NSLog(@"Querying Locality");
+						[query orderByDescending:@"createdAt"];
+						[query whereKey:@"locality" equalTo:usersCurrentLocality];
+				} else {
+						NSLog(@"Query not ready");
+						[query whereKey:@"locality" equalTo:@""];
+				}
+		}
 		
- 
+		NSLog(@"Outside");
     return query;
 }
  // Override to customize the look of a cell representing an object. The default is to display
@@ -332,6 +359,14 @@
 		}
 }
 
+#pragma mark - #pragma mark - NSNotificationCenter notification handlers
+
+- (void)locationDataReady {
+		
+		// Query the parse server again now that location data is available
+		NSLog(@"Notify");
+		[self loadObjects];
+}
 
 
 

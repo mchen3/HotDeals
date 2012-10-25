@@ -117,7 +117,7 @@
 		CLLocationCoordinate2D coordinate = [LocationDataManager sharedLocation].currentLocation.coordinate;
 		NSLog(@"Los");
 		
-
+		[self.parseObject setObject:locality forKey:@"locality"];
 		
 		
 		// Save in viewdiddisappear instead of in the save function

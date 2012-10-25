@@ -14,6 +14,7 @@
 #import "ItemCell.h"
 #import "ParseTableController.h"
 #import "Constants.h"
+#import "LocationDataManager.h"
 
 @interface DealsViewController ()
 @property (nonatomic, strong) ParseTableController *parseTableController;
@@ -54,6 +55,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+				
     // Do any additional setup after loading the view from its nib.
     
     /*** DEL   
@@ -85,7 +87,7 @@
 		[self.parseTableController.tableView setSeparatorColor:[UIColor greenColor]];
 		
 				
-
+    
 		
 
 		// ??? Notifications
