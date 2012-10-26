@@ -44,6 +44,7 @@
 		60B48F7B15A89E8200A52C2E /* Time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B48F7715A89E8200A52C2E /* Time@2x.png */; };
 		60EA6FCD162749E600A1B765 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6FCB162749E600A1B765 /* UserViewController.m */; };
 		60EA6FCE162749E600A1B765 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA6FCC162749E600A1B765 /* UserViewController.xib */; };
+		60F151A8163B04C9004527BD /* UserParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F151A7163B04C9004527BD /* UserParseTableController.m */; };
 		60F423D016389A91004EB95A /* LocationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F423CF16389A91004EB95A /* LocationDataManager.m */; };
 		60F423D716389BE8004EB95A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F423D616389BE8004EB95A /* CoreLocation.framework */; };
 		60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FD86A315BF23FC000BDCCB /* CoreData.framework */; };
@@ -109,6 +110,8 @@
 		60EA6FCA162749E600A1B765 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = HotDeals/UserViewController.h; sourceTree = "<group>"; };
 		60EA6FCB162749E600A1B765 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = HotDeals/UserViewController.m; sourceTree = "<group>"; };
 		60EA6FCC162749E600A1B765 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserViewController.xib; path = HotDeals/UserViewController.xib; sourceTree = "<group>"; };
+		60F151A6163B04C9004527BD /* UserParseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserParseTableController.h; path = HotDeals/UserParseTableController.h; sourceTree = "<group>"; };
+		60F151A7163B04C9004527BD /* UserParseTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserParseTableController.m; path = HotDeals/UserParseTableController.m; sourceTree = "<group>"; };
 		60F423CE16389A91004EB95A /* LocationDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationDataManager.h; path = HotDeals/LocationDataManager.h; sourceTree = "<group>"; };
 		60F423CF16389A91004EB95A /* LocationDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationDataManager.m; path = HotDeals/LocationDataManager.m; sourceTree = "<group>"; };
 		60F423D616389BE8004EB95A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -246,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				602874ED16211F5100EE51B0 /* copy */,
+				60F151A6163B04C9004527BD /* UserParseTableController.h */,
+				60F151A7163B04C9004527BD /* UserParseTableController.m */,
 				605AC49B161E5EC40046245F /* DealsParseTableController.h */,
 				605AC4A1161E5ECE0046245F /* DealsParseTableController.m */,
 				60F423CE16389A91004EB95A /* LocationDataManager.h */,
@@ -376,6 +381,7 @@
 				60EA6FCD162749E600A1B765 /* UserViewController.m in Sources */,
 				600118CC1628AB5C009E019D /* UserPostViewController.m in Sources */,
 				60F423D016389A91004EB95A /* LocationDataManager.m in Sources */,
+				60F151A8163B04C9004527BD /* UserParseTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

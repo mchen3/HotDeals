@@ -14,6 +14,8 @@
 
 + (LocationDataManager *)sharedLocation;
 -(void)findLocationByForwardGeocoding:(NSString *)userEnteredAddress;
+- (void)startUpdatingCurrentLocation;
+- (void)currentLocationByReverseGeocoding;
 
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLPlacemark *currentPlacemark;

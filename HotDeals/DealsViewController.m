@@ -31,21 +31,21 @@
         // Set the title of the nav bar
         [[self navigationItem] setTitle:@"Deals"];
         
-		/* DEL
-		 There is no edit or delete for the DVC
-        // Add a right bar button of type 'ADD' programmically
-        // to add items to the table
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
-        [[self navigationItem] setRightBarButtonItem:button];
-        
-        // If your class was a UITableViewController, then all you 
-        // do is add a editButtonItem and the table view is hooked
-        // up automatically to toggle between done and edit
-        // But you have a UIViewController that doesn't have a
-        // table view as its view so you need to override the 
-        // setEditing:animated method 
-        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];	
-		*/
+				/* DEL
+				 There is no edit or delete for the DVC
+				 // Add a right bar button of type 'ADD' programmically
+				 // to add items to the table
+				 UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
+				 [[self navigationItem] setRightBarButtonItem:button];
+				 
+				 // If your class was a UITableViewController, then all you
+				 // do is add a editButtonItem and the table view is hooked
+				 // up automatically to toggle between done and edit
+				 // But you have a UIViewController that doesn't have a
+				 // table view as its view so you need to override the
+				 // setEditing:animated method
+				 [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+				 */
 		}
     return self;
 }
@@ -55,17 +55,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-				
+		
     // Do any additional setup after loading the view from its nib.
     
-    /*** DEL   
-		   table that was created in BNR
-    // Set background image of the table view
-    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Image.png"]];
-    [image setFrame:table.frame];
-    // [table setBackgroundView:image];
-		*/
-		 
+    /*** DEL
+		 table that was created in BNR
+		 // Set background image of the table view
+		 UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Image.png"]];
+		 [image setFrame:table.frame];
+		 // [table setBackgroundView:image];
+		 */
+		
 		// Load the lib for the table cell and register it to the tableView
 		UINib *nib = [UINib nibWithNibName:@"ItemCell" bundle:nil];
 		//[table registerNib:nib forCellReuseIdentifier:@"ItemCell"];
@@ -77,7 +77,7 @@
 		
 		// Configure parse table to display based on location
 		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
-				
+		
 		[self addChildViewController:self.dealsParseTableController];
 		self.dealsParseTableController.view.frame = CGRectMake(0.f, 90.f, 320.f, 270.f);
 		[self.view addSubview:self.dealsParseTableController.view];
@@ -88,13 +88,13 @@
 		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor greenColor]];
 		
-				
+		
     
 		
-
+		
 		// ??? Notifications
 		[[NSNotificationCenter defaultCenter] addObserver:self
-				selector:@selector(dealCreated:) name:kDealCreatedNotification object:nil];
+																						 selector:@selector(dealCreated:) name:kDealCreatedNotification object:nil];
 }
 
 - (void)viewDidUnload
@@ -102,8 +102,8 @@
 		addressField = nil;
     [super viewDidUnload];
 		
-		[[NSNotificationCenter defaultCenter] removeObserver:self 
-				name:kDealCreatedNotification object:nil];
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+																										name:kDealCreatedNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -111,7 +111,7 @@
     [super viewWillAppear:animated];
     
 		// ???
-    // Reload the table data just in case changes were made in 
+    // Reload the table data just in case changes were made in
     // another view controller
     // [table reloadData];
 }
@@ -123,7 +123,7 @@
 
 - (void)dealloc {
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-					name:kDealCreatedNotification object:nil];
+																										name:kDealCreatedNotification object:nil];
 }
 
 #pragma mark - Notification callback
@@ -138,77 +138,77 @@
 // There is no edit or delete button for DVC
 #pragma mark - NavBar buttons
 /*
--(void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing animated:animated];
-    
-    if (table.editing) {
-        // Turn off editing mode
-        table.editing = NO;
-				self.dealsParseTableController.tableView.editing = NO;
-    }else {
-        // Done state
-        table.editing = YES;
-				self.dealsParseTableController.tableView.editing = YES;
-    }
-}
-
--(IBAction)addNewItem:(id)sender
-{
-		 /*** DEL 
-			   BNR
-		 // Create a item
-		 Items *lastItem = [[ItemStore sharedStore] createItem];
-		 // Make an index path for the 0th section, last row
-		 int lastRow = [[[ItemStore sharedStore] allItems] indexOfObject:lastItem];
-		 NSIndexPath *path = [NSIndexPath indexPathForRow:lastRow inSection:0];
-		 
-		 // Insert into table view, pass an array with index path
-		 [table insertRowsAtIndexPaths:[NSArray arrayWithObject:path ] withRowAnimation:UITableViewRowAnimationTop];
-		 */
-		// Let Item controller create a new item
-		/*
-		Items *item = [[ItemStore sharedStore] createItem];
-		
-		ItemViewController *ivc = [[ItemViewController alloc] initWithName:YES];
-		[ivc setItem:item];
-		*/
+ -(void)setEditing:(BOOL)editing animated:(BOOL)animated
+ {
+ [super setEditing:editing animated:animated];
+ 
+ if (table.editing) {
+ // Turn off editing mode
+ table.editing = NO;
+ self.dealsParseTableController.tableView.editing = NO;
+ }else {
+ // Done state
+ table.editing = YES;
+ self.dealsParseTableController.tableView.editing = YES;
+ }
+ }
+ 
+ -(IBAction)addNewItem:(id)sender
+ {
+ /*** DEL
+ BNR
+ // Create a item
+ Items *lastItem = [[ItemStore sharedStore] createItem];
+ // Make an index path for the 0th section, last row
+ int lastRow = [[[ItemStore sharedStore] allItems] indexOfObject:lastItem];
+ NSIndexPath *path = [NSIndexPath indexPathForRow:lastRow inSection:0];
+ 
+ // Insert into table view, pass an array with index path
+ [table insertRowsAtIndexPaths:[NSArray arrayWithObject:path ] withRowAnimation:UITableViewRowAnimationTop];
+ */
+// Let Item controller create a new item
+/*
+ Items *item = [[ItemStore sharedStore] createItem];
+ 
+ ItemViewController *ivc = [[ItemViewController alloc] initWithName:YES];
+ [ivc setItem:item];
+ */
 
 /*
-		// Add a new Parse object and pass it to ItemViewController
-		PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
-		DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] initWithName:YES];
-		[dealsItemViewController setParseObject:parseObject];
-		
-		// Why use a navController?
-		// Add navcontroller when you are creating a new item, else
-		// a nav controller is not needed. 
-		// DealItemViewController will initWithName:YES when you add
-		// new item
-		UINavigationController *navController = [[UINavigationController alloc]
-																	 initWithRootViewController:dealsItemViewController];
-		
-		[navController setModalPresentationStyle:UIModalPresentationFormSheet];
-		[navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-		
-		
-		// Pass a block to reload the table to the ItemViewController
-		// Need a dismiss block to reload data for the iPad but not for iPhone
-		// 13.5 for explanation
-		[dealsItemViewController setDismissBlock: ^{
-				//    DVC's table		
-				//		[table reloadData];
-				
-				//		[ParseTVC.tableView reloadData];
-				
-				// Load the parse objects after you create a new Parse object
-				// Only reload the block if the save was successful.
-		  		[self.dealsParseTableController loadObjects];
-		}];
-		[self presentViewController:navController animated:YES completion:nil];
-}
-*/
+ // Add a new Parse object and pass it to ItemViewController
+ PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
+ DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] initWithName:YES];
+ [dealsItemViewController setParseObject:parseObject];
  
+ // Why use a navController?
+ // Add navcontroller when you are creating a new item, else
+ // a nav controller is not needed.
+ // DealItemViewController will initWithName:YES when you add
+ // new item
+ UINavigationController *navController = [[UINavigationController alloc]
+ initWithRootViewController:dealsItemViewController];
+ 
+ [navController setModalPresentationStyle:UIModalPresentationFormSheet];
+ [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+ 
+ 
+ // Pass a block to reload the table to the ItemViewController
+ // Need a dismiss block to reload data for the iPad but not for iPhone
+ // 13.5 for explanation
+ [dealsItemViewController setDismissBlock: ^{
+ //    DVC's table
+ //		[table reloadData];
+ 
+ //		[ParseTVC.tableView reloadData];
+ 
+ // Load the parse objects after you create a new Parse object
+ // Only reload the block if the save was successful.
+ [self.dealsParseTableController loadObjects];
+ }];
+ [self presentViewController:navController animated:YES completion:nil];
+ }
+ */
+
 #pragma mark - UITableView actions
 
 // User presses delete when the table view is in edit mode
@@ -238,7 +238,7 @@
 {
     /*
 		 // Check for reusable cell first, use if there is one
-		 UITableViewCell *cell = [tableView 
+		 UITableViewCell *cell = [tableView
 		 dequeueReusableCellWithIdentifier:@"UITableViewController"];
 		 
 		 // If there is no reusable cell, then create a new one
@@ -257,7 +257,7 @@
     Items *item = [[[ItemStore sharedStore] allItems] objectAtIndex:[indexPath row]];
 		
 		[[cell nameLabel] setText:[item itemName]];
-		[[cell descriptionLabel] setText:[item descriptions]];		
+		[[cell descriptionLabel] setText:[item descriptions]];
 		[[cell valueLabel] setText:[NSString stringWithFormat:@"%d", [item valueInDollars]]];
 		
 		// Create a NSDateFormatter that will turn a date into a simple date string
@@ -321,6 +321,7 @@
 }
 
 
+// Search for deals based on the address the user has entered
 - (IBAction)dealsBasedOnAddress:(id)sender {
 		
 		NSLog(@"Address pressed");
@@ -331,14 +332,16 @@
 		NSString *userEnteredAddress = [addressField text];
 		if (userEnteredAddress ) {
 				[locationManager findLocationByForwardGeocoding:userEnteredAddress];
-		
+				
 		}
-		
-		
 }
 
-
-
+// Search deals based on user's current location
+- (IBAction)dealsBasedOnUserLocation:(id)sender {
+		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
+		[locationManager startUpdatingCurrentLocation];
+		[locationManager currentLocationByReverseGeocoding];
+}
 
 
 

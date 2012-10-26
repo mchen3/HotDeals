@@ -1,3 +1,4 @@
+
 //
 //  MyTableController.h
 //  ParseStarterProject
@@ -8,11 +9,8 @@
 
 #import <Parse/Parse.h>
 
-@interface DealsParseTableController : PFQueryTableViewController
-{
-		NSString *DealBasedOn;
-}
+@interface UserParseTableController  : PFQueryTableViewController
 
-@property (nonatomic, readwrite) NSString *DealBasedOn;
+
 
 @end

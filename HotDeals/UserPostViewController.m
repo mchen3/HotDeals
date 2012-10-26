@@ -40,12 +40,12 @@
 						[[self navigationItem] setRightBarButtonItem:saveItem];
 						
 						UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
-																				 initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:
+																					 initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:
 																					 @selector(cancel:)];
 						[[self navigationItem] setLeftBarButtonItem:cancelItem];
 				}
 				
-
+				
 		}
 		return self;
 		
@@ -73,7 +73,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-		// Load the Parse objects 
+		// Load the Parse objects
 		[nameField setText:[self.parseObject objectForKey:@"name"]];
 		
 		// Load image through imageKey
@@ -113,7 +113,7 @@
 		}
 		
 		
-		// Find the location for this user and save the location to parse
+		// Find the location for this user and save the locality to parse
 		CLLocation *location = [LocationDataManager sharedLocation].currentLocation;
 		NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
 		
@@ -131,9 +131,17 @@
 						UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
 						[alertView show];
 				}
-				// Reload the parse table after you successfully saved 
+				// Reload the parse table after you successfully saved
 				if (succeeded) {
+						// Reload the UserParseTableController
 						dispatch_async(dispatch_get_main_queue(), self.dismissBlock);
+						
+						// Alert the DealsParseTableController that a new deal was created
+						dispatch_async(dispatch_get_main_queue(), ^{
+								[[NSNotificationCenter defaultCenter]
+								 postNotificationName:@"userDealChange" object:nil];
+						});
+						
 				} else {
 						NSLog(@"Failed to save");
 				}
@@ -187,7 +195,7 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-        
+		
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
@@ -201,7 +209,7 @@
 #pragma mark - Camera
 
 - (IBAction)takePicture:(id)sender {
-
+		
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 		
 		if ([UIImagePickerController isSourceTypeAvailable:
@@ -228,7 +236,7 @@
 		
 		// Create a string from unique identifier
 		CFStringRef newUniqueIDString =
-				CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+		CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
 		
 		// Need to bridge CFStringRef to NSString
 		NSString *key = (__bridge NSString *)newUniqueIDString;

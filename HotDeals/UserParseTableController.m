@@ -6,20 +6,18 @@
 //  Copyright (c) 2011 Parse Inc. All rights reserved.
 //
 
-#import "DealsParseTableController.h"
+#import "UserParseTableController.h"
 #import "ItemCell.h"
 #import "DealsItemViewController.h"
 #import "LocationDataManager.h"
 
-@interface DealsParseTableController ()
-
+@interface UserParseTableController ()
 
 @end
 
 #pragma mark -
-@implementation DealsParseTableController
+@implementation UserParseTableController
 
-@synthesize DealBasedOn;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -57,15 +55,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 		
-		// Register to be notified when the location data is ready.
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentLocationReady) name:@"currentLocationReady" object:nil];
-		
-		// Register to be notified when the user has supplied a address
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addressLocationReady) name:@"addressLocationReady" object:nil];
-		
-		// Register to be notified when a user has added a new deal to his locality
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector
-		 (userDealChange) name:@"userDealChange" object:nil];
 }
 
 - (void)viewDidUnload
@@ -74,12 +63,6 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 		
-		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"currentLocationReady" object:nil];
-		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"addressLocationReady" object:nil];
-		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"userDealChange" object:nil];
 		
 }
 
@@ -91,14 +74,14 @@
 		// but it doesn't actually save to Parse backend
 	  //	 [self.tableView reloadData];
 		
-	  //	NSLog(@"Parse will appear: DealsBasedon:%@", self.DealBasedOn);
+		//	NSLog(@"Parse will appear: DealsBasedon:%@", self.DealBasedOn);
 		
 		// Clear to prevent previous Parse table caches from appearing
-		//[self clear];
+		//	[self clear];
 		
 		// If you switch tabs back and forth, the parse table will not
 		// be up to date so you must reload to make sure the data is right.
-		// [self loadObjects];
+		//	[self loadObjects];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -134,12 +117,7 @@
 }
 
 - (void)dealloc {
-		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"currentLocationReady" object:nil];
-		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"addressLocationReady" object:nil];
-		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"userDealChange" object:nil];
+		
 }
 
 #pragma mark - Parse
@@ -167,42 +145,33 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
 		
-		// Return a query based upon a current locality of current user
-		if ([self.DealBasedOn isEqualToString:@"currentLocation"]) {
-				
-				// Pull the location data from LocationDataManager
-				NSString *usersCurrentLocality =
-				[LocationDataManager sharedLocation].currentPlacemark.locality;
-				
-				// Check to see if locality is ready, if not return a empty table
-				if (usersCurrentLocality) {
-						NSLog(@"Current locality ready, query parse");
-						[query orderByDescending:@"createdAt"];
-						[query whereKey:@"locality" equalTo:usersCurrentLocality];
-				} else {
-						NSLog(@"Current locality not ready, query empty parse");
-						[query whereKey:@"locality" equalTo:@""];
-				}
-		}
+		//  [query orderByAscending:@"createdAt"];
 		
-		// Return query based upon an address that the user entered
-		else if ([self.DealBasedOn isEqualToString:@"userEnteredAddress"]) {
-				
-				NSString *userEnteredLocality =
-				[LocationDataManager sharedLocation].addressPlacemark.locality;
-				if (userEnteredLocality) {
-						NSLog(@"Address locality ready, query parse");
-						[query orderByDescending:@"createdAt"];
-						[query whereKey:@"locality" equalTo:userEnteredLocality];
-				} else {
-						NSLog(@"Address locality not ready, query empty parse");
-						[query whereKey:@"locality" equalTo:@""];
-				}
-				
+		
+		// Return a query based on a current Users ID
+		//if ([self.DealBasedOn isEqualToString:@"user"]) {
+		
+		[query orderByDescending:@"createdAt"];
+		
+		PFUser *user = [PFUser currentUser];
+		
+		// If user.objectId is nil, then the user hasn't been saved
+		// on the Parse server. There will be an exception if you query
+		// with a user.objectId that is nil i.e. unsaved
+		if (user.objectId) {
+				[query whereKey:@"user" equalTo:user];
+				//  Multiple contraints on a query
+				// [query whereKey:@"name" equalTo:@"second"];
 		}
+		else {
+				// Else user hasn't been saved to the
+				// Parse server, return a empty table
+				[query whereKey:@"user" equalTo:@""];
+		}
+		//	}
+		
 		
 		//	NSLog(@"Outside");
-		NSLog(@"DealsBasedon --->>>> %@", self.DealBasedOn);
     return query;
 }
 // Override to customize the look of a cell representing an object. The default is to display
@@ -342,7 +311,12 @@
 				// Only reload the block if the save was successful.
 				[self loadObjects];
 				
-				
+				// Notify the DealViewController parse table to reload
+				// because a post may have been changed
+				dispatch_async(dispatch_get_main_queue(), ^{
+						[[NSNotificationCenter defaultCenter]
+						 postNotificationName:@"userDealChange" object:nil];
+				});
 		}];
 		
 		
@@ -364,9 +338,19 @@
 				PFObject *object = [self.objects objectAtIndex:[indexPath row]];
 				[object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 						
+						if (error) {
+								return;
+						}
+						
 						//  Reload the Parse Table, this function relaces
 						// [tableView deleteRowsAtIndexPaths:withRowAnimation]
 						[self loadObjects];
+						
+						// Alert the DealsParseTableController to reload because a deal was deleted
+						dispatch_async(dispatch_get_main_queue(), ^{
+								[[NSNotificationCenter defaultCenter]
+								 postNotificationName:@"userDealChange" object:nil];
+						});
 				}];
 				
 				
@@ -377,28 +361,7 @@
 		}
 }
 
-#pragma mark - #pragma mark - NSNotificationCenter notification handlers
 
-- (void)currentLocationReady {
-		
-		// Query the parse server again now that location data is available
-		NSLog(@"Notification recieved, update table on current location");
-		self.DealBasedOn = @"currentLocation";
-		[self loadObjects];
-}
-
-- (void)addressLocationReady {
-		NSLog(@"Notification recieved, update on user address");
-		self.DealBasedOn = @"userEnteredAddress";
-		[self loadObjects];
-}
-
-- (void)userDealChange {
-		
-		// Reload the table because a user has added a new deal,
-		// deleted a deal, or changed a deal.
-		[self loadObjects];
-}
 
 
 @end

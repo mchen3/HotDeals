@@ -11,14 +11,15 @@
 #import "DealsItemViewController.h"
 #import "UserPostViewController.h"
 #import "NewsViewController.h"
+#import "UserParseTableController.h"
 
 
 @interface UserViewController ()
-@property (nonatomic, strong) DealsParseTableController *dealsParseTableController;
+@property (nonatomic, strong) UserParseTableController *userParseTableController;
 @end
 
 @implementation UserViewController
-@synthesize dealsParseTableController = _dealsParseTableController;
+@synthesize userParseTableController = _userParseTableController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,7 +35,7 @@
 				
 				[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 				
-		
+				
 				
 				
     }
@@ -45,7 +46,7 @@
 {
 		// Make sure the flag DealBasedOn is always set to "user" for the
 		// UserViewController when you use DealsParseTableController
-		[self.dealsParseTableController setDealBasedOn:@"user"];
+		//[self.dealsParseTableController setDealBasedOn:@"user"];
 	  // [self.dealsParseTableController loadObjects];
 }
 
@@ -63,16 +64,17 @@
 		//[table registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 		
 		// Add the wall posts tableView as a subview with view containment (new in iOS 5.0);
-		self.dealsParseTableController = [[DealsParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
+		self.userParseTableController = [[UserParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
 		
 		// Configure parse to display deals based on UserID
-		[self.dealsParseTableController setDealBasedOn:@"user"];
+		//[self.dealsParseTableController setDealBasedOn:@"user"];
 		
-		[self addChildViewController:self.dealsParseTableController];
-		[self.view addSubview:self.dealsParseTableController.view];
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 300.f);
-		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
-		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor redColor]];
+		
+		[self addChildViewController:self.userParseTableController];
+		[self.view addSubview:self.userParseTableController.view];
+		self.userParseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 300.f);
+		[self.userParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
+		[self.userParseTableController.tableView setSeparatorColor:[UIColor redColor]];
 		
 		
 		
@@ -97,10 +99,10 @@
 {
 		[super setEditing:editing animated:animated];
 		
-		if (self.dealsParseTableController.tableView.editing) {
-				self.dealsParseTableController.tableView.editing = NO;
+		if (self.userParseTableController.tableView.editing) {
+				self.userParseTableController.tableView.editing = NO;
 		}else {
-				self.dealsParseTableController.tableView.editing = YES;
+				self.userParseTableController.tableView.editing = YES;
 		}
 }
 
@@ -125,7 +127,7 @@
 		// Need a dismiss block to reload data for the iPad but not for iPhone
 		// 13.5 for explantion
 		[userPostViewController setDismissBlock:^{
-				[self.dealsParseTableController loadObjects];
+				[self.userParseTableController loadObjects];
 		}];
 		
 		[self presentViewController:navController animated:YES completion:nil];

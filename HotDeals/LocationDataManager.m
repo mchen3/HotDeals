@@ -120,14 +120,14 @@
 		
 		NSLog(@"Geocode");
 		/*Testing locations
-		CLLocationCoordinate2D coord =
-				CLLocationCoordinate2DMake(41.527111, -99.810728);
-		CLLocation *testLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
-		NSString *lat = [[NSNumber numberWithDouble:self.currentPlacemark.location.coordinate.latitude] stringValue];
+		 CLLocationCoordinate2D coord =
+		 CLLocationCoordinate2DMake(41.527111, -99.810728);
+		 CLLocation *testLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+		 NSString *lat = [[NSNumber numberWithDouble:self.currentPlacemark.location.coordinate.latitude] stringValue];
+		 
+		 NSString *lon = [[NSNumber numberWithDouble:self.currentPlacemark.location.coordinate.longitude]stringValue];
+		 */
 		
-		NSString *lon = [[NSNumber numberWithDouble:self.currentPlacemark.location.coordinate.longitude]stringValue];
-		*/
-
 		[geocoder reverseGeocodeLocation:self.currentLocation completionHandler:
 		 ^(NSArray *placemarks, NSError *error) {
 				 if (error) {
@@ -135,22 +135,28 @@
 						 return ;
 				 }
 				 
-				CLPlacemark *placemark = [placemarks objectAtIndex:0];
-				self.currentPlacemark = placemark;
+				 CLPlacemark *placemark = [placemarks objectAtIndex:0];
+				 self.currentPlacemark = placemark;
 				 
-				NSLog(@"Locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@ ", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country);
+				 NSLog(@"Locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@ ", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country);
 				 
 				 // Notify DealViewController's subview DealsParseTableController
-				 // that the location data is ready. The location data is
-				 // needed when you query the parse server.
+				 // that the users' current location data is ready. The location
+				 // data is needed when you query the parse server.
 				 dispatch_async(dispatch_get_main_queue(), ^{
 						 [[NSNotificationCenter defaultCenter] postNotificationName:@"currentLocationReady" object:nil];
 				 });
 		 }];
 }
 
-// Find the coordinates/location based upon the address
-// string the user has entered.
+/*
+We want a specific locality for the address the user has entered.
+We first forward geocode (findLocationByForwardGeocoding) the address string
+the user has entered to find a specific coordinate/location and then we use
+this location to reverse geocode (findPlacemarkByReverseGeocoding) to find a
+complete placemark. The placemark will contain the locality which will be 
+used by the DealsParseTableController to search deals based on locality
+*/
 -(void)findLocationByForwardGeocoding:(NSString *)userEnteredAddress;
 {
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
@@ -164,41 +170,41 @@
 				CLPlacemark *placemark = [placemarks objectAtIndex:0];
 				self.addressLocation = placemark.location;
 				
+				// Find the complete placemark based on location
 				[self findPlacemarkByReverseGeocoding:self.addressLocation];
 		}];
 }
 
 - (void)findPlacemarkByReverseGeocoding:(CLLocation *)userAddressLocation
 {
-		 // Finding placemarks by reverse
+		// Finding placemarks by reverse
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 		
 		[geocoder reverseGeocodeLocation:userAddressLocation
-		completionHandler:^(NSArray *placemarks, NSError *error) {
-		
+									 completionHandler:^(NSArray *placemarks, NSError *error) {
+											 
 		if (error) {
 				NSLog(@"Reverse geocode address error");
 				return;
 		}
-				
-				NSLog(@"Reverse geocode address");
-		
+											 
+		NSLog(@"Reverse geocode address");
+											 
 		CLPlacemark *placemark = [placemarks objectAtIndex:0];
 		self.addressPlacemark = placemark;
-				
-		NSLog(@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
-				
-		// Notify DVC parse table that the location data is ready
-		dispatch_async(dispatch_get_main_queue(), ^{
-				[[NSNotificationCenter defaultCenter]
-				 postNotificationName:@"addressLocationReady" object:nil];
-		});
 											 
-}];
-		
+		NSLog(@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
+											 
+		// Notify DealViewController subview DealsParseTableController
+		// that the address location data is ready
+		dispatch_async(dispatch_get_main_queue(), ^{
+						[[NSNotificationCenter defaultCenter]
+						postNotificationName:@"addressLocationReady" object:nil];
+						});
+		}];
 }
 
- 
+
 @end
 
 
