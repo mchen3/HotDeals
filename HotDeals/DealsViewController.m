@@ -12,17 +12,17 @@
 #import "NewsViewController.h"
 #import "DealsItemViewController.h"
 #import "ItemCell.h"
-#import "ParseTableController.h"
+#import "DealsParseTableController.h"
 #import "Constants.h"
 #import "LocationDataManager.h"
 
 @interface DealsViewController ()
-@property (nonatomic, strong) ParseTableController *parseTableController;
+@property (nonatomic, strong) DealsParseTableController *dealsParseTableController;
 @end
 
 @implementation DealsViewController
 
-@synthesize parseTableController = _parseTableController;
+@synthesize dealsParseTableController = _dealsParseTableController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,20 +73,20 @@
 		// Add the wall posts tableview as a subview with view containment (new in iOS 5.0):
 		
 		
-		self.parseTableController = [[ParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
+		self.dealsParseTableController = [[DealsParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
 		
 		// Configure parse table to display based on location
-		[self.parseTableController setDealBasedOn:@"currentLocation"];
+		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 				
-		[self addChildViewController:self.parseTableController];
-		self.parseTableController.view.frame = CGRectMake(0.f, 90.f, 320.f, 270.f);
-		[self.view addSubview:self.parseTableController.view];
+		[self addChildViewController:self.dealsParseTableController];
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 90.f, 320.f, 270.f);
+		[self.view addSubview:self.dealsParseTableController.view];
 		
 		
 		
 		// Parse Query Table with ItemCell
-		[self.parseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
-		[self.parseTableController.tableView setSeparatorColor:[UIColor greenColor]];
+		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
+		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor greenColor]];
 		
 				
     
@@ -145,11 +145,11 @@
     if (table.editing) {
         // Turn off editing mode
         table.editing = NO;
-				self.parseTableController.tableView.editing = NO;
+				self.dealsParseTableController.tableView.editing = NO;
     }else {
         // Done state
         table.editing = YES;
-				self.parseTableController.tableView.editing = YES;
+				self.dealsParseTableController.tableView.editing = YES;
     }
 }
 
@@ -203,7 +203,7 @@
 				
 				// Load the parse objects after you create a new Parse object
 				// Only reload the block if the save was successful.
-		  		[self.parseTableController loadObjects];
+		  		[self.dealsParseTableController loadObjects];
 		}];
 		[self presentViewController:navController animated:YES completion:nil];
 }

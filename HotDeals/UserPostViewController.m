@@ -57,12 +57,15 @@
 {
 		[self.parseObject setObject:[nameField text] forKey:@"name"];
 		
+		
+		// Put the save part here and put the dismiss block in the completetion:self.dismissBlock
+		
 		[[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)cancel:(id)sender
 {
-		[[self presentingViewController] dismissViewControllerAnimated:YES completion:self.dismissBlock];
+		[[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -128,6 +131,7 @@
 						UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
 						[alertView show];
 				}
+				// Reload the parse table after you successfully saved 
 				if (succeeded) {
 						dispatch_async(dispatch_get_main_queue(), self.dismissBlock);
 				} else {

@@ -20,7 +20,7 @@
 		605AC4A4161E5F710046245F /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC48F161E5EC40046245F /* ImageStore.m */; };
 		605AC4A6161E5F710046245F /* Items.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC49E161E5ECE0046245F /* Items.m */; };
 		605AC4A7161E5F710046245F /* ItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC49F161E5ECE0046245F /* ItemStore.m */; };
-		605AC4AA161E5F710046245F /* ParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC4A1161E5ECE0046245F /* ParseTableController.m */; };
+		605AC4AA161E5F710046245F /* DealsParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC4A1161E5ECE0046245F /* DealsParseTableController.m */; };
 		605AC4AB161E5F710046245F /* DealsItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC497161E5EC40046245F /* DealsItemViewController.m */; };
 		605AC4AC161E5F710046245F /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC499161E5EC40046245F /* NewsViewController.m */; };
 		60A91AFA15D952C80068CCF2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91AF915D952C80068CCF2 /* Parse.framework */; };
@@ -77,12 +77,12 @@
 		605AC498161E5EC40046245F /* DealsItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DealsItemViewController.xib; path = HotDeals/DealsItemViewController.xib; sourceTree = "<group>"; };
 		605AC499161E5EC40046245F /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = HotDeals/NewsViewController.m; sourceTree = "<group>"; };
 		605AC49A161E5EC40046245F /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsViewController.xib; path = HotDeals/NewsViewController.xib; sourceTree = "<group>"; };
-		605AC49B161E5EC40046245F /* ParseTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ParseTableController.h; path = HotDeals/ParseTableController.h; sourceTree = "<group>"; };
+		605AC49B161E5EC40046245F /* DealsParseTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DealsParseTableController.h; path = HotDeals/DealsParseTableController.h; sourceTree = "<group>"; };
 		605AC49D161E5ECE0046245F /* ItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ItemCell.h; path = HotDeals/ItemCell.h; sourceTree = "<group>"; };
 		605AC49E161E5ECE0046245F /* Items.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Items.m; path = HotDeals/Items.m; sourceTree = "<group>"; };
 		605AC49F161E5ECE0046245F /* ItemStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ItemStore.m; path = HotDeals/ItemStore.m; sourceTree = "<group>"; };
 		605AC4A0161E5ECE0046245F /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = HotDeals/NewsViewController.h; sourceTree = "<group>"; };
-		605AC4A1161E5ECE0046245F /* ParseTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ParseTableController.m; path = HotDeals/ParseTableController.m; sourceTree = "<group>"; };
+		605AC4A1161E5ECE0046245F /* DealsParseTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DealsParseTableController.m; path = HotDeals/DealsParseTableController.m; sourceTree = "<group>"; };
 		60A91AF915D952C80068CCF2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		60A91AFC15D953430068CCF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		60A91AFE15D9534C0068CCF2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -246,8 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				602874ED16211F5100EE51B0 /* copy */,
-				605AC49B161E5EC40046245F /* ParseTableController.h */,
-				605AC4A1161E5ECE0046245F /* ParseTableController.m */,
+				605AC49B161E5EC40046245F /* DealsParseTableController.h */,
+				605AC4A1161E5ECE0046245F /* DealsParseTableController.m */,
 				60F423CE16389A91004EB95A /* LocationDataManager.h */,
 				60F423CF16389A91004EB95A /* LocationDataManager.m */,
 				605AC48C161E5EC40046245F /* DealsViewController.h */,
@@ -366,7 +366,7 @@
 				605AC4A4161E5F710046245F /* ImageStore.m in Sources */,
 				605AC4A6161E5F710046245F /* Items.m in Sources */,
 				605AC4A7161E5F710046245F /* ItemStore.m in Sources */,
-				605AC4AA161E5F710046245F /* ParseTableController.m in Sources */,
+				605AC4AA161E5F710046245F /* DealsParseTableController.m in Sources */,
 				605AC4AB161E5F710046245F /* DealsItemViewController.m in Sources */,
 				605AC4AC161E5F710046245F /* NewsViewController.m in Sources */,
 				60B48F5315A892F000A52C2E /* main.m in Sources */,

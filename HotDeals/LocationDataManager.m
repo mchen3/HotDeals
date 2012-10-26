@@ -140,7 +140,7 @@
 				 
 				NSLog(@"Locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@ ", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country);
 				 
-				 // Notify DealViewController's subview ParseTableController
+				 // Notify DealViewController's subview DealsParseTableController
 				 // that the location data is ready. The location data is
 				 // needed when you query the parse server.
 				 dispatch_async(dispatch_get_main_queue(), ^{

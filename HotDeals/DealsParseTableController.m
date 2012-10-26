@@ -6,18 +6,18 @@
 //  Copyright (c) 2011 Parse Inc. All rights reserved.
 //
 
-#import "ParseTableController.h"
+#import "DealsParseTableController.h"
 #import "ItemCell.h"
 #import "DealsItemViewController.h"
 #import "LocationDataManager.h"
 
-@interface ParseTableController ()
+@interface DealsParseTableController ()
 
 
 @end
 
 #pragma mark -
-@implementation ParseTableController
+@implementation DealsParseTableController
 
 @synthesize reloadTableBlock;
 @synthesize DealBasedOn;
@@ -89,10 +89,11 @@
 		
 	//	NSLog(@"Parse will appear: DealsBasedon:%@", self.DealBasedOn);
 		
-		// Clear previous Parse table caches
-    [self clear];
+		// Clear to prevent previous Parse table caches from appearing
+		[self clear];
 
-		// Reload to make sure the table is up to date
+		// If you switch tabs back and forth, the parse table will not
+		// be up to date so you must reload to make sure the data is right.
 		[self loadObjects];
 }
 - (void)viewDidAppear:(BOOL)animated
