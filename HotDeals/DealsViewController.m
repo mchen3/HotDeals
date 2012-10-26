@@ -76,11 +76,13 @@
 		self.parseTableController = [[ParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
 		
 		// Configure parse table to display based on location
-		[self.parseTableController setDealBasedOn:@"location"];
+		[self.parseTableController setDealBasedOn:@"currentLocation"];
 				
 		[self addChildViewController:self.parseTableController];
-		self.parseTableController.view.frame = CGRectMake(0.f, 60.f, 320.f, 300.f);
+		self.parseTableController.view.frame = CGRectMake(0.f, 90.f, 320.f, 270.f);
 		[self.view addSubview:self.parseTableController.view];
+		
+		
 		
 		// Parse Query Table with ItemCell
 		[self.parseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
@@ -97,6 +99,7 @@
 
 - (void)viewDidUnload
 {
+		addressField = nil;
     [super viewDidUnload];
 		
 		[[NSNotificationCenter defaultCenter] removeObserver:self 
@@ -303,6 +306,40 @@
 {
     [tableView setEditing:NO];
 }
+
+
+#pragma mark - Interface
+
+- (IBAction)backgroundTouched:(id)sender {
+		[[self view] endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+		[textField resignFirstResponder];
+		return true;
+}
+
+
+- (IBAction)dealsBasedOnAddress:(id)sender {
+		
+		NSLog(@"Address pressed");
+		
+		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
+		
+		// Validate user address
+		NSString *userEnteredAddress = [addressField text];
+		if (userEnteredAddress ) {
+				[locationManager findLocationByForwardGeocoding:userEnteredAddress];
+		
+		}
+		
+		
+}
+
+
+
+
 
 
 @end

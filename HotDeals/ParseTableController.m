@@ -59,8 +59,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 		
 		// Register to be notified when the location data is ready.
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDataReady) name:@"locationReady" object:nil];
-		}
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentLocationReady) name:@"currentLocationReady" object:nil];
+		
+		// Register to be notified when the user has supplied a address
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addressLocationReady) name:@"addressLocationReady" object:nil];
+		
+}
 
 - (void)viewDidUnload
 {
@@ -69,7 +73,10 @@
     // e.g. self.myOutlet = nil;
 		
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-										name:@"locationReady" object:nil];
+										name:@"currentLocationReady" object:nil];
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+										name:@"addressLocationReady" object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -79,6 +86,13 @@
     // the IVC edits, will reload the PFobjects in the array objects
 		// but it doesn't actually save to Parse backend
 	  //	 [self.tableView reloadData];
+		
+	//	NSLog(@"Parse will appear: DealsBasedon:%@", self.DealBasedOn);
+		
+		// Clear previous Parse table caches
+    [self clear];
+
+		// Reload to make sure the table is up to date
 		[self loadObjects];
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -91,11 +105,13 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -114,7 +130,9 @@
 
 - (void)dealloc {
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-										name:@"locationReady" object:nil];
+										name:@"currentLocationReady" object:nil];
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+										name:@"addressLocationReady" object:nil];
 }
 
 #pragma mark - Parse
@@ -145,8 +163,8 @@
    //  [query orderByAscending:@"createdAt"];
 		
 		
-		// Return a query based on a User ID
-		if ([DealBasedOn isEqualToString:@"user"]) {
+		// Return a query based on a current Users ID
+		if ([self.DealBasedOn isEqualToString:@"user"]) {
 										
 		[query orderByDescending:@"createdAt"];
 
@@ -158,7 +176,7 @@
 				if (user.objectId) {
 						[query whereKey:@"user" equalTo:user];
 				//  Multiple contraints on a query
-				//  [query whereKey:@"name" equalTo:@"test"];
+				 // [query whereKey:@"name" equalTo:@"second"];
 					}
 				 else {
 						// Else user hasn't been saved to the
@@ -167,24 +185,41 @@
 				}
 		}
 		
-		// Return a query based upon a locality of current user
-		else if ([DealBasedOn isEqualToString:@"location"]) {
+		// Return a query based upon a current locality of current user
+		else if ([self.DealBasedOn isEqualToString:@"currentLocation"]) {
 				 
 				// Pull the location data from LocationDataManager
 				NSString *usersCurrentLocality =
 						[LocationDataManager sharedLocation].currentPlacemark.locality;
 				
 				if (usersCurrentLocality) {
-						NSLog(@"Querying Locality");
+						NSLog(@"Current locality ready, query parse");
 						[query orderByDescending:@"createdAt"];
 						[query whereKey:@"locality" equalTo:usersCurrentLocality];
 				} else {
-						NSLog(@"Query not ready");
+						NSLog(@"Current locality not ready, query empty parse");
 						[query whereKey:@"locality" equalTo:@""];
 				}
 		}
 		
-		NSLog(@"Outside");
+		// Return query based upon an address that the user entered
+		else if ([self.DealBasedOn isEqualToString:@"userEnteredAddress"]) {
+				
+				NSString *userEnteredLocality =
+						[LocationDataManager sharedLocation].addressPlacemark.locality;
+				if (userEnteredLocality) {
+						NSLog(@"Address locality ready, query parse");
+						[query orderByDescending:@"createdAt"];
+						[query whereKey:@"locality" equalTo:userEnteredLocality];
+				} else {
+						NSLog(@"Address locality not ready, query empty parse");
+						[query whereKey:@"locality" equalTo:@""];
+				}
+				
+		}
+		
+	//	NSLog(@"Outside");
+		NSLog(@"DealsBasedon --->>>> %@", self.DealBasedOn);
     return query;
 }
  // Override to customize the look of a cell representing an object. The default is to display
@@ -361,13 +396,18 @@
 
 #pragma mark - #pragma mark - NSNotificationCenter notification handlers
 
-- (void)locationDataReady {
+- (void)currentLocationReady {
 		
 		// Query the parse server again now that location data is available
-		NSLog(@"Notify");
+		NSLog(@"Notification recieved, update table on current location");
 		[self loadObjects];
 }
 
+- (void)addressLocationReady {
+		NSLog(@"Notification recieved, update on user address");
+		self.DealBasedOn = @"userEnteredAddress";
+		[self loadObjects];
+}
 
 
 @end

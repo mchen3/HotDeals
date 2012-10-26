@@ -41,6 +41,14 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+		// Make sure the flag DealBasedOn is always set to "user" for the
+		// UserViewController when you use ParseTableController
+		[self.parseTableController setDealBasedOn:@"user"];
+	  // [self.parseTableController loadObjects];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,7 +70,7 @@
 		
 		[self addChildViewController:self.parseTableController];
 		[self.view addSubview:self.parseTableController.view];
-		self.parseTableController.view.frame = CGRectMake(0.f, 150.f, 320.f, 208.f);
+		self.parseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 300.f);
 		[self.parseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 		[self.parseTableController.tableView setSeparatorColor:[UIColor redColor]];
 		

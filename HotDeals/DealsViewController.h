@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface DealsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DealsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
     NSArray *itemArray;
    __weak IBOutlet UITableView *table;
+		__weak IBOutlet UITextField *addressField;
 		
 }
+
+- (IBAction)backgroundTouched:(id)sender;
+- (IBAction)dealsBasedOnAddress:(id)sender;
+
 
 @end

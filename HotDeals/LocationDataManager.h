@@ -11,10 +11,13 @@
 
 @interface LocationDataManager : NSObject <CLLocationManagerDelegate>
 
-+ (LocationDataManager *)sharedLocation;
 
++ (LocationDataManager *)sharedLocation;
+-(void)findLocationByForwardGeocoding:(NSString *)userEnteredAddress;
 
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLPlacemark *currentPlacemark;
+@property (nonatomic, strong) CLLocation *addressLocation;
+@property (nonatomic, strong) CLPlacemark *addressPlacemark;
 
 @end
