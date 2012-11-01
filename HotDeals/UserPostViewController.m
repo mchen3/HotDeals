@@ -26,6 +26,8 @@
 {
 		self = [self initWithNibName:@"UserPostViewController" bundle:nil];
 		
+		//???
+		[[self navigationItem] setTitle:@"UPVC"];
 		
 		// ? hide the tab bar
 		self.hidesBottomBarWhenPushed = YES;

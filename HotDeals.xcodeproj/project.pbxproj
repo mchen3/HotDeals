@@ -249,12 +249,12 @@
 			isa = PBXGroup;
 			children = (
 				602874ED16211F5100EE51B0 /* copy */,
-				60F151A6163B04C9004527BD /* UserParseTableController.h */,
-				60F151A7163B04C9004527BD /* UserParseTableController.m */,
-				605AC49B161E5EC40046245F /* DealsParseTableController.h */,
-				605AC4A1161E5ECE0046245F /* DealsParseTableController.m */,
 				60F423CE16389A91004EB95A /* LocationDataManager.h */,
 				60F423CF16389A91004EB95A /* LocationDataManager.m */,
+				605AC49B161E5EC40046245F /* DealsParseTableController.h */,
+				605AC4A1161E5ECE0046245F /* DealsParseTableController.m */,
+				60F151A6163B04C9004527BD /* UserParseTableController.h */,
+				60F151A7163B04C9004527BD /* UserParseTableController.m */,
 				605AC48C161E5EC40046245F /* DealsViewController.h */,
 				602874E716211E3C00EE51B0 /* DealsViewController.m */,
 				605AC496161E5EC40046245F /* DealsItemViewController.h */,

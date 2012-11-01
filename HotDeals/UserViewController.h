@@ -11,5 +11,9 @@
 
 @interface UserViewController : UIViewController
 
+- (id)initWithTab:(NSString *)TabBasedOn;
+@property (nonatomic, readwrite) NSString *UserViewBasedOn;
+@property (nonatomic, strong) PFUser *userNameOfDeal;
+
 
 @end

@@ -10,6 +10,7 @@
 #import "ItemCell.h"
 #import "DealsItemViewController.h"
 #import "LocationDataManager.h"
+#import "UserPostViewController.h"
 
 @interface UserParseTableController ()
 
@@ -17,6 +18,8 @@
 
 #pragma mark -
 @implementation UserParseTableController
+@synthesize UserViewBasedOn;
+@synthesize userNameOfDeal;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -148,6 +151,21 @@
 		//  [query orderByAscending:@"createdAt"];
 		
 		
+		/* If you are in the Deals Tab then return the query for
+		random user, else you are in the User Tab and you will
+		return the query for the current user */
+		
+		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
+				
+				[query orderByDescending:@"createdAt"];
+				PFUser *user = self.userNameOfDeal;
+				[query whereKey:@"user" equalTo:user];
+		}
+		
+		
+		// Return the query for the current user
+		else if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
+		
 		// Return a query based on a current Users ID
 		//if ([self.DealBasedOn isEqualToString:@"user"]) {
 		
@@ -162,14 +180,17 @@
 				[query whereKey:@"user" equalTo:user];
 				//  Multiple contraints on a query
 				// [query whereKey:@"name" equalTo:@"second"];
+				
+				
+				
 		}
 		else {
 				// Else user hasn't been saved to the
 				// Parse server, return a empty table
 				[query whereKey:@"user" equalTo:@""];
 		}
-		//	}
-		
+				
+		}
 		
 		//	NSLog(@"Outside");
     return query;
@@ -285,22 +306,72 @@
 		
 		
 		PFObject *object = [self.objects objectAtIndex:[indexPath row]];
-		NSString *hello = [object objectForKey:@"name"];
-		NSLog(@"%@", hello);
+		//NSString *hello = [object objectForKey:@"name"];
+		//NSLog(@"%@", hello);
 		
+		
+		/* If this UserViewController is inside the Deals Tab Bar Controller
+		   then selecting on a table will bring up a DealsItemViewController
+		   which cannot not be edited.
+		   If this UserViewController is inside the User Tab Bar Controller
+		   then it is a user viewing their own post, so you will bring
+		   up the UserPostViewController which will allow a user to edit 
+		   his own deals.
+		*/
+		
+		
+		//??? Clean up later
+		// If you are in the Deals Tab, selecting a row will bring up DealsItemViewController
+		// If you are in the User Tab, selecting a row will bring up UserPostViewController
+		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
+				
+				DealsItemViewController *dealsItemViewController =
+												[[DealsItemViewController alloc] init];
+				// Pass the parse object onto to the DealsItemViewController
+				[dealsItemViewController setParseObject:object];
+				// Pass the username of the deal
+				[dealsItemViewController setUserNameOfDeal:self.userNameOfDeal];
+				
+				// Set dismiss block for didselectrowatindexpath
+				// Previous bug, when you select row and then return it crashed
+				// you set it for for addnewitem in DVC but you didn't for didselectrow
+				// so when IVC viewdisappears, (it'll save and run dismiss block
+				// to reload a table
+				[dealsItemViewController setDismissBlock: ^{
+						
+						//    DVC's table
+						//		[table reloadData];
+						
+						//		[ParseTVC.tableView reloadData];
+						
+						// Load the parse objects after you create a new Parse object
+						// Only reload the block if the save was successful.
+						[self loadObjects];
+				}];
+				// ???? Customize the animation of when hiding the toolbar
+				dealsItemViewController.hidesBottomBarWhenPushed = YES;
+				
+				[self.navigationController pushViewController:dealsItemViewController animated:YES];
+		}
+		
+		// You are in the User Tab so allow the user to edit his own deals
+		else if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
 		
 		// Pass the parse object onto to the ItemViewController
 		// when it is pushed
-		DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] init];
-		[dealsItemViewController setParseObject:object];
+		// DEL changed DIVC to UPVC for 
+		//DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] init];
+		//[dealsItemViewController setParseObject:object];
 		
+		UserPostViewController *userPostViewController = [[UserPostViewController alloc] initWithName:NO];
+		[userPostViewController setParseObject:object];
 		
 		// Set dismiss block for didselectrowatindexpath
 		// Previous bug, when you select row and then return it crashed
 		// you set it for for addnewitem in DVC but you didn't for didselectrow
 		// so when IVC viewdisappears, (it'll save and run dismiss block
 		// to reload a table
-		[dealsItemViewController setDismissBlock: ^{
+		[userPostViewController setDismissBlock: ^{
 				
 				//    DVC's table
 				//		[table reloadData];
@@ -318,16 +389,14 @@
 						 postNotificationName:@"userDealChange" object:nil];
 				});
 		}];
-		
-		
+
 		// ???? Customize the animation of when hiding the toolbar
-    dealsItemViewController.hidesBottomBarWhenPushed = YES;
+    userPostViewController.hidesBottomBarWhenPushed = YES;
+		
+		[self.navigationController pushViewController:userPostViewController animated:YES];
 		
 		
-		[self.navigationController pushViewController:dealsItemViewController animated:YES];
-		
-		
-		
+		}
 		
 }
 

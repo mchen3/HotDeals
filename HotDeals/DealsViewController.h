@@ -14,6 +14,7 @@
     NSArray *itemArray;
 		__weak IBOutlet UITableView *table;
 		__weak IBOutlet UITextField *addressField;
+		__weak IBOutlet UILabel *placeMark;
 		
 }
 

@@ -29,7 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Set the title of the nav bar
-        [[self navigationItem] setTitle:@"Deals"];
+        [[self navigationItem] setTitle:@"DVC Deals"];
         
 				/* DEL
 				 There is no edit or delete for the DVC
@@ -79,7 +79,7 @@
 		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 		
 		[self addChildViewController:self.dealsParseTableController];
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 90.f, 320.f, 270.f);
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 150.f, 320.f, 200.f);
 		[self.view addSubview:self.dealsParseTableController.view];
 		
 		
@@ -100,6 +100,7 @@
 - (void)viewDidUnload
 {
 		addressField = nil;
+		placeMark = nil;
     [super viewDidUnload];
 		
 		[[NSNotificationCenter defaultCenter] removeObserver:self
@@ -332,8 +333,13 @@
 		NSString *userEnteredAddress = [addressField text];
 		if (userEnteredAddress ) {
 				[locationManager findLocationByForwardGeocoding:userEnteredAddress];
-				
+
+				//DEBUG
+				CLPlacemark *placemark = locationManager.addressPlacemark;
+						NSString *location = [NSString stringWithFormat:@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode];
+						[placeMark setText:location];			
 		}
+		
 }
 
 // Search deals based on user's current location
@@ -341,6 +347,12 @@
 		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
 		[locationManager startUpdatingCurrentLocation];
 		[locationManager currentLocationByReverseGeocoding];
+		
+		//DEBUG
+		CLPlacemark *placemark = locationManager.currentPlacemark;
+		NSString *location = [NSString stringWithFormat:@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode];
+		[placeMark setText:location];
+
 }
 
 

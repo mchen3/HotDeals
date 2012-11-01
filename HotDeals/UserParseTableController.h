@@ -12,5 +12,8 @@
 @interface UserParseTableController  : PFQueryTableViewController
 
 
+@property (nonatomic, readwrite) NSString *UserViewBasedOn;
+@property (nonatomic, strong) PFUser *userNameOfDeal;
+
 
 @end

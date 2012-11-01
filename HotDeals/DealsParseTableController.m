@@ -12,8 +12,6 @@
 #import "LocationDataManager.h"
 
 @interface DealsParseTableController ()
-
-
 @end
 
 #pragma mark -
@@ -237,6 +235,7 @@
 		
 		[[cell nameLabel] setText:[object objectForKey:@"name"]];
 		
+		
 		return cell;
 }
 
@@ -314,16 +313,22 @@
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 		
+		/* DEL
+		 NSString *hello = [object objectForKey:@"name"];
+		 NSLog(@"%@", hello);
+		 */
 		
 		PFObject *object = [self.objects objectAtIndex:[indexPath row]];
-		NSString *hello = [object objectForKey:@"name"];
-		NSLog(@"%@", hello);
 		
-		
-		// Pass the parse object onto to the ItemViewController
-		// when it is pushed
 		DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] init];
+		
+		// Pass the parse object onto to the DealsItemViewController
 		[dealsItemViewController setParseObject:object];
+		
+		// Retrieve the id i.e. the user who created the deal
+		// and pass it to dealsIteViewController
+		PFUser *userNameOfDeal = [object objectForKey:@"user"];
+		[dealsItemViewController setUserNameOfDeal:userNameOfDeal];
 		
 		
 		// Set dismiss block for didselectrowatindexpath
@@ -377,7 +382,7 @@
 		}
 }
 
-#pragma mark - #pragma mark - NSNotificationCenter notification handlers
+#pragma mark - NSNotificationCenter notification handlers
 
 - (void)currentLocationReady {
 		

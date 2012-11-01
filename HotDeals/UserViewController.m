@@ -20,25 +20,45 @@
 
 @implementation UserViewController
 @synthesize userParseTableController = _userParseTableController;
+@synthesize UserViewBasedOn = _UserViewBasedOn;
+@synthesize userNameOfDeal = _userNameOfDeal;
+
+- (id)initWithTab:(NSString *)TabBasedOn
+{
+		self = [super initWithNibName:@"UserViewController" bundle:nil];
+		self.UserViewBasedOn = TabBasedOn;
+
+		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
+				//??? Change to show the username of the random profile
+				[[self navigationItem] setTitle:@"UVC Random Profile"];
+		}
+		
+		if (self) {
+				// If this UserViewController is inside the user tab then
+				// this user is viewing his own profile. Allow editing and
+				// posting new deals.
+				if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
+						
+						// Set the title of the nav bar to be the user
+						[[self navigationItem] setTitle:@"UVC User Profile"];
+						
+						// Add a right bar button of type 'ADD' programmically
+						// to add items to the table
+						UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
+						[[self navigationItem] setRightBarButtonItem:button];
+						[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+				}
+		}
+		return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Set the title of the nav bar to be the user
-				[[self navigationItem] setTitle:@"User"];
 				
-				// Add a right bar button of type 'ADD' programmically
-				// to add items to the table
-				UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
-				[[self navigationItem] setRightBarButtonItem:button];
-				
-				[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
-				
-				
-				
-				
-    }
+							
+		}
     return self;
 }
 
@@ -66,6 +86,13 @@
 		// Add the wall posts tableView as a subview with view containment (new in iOS 5.0);
 		self.userParseTableController = [[UserParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
 		
+		// Pass the flag UserViewBasedOn which tells the UserParseTableController
+		// what tab (Deal or User) you are in
+		[self.userParseTableController setUserViewBasedOn:self.UserViewBasedOn];
+		// Pass the parse Object so the parse table can query based on
+		// the username of the deal if you are in the Deals Tab
+		[self.userParseTableController setUserNameOfDeal:self.userNameOfDeal];
+		
 		// Configure parse to display deals based on UserID
 		//[self.dealsParseTableController setDealBasedOn:@"user"];
 		
@@ -75,6 +102,7 @@
 		self.userParseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 300.f);
 		[self.userParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 		[self.userParseTableController.tableView setSeparatorColor:[UIColor redColor]];
+		
 		
 		
 		

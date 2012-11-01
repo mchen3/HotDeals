@@ -147,8 +147,7 @@
 						 [[NSNotificationCenter defaultCenter] postNotificationName:@"currentLocationReady" object:nil];
 				 });
 		 }];
-}
-
+} 
 /*
 We want a specific locality for the address the user has entered.
 We first forward geocode (findLocationByForwardGeocoding) the address string

@@ -53,14 +53,15 @@
 		
 		
 		// Create the UserViewController with its navController
-		UserViewController *userViewController = [[UserViewController alloc] init];
+		// Set the User View based on the User Tab
+		UserViewController *userViewController = [[UserViewController alloc] initWithTab:@"UserTab"];
 		UINavigationController *userNavController = [[UINavigationController alloc]
 				initWithRootViewController:userViewController];
 		// Set the tab name for the UserViewController
 		UITabBarItem *userTabBar = [[UITabBarItem alloc]
 				initWithTitle:@"User" image:nil tag:nil];
 		[userNavController setTabBarItem:userTabBar];
-		
+				
     // Create the NewsViewController
     NewsViewController *newsViewController = [[NewsViewController alloc] init];
     // Set the tab name for the News View Controller

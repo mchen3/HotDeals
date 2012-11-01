@@ -12,6 +12,7 @@
 #import "ItemStore.h"
 #import "CategoryPicker.h"
 #import "Constants.h"
+#import "UserViewController.h"
 
 @interface DealsItemViewController ()
 @end
@@ -20,6 +21,7 @@
 @synthesize item;
 @synthesize dismissBlock;
 @synthesize parseObject;
+@synthesize userNameOfDeal;
 
 #pragma mark - Init
 
@@ -27,7 +29,7 @@
 {
 		self = [super initWithNibName:@"DealsItemViewController" bundle:nil];
 		
-		// Hide the tab bar        
+		// Hide the tab bar
 		self.hidesBottomBarWhenPushed = YES;
 		
 		if (self) {
@@ -50,10 +52,15 @@
 		return self;
 }
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+				
+				//???
+				[[self navigationItem] setTitle:@"DIVC"];
+
         // Custom initialization
         
         // Set title to item name
@@ -154,9 +161,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 		
+		//  DEL Post Username of the deal
+	//	PFUser *userName = [self.parseObject objectForKey:@"user"];
+	//	NSLog(@"USER ------>>>>> %@", userName.objectId);
+		
+		
+		
 		// Load the Parse objects that was passed from DealViewController
 		[nameField setText: [self.parseObject objectForKey:@"name"]];
-				
+		
 		//	NSString *imageKey = [item imageKey];
 		//NSLog(@"%@", imageKey);
 		
@@ -249,6 +262,11 @@
 		
 		// Save the Parse objects in case the objects were edited.
 		
+		
+		/*  START DEL
+		 DealsItemViewController does not allow editing
+		
+		
 		NSString *nameString = [nameField text];
 		// Make sure the objects are not empty because Parse
 		// cannot save objects that nil
@@ -275,14 +293,16 @@
 						 [[NSNotificationCenter defaultCenter]
 						 postNotificationName:kDealCreatedNotification object:nil];
 						 });
-						 */
+						 
 						dispatch_async(dispatch_get_main_queue(), self.dismissBlock);
 						
 				} else {
 						NSLog(@"Failed to save.");
 				}
 		}];
-		
+		 
+		 END DEL
+		 */
 		
 		
 		
@@ -356,6 +376,20 @@
         return NO;
     }
     return YES;
+}
+
+// Select button to see user profile
+- (IBAction)userButton:(id)sender {
+		
+		// Call UserViewController and set its format based on the Deals Tab
+		UserViewController *userViewController = [[UserViewController alloc]
+																							initWithTab:@"DealTab"];
+		
+		// Pass the username of this deal so UserViewController
+		// can query it's table based upon the username
+		[userViewController setUserNameOfDeal:self.userNameOfDeal];
+		[self.navigationController pushViewController:userViewController animated:YES];
+		
 }
 
 #pragma mark - Camera
