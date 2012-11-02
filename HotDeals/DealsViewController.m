@@ -79,7 +79,7 @@
 		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 		
 		[self addChildViewController:self.dealsParseTableController];
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 150.f, 320.f, 200.f);
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 150.f, 320.f, 300.f);
 		[self.view addSubview:self.dealsParseTableController.view];
 		
 		

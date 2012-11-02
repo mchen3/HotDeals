@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 /*!
  Object which may be used to embed a latitude / longitude point as the value for a key in a PFObject.
@@ -30,12 +31,28 @@
 + (PFGeoPoint *)geoPoint;
 
 /*!
+ Creates a new PFGeoPoint object for the given CLLocation, set to the location's
+ coordinates.
+ @param location CLLocation object, with set latitude and longitude.
+ @result Returns a new PFGeoPoint at specified location.
+ */
++ (PFGeoPoint *)geoPointWithLocation:(CLLocation *)location;
+
+/*!
  Creates a new PFGeoPoint object with the specified latitude and longitude.
  @param latitude Latitude of point in degrees.
  @param longitude Longitude of point in degrees.
  @result New point object with specified latitude and longitude.
  */
 + (PFGeoPoint *)geoPointWithLatitude:(double)latitude longitude:(double)longitude;
+
+/*!
+ Fetches the user's current location and returns a new PFGeoPoint object via the
+ provided block.
+ @param geoPointHandler A block which takes the newly created PFGeoPoint as an
+ argument.
+ */
++ (void)geoPointForCurrentLocationInBackground:(void(^)(PFGeoPoint *geoPoint, NSError *error))geoPointHandler;
 
 /** @name Controlling Position */
 

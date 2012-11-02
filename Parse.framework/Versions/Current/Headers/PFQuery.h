@@ -238,6 +238,15 @@
 - (void)whereKey:(NSString *)key matchesKey:(NSString *)otherKey inQuery:(PFQuery *)query;
 
 /*!
+ Adds a constraint that requires that a key's value NOT match a value in another key
+ in objects returned by a sub query.
+ @param key The key that the value is stored
+ @param otherKey The key in objects in the returned by the sub query whose value should match
+ @param query The query to run.
+ */
+- (void)whereKey:(NSString *)key doesNotMatchKey:(NSString *)otherKey inQuery:(PFQuery *)query;
+
+/*!
  Add a constraint that requires that a key's value matches a PFQuery constraint.
  This only works where the key's values are PFObjects or arrays of PFObjects.
  @param key The key that the value is stored in

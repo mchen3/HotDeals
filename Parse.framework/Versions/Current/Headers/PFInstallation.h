@@ -65,7 +65,7 @@
 @property (nonatomic, readonly, retain) NSString *deviceToken;
 
 /// The badge for the PFInstallation.
-@property (nonatomic, readonly, retain) NSNumber *badge;
+@property (nonatomic, assign) NSInteger badge;
 
 /// The timeZone for the PFInstallation.
 @property (nonatomic, readonly, retain) NSString *timeZone;

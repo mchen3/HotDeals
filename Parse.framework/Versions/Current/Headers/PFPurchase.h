@@ -35,7 +35,7 @@
 
 /*!
  Asynchronously download the purchased asset, which is stored on Parse's server.
- Parse verifies the receipt with Apple and delivers the content only if the receipt is invalid.
+ Parse verifies the receipt with Apple and delivers the content only if the receipt is valid.
  @param transaction the transaction, which contains the receipt.
  @param completion the completion block.
  */
@@ -43,7 +43,7 @@
 
 /*!
  Asynchronously download the purchased asset, which is stored on Parse's server.
- Parse verifies the receipt with Apple and delivers the content only if the receipt is invalid.
+ Parse verifies the receipt with Apple and delivers the content only if the receipt is valid.
  @param transaction the transaction, which contains the receipt. 
  @param completion the completion block.
  @param progress the progress block, which is called multiple times to reveal progress of the download.

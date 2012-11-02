@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PFACL.h"
 #import "PFAnonymousUtils.h"
+#import "PFCloud.h"
 #import "PFConstants.h"
 #import "PFFacebookUtils.h"
 #import "PFFile.h"
@@ -17,6 +18,7 @@
 #import "PFLogInViewController.h"
 #import "PFObject.h"
 #import "PFProduct.h"
+#import "PFProductTableViewController.h"
 #import "PFPush.h"
 #import "PFPurchase.h"
 #import "PFQuery.h"
@@ -28,7 +30,7 @@
 #import "PFTableViewCell.h"
 #import "PFTwitterUtils.h"
 #import "PFUser.h"
-#import "PF_FBConnect.h"
+#import "PF_FacebookSDK.h"
 
 @interface Parse : NSObject
 

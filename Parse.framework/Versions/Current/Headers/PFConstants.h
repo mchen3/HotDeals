@@ -6,7 +6,7 @@
 @class PFUser;
 
 // Version
-#define PARSE_VERSION @"1.0.64"
+#define PARSE_VERSION @"1.1.14"
 
 extern NSInteger const PARSE_API_VERSION;
 
@@ -76,11 +76,15 @@ extern NSInteger const kPFErrorDuplicateValue;
 extern NSInteger const kPFErrorInvalidRoleName;
 /*! @abstract 140: Exceeded an application quota.  Upgrade to resolve. */
 extern NSInteger const kPFErrorExceededQuota;
+/*! @abstract 141: Cloud Code script had an error. */
+extern NSInteger const kPFScriptError;
+/*! @abstract 142: Cloud Code validation failed. */
+extern NSInteger const kPFValidationError;
 /*! @abstract 143: Product purchase receipt is missing */
 extern NSInteger const kPFErrorReceiptMissing;
 /*! @abstract 144: Product purchase receipt is invalid */
 extern NSInteger const kPFErrorInvalidPurchaseReceipt;
-/*! @abstract 145: Paymnt is disabled on this device */
+/*! @abstract 145: Payment is disabled on this device */
 extern NSInteger const kPFErrorPaymentDisabled;
 /*! @abstract 146: The product identifier is invalid */
 extern NSInteger const kPFErrorInvalidProductIdentifier;
@@ -94,6 +98,8 @@ extern NSInteger const kPFErrorProductDownloadFileSystemFailure;
 extern NSInteger const kPFErrorInvalidImageData;
 /*! @abstract 151: Unsaved file. */
 extern NSInteger const kPFErrorUnsavedFile;
+/*! @abstract 153: Fail to delete file. */
+extern NSInteger const kPFErrorFileDeleteFailure;
 
 /*! @abstract 200: Username is missing or empty */
 extern NSInteger const kPFErrorUsernameMissing;
