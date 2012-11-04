@@ -13,6 +13,7 @@
 @interface ImageStore : NSObject 
 {
     NSMutableDictionary *dictionary;
+		NSMutableDictionary *thumbnailDictionary;
 		
 		UIImage *parseImage;
 		
@@ -21,6 +22,7 @@
 
 - (void)setImage:(UIImage *)image forKey:(NSString *)key;
 - (UIImage *)imageForKey:(NSString *)key;
+- (UIImage *)thumbnailImageForKey:(NSString *)key;
 
 
 - (void)deleteImageForKey:(NSString *)key;

@@ -57,12 +57,26 @@
 		
 		// Upload the image with key to Parse Servers for permanent storage
 		/*
-		UIGraphicsBeginImageContext(CGSizeMake(640, 960));
-		[image drawInRect:CGRectMake(0, 0, 640, 960)];
+		UIGraphicsBeginImageContext(CGSizeMake(360, 360));
+		[image drawInRect:CGRectMake(0, 0, 360, 360)];
 		UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
-		*/
+		 */
+		
 
+		// Resize the image to a thumbnail size
+	  UIImage *thumbnailImage =[self setThumbnailDataFromImage:image];
+		//NSData *thumbnailData = UIImagePNGRepresentation(thumbnailImage);
+		NSData *thumbnailData = UIImageJPEGRepresentation(thumbnailImage, 0.05f);
+		PFFile *thumbnailFile = [PFFile fileWithName:@"thumb.jpg" data:thumbnailData];
+		[thumbnailFile save];
+		
+		// Save the thumbnail to a temporary storage
+		[thumbnailDictionary setObject:thumbnailImage forKey:key];
+		
+		
+		
+		
 		// Parse
 		NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
 		PFFile *imageFile = [PFFile fileWithName:@"Parse.jpg" data:imageData];
@@ -74,6 +88,9 @@
 		[userPhoto setObject:imageFile forKey:@"image"];
 		[userPhoto setObject:key forKey:@"imageKey"];
 		[userPhoto setObject:[PFUser currentUser] forKey:@"user"];
+		
+		// Save the thumbnail
+		[userPhoto setObject:thumbnailFile forKey:@"thumbnail"];
 		
 		
 		[userPhoto saveInBackground];
@@ -120,6 +137,62 @@
 		[d writeToFile:path atomically:YES];
 		*/
 }
+
+
+-(UIImage *)thumbnailImageForKey:(NSString *) key
+{
+		
+		// Check to see if the image is available on our temporary storage
+		// to save us the trouble of loading from the Parse servers
+		UIImage *thumbnailImage = [thumbnailDictionary objectForKey:key];
+		
+		//UIImage *image = nil;
+		if (!thumbnailImage) {
+				// Image is not available, must need connection to Parse servers.
+				
+				PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
+				
+				[query whereKey:@"imageKey" equalTo:key];
+				
+				PFObject *object = [query getFirstObject];
+				PFFile *parseFile = [object objectForKey:@"thumbnail"];
+				NSData *imageData = [parseFile getData];
+				thumbnailImage = [UIImage imageWithData:imageData];
+				
+				if (thumbnailImage) {
+						[thumbnailDictionary setObject:thumbnailImage forKey:key];
+				}
+				else {
+						NSLog(@"No image available from parse");
+				}
+				
+		}
+		
+		return thumbnailImage;
+		
+		
+		
+		/* BNR
+     //return [dictionary objectForKey:key];
+		 
+		 // If possible, retrive the image from the dictionary
+		 UIImage *image = [dictionary objectForKey:key];
+		 
+		 if (!image) {
+		 // Create a image from the file system
+		 image = [UIImage imageWithContentsOfFile:[self imagePathForKey:key]];
+		 if (image) {
+		 [dictionary setObject:image forKey:key];
+		 }
+		 else {
+		 NSLog(@"Error: unable to find %@", [self imagePathForKey:key]);
+		 }
+		 }
+		 return  image;
+		 */
+}
+
+
 
 -(UIImage *)imageForKey:(NSString *) key
 {
@@ -267,6 +340,59 @@
 }
 
 
+#pragma mark - Thumbnail
+
+// Takes full size image and resizes it to a thumb and sets the
+// data for the new thumbnailData so you can pull a image
+// from a thumbnailData
+//  You need thumbnailData (NSData) to save a image because
+//  you can't encode a UIImage directly
+- (UIImage *)setThumbnailDataFromImage:(UIImage *)image
+{
+		CGSize origImageSize = [image size];
+		
+		// The rectangle of the thumbnail
+		CGRect newRect = CGRectMake(0, 0, 80, 70);
+		
+		// Figure out the scaling ratio to make sure we maintain the same aspect ratio
+		float ratio = MAX(newRect.size.width / origImageSize.width,
+											newRect.size.height / origImageSize.height);
+		
+		// Create a transparent bitmap context with a scaling factor
+		// equal to that of the screen
+		UIGraphicsBeginImageContextWithOptions(newRect.size, NO, 0.0);
+		
+		//Create a path that is a rounded rectangle
+		UIBezierPath *path = [UIBezierPath
+													bezierPathWithRoundedRect:newRect cornerRadius:5.0];
+		
+		// Make all subsequent drawing clip to this rounded rectangle
+		[path addClip];
+		
+		// Center the image in the thumbnail rectangle
+		CGRect projectRect;
+		projectRect.size.width = ratio * origImageSize.width;
+		projectRect.size.height = ratio * origImageSize.height;
+		projectRect.origin.x = (newRect.size.width - projectRect.size.width) / 2.0;
+		projectRect.origin.y = (newRect.size.height - projectRect.size.height) / 2.0;
+		
+		// Draw the image on it
+		[image drawInRect:projectRect];
+		
+		// Get the image from the image context, keep it as our thumbnail
+		UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+		//[self setThumbnail:smallImage];
+		
+		// Get the PNG representation of the image and set it as our archiable data
+		//NSData *data = UIImagePNGRepresentation(smallImage);
+		//[self setThumbnailData:data];
+		
+		// Cleanup image context resources, we're done
+		UIGraphicsEndImageContext();
+		
+		return smallImage;
+		
+}
 
 
 @end

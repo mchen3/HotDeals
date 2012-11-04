@@ -76,7 +76,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 		// Load the Parse objects
-		[nameField setText:[self.parseObject objectForKey:@"name"]];
+		//[nameField setText:[self.parseObject objectForKey:@"name"]];
+		[descriptField setText:[self.parseObject objectForKey:@"description"]];
+
 		
 		// Load image through imageKey
 		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
@@ -101,13 +103,26 @@
 		
 		
 		// Save the parse objects in case the objects were edited.
-		
+		/*
 		NSString *nameString = [nameField text];
 		
 		//Make sure the objects are not empty because Parse
 		// cannot save objects that are nil
 		if (nameString) {
 				[self.parseObject setObject:nameString forKey:@"name"];
+				
+				// Associate the parseObject with this user
+				PFUser *user = [PFUser currentUser];
+				[self.parseObject setObject:user forKey:@"user"];
+		}*/
+		
+		// Save the parse objects in case the objects were edited.
+		NSString *descriptionString = [descriptField text];
+		
+		//Make sure the objects are not empty because Parse
+		// cannot save objects that are nil
+		if (descriptionString) {
+				[self.parseObject setObject:descriptionString forKey:@"description"];
 				
 				// Associate the parseObject with this user
 				PFUser *user = [PFUser currentUser];

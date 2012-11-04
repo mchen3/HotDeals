@@ -84,7 +84,7 @@
 		//[table registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 		
 		// Add the wall posts tableView as a subview with view containment (new in iOS 5.0);
-		self.userParseTableController = [[UserParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
+		self.userParseTableController = [[UserParseTableController alloc] initWithStyle:UITableViewStylePlain];
 		
 		// Pass the flag UserViewBasedOn which tells the UserParseTableController
 		// what tab (Deal or User) you are in
@@ -99,11 +99,11 @@
 		
 		[self addChildViewController:self.userParseTableController];
 		[self.view addSubview:self.userParseTableController.view];
-		self.userParseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 300.f);
+		self.userParseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 380.f);
+				
+		// Use custom ItemCell
 		[self.userParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 		[self.userParseTableController.tableView setSeparatorColor:[UIColor redColor]];
-		
-		
 		
 		
 		

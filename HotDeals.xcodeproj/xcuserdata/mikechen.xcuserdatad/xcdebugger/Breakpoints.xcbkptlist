@@ -327,7 +327,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/UserViewController.m"
-         timestampString = "373414533.567668"
+         timestampString = "373662700.713995"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "174"
@@ -390,11 +390,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/UserParseTableController.m"
-         timestampString = "373420287.446214"
+         timestampString = "373727516.043778"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "186"
-         endingLineNumber = "186"
+         startingLineNumber = "187"
+         endingLineNumber = "187"
          landmarkName = "-queryForTable"
          landmarkType = "5">
       </FileBreakpoint>
@@ -403,11 +403,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/UserParseTableController.m"
-         timestampString = "373420287.446214"
+         timestampString = "373716656.950881"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
          landmarkName = "-queryForTable"
          landmarkType = "5">
       </FileBreakpoint>
@@ -416,11 +416,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/UserParseTableController.m"
-         timestampString = "373420287.446214"
+         timestampString = "373716656.950881"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "180"
-         endingLineNumber = "180"
+         startingLineNumber = "184"
+         endingLineNumber = "184"
          landmarkName = "-queryForTable"
          landmarkType = "5">
       </FileBreakpoint>
@@ -429,11 +429,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/DealsParseTableController.m"
-         timestampString = "373420287.446214"
+         timestampString = "373752129.755901"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "239"
-         endingLineNumber = "239"
+         startingLineNumber = "255"
+         endingLineNumber = "255"
          landmarkName = "-tableView:cellForRowAtIndexPath:object:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -442,11 +442,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/DealsParseTableController.m"
-         timestampString = "373423993.788013"
+         timestampString = "373752129.755901"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "331"
-         endingLineNumber = "331"
+         startingLineNumber = "353"
+         endingLineNumber = "353"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -455,11 +455,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/UserPostViewController.m"
-         timestampString = "373573804.55174"
+         timestampString = "373659464.746028"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "122"
-         endingLineNumber = "122"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-viewWillDisappear:"
          landmarkType = "5">
       </FileBreakpoint>

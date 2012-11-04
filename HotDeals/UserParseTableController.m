@@ -11,6 +11,7 @@
 #import "DealsItemViewController.h"
 #import "LocationDataManager.h"
 #import "UserPostViewController.h"
+#import "ImageStore.h"
 
 @interface UserParseTableController ()
 
@@ -57,6 +58,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+		
+		//[self loadObjects];
+		//[self.tableView reloadData];
 		
 }
 
@@ -180,9 +184,6 @@
 				[query whereKey:@"user" equalTo:user];
 				//  Multiple contraints on a query
 				// [query whereKey:@"name" equalTo:@"second"];
-				
-				
-				
 		}
 		else {
 				// Else user hasn't been saved to the
@@ -225,7 +226,21 @@
 		 cell = [[ItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		 }*/
 		
-		[[cell nameLabel] setText:[object objectForKey:@"name"]];
+		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
+		
+		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+		
+		// Image
+		NSString *imageString = [object objectForKey:@"imageKey"];
+		if (imageString) {
+				UIImage *thumbnailImage = [[ImageStore defaultImageStore]
+																	 thumbnailImageForKey:imageString];
+				[[cell thumbnailView] setImage:thumbnailImage];
+		} else {
+				[ [cell thumbnailView] setImage:nil];
+		}
+
+		
 		
 		return cell;
 }
@@ -258,6 +273,12 @@
  */
 
 #pragma mark - Table view data source
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+		return 80;
+}
+
 
 /*
  // Override to support conditional editing of the table view.

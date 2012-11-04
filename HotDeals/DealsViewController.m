@@ -73,24 +73,20 @@
 		// Add the wall posts tableview as a subview with view containment (new in iOS 5.0):
 		
 		
-		self.dealsParseTableController = [[DealsParseTableController alloc] initWithStyle:UITableViewStyleGrouped];
+		self.dealsParseTableController = [[DealsParseTableController alloc] initWithStyle:UITableViewStylePlain];
+		
+		// Use custom ItemCell
+		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
+		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor darkGrayColor]];
 		
 		// Configure parse table to display based on location
 		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 		
 		[self addChildViewController:self.dealsParseTableController];
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 150.f, 320.f, 300.f);
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 80.f, 320.f, 370.f);
 		[self.view addSubview:self.dealsParseTableController.view];
 		
-		
-		
-		// Parse Query Table with ItemCell
-		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
-		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor greenColor]];
-		
-		
-    
-		
+				
 		
 		// ??? Notifications
 		[[NSNotificationCenter defaultCenter] addObserver:self

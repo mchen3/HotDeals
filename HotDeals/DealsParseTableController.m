@@ -10,6 +10,7 @@
 #import "ItemCell.h"
 #import "DealsItemViewController.h"
 #import "LocationDataManager.h"
+#import "ImageStore.h"
 
 @interface DealsParseTableController ()
 @end
@@ -233,7 +234,22 @@
 		 cell = [[ItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		 }*/
 		
-		[[cell nameLabel] setText:[object objectForKey:@"name"]];
+		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
+		
+
+		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+		 
+		// Set the image
+		NSString *imageKey = [object objectForKey:@"imageKey"];
+		if (imageKey) {
+				//UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
+				UIImage *parseImage = [[ImageStore defaultImageStore] thumbnailImageForKey:imageKey];
+				[[cell thumbnailView] setImage:parseImage];
+				
+		} else {
+			//	[[cell thumbnailView] setImage:nil];
+		}
+		
 		
 		
 		return cell;
@@ -267,6 +283,12 @@
  */
 
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+		return 80;
+}
+
+
 
 /*
  // Override to support conditional editing of the table view.
