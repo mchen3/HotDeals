@@ -63,7 +63,7 @@
 		UIGraphicsEndImageContext();
 		 */
 		
-
+		/*
 		// Resize the image to a thumbnail size
 	  UIImage *thumbnailImage =[self setThumbnailDataFromImage:image];
 		//NSData *thumbnailData = UIImagePNGRepresentation(thumbnailImage);
@@ -73,7 +73,7 @@
 		
 		// Save the thumbnail to a temporary storage
 		[thumbnailDictionary setObject:thumbnailImage forKey:key];
-		
+		*/
 		
 		
 		
@@ -90,7 +90,7 @@
 		[userPhoto setObject:[PFUser currentUser] forKey:@"user"];
 		
 		// Save the thumbnail
-		[userPhoto setObject:thumbnailFile forKey:@"thumbnail"];
+		//[userPhoto setObject:thumbnailFile forKey:@"thumbnail"];
 		
 		
 		[userPhoto saveInBackground];

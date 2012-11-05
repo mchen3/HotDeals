@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
-@interface ItemCell : UITableViewCell
+@interface ItemCell : PFTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 

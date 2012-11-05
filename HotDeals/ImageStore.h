@@ -23,6 +23,8 @@
 - (void)setImage:(UIImage *)image forKey:(NSString *)key;
 - (UIImage *)imageForKey:(NSString *)key;
 - (UIImage *)thumbnailImageForKey:(NSString *)key;
+- (UIImage *)setThumbnailDataFromImage:(UIImage *)image;
+
 
 
 - (void)deleteImageForKey:(NSString *)key;

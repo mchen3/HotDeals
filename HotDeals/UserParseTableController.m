@@ -230,7 +230,9 @@
 		
 		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
 		
+		
 		// Image
+		/*
 		NSString *imageString = [object objectForKey:@"imageKey"];
 		if (imageString) {
 				UIImage *thumbnailImage = [[ImageStore defaultImageStore]
@@ -238,6 +240,20 @@
 				[[cell thumbnailView] setImage:thumbnailImage];
 		} else {
 				[ [cell thumbnailView] setImage:nil];
+		}
+		 */
+		
+		// Set the image
+		NSString *imageKey = [object objectForKey:@"imageKey"];
+		if (imageKey) {
+				PFFile *thumbnailFile = [object objectForKey:@"thumbImage"];
+				NSData *imageData = [thumbnailFile getData];
+				UIImage *thumbnailImage = [UIImage imageWithData:imageData];
+				[[cell thumbnailView] setImage:thumbnailImage];
+			
+		} else {
+				
+				
 		}
 
 		

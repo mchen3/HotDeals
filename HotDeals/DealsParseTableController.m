@@ -147,11 +147,14 @@
     [super objectsDidLoad:error];
     
     // This method is called every time objects are loaded from Parse via the PFQuery
+		
+		
+		
 }
 
 - (void)objectsWillLoad {
     [super objectsWillLoad];
-    
+		
     // This method is called before a PFQuery is fired to get more objects
 }
 
@@ -165,6 +168,8 @@
     if ([self.objects count] == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
+		
+		
 		
 		// Return a query based upon a current locality of current user
 		if ([self.DealBasedOn isEqualToString:@"currentLocation"]) {
@@ -237,17 +242,56 @@
 		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
 		
 
-		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+		//[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
 		 
+		
 		// Set the image
 		NSString *imageKey = [object objectForKey:@"imageKey"];
 		if (imageKey) {
-				//UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
-				UIImage *parseImage = [[ImageStore defaultImageStore] thumbnailImageForKey:imageKey];
-				[[cell thumbnailView] setImage:parseImage];
+				
+			//				if (![cell thumbnailView].image)
+			//	{
+				
+				/*
+				PFObject *object = [query getFirstObject];
+				PFFile *parseFile = [object objectForKey:@"thumbnail"];
+				NSData *imageData = [parseFile getData];
+				thumbnailImage = [UIImage imageWithData:imageData];
+				 */
+				
+				
+				
+				
+				NSString *test = [object objectForKey:@"description"];
+						[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+
+					 //	UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
+						//UIImage *parseImage = [[ImageStore defaultImageStore] thumbnailImageForKey:imageKey];
+						//[[cell thumbnailView] setImage:parseImage];
+				
+				PFFile *thumbnailFile = [object objectForKey:@"thumbImage"];
+			//	cell.imageView.file = [object objectForKey:@"image"];
+				
+				NSData *imageData = [thumbnailFile getData];
+				UIImage *thumbnailImage = [UIImage imageWithData:imageData];
+				[[cell thumbnailView] setImage:thumbnailImage];
+				
+				
+				
+				//[[cell imageView] setFile:thumb];
+
+			  	  NSLog(@"");
+			//	}
 				
 		} else {
+								
 			//	[[cell thumbnailView] setImage:nil];
+
+			/*
+				if (![cell thumbnailView].image) {
+						[[cell thumbnailView] setImage:nil];
+				}
+			 */
 		}
 		
 		
