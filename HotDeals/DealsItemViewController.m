@@ -471,11 +471,6 @@
 		CFRelease(newUniqueID);
 
 		
-		/*
-		// Create a thumbnail from the image
-		[item setThumbnailDataFromImage:image];
-		 */
-		
     // Take the image picker off the screen
    // [self dismissViewControllerAnimated:YES completion:nil];
 		

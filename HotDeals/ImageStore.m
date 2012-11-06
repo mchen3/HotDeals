@@ -63,21 +63,7 @@
 		UIGraphicsEndImageContext();
 		 */
 		
-		/*
-		// Resize the image to a thumbnail size
-	  UIImage *thumbnailImage =[self setThumbnailDataFromImage:image];
-		//NSData *thumbnailData = UIImagePNGRepresentation(thumbnailImage);
-		NSData *thumbnailData = UIImageJPEGRepresentation(thumbnailImage, 0.05f);
-		PFFile *thumbnailFile = [PFFile fileWithName:@"thumb.jpg" data:thumbnailData];
-		[thumbnailFile save];
-		
-		// Save the thumbnail to a temporary storage
-		[thumbnailDictionary setObject:thumbnailImage forKey:key];
-		*/
-		
-		
-		
-		// Parse
+		// Save the image to Parse
 		NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
 		PFFile *imageFile = [PFFile fileWithName:@"Parse.jpg" data:imageData];
 		
@@ -88,15 +74,7 @@
 		[userPhoto setObject:imageFile forKey:@"image"];
 		[userPhoto setObject:key forKey:@"imageKey"];
 		[userPhoto setObject:[PFUser currentUser] forKey:@"user"];
-		
-		// Save the thumbnail
-		//[userPhoto setObject:thumbnailFile forKey:@"thumbnail"];
-		
-		
 		[userPhoto saveInBackground];
-		
-		
-		
 		
 		/*
 		// Save PFFile
@@ -137,62 +115,6 @@
 		[d writeToFile:path atomically:YES];
 		*/
 }
-
-
--(UIImage *)thumbnailImageForKey:(NSString *) key
-{
-		
-		// Check to see if the image is available on our temporary storage
-		// to save us the trouble of loading from the Parse servers
-		UIImage *thumbnailImage = [thumbnailDictionary objectForKey:key];
-		
-		//UIImage *image = nil;
-		if (!thumbnailImage) {
-				// Image is not available, must need connection to Parse servers.
-				
-				PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
-				
-				[query whereKey:@"imageKey" equalTo:key];
-				
-				PFObject *object = [query getFirstObject];
-				PFFile *parseFile = [object objectForKey:@"thumbnail"];
-				NSData *imageData = [parseFile getData];
-				thumbnailImage = [UIImage imageWithData:imageData];
-				
-				if (thumbnailImage) {
-						[thumbnailDictionary setObject:thumbnailImage forKey:key];
-				}
-				else {
-						NSLog(@"No image available from parse");
-				}
-				
-		}
-		
-		return thumbnailImage;
-		
-		
-		
-		/* BNR
-     //return [dictionary objectForKey:key];
-		 
-		 // If possible, retrive the image from the dictionary
-		 UIImage *image = [dictionary objectForKey:key];
-		 
-		 if (!image) {
-		 // Create a image from the file system
-		 image = [UIImage imageWithContentsOfFile:[self imagePathForKey:key]];
-		 if (image) {
-		 [dictionary setObject:image forKey:key];
-		 }
-		 else {
-		 NSLog(@"Error: unable to find %@", [self imagePathForKey:key]);
-		 }
-		 }
-		 return  image;
-		 */
-}
-
-
 
 -(UIImage *)imageForKey:(NSString *) key
 {
@@ -342,17 +264,15 @@
 
 #pragma mark - Thumbnail
 
-// Takes full size image and resizes it to a thumb and sets the
-// data for the new thumbnailData so you can pull a image
-// from a thumbnailData
-//  You need thumbnailData (NSData) to save a image because
-//  you can't encode a UIImage directly
-- (UIImage *)setThumbnailDataFromImage:(UIImage *)image
+// Takes the full size image and resizes it to a thumb image
+// and returns a PFFile associated with it
+- (PFFile *)getThumbnailFileFromImage:(UIImage *)image
 {
 		CGSize origImageSize = [image size];
 		
 		// The rectangle of the thumbnail
-		CGRect newRect = CGRectMake(0, 0, 80, 70);
+		//CGRect newRect = CGRectMake(0, 0, 80, 70);
+		CGRect newRect = CGRectMake(0, 0, 160, 140);
 		
 		// Figure out the scaling ratio to make sure we maintain the same aspect ratio
 		float ratio = MAX(newRect.size.width / origImageSize.width,
@@ -380,17 +300,17 @@
 		[image drawInRect:projectRect];
 		
 		// Get the image from the image context, keep it as our thumbnail
-		UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-		//[self setThumbnail:smallImage];
-		
-		// Get the PNG representation of the image and set it as our archiable data
-		//NSData *data = UIImagePNGRepresentation(smallImage);
-		//[self setThumbnailData:data];
+		UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
 		
 		// Cleanup image context resources, we're done
 		UIGraphicsEndImageContext();
 		
-		return smallImage;
+		// Reformat the image and associate it with a PFFile
+		NSData *thumbnailData = UIImageJPEGRepresentation(thumbnailImage, 0.05f);
+		PFFile *thumbnailFile = [PFFile fileWithName:@"thumb.jpg" data:thumbnailData];
+		[thumbnailFile save];
+		
+		return thumbnailFile;
 		
 }
 

@@ -75,18 +75,25 @@
 		
 		self.dealsParseTableController = [[DealsParseTableController alloc] initWithStyle:UITableViewStylePlain];
 		
+		[self.dealsParseTableController.tableView setRowHeight:80];
+		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor darkGrayColor]];
 		// Use custom ItemCell
 		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
-		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor darkGrayColor]];
+		 
 		
 		// Configure parse table to display based on location
 		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 		
 		[self addChildViewController:self.dealsParseTableController];
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 80.f, 320.f, 370.f);
 		[self.view addSubview:self.dealsParseTableController.view];
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 80.f, 320.f, 370.f);
+
 		
-				
+		
+		
+		
+		
+		
 		
 		// ??? Notifications
 		[[NSNotificationCenter defaultCenter] addObserver:self

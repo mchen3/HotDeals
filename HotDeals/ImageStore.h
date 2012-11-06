@@ -9,26 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-
 @interface ImageStore : NSObject 
 {
-    NSMutableDictionary *dictionary;
-		NSMutableDictionary *thumbnailDictionary;
-		
+    NSMutableDictionary *dictionary;		
 		UIImage *parseImage;
-		
 }
 + (ImageStore *)defaultImageStore;
 
 - (void)setImage:(UIImage *)image forKey:(NSString *)key;
 - (UIImage *)imageForKey:(NSString *)key;
-- (UIImage *)thumbnailImageForKey:(NSString *)key;
-- (UIImage *)setThumbnailDataFromImage:(UIImage *)image;
-
+- (PFFile *)getThumbnailFileFromImage:(UIImage *)image;
 
 
 - (void)deleteImageForKey:(NSString *)key;
-
 - (NSString *)imagePathForKey:(NSString *)key;
 
 @property (nonatomic, copy) void (^reloadBlock)(void);

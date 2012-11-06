@@ -145,10 +145,7 @@
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
-    
     // This method is called every time objects are loaded from Parse via the PFQuery
-		
-		
 		
 }
 
@@ -240,62 +237,21 @@
 		 }*/
 		
 		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
-		
-
-		//[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
 		 
 		
 		// Set the image
 		NSString *imageKey = [object objectForKey:@"imageKey"];
 		if (imageKey) {
 				
-			//				if (![cell thumbnailView].image)
-			//	{
+				[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
 				
-				/*
-				PFObject *object = [query getFirstObject];
-				PFFile *parseFile = [object objectForKey:@"thumbnail"];
-				NSData *imageData = [parseFile getData];
-				thumbnailImage = [UIImage imageWithData:imageData];
-				 */
-				
-				
-				
-				
-				NSString *test = [object objectForKey:@"description"];
-						[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
-
-					 //	UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
-						//UIImage *parseImage = [[ImageStore defaultImageStore] thumbnailImageForKey:imageKey];
-						//[[cell thumbnailView] setImage:parseImage];
-				
+				// Set the thumbnail image
 				PFFile *thumbnailFile = [object objectForKey:@"thumbImage"];
-			//	cell.imageView.file = [object objectForKey:@"image"];
-				
 				NSData *imageData = [thumbnailFile getData];
 				UIImage *thumbnailImage = [UIImage imageWithData:imageData];
 				[[cell thumbnailView] setImage:thumbnailImage];
-				
-				
-				
-				//[[cell imageView] setFile:thumb];
-
-			  	  NSLog(@"");
-			//	}
-				
-		} else {
-								
-			//	[[cell thumbnailView] setImage:nil];
-
-			/*
-				if (![cell thumbnailView].image) {
-						[[cell thumbnailView] setImage:nil];
-				}
-			 */
 		}
-		
-		
-		
 		return cell;
 }
 
@@ -331,7 +287,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 		return 80;
 }
-
 
 
 /*

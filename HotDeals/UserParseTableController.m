@@ -184,11 +184,14 @@
 				[query whereKey:@"user" equalTo:user];
 				//  Multiple contraints on a query
 				// [query whereKey:@"name" equalTo:@"second"];
+				NSLog(@"UUSSSSE");
+
 		}
 		else {
 				// Else user hasn't been saved to the
 				// Parse server, return a empty table
 				[query whereKey:@"user" equalTo:@""];
+				NSLog(@"EMMMMMMPTTYYYY");
 		}
 				
 		}
@@ -218,44 +221,18 @@
 		ItemCell *cell =
 		[tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
 		
-		/*
-		 static NSString *CellIdentifier = @"ItemCell";
-		 ItemCell *cell = [tableView
-		 dequeueReusableCellWithIdentifier:CellIdentifier];
-		 if (cell == nil) {
-		 cell = [[ItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-		 }*/
-		
+
 		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
-		
 		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
 		
-		
-		// Image
-		/*
-		NSString *imageString = [object objectForKey:@"imageKey"];
-		if (imageString) {
-				UIImage *thumbnailImage = [[ImageStore defaultImageStore]
-																	 thumbnailImageForKey:imageString];
-				[[cell thumbnailView] setImage:thumbnailImage];
-		} else {
-				[ [cell thumbnailView] setImage:nil];
-		}
-		 */
-		
-		// Set the image
+		// Set the thumbnail image
 		NSString *imageKey = [object objectForKey:@"imageKey"];
 		if (imageKey) {
 				PFFile *thumbnailFile = [object objectForKey:@"thumbImage"];
 				NSData *imageData = [thumbnailFile getData];
 				UIImage *thumbnailImage = [UIImage imageWithData:imageData];
 				[[cell thumbnailView] setImage:thumbnailImage];
-			
-		} else {
-				
-				
 		}
-
 		
 		
 		return cell;

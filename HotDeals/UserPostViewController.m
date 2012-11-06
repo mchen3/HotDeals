@@ -266,31 +266,16 @@
 		[[ImageStore defaultImageStore] setImage:image forKey:key];
 		
 		
-		
-		
-		
-		//Saving the thumbnail image into TestObject instead of Photo table
-		
-		// Testing saving the thumbnail into the TestObject
-		// Resize the image to a thumbnail size
-	  // UIImage *thumbnailImage =[self setThumbnailDataFromImage:image];
-		UIImage *thumbnailImage = [[ImageStore defaultImageStore]
-															 setThumbnailDataFromImage:image];
-		//NSData *thumbnailData = UIImagePNGRepresentation(thumbnailImage);
-		NSData *thumbnailData = UIImageJPEGRepresentation(thumbnailImage, 0.05f);
-		PFFile *thumbnailFile = [PFFile fileWithName:@"thumb.jpg" data:thumbnailData];
-		[thumbnailFile save];
-		
-		// Save the thumbnail with the current parse object
+		// Resize the image and get a PFFile associated with it
+		PFFile *thumbnailFile = [[ImageStore defaultImageStore]
+														 getThumbnailFileFromImage:image];
+		/*
+		 We will save the thumbnail file with this parse object inside the
+		 same table instead of the separate ImageStore/Photo table. It will
+		 be much more efficent this way when we later try to pull the 
+		 thumbnail image to display inside of a table cell.
+		*/
 		[self.parseObject setObject:thumbnailFile forKey:@"thumbImage"];
-		
-		// Come back, 
-		// Save the thumbnail to a temporary storage
-		//[thumbnailDictionary setObject:thumbnailImage forKey:key];
-		
-		
-		
-		
 		
 		CFRelease(newUniqueIDString);
 		CFRelease(newUniqueID);

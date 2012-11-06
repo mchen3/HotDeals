@@ -96,17 +96,14 @@
 		// Configure parse to display deals based on UserID
 		//[self.dealsParseTableController setDealBasedOn:@"user"];
 		
-		
 		[self addChildViewController:self.userParseTableController];
 		[self.view addSubview:self.userParseTableController.view];
-		self.userParseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 380.f);
+		 self.userParseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 380.f);
 				
-		// Use custom ItemCell
-		[self.userParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
+		[self.userParseTableController.tableView setRowHeight:80];
 		[self.userParseTableController.tableView setSeparatorColor:[UIColor redColor]];
-		
-		
-		
+		// Use custom cell ItemCell
+		[self.userParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 }
 
 - (void)viewDidUnload
