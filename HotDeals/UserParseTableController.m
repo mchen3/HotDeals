@@ -233,6 +233,9 @@
 				UIImage *thumbnailImage = [UIImage imageWithData:imageData];
 				[[cell thumbnailView] setImage:thumbnailImage];
 		}
+		else {
+				[[cell thumbnailView] setImage:nil];
+		}
 		
 		
 		return cell;
