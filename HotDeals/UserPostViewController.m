@@ -9,6 +9,16 @@
 #import "UserPostViewController.h"
 #import "ImageStore.h"
 #import "LocationDataManager.h"
+#import "UserViewController.h"
+#import "CreateDealViewController.h"
+
+// DEl testing
+#import "NewsViewController.h"
+#import "DealsItemViewController.h"
+
+
+
+#import <QuartzCore/QuartzCore.h>
 
 @interface UserPostViewController ()
 
@@ -34,18 +44,25 @@
 		
 		if (self) {
 				
-				if (isNew) {
-						// If you are creating a new item, then
-						// add a save and cancel button to the nav bar
-						UIBarButtonItem *saveItem = [[UIBarButtonItem alloc]
-																				 initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
-						[[self navigationItem] setRightBarButtonItem:saveItem];
-						
-						UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
-																					 initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:
-																					 @selector(cancel:)];
-						[[self navigationItem] setLeftBarButtonItem:cancelItem];
-				}
+				NSLog(@"UserPost INIT");
+				
+				// Previous implementai
+				//if (isNew) {
+				
+				// If you are creating a new item, then
+				// add a save and cancel button to the nav bar
+				UIBarButtonItem *editItem = [[UIBarButtonItem alloc]
+																		 initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
+				[[self navigationItem] setRightBarButtonItem:editItem];
+				
+				
+				
+				UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
+																		 initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:
+																		 @selector(done:)];
+				[[self navigationItem] setLeftBarButtonItem:doneItem];
+				
+				//	}
 				
 				
 		}
@@ -55,19 +72,96 @@
 
 #pragma mark - ()
 
-- (void)save:(id)sender
+- (void)edit:(id)sender
 {
-		[self.parseObject setObject:[nameField text] forKey:@"name"];
+		CATransition *transition = [CATransition animation];
+		transition.duration = 0.90;
+		transition.timingFunction =
+		[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+		transition.type = kCATransitionMoveIn;
+		transition.subtype = kCATransitionFromLeft;
+		
+		UIView *containerView = self.view.window;
+		[containerView.layer addAnimation:transition forKey:nil];
 		
 		
-		// Put the save part here and put the dismiss block in the completetion:self.dismissBlock
 		
-		[[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+		
+		
+		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
+		if (imageKey) {
+				UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
+				
+				/*
+				 CreateDealViewController *createDealViewController =
+				 (CreateDealViewController *)self.presentingViewController;
+				 [createDealViewController setImage:parseImage];
+				 [createDealViewController setParseObject:self.parseObject];
+				 
+				 NSString *string =   self.presentingViewController.nibName;
+				 
+				 NSLog(@"");
+				 */
+				
+		}
+		
+		
+		
+		
+		[self dismissViewControllerAnimated:NO completion:^{
+				// Pass the image and parse object to createDealViewController
+				
+				
+				
+				
+				
+				
+				
+		}];
+		
+		
+		
+		
+		
+		
+		//[self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)cancel:(id)sender
+/*
+ - (void)save:(id)sender
+ {
+ [self.parseObject setObject:[nameField text] forKey:@"name"];
+ 
+ 
+ // Put the save part here and put the dismiss block in the completetion:self.dismissBlock
+ 
+ [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+ }
+ */
+
+-(void)done:(id)sender
 {
-		[[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+		
+		//Customize to dismiss the current modal view, UserPostViewController, from left to right
+		CATransition *transition = [CATransition animation];
+		transition.duration = 0.90;
+		transition.timingFunction =
+		[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+		transition.type = kCATransitionMoveIn;
+		transition.subtype = kCATransitionFromLeft;
+		
+		UIView *containerView = self.view.window;
+		[containerView.layer addAnimation:transition forKey:nil];
+		
+		//[[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+		/*
+		 UserViewController *userPostViewController =
+		 [[UserViewController alloc] initWithTab:@"UserTab"];
+		 [self presentViewController:userPostViewController animated:NO completion:nil];
+		 */
+		
+		
+		[[[self presentingViewController] presentingViewController] dismissViewControllerAnimated:NO completion:nil];
 }
 
 
@@ -78,7 +172,7 @@
 		// Load the Parse objects
 		//[nameField setText:[self.parseObject objectForKey:@"name"]];
 		[descriptField setText:[self.parseObject objectForKey:@"description"]];
-
+		
 		
 		// Load image through imageKey
 		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
@@ -104,65 +198,70 @@
 		
 		// Save the parse objects in case the objects were edited.
 		/*
-		NSString *nameString = [nameField text];
-		
-		//Make sure the objects are not empty because Parse
-		// cannot save objects that are nil
-		if (nameString) {
-				[self.parseObject setObject:nameString forKey:@"name"];
-				
-				// Associate the parseObject with this user
-				PFUser *user = [PFUser currentUser];
-				[self.parseObject setObject:user forKey:@"user"];
-		}*/
+		 NSString *nameString = [nameField text];
+		 
+		 //Make sure the objects are not empty because Parse
+		 // cannot save objects that are nil
+		 if (nameString) {
+		 [self.parseObject setObject:nameString forKey:@"name"];
+		 
+		 // Associate the parseObject with this user
+		 PFUser *user = [PFUser currentUser];
+		 [self.parseObject setObject:user forKey:@"user"];
+		 }*/
 		
 		// Save the parse objects in case the objects were edited.
-		NSString *descriptionString = [descriptField text];
+		//NSString *descriptionString = [descriptField text];
 		
 		//Make sure the objects are not empty because Parse
 		// cannot save objects that are nil
-		if (descriptionString) {
-				[self.parseObject setObject:descriptionString forKey:@"description"];
-				
-				// Associate the parseObject with this user
-				PFUser *user = [PFUser currentUser];
-				[self.parseObject setObject:user forKey:@"user"];
-		}
 		
 		
-		// Find the location for this user and save the locality to parse
-		CLLocation *location = [LocationDataManager sharedLocation].currentLocation;
-		NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
-		
-		CLLocationCoordinate2D coordinate = [LocationDataManager sharedLocation].currentLocation.coordinate;
-		NSLog(@"Los");
-		
-		[self.parseObject setObject:locality forKey:@"locality"];
-		
-		
-		// Save in viewdiddisappear instead of in the save function
-		[self.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-				if (error) {
-						NSLog(@"Could not save");
-						NSLog(@"%@", error);
-						UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-						[alertView show];
-				}
-				// Reload the parse table after you successfully saved
-				if (succeeded) {
-						// Reload the UserParseTableController
-						dispatch_async(dispatch_get_main_queue(), self.dismissBlock);
-						
-						// Alert the DealsParseTableController that a new deal was created
-						dispatch_async(dispatch_get_main_queue(), ^{
-								[[NSNotificationCenter defaultCenter]
-								 postNotificationName:@"userDealChange" object:nil];
-						});
-						
-				} else {
-						NSLog(@"Failed to save");
-				}
-		}];
+		/******** DONT EDIT
+		 
+		 if (descriptionString) {
+		 [self.parseObject setObject:descriptionString forKey:@"description"];
+		 
+		 // Associate the parseObject with this user
+		 PFUser *user = [PFUser currentUser];
+		 [self.parseObject setObject:user forKey:@"user"];
+		 }
+		 
+		 
+		 // Find the location for this user and save the locality to parse
+		 CLLocation *location = [LocationDataManager sharedLocation].currentLocation;
+		 NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
+		 
+		 CLLocationCoordinate2D coordinate = [LocationDataManager sharedLocation].currentLocation.coordinate;
+		 NSLog(@"Los");
+		 
+		 [self.parseObject setObject:locality forKey:@"locality"];
+		 
+		 
+		 // Save in viewdiddisappear instead of in the save function
+		 [self.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+		 if (error) {
+		 NSLog(@"Could not save");
+		 NSLog(@"%@", error);
+		 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+		 [alertView show];
+		 }
+		 // Reload the parse table after you successfully saved
+		 if (succeeded) {
+		 // Reload the UserParseTableController
+		 dispatch_async(dispatch_get_main_queue(), self.dismissBlock);
+		 
+		 // Alert the DealsParseTableController that a new deal was created
+		 dispatch_async(dispatch_get_main_queue(), ^{
+		 [[NSNotificationCenter defaultCenter]
+		 postNotificationName:@"userDealChange" object:nil];
+		 });
+		 
+		 } else {
+		 NSLog(@"Failed to save");
+		 }
+		 }];
+		 */
 }
 
 - (void)viewDidLoad
@@ -173,6 +272,10 @@
 
 - (void)viewDidUnload
 {
+		
+		
+		NSLog(@"User Post unload");
+		
 		
 		descriptField = nil;
 		nameField = nil;
@@ -237,8 +340,12 @@
 		}
 		
 		[imagePicker setDelegate:self];
+		
 		[self presentModalViewController:imagePicker animated:YES];
 }
+
+
+
 
 
 
@@ -272,17 +379,69 @@
 		/*
 		 We will save the thumbnail file with this parse object inside the
 		 same table instead of the separate ImageStore/Photo table. It will
-		 be much more efficent this way when we later try to pull the 
+		 be much more efficent this way when we later try to pull the
 		 thumbnail image to display inside of a table cell.
-		*/
+		 */
 		[self.parseObject setObject:thumbnailFile forKey:@"thumbImage"];
 		
 		CFRelease(newUniqueIDString);
 		CFRelease(newUniqueID);
 		
-		[self dismissViewControllerAnimated:YES completion:^{
+		
+		
+		// Transition to move the image picker from right to left
+		CATransition *transition = [CATransition animation];
+		transition.duration = 0.30;
+		transition.timingFunction =
+		[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+		transition.type = kCATransitionMoveIn;
+		transition.subtype = kCATransitionFromRight;
+		
+		UIView *containerView = picker.view.window;
+		[containerView.layer addAnimation:transition forKey:nil];
+		
+		
+		
+		
+		/* DEL
+		 CATransition *animation = [CATransition animation];
+		 [animation setDelegate:self];
+		 [animation setType:kCATransitionPush];
+		 [animation setSubtype:kCATransitionFromRight];
+		 [animation setDuration:0.50];
+		 [animation setTimingFunction:
+		 [CAMediaTimingFunction functionWithName:
+		 kCAMediaTimingFunctionEaseInEaseOut]];
+		 //[picker.view.layer addAnimation:animation forKey:kCATransition];
+		 //[self.view.layer addAnimation:animation forKey:kCATransition];
+		 */
+		//NewsViewController *nvc = [[NewsViewController alloc] init];
+		//[self presentModalViewController:nvc animated:NO];
+		//[self.view.layer addAnimation:animation forKey:kCATransition];
+		
+		
+		
+		// Must use the parent to dismiss because [self dismissViewController
+		// was causing to many issues
+		[self.parentViewController dismissViewControllerAnimated:NO completion:^{
+				//	NewsViewController *nvc = [[NewsViewController alloc] init];
+				//[self presentModalViewController:nvc animated:NO];
 				
+				
+				DealsItemViewController *dvc = [[DealsItemViewController alloc] init];
+				[self presentModalViewController:dvc animated:NO];
 		}];
+		
+		
+		//DEL
+		//[self dismissViewControllerAnimated:YES completion:^{
+		//NewsViewController *nvc = [[NewsViewController alloc] init];
+		//[self presentModalViewController:nvc animated:NO];
+		//}];
+		
+		
+		
+		
 }
 
 

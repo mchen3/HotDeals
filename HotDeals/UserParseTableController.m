@@ -12,6 +12,8 @@
 #import "LocationDataManager.h"
 #import "UserPostViewController.h"
 #import "ImageStore.h"
+#import <QuartzCore/QuartzCore.h>
+#import "CreateDealViewController.h"
 
 @interface UserParseTableController ()
 
@@ -156,8 +158,8 @@
 		
 		
 		/* If you are in the Deals Tab then return the query for
-		random user, else you are in the User Tab and you will
-		return the query for the current user */
+		 random user, else you are in the User Tab and you will
+		 return the query for the current user */
 		
 		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
 				
@@ -169,30 +171,30 @@
 		
 		// Return the query for the current user
 		else if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
-		
-		// Return a query based on a current Users ID
-		//if ([self.DealBasedOn isEqualToString:@"user"]) {
-		
-		[query orderByDescending:@"createdAt"];
-		
-		PFUser *user = [PFUser currentUser];
-		
-		// If user.objectId is nil, then the user hasn't been saved
-		// on the Parse server. There will be an exception if you query
-		// with a user.objectId that is nil i.e. unsaved
-		if (user.objectId) {
-				[query whereKey:@"user" equalTo:user];
-				//  Multiple contraints on a query
-				// [query whereKey:@"name" equalTo:@"second"];
-				NSLog(@"UUSSSSE");
-
-		}
-		else {
-				// Else user hasn't been saved to the
-				// Parse server, return a empty table
-				[query whereKey:@"user" equalTo:@""];
-				NSLog(@"EMMMMMMPTTYYYY");
-		}
+				
+				// Return a query based on a current Users ID
+				//if ([self.DealBasedOn isEqualToString:@"user"]) {
+				
+				[query orderByDescending:@"createdAt"];
+				
+				PFUser *user = [PFUser currentUser];
+				
+				// If user.objectId is nil, then the user hasn't been saved
+				// on the Parse server. There will be an exception if you query
+				// with a user.objectId that is nil i.e. unsaved
+				if (user.objectId) {
+						[query whereKey:@"user" equalTo:user];
+						//  Multiple contraints on a query
+						// [query whereKey:@"name" equalTo:@"second"];
+						NSLog(@"UUSSSSE");
+						
+				}
+				else {
+						// Else user hasn't been saved to the
+						// Parse server, return a empty table
+						[query whereKey:@"user" equalTo:@""];
+						NSLog(@"EMMMMMMPTTYYYY");
+				}
 				
 		}
 		
@@ -221,7 +223,7 @@
 		ItemCell *cell =
 		[tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
 		
-
+		
 		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
 		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
 		
@@ -328,13 +330,13 @@
 		
 		
 		/* If this UserViewController is inside the Deals Tab Bar Controller
-		   then selecting on a table will bring up a DealsItemViewController
-		   which cannot not be edited.
-		   If this UserViewController is inside the User Tab Bar Controller
-		   then it is a user viewing their own post, so you will bring
-		   up the UserPostViewController which will allow a user to edit 
-		   his own deals.
-		*/
+		 then selecting on a table will bring up a DealsItemViewController
+		 which cannot not be edited.
+		 If this UserViewController is inside the User Tab Bar Controller
+		 then it is a user viewing their own post, so you will bring
+		 up the UserPostViewController which will allow a user to edit
+		 his own deals.
+		 */
 		
 		
 		//??? Clean up later
@@ -343,7 +345,7 @@
 		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
 				
 				DealsItemViewController *dealsItemViewController =
-												[[DealsItemViewController alloc] init];
+				[[DealsItemViewController alloc] init];
 				// Pass the parse object onto to the DealsItemViewController
 				[dealsItemViewController setParseObject:object];
 				// Pass the username of the deal
@@ -373,46 +375,100 @@
 		
 		// You are in the User Tab so allow the user to edit his own deals
 		else if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
-		
-		// Pass the parse object onto to the ItemViewController
-		// when it is pushed
-		// DEL changed DIVC to UPVC for 
-		//DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] init];
-		//[dealsItemViewController setParseObject:object];
-		
-		UserPostViewController *userPostViewController = [[UserPostViewController alloc] initWithName:NO];
-		[userPostViewController setParseObject:object];
-		
-		// Set dismiss block for didselectrowatindexpath
-		// Previous bug, when you select row and then return it crashed
-		// you set it for for addnewitem in DVC but you didn't for didselectrow
-		// so when IVC viewdisappears, (it'll save and run dismiss block
-		// to reload a table
-		[userPostViewController setDismissBlock: ^{
 				
-				//    DVC's table
-				//		[table reloadData];
+				// Pass the parse object onto to the ItemViewController
+				// when it is pushed
+				// DEL changed DIVC to UPVC for
+				//DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] init];
+				//[dealsItemViewController setParseObject:object];
 				
-				//		[ParseTVC.tableView reloadData];
+				UserPostViewController *userPostViewController = [[UserPostViewController alloc] initWithName:NO];
+				[userPostViewController setParseObject:object];
 				
-				// Load the parse objects after you create a new Parse object
-				// Only reload the block if the save was successful.
-				[self loadObjects];
+				// Set dismiss block for didselectrowatindexpath
+				// Previous bug, when you select row and then return it crashed
+				// you set it for for addnewitem in DVC but you didn't for didselectrow
+				// so when IVC viewdisappears, (it'll save and run dismiss block
+				// to reload a table
 				
-				// Notify the DealViewController parse table to reload
-				// because a post may have been changed
-				dispatch_async(dispatch_get_main_queue(), ^{
-						[[NSNotificationCenter defaultCenter]
-						 postNotificationName:@"userDealChange" object:nil];
-				});
-		}];
-
-		// ???? Customize the animation of when hiding the toolbar
-    userPostViewController.hidesBottomBarWhenPushed = YES;
-		
-		[self.navigationController pushViewController:userPostViewController animated:YES];
-		
-		
+				/* Cancel the dismiss block when you select a row and bring up UPVC
+				 you don't directly edit UPVC
+				 [userPostViewController setDismissBlock: ^{
+				 
+				 //    DVC's table
+				 //		[table reloadData];
+				 
+				 //		[ParseTVC.tableView reloadData];
+				 
+				 // Load the parse objects after you create a new Parse object
+				 // Only reload the block if the save was successful.
+				 // Did select on a
+				 [self loadObjects];
+				 
+				 // Notify the DealViewController parse table to reload
+				 // because a post may have been changed
+				 dispatch_async(dispatch_get_main_queue(), ^{
+				 [[NSNotificationCenter defaultCenter]
+				 postNotificationName:@"userDealChange" object:nil];
+				 });
+				 }];
+				 
+				 Cancel dismiss block
+				 */
+				
+				// ???? Customize the animation of when hiding the toolbar
+				//userPostViewController.hidesBottomBarWhenPushed = YES;
+				
+				
+				//[self.navigationController pushViewController:userPostViewController animated:YES];
+				// Change to modal view instead of pushView
+				
+				
+				// Customize to present the modal view from right to left
+				CATransition *transition = [CATransition animation];
+				transition.duration = 0.90;
+				transition.timingFunction =
+				[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+				transition.type = kCATransitionMoveIn;
+				transition.subtype = kCATransitionFromRight;
+				UIView *containerView = self.view.window;
+				[containerView.layer addAnimation:transition forKey:nil];
+				
+				
+				// Create a nav controller so userPostViewController can add nav items to return
+				UINavigationController *userPostNavController = [[UINavigationController alloc] initWithRootViewController:userPostViewController];
+				
+				
+				// We want to present a modal view which already presents a modal view itself
+				CreateDealViewController *createDealViewController =
+				[[CreateDealViewController alloc] init];
+				UINavigationController *createDealNavController = [[UINavigationController alloc] initWithRootViewController:createDealViewController];
+				
+				
+				// Pass the object, image, and reloadUserTable block to CDVC
+				[createDealViewController setParseObject:object];
+				NSString *imageKey = [object objectForKey:@"imageKey"];
+				UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
+				[createDealViewController setImage:parseImage];
+				
+				[createDealViewController setReloadUserTableBlock:^{
+						[self loadObjects];
+				}];
+				
+				
+				
+				
+				[self presentViewController:createDealNavController animated:NO completion:^{
+						[createDealViewController presentViewController:userPostNavController
+																									 animated:NO completion:nil];
+						
+				}];
+				
+				
+				
+				
+				
+				
 		}
 		
 }

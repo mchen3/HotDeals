@@ -14,6 +14,7 @@
 #import "Parse/Parse.h"
 #import "LocationDataManager.h"
 
+
 @implementation DealAppDelegate
 
 @synthesize window = _window;
