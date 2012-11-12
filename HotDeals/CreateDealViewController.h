@@ -18,9 +18,9 @@
 		
 		__weak IBOutlet UITextField *priceField;
 		
-		
+			
 		//__weak IBOutlet UIButton *editButton;
-		
+
 }
 
 

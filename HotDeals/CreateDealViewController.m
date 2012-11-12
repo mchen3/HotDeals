@@ -11,7 +11,7 @@
 #import "LocationDataManager.h"
 #import "UserPostViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "MBProgressHUD.h"
 
 @interface CreateDealViewController ()
 
@@ -137,12 +137,25 @@
 
 #pragma mark - ()
 
+
+
+
+
 - (void)save:(id)sender
 {
 		
+		MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+		HUD.labelText = @"Loading";
+		HUD.detailsLabelText = @"uploading data";
+		// Add the HUD view over the keyboard
+		[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
+		
+		
+				
+		[HUD showAnimated:YES whileExecutingBlock:^{
+
 		
 		// Save the image
-		
 		// Get picked image from info dictionary
 		//UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 		
@@ -236,175 +249,33 @@
 		}];
 		
 		
-		//Customize to dismiss the modal view, CreateDealViewController, from right to left
-		CATransition *transition = [CATransition animation];
-		transition.duration = 0.90;
-		transition.timingFunction =
-		[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-		transition.type = kCATransitionMoveIn;
-		transition.subtype = kCATransitionFromRight;
-		UIView *containerView = self.view.window;
-		[containerView.layer addAnimation:transition forKey:nil];
-		
-		
-		
-		//[[self presentingViewController] dismissViewControllerAnimated:YES completion:^{
-		//	}];
-		
-		
-		//[self.parentViewController dismissViewControllerAnimated:NO completion:^{
-		
-		//}];
-		
-		
-		//[self dismissViewControllerAnimated:NO  completion:^{	}];
-		
-		/*		[[self presentingViewController] dismissViewControllerAnimated:NO completion:^{
-		 UserPostViewController *userPostViewController =
-		 [[UserPostViewController alloc] initWithName:YES];
-		 [userPostViewController setParseObject:self.parseObject];
-		 UINavigationController *navController = [[UINavigationController alloc]
-		 initWithRootViewController:userPostViewController];
-		 //[self presentViewController:navController animated:NO completion:nil];
-		 [self.parentViewController presentViewController:navController animated:NO completion:nil];
-		 
-		 }];
-		 */
-		
-		
-		// Doesn't work causes you to go back to uvc, error is about window not on hierrachy
-		//[[self presentingViewController ] dismissViewControllerAnimated:YES completion:^{
-		
-		UserPostViewController *userPostViewController =
-		[[UserPostViewController alloc] initWithName:YES];
-		[userPostViewController setParseObject:self.parseObject];
-		UINavigationController *navController = [[UINavigationController alloc]
-																						 initWithRootViewController:userPostViewController];
-		[self presentViewController:navController animated:NO completion:nil];
-		//[self.parentViewController presentViewController:navController
-		//animated:NO completion:nil];
-		
-		/*
-		 NSLog(@"TEST %@", [self nibName]);
-		 NSLog(@"REST %@", [self parentViewController]);
-		 NSString *parent = [self parentViewController];
-		 NSLog(@"d");
-		 [self.parentViewController nibName];
-		 */
-		
-		//[[self presentingViewController].navigationController pushViewController:userPostViewController animated:YES];
-		
-		
-		//[self.navigationController pushViewController:userPostViewController animated:NO];
-		//}];
-		
-		
-		
-		
-		
-		/* Push view
-		 UserPostViewController *userPostViewController =
-		 [[UserPostViewController alloc] initWithName:YES];
-		 [userPostViewController setParseObject:self.parseObject];
-		 UINavigationController *navController = [[UINavigationController alloc]
-		 initWithRootViewController:userPostViewController];
-		 
-		 
-		 // doesn't work, can't add nav controller on top of nav controller
-		 //[self.navigationController pushViewController:navController animated:NO];
-		 
-		 [self.navigationController pushViewController:userPostViewController animated:NO];
-		 */
-		
-		
-		
-		
-		/*
-		 UserPostViewController *userPostViewController =
-		 [[UserPostViewController alloc] initWithName:YES];
-		 [userPostViewController setParseObject:self.parseObject];
-		 UINavigationController *navController = [[UINavigationController alloc]
-		 initWithRootViewController:userPostViewController];
-		 
-		 [self presentViewController:navController animated:NO completion:nil];
-		 */
-		//[self.parentViewController presentViewController:navController animated:NO completion:nil];
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*
-		 [self.parentViewController dismissViewControllerAnimated:NO completion:^{
-		 
-		 // Create a nav controller so the CDVC can add nav items
-		 UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createDealViewController];
-		 [self presentViewController:navController animated:NO completion:nil];
-		 }];*/
-		
-		
-		
-		
-		
-		
-		
-		/*    DEL
-		 
-		 // Save the parse objects in case the objects were edited.
-		 NSString *descriptionString = [descriptField text];
-		 
-		 //Make sure the objects are not empty because Parse
-		 // cannot save objects that are nil
-		 if (descriptionString) {
-		 [self.parseObject setObject:descriptionString forKey:@"description"];
-		 
-		 // Associate the parseObject with this user
-		 PFUser *user = [PFUser currentUser];
-		 [self.parseObject setObject:user forKey:@"user"];
-		 }
-		 
-		 
-		 // Find the location for this user and save the locality to parse
-		 //		CLLocation *location = [LocationDataManager sharedLocation].currentLocation;
-		 //		NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
-		 
-		 //		CLLocationCoordinate2D coordinate = [LocationDataManager sharedLocation].currentLocation.coordinate;
-		 //		NSLog(@"Los");
-		 
-		 //		[self.parseObject setObject:locality forKey:@"locality"];
-		 
-		 
-		 // Save in viewdiddisappear instead of in the save function
-		 [self.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-		 if (error) {
-		 NSLog(@"Could not save");
-		 NSLog(@"%@", error);
-		 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-		 [alertView show];
-		 }
-		 // Reload the parse table after you successfully saved
-		 if (succeeded) {
-		 // Reload the UserParseTableController
-		 dispatch_async(dispatch_get_main_queue(), self.reloadUserTableBlock);
-		 
-		 // Alert the DealsParseTableController that a new deal was created
-		 dispatch_async(dispatch_get_main_queue(), ^{
-		 [[NSNotificationCenter defaultCenter]
-		 postNotificationName:@"userDealChange" object:nil];
-		 });
-		 
-		 } else {
-		 NSLog(@"Failed to save");
-		 }
-		 }];
-		 */
-		
+				
+				
+		} completionBlock:^{
+				[HUD removeFromSuperview];
+				
+				
+				
+				
+				//Customize to dismiss the modal view, CreateDealViewController, from right to left
+				CATransition *transition = [CATransition animation];
+				transition.duration = 0.30;
+				transition.timingFunction =
+				[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+				transition.type = kCATransitionMoveIn;
+				transition.subtype = kCATransitionFromRight;
+				UIView *containerView = self.view.window;
+				[containerView.layer addAnimation:transition forKey:nil];
+				
+				
+				UserPostViewController *userPostViewController =
+				[[UserPostViewController alloc] initWithName:YES];
+				[userPostViewController setParseObject:self.parseObject];
+				UINavigationController *navController = [[UINavigationController alloc]
+																								 initWithRootViewController:userPostViewController];
+				
+				[self presentViewController:navController animated:NO completion:^{}];
+		}];
 		
 		
 		

@@ -16,6 +16,7 @@
 		60146208161FCA30004FAB65 /* DealMaker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60146206161FCA30004FAB65 /* DealMaker.xcdatamodeld */; };
 		60197AF7165005F000DF13A6 /* CreateDealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60197AF5165005F000DF13A6 /* CreateDealViewController.m */; };
 		60197AF8165005F000DF13A6 /* CreateDealViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60197AF6165005F000DF13A6 /* CreateDealViewController.xib */; };
+		60197B381651AC5D00DF13A6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 60197B371651AC1F00DF13A6 /* MBProgressHUD.m */; };
 		602874E816211E3C00EE51B0 /* DealsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 602874E716211E3C00EE51B0 /* DealsViewController.m */; };
 		605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC488161E5EC40046245F /* CategoryPicker.m */; };
 		605AC4A3161E5F710046245F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC490161E5EC40046245F /* ItemCell.m */; };
@@ -64,6 +65,8 @@
 		60197AF4165005F000DF13A6 /* CreateDealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateDealViewController.h; path = HotDeals/CreateDealViewController.h; sourceTree = "<group>"; };
 		60197AF5165005F000DF13A6 /* CreateDealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateDealViewController.m; path = HotDeals/CreateDealViewController.m; sourceTree = "<group>"; };
 		60197AF6165005F000DF13A6 /* CreateDealViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateDealViewController.xib; path = HotDeals/CreateDealViewController.xib; sourceTree = "<group>"; };
+		60197B361651AC1F00DF13A6 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = HotDeals/MBProgressHUD.h; sourceTree = "<group>"; };
+		60197B371651AC1F00DF13A6 /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = HotDeals/MBProgressHUD.m; sourceTree = "<group>"; };
 		602874E716211E3C00EE51B0 /* DealsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DealsViewController.m; path = HotDeals/DealsViewController.m; sourceTree = "<group>"; };
 		602874EB16211F0D00EE51B0 /* ItemViewController copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ItemViewController copy.h"; path = "HotDeals/ItemViewController copy.h"; sourceTree = "<group>"; };
 		602874EC16211F0D00EE51B0 /* ItemViewController copy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ItemViewController copy.m"; path = "HotDeals/ItemViewController copy.m"; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 		60E5238515E182CA00D532FA /* MISC */ = {
 			isa = PBXGroup;
 			children = (
+				60197B361651AC1F00DF13A6 /* MBProgressHUD.h */,
+				60197B371651AC1F00DF13A6 /* MBProgressHUD.m */,
 				605AC487161E5EC40046245F /* CategoryPicker.h */,
 				605AC488161E5EC40046245F /* CategoryPicker.m */,
 				605AC489161E5EC40046245F /* Constants.h */,
@@ -391,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60197B381651AC5D00DF13A6 /* MBProgressHUD.m in Sources */,
 				605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */,
 				605AC4A3161E5F710046245F /* ItemCell.m in Sources */,
 				605AC4A4161E5F710046245F /* ImageStore.m in Sources */,

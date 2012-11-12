@@ -12,7 +12,7 @@
 @interface ImageStore : NSObject 
 {
     NSMutableDictionary *dictionary;		
-		UIImage *parseImage;
+		//UIImage *parseImage;
 }
 + (ImageStore *)defaultImageStore;
 
@@ -26,6 +26,7 @@
 
 @property (nonatomic, copy) void (^reloadBlock)(void);
 @property (nonatomic, retain) NSString * imageKey;
+@property (nonatomic, strong) UIImage *parseImageReturned;
 
 
 @end

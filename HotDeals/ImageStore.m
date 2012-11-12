@@ -11,6 +11,7 @@
 @implementation ImageStore
 @synthesize reloadBlock;
 @synthesize imageKey;
+@synthesize parseImageReturned;
 
 + (id)allocWithZone:(NSZone *)zone
 {
@@ -122,22 +123,36 @@
 		// Check to see if the image is available on our temporary storage
 		// to save us the trouble of loading from the Parse servers
 		UIImage *image = [dictionary objectForKey:key];
+		parseImageReturned = [dictionary objectForKey:key];
+
 		
 		//UIImage *image = nil;
-		if (!image) {
+		if (!parseImageReturned) {
 		// Image is not available, must need connection to Parse servers.
 
 		PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
 		
 		[query whereKey:@"imageKey" equalTo:key];
 		
+		//Causing a warning from parse about running a long operation on
+		// the main thread. We want to use getobjectonbackground
 		PFObject *object = [query getFirstObject];
 		PFFile *parseFile = [object objectForKey:@"image"];
 		NSData *imageData = [parseFile getData];
-		image = [UIImage imageWithData:imageData];
+		parseImageReturned = [UIImage imageWithData:imageData];
+		
+		
 				
+		/* Query for the image in the background.
+		[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+				
+				PFFile *parseFile = [object objectForKey:@"image"];
+				NSData *imageData = [parseFile getData];
+				parseImageReturned = [UIImage imageWithData:imageData];
+		}];
+		*/
 		
-		
+				
 		/*
 		[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
 				if (!object) {
@@ -155,8 +170,8 @@
 
 		//return parseImage;
 				
-				if (image) {
-						[dictionary setObject:image forKey:key];
+				if (parseImageReturned) {
+						[dictionary setObject:parseImageReturned forKey:key];
 				}
 				else {
 						NSLog(@"No image available from parse");
@@ -164,7 +179,7 @@
 				
 		}
 		
-		return image;
+		return parseImageReturned;
 				
 		
 		

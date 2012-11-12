@@ -426,7 +426,7 @@
 				
 				// Customize to present the modal view from right to left
 				CATransition *transition = [CATransition animation];
-				transition.duration = 0.90;
+				transition.duration = 0.30;
 				transition.timingFunction =
 				[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 				transition.type = kCATransitionMoveIn;

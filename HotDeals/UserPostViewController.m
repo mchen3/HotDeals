@@ -75,7 +75,7 @@
 - (void)edit:(id)sender
 {
 		CATransition *transition = [CATransition animation];
-		transition.duration = 0.90;
+		transition.duration = 0.30;
 		transition.timingFunction =
 		[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 		transition.type = kCATransitionMoveIn;
@@ -139,12 +139,13 @@
  }
  */
 
+
 -(void)done:(id)sender
 {
 		
 		//Customize to dismiss the current modal view, UserPostViewController, from left to right
 		CATransition *transition = [CATransition animation];
-		transition.duration = 0.90;
+		transition.duration = 0.30;
 		transition.timingFunction =
 		[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 		transition.type = kCATransitionMoveIn;
