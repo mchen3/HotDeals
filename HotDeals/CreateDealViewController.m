@@ -43,6 +43,9 @@
 																			 @selector(cancel:)];
 				[[self navigationItem] setLeftBarButtonItem:cancelItem];
 				
+				
+
+				
 		}
 		return self;
 }
@@ -61,13 +64,14 @@
 		
 		NSLog(@"viewWillAppear");
 		
-		
+		[priceField setKeyboardType:UIKeyboardTypeNumberPad];
 		[imageView setImage:self.image];
 		
 		
 		NSString *description = [self.parseObject objectForKey:@"description"];
 		if (description) {
 				[descriptField setText:description];
+
 		}
 		else {
 				// Placeholder feature
@@ -75,9 +79,10 @@
 				//if (!self.description) {
 				descriptField.text = @"Describe the deal...";
 				descriptField.textColor = [UIColor grayColor];
-				[priceField setKeyboardType:UIKeyboardTypeNumberPad];
 				//}
 		}
+		
+		[self numberOfWordsInDescription];
 }
 
 // UITextView has no placeholder option, so you create one manually and
@@ -87,6 +92,8 @@
 		NSLog(@"CDVC loading");
 		
 		[descriptField becomeFirstResponder];
+		//[priceField setKeyboardType:UIKeyboardTypeNumberPad];
+
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -104,6 +111,7 @@
 		NSLog(@"DISAPPEAR");
 }
 
+// Description TextView delegates
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
 		if (descriptField.textColor == [UIColor grayColor]) {
@@ -118,28 +126,73 @@
 
 -(void) textViewDidChange:(UITextView *)textView
 {
+
+		[self numberOfWordsInDescription];
+		
 		if(descriptField.text.length == 0){
 				descriptField.text = @"Describe the deal...";
-				descriptField.textColor = [UIColor grayColor];
+				descriptField.textColor = [UIColor grayColor];				
 		}
+		
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
 {
+		
+		// If text color is gray, then clear the text and start entering words as black text
 		if (descriptField.textColor == [UIColor grayColor]) {
 				descriptField.text = @"";
 				descriptField.textColor = [UIColor blackColor];
 		}
-		return YES;
+		
+		// Always allow the back space or delete key to go through
+		if (range.length == 1) {
+				return YES;
+		}
+		
+		// If the number of words remaining is 0 (i.e. 150 words overall in description field)
+		// then prevent any more keys to be entered
+		int numberRemaining = [self numberOfWordsInDescription];
+		if (numberRemaining == 0) {
+				return NO;
+		}
+		else {
+				return YES;
+		}
+}
+
+// Price TextField delegates
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+		//[textField setKeyboardAppearance:UIKeyboardTypeNumberPad];
+
+		//[textField becomeFirstResponder];
+		
+		NSLog(@"TextField");
+		return TRUE;
+}
+
+// Calculate the amount of words that are left to enter in the description field,
+// with the most at 150 words, and enter into the numberOfWords label
+-(int)numberOfWordsInDescription
+{
+		int numberRemaining;
+		// If description is gray then there were no words entered otherwise
+		// show the remaining words left to enter with the most at 150.
+		if (descriptField.textColor == [UIColor grayColor]) {
+				numberRemaining = 150;
+				numberOfWords.text = @"150";
+		}
+		else {
+				int number = descriptField.text.length;
+				numberRemaining = 150 - number;
+				numberOfWords.text = [NSString stringWithFormat:@"%d",numberRemaining];
+		}
+		
+		return numberRemaining;
 }
 
 
-
 #pragma mark - ()
-
-
-
-
 
 - (void)save:(id)sender
 {

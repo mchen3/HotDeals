@@ -17,6 +17,7 @@
 		__weak IBOutlet UIImageView *imageView;
 		
 		__weak IBOutlet UITextField *priceField;
+		__weak IBOutlet UILabel *numberOfWords;
 		
 			
 		//__weak IBOutlet UIButton *editButton;
