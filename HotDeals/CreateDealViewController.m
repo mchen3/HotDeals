@@ -77,8 +77,15 @@
 		[imageView setImage:self.image];
 		
 		
+		
 		// Settings for the description field
 		NSString *description = [self.parseObject objectForKey:@"description"];
+		
+		
+		NSLog(@"CDVC View will appear");
+		NSLog(@"descrp  %@", description);
+		
+		
 		if (description) {
 				[descriptField setText:description];
 		}
@@ -133,12 +140,14 @@
 // TextView delegates for the description
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
+		/*
 		if (descriptField.textColor == [UIColor grayColor]) {
 				descriptField.text = @"Describe the deal...";
 		}
 		else {
 				descriptField.textColor = [UIColor blackColor];
 		}
+		 */
 		
 		return YES;
 }
@@ -261,16 +270,7 @@
 - (void)save:(id)sender
 {
 		
-		MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
-		HUD.labelText = @"Loading";
-		HUD.detailsLabelText = @"uploading data";
-		// Add the HUD view over the keyboard
-		[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
 		
-		
-				
-		[HUD showAnimated:YES whileExecutingBlock:^{
-
 		
 		// Save the image
 		// Get picked image from info dictionary
@@ -324,6 +324,7 @@
 		if (descriptionField) {
 				[self.parseObject setObject:descriptionField forKey:@"description"];
 		}
+				
 		NSString *price = [priceField text];
 		[self.parseObject setObject:price forKey:@"price"];
 		if (priceField) {
@@ -342,6 +343,17 @@
 		[self.parseObject setObject:locality forKey:@"locality"];
 		
 		
+		
+		
+		
+		// Show a loading display while you are uploading the data to the Parse servers.
+		MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+		HUD.labelText = @"Loading";
+		HUD.detailsLabelText = @"uploading data";
+		// Add the HUD view over the keyboard
+		[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
+		[HUD showAnimated:YES whileExecutingBlock:^{
+
 		// Save the parse object
 		[self.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 				if (error) {
@@ -488,7 +500,6 @@
 		else {
 				// ? Why is this here?
 				[self.parseObject removeObjectForKey:@"description"];
-				//checkIfCommandIsRunning
 		}
 		
 		
