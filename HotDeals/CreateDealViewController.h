@@ -12,7 +12,6 @@
 @interface CreateDealViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
 		
-		
 		__weak IBOutlet UITextView *descriptField;
 		__weak IBOutlet UIImageView *imageView;
 		

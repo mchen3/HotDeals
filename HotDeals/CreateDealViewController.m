@@ -14,7 +14,9 @@
 #import "MBProgressHUD.h"
 
 @interface CreateDealViewController ()
-
+{
+		UIBarButtonItem *saveItem;
+}
 @end
 
 @implementation CreateDealViewController
@@ -34,7 +36,7 @@
 				
 				// If you are creating a new item, then
 				// add a save and cancel button to the nav bar
-				UIBarButtonItem *saveItem = [[UIBarButtonItem alloc]
+				saveItem = [[UIBarButtonItem alloc]
 																		 initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 				[[self navigationItem] setRightBarButtonItem:saveItem];
 				
@@ -74,12 +76,12 @@
 
 		}
 		else {
-				// Placeholder feature
 				
-				//if (!self.description) {
 				descriptField.text = @"Describe the deal...";
 				descriptField.textColor = [UIColor grayColor];
-				//}
+				
+				// Disable the save button if the user has not entered a description
+				saveItem.enabled = FALSE;
 		}
 		
 		[self numberOfWordsInDescription];
@@ -131,9 +133,19 @@
 		
 		if(descriptField.text.length == 0){
 				descriptField.text = @"Describe the deal...";
-				descriptField.textColor = [UIColor grayColor];				
+				descriptField.textColor = [UIColor grayColor];
+				
+				// Disable the save button if the user has not entered a description
+				saveItem.enabled = FALSE;
 		}
 		
+		if (descriptField.textColor == [UIColor grayColor]) {
+				// Disable the save button if the user has not entered a description
+				saveItem.enabled = FALSE;
+		} else {
+				// Enable the save button if the user has entered a word
+				saveItem.enabled = TRUE;
+		}
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
