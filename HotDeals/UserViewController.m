@@ -302,6 +302,8 @@
 				[createDealViewController setReloadUserTableBlock:^{
 						[self.userParseTableController loadObjects];
 				}];
+				// Disable the delete button when you first create a delete
+				[createDealViewController setHideDeleteButton:TRUE];
 				
 				
 				// Create a nav controller so the CDVC can add nav items

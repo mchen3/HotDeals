@@ -23,6 +23,8 @@
 @synthesize parseObject;
 @synthesize image;
 @synthesize reloadUserTableBlock;
+@synthesize hideDeleteButton;
+@synthesize storedPriceValue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,28 +65,43 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-		
-		NSLog(@"viewWillAppear");
+		// Check if the delete button should be enabled
+		// Enabled it only after you have save/ created a deal
+		if (self.hideDeleteButton) {
+		 deleteDealButton.hidden = YES;
+		} else {
+		 deleteDealButton.hidden = NO;
+		}
 		
 		[priceField setKeyboardType:UIKeyboardTypeNumberPad];
 		[imageView setImage:self.image];
 		
 		
+		// Settings for the description field
 		NSString *description = [self.parseObject objectForKey:@"description"];
 		if (description) {
 				[descriptField setText:description];
-
 		}
 		else {
-				
 				descriptField.text = @"Describe the deal...";
 				descriptField.textColor = [UIColor grayColor];
 				
 				// Disable the save button if the user has not entered a description
 				saveItem.enabled = FALSE;
 		}
-		
 		[self numberOfWordsInDescription];
+		
+		
+		// Settings for the price field
+		NSString *price = [self.parseObject objectForKey:@"price"];
+		if (price) {
+				[priceField setText:price];
+		}
+		else {
+				priceField.text = @"0";
+		}
+		
+		
 }
 
 // UITextView has no placeholder option, so you create one manually and
@@ -113,7 +130,7 @@
 		NSLog(@"DISAPPEAR");
 }
 
-// Description TextView delegates
+// TextView delegates for the description
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
 		if (descriptField.textColor == [UIColor grayColor]) {
@@ -171,16 +188,6 @@
 		else {
 				return YES;
 		}
-}
-
-// Price TextField delegates
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-		//[textField setKeyboardAppearance:UIKeyboardTypeNumberPad];
-
-		//[textField becomeFirstResponder];
-		
-		NSLog(@"TextField");
-		return TRUE;
 }
 
 // Calculate the amount of words that are left to enter in the description field,
@@ -308,6 +315,11 @@
 								 postNotificationName:@"userDealChange" object:nil];
 						});
 						
+						
+						// Show the delete button after a deal was created
+						self.hideDeleteButton = FALSE;
+						
+						
 				} else {
 						NSLog(@"Failed to save");
 				}
@@ -318,6 +330,9 @@
 				
 		} completionBlock:^{
 				[HUD removeFromSuperview];
+				
+				
+				
 				
 				
 				
@@ -365,6 +380,40 @@
 		[self dismissViewControllerAnimated:NO completion:nil];
 		
 		//[self.navigationController popViewControllerAnimated:NO];
+}
+
+- (IBAction)deleteDeal:(id)sender {
+		UIActionSheet *deleteDealMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete listing"
+																				otherButtonTitles: nil];
+		[deleteDealMenu showInView:self.view];
+}
+
+// Delegate for the deleteDeal action sheet.
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+		NSLog(@" %d ", buttonIndex);
+		
+		// Delete the deal
+		if (buttonIndex == 0) {
+				
+				// Delete the image from the Photo table on parse
+				NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
+				[[ImageStore defaultImageStore] deleteImageForKey:imageKey];
+				
+				// Delete the parse object from the main table
+				[self.parseObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+
+						[self dismissViewControllerAnimated:NO completion:^{
+								// Reload the UserParseTableController
+								dispatch_async(dispatch_get_main_queue(), self.reloadUserTableBlock);
+								// Alert the DealsParseTableController that a change was made
+								dispatch_async(dispatch_get_main_queue(), ^{
+										[[NSNotificationCenter defaultCenter]
+										 postNotificationName:@"userDealChange" object:nil];
+								});
+						}];
+				}];
+		}
 }
 
 - (IBAction)editImage:(id)sender {
