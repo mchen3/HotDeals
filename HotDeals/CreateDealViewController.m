@@ -82,8 +82,8 @@
 		NSString *description = [self.parseObject objectForKey:@"description"];
 		
 		
-		NSLog(@"CDVC View will appear");
-		NSLog(@"descrp  %@", description);
+		//NSLog(@"CDVC View will appear");
+		//NSLog(@"descrp  %@", description);
 		
 		
 		if (description) {
@@ -140,7 +140,7 @@
 // TextView delegates for the description
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
-		/*
+		/* Unnecassary 
 		if (descriptField.textColor == [UIColor grayColor]) {
 				descriptField.text = @"Describe the deal...";
 		}
@@ -343,9 +343,6 @@
 		[self.parseObject setObject:locality forKey:@"locality"];
 		
 		
-		
-		
-		
 		// Show a loading display while you are uploading the data to the Parse servers.
 		MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
 		HUD.labelText = @"Loading";
@@ -489,16 +486,18 @@
 
 - (IBAction)editImage:(id)sender {
 				
-		// Temporarily save the description just
-		
+		/* We need to temporarily store the value for description just in case
+		 a user goes back to the image picker without saving a deal, ie, nothing
+		 is stored in the parse object. We use this parse object whenever viewwillappear
+		 loads
+		*/
+		// If the text color is black then save the text, otherwise you need to
+		// delete the parse object for description to represent a empty text.
 		UIColor *textColor = descriptField.textColor;
-		
 		if ([textColor isEqual:[UIColor blackColor]]) {
-				
 				[self.parseObject setObject:descriptField.text forKey:@"description"];
 		}
 		else {
-				// ? Why is this here?
 				[self.parseObject removeObjectForKey:@"description"];
 		}
 		
