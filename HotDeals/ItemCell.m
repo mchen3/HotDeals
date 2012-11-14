@@ -11,9 +11,9 @@
 @implementation ItemCell
 @synthesize nameLabel;
 @synthesize descriptionLabel;
-@synthesize valueLabel;
 @synthesize dateLabel;
 @synthesize thumbnailView;
+@synthesize priceLabel;
 
 
 

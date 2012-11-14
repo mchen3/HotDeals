@@ -169,7 +169,9 @@
 		
 		// Load the Parse objects that was passed from DealViewController
 		//[nameField setText: [self.parseObject objectForKey:@"name"]];
+		// Set the values for the description and value
 		[descriptField setText: [self.parseObject objectForKey:@"description"]];
+		[priceLabel setText:[self.parseObject objectForKey:@"price"]];
 		
 		//	NSString *imageKey = [item imageKey];
 		//NSLog(@"%@", imageKey);

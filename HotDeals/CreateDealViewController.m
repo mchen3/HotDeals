@@ -190,26 +190,71 @@
 		}
 }
 
-// Calculate the amount of words that are left to enter in the description field,
-// with the most at 150 words, and enter into the numberOfWords label
--(int)numberOfWordsInDescription
-{
-		int numberRemaining;
-		// If description is gray then there were no words entered otherwise
-		// show the remaining words left to enter with the most at 150.
-		if (descriptField.textColor == [UIColor grayColor]) {
-				numberRemaining = 150;
-				numberOfWords.text = @"150";
-		}
-		else {
-				int number = descriptField.text.length;
-				numberRemaining = 150 - number;
-				numberOfWords.text = [NSString stringWithFormat:@"%d",numberRemaining];
-		}
+
+// TextField delegates for the price 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+		//[textField setKeyboardAppearance:UIKeyboardTypeNumberPad];
 		
-		return numberRemaining;
+		//[textField becomeFirstResponder];
+		
+	//	NSLog(@"TextField");
+		//return TRUE;
+		
+		/*		BOOL returnNumber = TRUE;
+		
+		int length = [textField.text intValue];
+		
+		if (length > 10) {
+				return FALSE;
+				//returnNumber= FALSE;
+		}
+		*/
+		//return returnNumber;
+
+		
+		
+		return TRUE;
 }
 
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+		
+		// Always allow the back space or delete key to go through
+		if (range.length == 1) {
+				return YES;
+		}
+		
+		// Do no allow the price field to be greater than 9999
+		if (textField.text.length > 3) {
+				//textField.text = [textField.text substringFromIndex:4-1];
+				return NO;
+		}
+		
+				
+		
+		
+		
+		
+		//priceField.text = @"$";
+		
+		//[textField setText:[NSString stringWithFormat:@"$%@", textField.text]];
+		//[textField.text stringByAppendingFormat:@"$%@", textField.text];
+		
+		//[priceField setText:@"F"];
+		
+		//NSString *newText = [textField.text
+			//									 stringByReplacingCharactersInRange:range withString:string];
+
+		//priceField.text = newText;
+		
+		
+		return YES;
+		
+		
+		
+}
 
 #pragma mark - ()
 
@@ -271,20 +316,21 @@
 		
 		
 		
-		
-		
-		// Save the price
-		
-		// Save the description
+		// Save the description and price
+		// Make sure the objects are not empty because Parse cannot save a nil object
+
 		NSString *descriptionField = [descriptField text];
 		[self.parseObject setObject:descriptionField forKey:@"description"];
-		
-		// Make sure the objects are not empty because Parse
-		// cannot save objects that are nil
 		if (descriptionField) {
 				[self.parseObject setObject:descriptionField forKey:@"description"];
 		}
-		
+		NSString *price = [priceField text];
+		[self.parseObject setObject:price forKey:@"price"];
+		if (priceField) {
+				[self.parseObject setObject:price forKey:@"price"];
+		}
+				
+				
 		// Associate the parseObject with this user
 		PFUser *user = [PFUser currentUser];
 		[self.parseObject setObject:user forKey:@"user"];
@@ -325,16 +371,8 @@
 				}
 		}];
 		
-		
-				
-				
 		} completionBlock:^{
 				[HUD removeFromSuperview];
-				
-				
-				
-				
-				
 				
 				
 				//Customize to dismiss the modal view, CreateDealViewController, from right to left
@@ -382,6 +420,27 @@
 		//[self.navigationController popViewControllerAnimated:NO];
 }
 
+// Calculate the amount of words that are left to enter in the description field,
+// with the most at 150 words, and enter into the numberOfWords label
+-(int)numberOfWordsInDescription
+{
+		int numberRemaining;
+		// If description is gray then there were no words entered otherwise
+		// show the remaining words left to enter with the most at 150.
+		if (descriptField.textColor == [UIColor grayColor]) {
+				numberRemaining = 150;
+				numberOfWords.text = @"150";
+		}
+		else {
+				int number = descriptField.text.length;
+				numberRemaining = 150 - number;
+				numberOfWords.text = [NSString stringWithFormat:@"%d",numberRemaining];
+		}
+		
+		return numberRemaining;
+}
+
+
 - (IBAction)deleteDeal:(id)sender {
 		UIActionSheet *deleteDealMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete listing"
 																				otherButtonTitles: nil];
@@ -417,11 +476,8 @@
 }
 
 - (IBAction)editImage:(id)sender {
-		
-		
-		
+				
 		// Temporarily save the description just
-		
 		
 		UIColor *textColor = descriptField.textColor;
 		
@@ -430,13 +486,9 @@
 				[self.parseObject setObject:descriptField.text forKey:@"description"];
 		}
 		else {
-				
-				
+				// ? Why is this here?
 				[self.parseObject removeObjectForKey:@"description"];
 				//checkIfCommandIsRunning
-				
-				
-				
 		}
 		
 		

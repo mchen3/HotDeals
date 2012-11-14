@@ -262,7 +262,7 @@
 		
 		[[cell nameLabel] setText:[item itemName]];
 		[[cell descriptionLabel] setText:[item descriptions]];
-		[[cell valueLabel] setText:[NSString stringWithFormat:@"%d", [item valueInDollars]]];
+		[[cell priceLabel] setText:[NSString stringWithFormat:@"%d", [item valueInDollars]]];
 		
 		// Create a NSDateFormatter that will turn a date into a simple date string
 		NSDateFormatter *format = [[NSDateFormatter alloc] init];

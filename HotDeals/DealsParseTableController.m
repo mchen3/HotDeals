@@ -237,7 +237,9 @@
 		 }*/
 		
 		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
+		// Set the values for description and value
 		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+		[[cell priceLabel] setText:[object objectForKey:@"price"]];
 		 
 		
 		// Set the image
@@ -245,6 +247,7 @@
 		if (imageKey) {
 				
 				[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+				[[cell priceLabel] setText:[object objectForKey:@"price"]];
 				
 				// Set the thumbnail image
 				PFFile *thumbnailFile = [object objectForKey:@"thumbImage"];

@@ -172,8 +172,9 @@
 {
 		// Load the Parse objects
 		//[nameField setText:[self.parseObject objectForKey:@"name"]];
+		// Set the values for description and price
 		[descriptField setText:[self.parseObject objectForKey:@"description"]];
-		
+		[priceField setText:[self.parseObject objectForKey:@"price"]];
 		
 		// Load image through imageKey
 		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];

@@ -225,7 +225,9 @@
 		
 		
 		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
+		// Set the values for description and price
 		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+		[[cell priceLabel] setText:[object objectForKey:@"price"]];
 		
 		// Set the thumbnail image
 		NSString *imageKey = [object objectForKey:@"imageKey"];

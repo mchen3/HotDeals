@@ -16,10 +16,10 @@
     
     __weak IBOutlet UITextField *nameField;
     __weak IBOutlet UITextView *descriptField;
-    __weak IBOutlet UITextField *priceField;
     __weak IBOutlet UILabel *dateCreated;
     __weak IBOutlet UIImageView *imageView;
 		__weak IBOutlet UIButton *categoryButton;
+		__weak IBOutlet UILabel *priceLabel;
 		
 		UIImage *imageTest;
 		NSString *tempImageKey;
