@@ -430,6 +430,12 @@ a ibaction on the price button when the action Editing Change occurs
 
 
 - (IBAction)deleteDeal:(id)sender {
+		
+		// Disable the save button to prevent the user from 
+		// pressing save right after he deletes a deal
+		saveItem.enabled = FALSE;
+
+		
 		UIActionSheet *deleteDealMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete listing"
 																				otherButtonTitles: nil];
 		[deleteDealMenu showInView:self.view];
@@ -438,9 +444,8 @@ a ibaction on the price button when the action Editing Change occurs
 // Delegate for the deleteDeal action sheet.
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-		NSLog(@" %d ", buttonIndex);
-		
-		// Delete the deal
+
+		// User has pressed the delete button
 		if (buttonIndex == 0) {
 				
 				// Delete the image from the Photo table on parse
@@ -461,6 +466,17 @@ a ibaction on the price button when the action Editing Change occurs
 						}];
 				}];
 		}
+		// User has pressed the cancel button so re-enable the save button.
+		else if (buttonIndex == 1) {
+				saveItem.enabled = TRUE;
+		}
+		
+		
+		
+		
+		
+		
+		
 }
 
 - (IBAction)editImage:(id)sender {
