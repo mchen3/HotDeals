@@ -202,11 +202,9 @@
 		}
 }
 
-
 // TextField delegates for the price 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-		
 		// Always allow the back space or delete key to go through
 		if (range.length == 1) {
 				return YES;
@@ -230,7 +228,6 @@ a ibaction on the price button when the action Editing Change occurs
 				[priceField setText:@"$0"];
 				return;
 		}
-		
 		/* We do not want a zero digit before a number i.e. $08 so anytime the
 		second character is a zero we will remove it from the string all together
 		by creating a mutable string.
@@ -311,10 +308,7 @@ a ibaction on the price button when the action Editing Change occurs
 		[priceCopy deleteCharactersInRange:NSMakeRange(0, 1)];
 		NSString *price = priceCopy;
 		[self.parseObject setObject:price forKey:@"price"];
-		if (priceField) {
-				[self.parseObject setObject:price forKey:@"price"];
-		}
-				
+
 				
 		// Associate the parseObject with this user
 		PFUser *user = [PFUser currentUser];
@@ -486,9 +480,13 @@ a ibaction on the price button when the action Editing Change occurs
 				[self.parseObject removeObjectForKey:@"description"];
 		}
 		
-		
-		
-		
+		// Save the price value in the parse object but first remove the 
+		// dollar sign from the string which is at the zero index. Create 
+		// a mutable copy so you can change the price string
+		NSMutableString *priceCopy = [priceField.text mutableCopy];
+		[priceCopy deleteCharactersInRange:NSMakeRange(0, 1)];
+		NSString *price = priceCopy;
+		[self.parseObject setObject:price forKey:@"price"];
 		
 		
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
