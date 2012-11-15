@@ -448,6 +448,18 @@ a ibaction on the price button when the action Editing Change occurs
 		// User has pressed the delete button
 		if (buttonIndex == 0) {
 				
+				
+				// Delete the deal from the Parse servers
+				
+				// Show a loading HUD while you are deleting the data from the Parse servers.
+				MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+				HUD.labelText = @"Deleting data";
+				//HUD.detailsLabelText = @"deleting data";
+				// Add the HUD view over the keyboard
+				[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
+				[HUD showAnimated:YES whileExecutingBlock:^{
+						
+						
 				// Delete the image from the Photo table on parse
 				NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
 				[[ImageStore defaultImageStore] deleteImageForKey:imageKey];
@@ -465,6 +477,11 @@ a ibaction on the price button when the action Editing Change occurs
 								});
 						}];
 				}];
+				
+				} completionBlock:^{
+						[HUD removeFromSuperview];
+				}];
+				
 		}
 		// User has pressed the cancel button so re-enable the save button.
 		else if (buttonIndex == 1) {
