@@ -241,85 +241,25 @@ a ibaction on the price button when the action Editing Change occurs
 		}
 }
 
-
 #pragma mark - ()
 
 - (void)save:(id)sender
 {
 		
-		// Save the image
-		// Get picked image from info dictionary
-		//UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-		
-		// Create a CFUUID object - it knows how to create a unique identifier strings
-		CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
-		
-		// Create a string from unique identifier
-		CFStringRef newUniqueIDString =
-		CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-		
-		// Need to bridge CFStringRef to NSString
-		NSString *key = (__bridge NSString *)newUniqueIDString;
-		
-		
-		// Add a new Parse object and pass it to dealsItemViewController
-		//PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
-		
-		
-		// Save key, image, and thumbnail
-		// If this is a new item parseObject has not been created
-		// can't set any values to nil
-		[self.parseObject setObject:key forKey:@"imageKey"];
-		
-		// Store image in the ImageStore and on Parse servers with this key
-		[[ImageStore defaultImageStore] setImage:self.image forKey:key];
-		
-		// Resize the image and get a PFFile associated with it
-		PFFile *thumbnailFile = [[ImageStore defaultImageStore]
-														 getThumbnailFileFromImage:self.image];
-		/*
-		 We will save the thumbnail file with this parse object inside the
-		 same table instead of the separate ImageStore/Photo table. It will
-		 be much more efficent this way when we later try to pull the
-		 thumbnail image to display inside of a table cell.
-		 */
-		[parseObject setObject:thumbnailFile forKey:@"thumbImage"];
-		
-		// Release the objects used for creating a unique key
-		CFRelease(newUniqueIDString);
-		CFRelease(newUniqueID);
-		
-		
-		
-		// Save the description and price
-		// Make sure the objects are not empty because Parse cannot save a nil object
-
+		// Set the description to the parse object
 		NSString *descriptionField = [descriptField text];
 		[self.parseObject setObject:descriptionField forKey:@"description"];
-		if (descriptionField) {
-				[self.parseObject setObject:descriptionField forKey:@"description"];
-		}
 		
-		
-		// Save the price value to Parse but first remove the dollar sign
-		// from the string which is at the zero index. Create a mutable
-		// copy so you can change the price string
-		NSMutableString *priceCopy = [priceField.text mutableCopy];
-		[priceCopy deleteCharactersInRange:NSMakeRange(0, 1)];
-		NSString *price = priceCopy;
-		[self.parseObject setObject:price forKey:@"price"];
-
-				
-		// Associate the parseObject with this user
-		PFUser *user = [PFUser currentUser];
-		[self.parseObject setObject:user forKey:@"user"];
-		
-		// Find the location for this user and save the locality to parse
-		//CLLocation *location = [LocationDataManager sharedLocation].currentLocation;
-		//CLLocationCoordinate2D coordinate = [LocationDataManager sharedLocation].currentLocation.coordinate;
-		NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
-		[self.parseObject setObject:locality forKey:@"locality"];
-		
+		/* We will set the description text before we show the HUD display because
+		 UITextField descriptField will cause the warning:
+		 
+		 "_WebThreadLockFromAnyThread(bool), 0x1d5da620: Obtaining the web lock from a
+		 thread other than the main thread or the web thread. UIKit should not be called
+		 from a secondary thread."
+		 
+		 We are using the class MBProgressHUD which requires the main thread to be work
+		 free so the UI can be updated promptly
+		 */
 		
 		// Show a loading display while you are uploading the data to the Parse servers.
 		MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -328,63 +268,117 @@ a ibaction on the price button when the action Editing Change occurs
 		// Add the HUD view over the keyboard
 		[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
 		[HUD showAnimated:YES whileExecutingBlock:^{
-
-		// Save the parse object
-		[self.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-				if (error) {
-						NSLog(@"Could not save");
-						NSLog(@"%@", error);
-						UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-						[alertView show];
-				}
-				// Reload the parse table after you successfully saved
-				if (succeeded) {
-						// Reload the UserParseTableController
-						dispatch_async(dispatch_get_main_queue(), self.reloadUserTableBlock);
-						
-						// Alert the DealsParseTableController that a new deal was created
-						dispatch_async(dispatch_get_main_queue(), ^{
-								[[NSNotificationCenter defaultCenter]
-								 postNotificationName:@"userDealChange" object:nil];
-						});
-						
-						
-						// Show the delete button after a deal was created
-						self.hideDeleteButton = FALSE;
-						
-						
-				} else {
-						NSLog(@"Failed to save");
-				}
-		}];
-		
+				
+				
+				// Set the price to parse the object
+				// Upload the price value to Parse but first remove the dollar sign
+				// from the string which is at the zero index. Create a mutable
+				// copy so you can change the price string
+				NSMutableString *priceCopy = [priceField.text mutableCopy];
+				[priceCopy deleteCharactersInRange:NSMakeRange(0, 1)];
+				NSString *price = priceCopy;
+				[self.parseObject setObject:price forKey:@"price"];
+				
+				// Set the user to the parse object
+				// Associate the parseObject with this user
+				PFUser *user = [PFUser currentUser];
+				[self.parseObject setObject:user forKey:@"user"];
+				
+				
+				// Set the location to the parse object
+				// Find the location for this user and save the locality to parse
+				//CLLocation *location = [LocationDataManager sharedLocation].currentLocation;
+				//CLLocationCoordinate2D coordinate = [LocationDataManager sharedLocation].currentLocation.coordinate;
+				NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
+				[self.parseObject setObject:locality forKey:@"locality"];
+				
+				
+				// Set the image and thumbnail to the parse object
+				// Create a CFUUID object - it knows how to create a unique identifier strings
+				CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
+				
+				// Create a string from unique identifier
+				CFStringRef newUniqueIDString =
+				CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+				
+				// Need to bridge CFStringRef to NSString
+				NSString *key = (__bridge NSString *)newUniqueIDString;
+				
+				// Add a new Parse object and pass it to dealsItemViewController
+				//PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
+				
+				// Save key, image, and thumbnail
+				// If this is a new item parseObject has not been created
+				// can't set any values to nil
+				[self.parseObject setObject:key forKey:@"imageKey"];
+				
+				// Store image in the ImageStore and on Parse servers with this key
+				[[ImageStore defaultImageStore] setImage:self.image forKey:key];
+				
+				// Resize the image and get a PFFile associated with it
+				PFFile *thumbnailFile = [[ImageStore defaultImageStore]
+																 getThumbnailFileFromImage:self.image];
+				/*
+				 We will save the thumbnail file with this parse object inside the
+				 same table instead of the separate ImageStore/Photo table. It will
+				 be much more efficent this way when we later try to pull the
+				 thumbnail image to display inside of a table cell.
+				 */
+				[parseObject setObject:thumbnailFile forKey:@"thumbImage"];
+				
+				// Release the objects used for creating a unique key
+				CFRelease(newUniqueIDString);
+				CFRelease(newUniqueID);
+				
+				
+				
+				// Save the parse object
+				[self.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+						if (error) {
+								NSLog(@"Could not save");
+								NSLog(@"%@", error);
+								UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+								[alertView show];
+						}
+						// Reload the parse table after you successfully saved
+						if (succeeded) {
+								// Reload the UserParseTableController
+								dispatch_async(dispatch_get_main_queue(), self.reloadUserTableBlock);
+								
+								// Alert the DealsParseTableController that a new deal was created
+								dispatch_async(dispatch_get_main_queue(), ^{
+										[[NSNotificationCenter defaultCenter]
+										 postNotificationName:@"userDealChange" object:nil];
+								});
+								
+								
+								// Enable the delete button in CDVC after a deal is created
+								self.hideDeleteButton = FALSE;
+								
+								//Customize to dismiss the modal view, CreateDealViewController, from right to left
+								CATransition *transition = [CATransition animation];
+								transition.duration = 0.30;
+								transition.timingFunction =
+								[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+								transition.type = kCATransitionMoveIn;
+								transition.subtype = kCATransitionFromRight;
+								UIView *containerView = self.view.window;
+								[containerView.layer addAnimation:transition forKey:nil];
+								
+								
+								UserPostViewController *userPostViewController =
+								[[UserPostViewController alloc] initWithName:YES];
+								[userPostViewController setParseObject:self.parseObject];
+								UINavigationController *navController = [[UINavigationController alloc]
+																												 initWithRootViewController:userPostViewController];
+								
+								[self presentViewController:navController animated:NO completion:^{}];
+						} 
+				}];
+				
 		} completionBlock:^{
 				[HUD removeFromSuperview];
-				
-				
-				//Customize to dismiss the modal view, CreateDealViewController, from right to left
-				CATransition *transition = [CATransition animation];
-				transition.duration = 0.30;
-				transition.timingFunction =
-				[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-				transition.type = kCATransitionMoveIn;
-				transition.subtype = kCATransitionFromRight;
-				UIView *containerView = self.view.window;
-				[containerView.layer addAnimation:transition forKey:nil];
-				
-				
-				UserPostViewController *userPostViewController =
-				[[UserPostViewController alloc] initWithName:YES];
-				[userPostViewController setParseObject:self.parseObject];
-				UINavigationController *navController = [[UINavigationController alloc]
-																								 initWithRootViewController:userPostViewController];
-				
-				[self presentViewController:navController animated:NO completion:^{}];
 		}];
-		
-		
-		
-		
 }
 
 -(void)cancel:(id)sender
