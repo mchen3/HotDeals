@@ -229,6 +229,16 @@
 		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
 		[[cell priceLabel] setText:[object objectForKey:@"price"]];
 		
+		// Add a $ label sign next to the price but wait until the price
+		// value is returned from the parse server before you show the $
+		if ([cell priceLabel]) {
+				UILabel *dollarLabel = [[UILabel alloc] init];
+				dollarLabel.frame = CGRectMake(250, 54, 20, 20);
+				dollarLabel.text = @"$";
+				dollarLabel.backgroundColor = [UIColor clearColor];
+				[cell.contentView addSubview:dollarLabel];
+		}
+		
 		// Set the thumbnail image
 		NSString *imageKey = [object objectForKey:@"imageKey"];
 		if (imageKey) {

@@ -94,22 +94,29 @@
 					<object class="IBUILabel" id="249469761">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{233, 14}, {42, 21}}</string>
+						<string key="NSFrame">{{209, 14}, {59, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="300467831"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Price</string>
+						<string key="IBUIText">Price $</string>
 						<reference key="IBUITextColor" ref="995505961"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<reference key="IBUIFontDescription" ref="832201950"/>
-						<reference key="IBUIFont" ref="453401589"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">1</int>
+							<double key="pointSize">24</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">24</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUILabel" id="960377587">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -141,6 +148,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{150, 387}, {44, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -299,8 +307,9 @@
 					<object class="IBUILabel" id="300467831">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{283, 14}, {42, 21}}</string>
+						<string key="NSFrame">{{270, 14}, {52, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView" ref="438932149"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -439,11 +448,11 @@
 							<reference ref="960377587"/>
 							<reference ref="638362330"/>
 							<reference ref="540555799"/>
-							<reference ref="249469761"/>
 							<reference ref="618218448"/>
 							<reference ref="375014285"/>
 							<reference ref="438932149"/>
 							<reference ref="895702849"/>
+							<reference ref="249469761"/>
 							<reference ref="300467831"/>
 						</array>
 						<reference key="parent" ref="0"/>

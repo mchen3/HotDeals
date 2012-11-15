@@ -101,11 +101,14 @@
 		
 		// Settings for the price field
 		NSString *price = [self.parseObject objectForKey:@"price"];
+
 		if (price) {
+				price = [NSString stringWithFormat:@"$%@", price];
 				[priceField setText:price];
+				
 		}
 		else {
-				priceField.text = @"0";
+				priceField.text = @"$0";
 		}
 		
 		
@@ -201,32 +204,6 @@
 
 
 // TextField delegates for the price 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-		//[textField setKeyboardAppearance:UIKeyboardTypeNumberPad];
-		
-		//[textField becomeFirstResponder];
-		
-	//	NSLog(@"TextField");
-		//return TRUE;
-		
-		/*		BOOL returnNumber = TRUE;
-		
-		int length = [textField.text intValue];
-		
-		if (length > 10) {
-				return FALSE;
-				//returnNumber= FALSE;
-		}
-		*/
-		//return returnNumber;
-
-		
-		
-		return TRUE;
-}
-
-
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
 		
@@ -236,41 +213,42 @@
 		}
 		
 		// Do no allow the price field to be greater than 9999
-		if (textField.text.length > 3) {
-				//textField.text = [textField.text substringFromIndex:4-1];
+		if (textField.text.length > 4) {
 				return NO;
 		}
-		
-				
-		
-		
-		
-		
-		//priceField.text = @"$";
-		
-		//[textField setText:[NSString stringWithFormat:@"$%@", textField.text]];
-		//[textField.text stringByAppendingFormat:@"$%@", textField.text];
-		
-		//[priceField setText:@"F"];
-		
-		//NSString *newText = [textField.text
-			//									 stringByReplacingCharactersInRange:range withString:string];
-
-		//priceField.text = newText;
-		
-		
 		return YES;
-		
-		
-		
 }
+
+/* UITexFieldDelegate does not have an equilavent textViewDidChange where
+you can respond directly after you entered a text so you manually create 
+a ibaction on the price button when the action Editing Change occurs
+*/
+- (IBAction)priceTextFieldChanged:(id)sender {
+		
+		// Prevent a user from entering a empty price by reseting to $0
+		if ([priceField.text isEqualToString:@"$"]) {
+				[priceField setText:@"$0"];
+				return;
+		}
+		
+		/* We do not want a zero digit before a number i.e. $08 so anytime the
+		second character is a zero we will remove it from the string all together
+		by creating a mutable string.
+		*/
+	  char priceChar =[priceField.text characterAtIndex:1];
+		NSString *secondChar = [NSString stringWithFormat:@"%c", priceChar];
+		if ([secondChar isEqualToString:@"0"]) {
+				NSMutableString *newString = [priceField.text mutableCopy];
+				[newString deleteCharactersInRange:NSMakeRange(1, 1)];
+				[priceField setText:newString];
+		}
+}
+
 
 #pragma mark - ()
 
 - (void)save:(id)sender
 {
-		
-		
 		
 		// Save the image
 		// Get picked image from info dictionary
@@ -324,8 +302,14 @@
 		if (descriptionField) {
 				[self.parseObject setObject:descriptionField forKey:@"description"];
 		}
-				
-		NSString *price = [priceField text];
+		
+		
+		// Save the price value to Parse but first remove the dollar sign
+		// from the string which is at the zero index. Create a mutable
+		// copy so you can change the price string
+		NSMutableString *priceCopy = [priceField.text mutableCopy];
+		[priceCopy deleteCharactersInRange:NSMakeRange(0, 1)];
+		NSString *price = priceCopy;
 		[self.parseObject setObject:price forKey:@"price"];
 		if (priceField) {
 				[self.parseObject setObject:price forKey:@"price"];
@@ -448,6 +432,7 @@
 		
 		return numberRemaining;
 }
+
 
 
 - (IBAction)deleteDeal:(id)sender {

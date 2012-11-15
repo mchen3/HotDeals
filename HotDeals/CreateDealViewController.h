@@ -25,6 +25,7 @@
 		NSString *storedPriceValue;
 
 }
+- (IBAction)priceTextFieldChanged:(id)sender;
 
 - (IBAction)deleteDeal:(id)sender;
 
