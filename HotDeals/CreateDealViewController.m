@@ -449,16 +449,15 @@ a ibaction on the price button when the action Editing Change occurs
 		if (buttonIndex == 0) {
 				
 				
-				// Delete the deal from the Parse servers
+		// Delete the deal from the Parse servers
 				
-				// Show a loading HUD while you are deleting the data from the Parse servers.
-				MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
-				HUD.labelText = @"Deleting data";
-				//HUD.detailsLabelText = @"deleting data";
-				// Add the HUD view over the keyboard
-				[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
-				[HUD showAnimated:YES whileExecutingBlock:^{
-						
+		// Show a loading HUD while you are deleting the data from the Parse servers.
+		MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+		HUD.labelText = @"Deleting data";
+		//HUD.detailsLabelText = @"deleting data";
+		// Add the HUD view over the keyboard
+		[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
+		[HUD showAnimated:YES whileExecutingBlock:^{
 						
 				// Delete the image from the Photo table on parse
 				NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
@@ -466,16 +465,24 @@ a ibaction on the price button when the action Editing Change occurs
 				
 				// Delete the parse object from the main table
 				[self.parseObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-
-						[self dismissViewControllerAnimated:NO completion:^{
-								// Reload the UserParseTableController
-								dispatch_async(dispatch_get_main_queue(), self.reloadUserTableBlock);
-								// Alert the DealsParseTableController that a change was made
-								dispatch_async(dispatch_get_main_queue(), ^{
-										[[NSNotificationCenter defaultCenter]
-										 postNotificationName:@"userDealChange" object:nil];
-								});
-						}];
+						
+						if (error) {
+								NSLog(@"Could not delete");
+								NSLog(@"%@", error);
+								UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+								[alertView show];
+						}
+						if (succeeded) {
+								[self dismissViewControllerAnimated:NO completion:^{
+										// Reload the UserParseTableController
+										dispatch_async(dispatch_get_main_queue(), self.reloadUserTableBlock);
+										// Alert the DealsParseTableController that a change was made
+										dispatch_async(dispatch_get_main_queue(), ^{
+												[[NSNotificationCenter defaultCenter]
+												postNotificationName:@"userDealChange" object:nil];
+										});
+								}];
+						}
 				}];
 				
 				} completionBlock:^{
