@@ -223,6 +223,8 @@ a ibaction on the price button when the action Editing Change occurs
 */
 - (IBAction)priceTextFieldChanged:(id)sender {
 		
+		NSLog(@"Price changed");
+		
 		// Prevent a user from entering a empty price by reseting to $0
 		if ([priceField.text isEqualToString:@"$"]) {
 				[priceField setText:@"$0"];
@@ -245,11 +247,6 @@ a ibaction on the price button when the action Editing Change occurs
 
 - (void)save:(id)sender
 {
-		
-		// Set the description to the parse object
-		NSString *descriptionField = [descriptField text];
-		[self.parseObject setObject:descriptionField forKey:@"description"];
-		
 		/* We will set the description text before we show the HUD display because
 		 UITextField descriptField will cause the warning:
 		 
@@ -260,6 +257,15 @@ a ibaction on the price button when the action Editing Change occurs
 		 We are using the class MBProgressHUD which requires the main thread to be work
 		 free so the UI can be updated promptly
 		 */
+		// Set the description to the parse object
+		NSString *descriptionField = [descriptField text];
+		[self.parseObject setObject:descriptionField forKey:@"description"];
+		
+		// The priceField number keyboard was also causing a webThreadLock so I made
+		// the descriptField, which has the default keyboard type, the first responder
+		// and the web lock goes away.
+		[descriptField becomeFirstResponder];
+
 		
 		// Show a loading display while you are uploading the data to the Parse servers.
 		MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -378,6 +384,8 @@ a ibaction on the price button when the action Editing Change occurs
 				
 		} completionBlock:^{
 				[HUD removeFromSuperview];
+			//	[priceField becomeFirstResponder];
+
 		}];
 }
 

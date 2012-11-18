@@ -43,7 +43,7 @@
 		
 		
 		
-		[PFUser logOut];
+		//[PFUser logOut];
 		
 		/* Check if there is a user logged in, if so go
 		 to the main screen otherwise go to  WelcomeViewController
