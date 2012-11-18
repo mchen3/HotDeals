@@ -47,9 +47,6 @@
 																			 @selector(cancel:)];
 				[[self navigationItem] setLeftBarButtonItem:cancelItem];
 				
-				
-
-				
 		}
 		return self;
 }
@@ -73,7 +70,7 @@
 		 deleteDealButton.hidden = NO;
 		}
 		
-		[priceField setKeyboardType:UIKeyboardTypeNumberPad];
+		//[priceField setKeyboardType:UIKeyboardTypeNumberPad];
 		[imageView setImage:self.image];
 		
 		
@@ -90,7 +87,9 @@
 				[descriptField setText:description];
 		}
 		else {
-				descriptField.text = @"Describe the deal...";
+		// Must leave a space/empty string after the period in the end  
+		// so the next text starts off as a capital letter
+				descriptField.text = @"Describe the deal... ";
 				descriptField.textColor = [UIColor grayColor];
 				
 				// Disable the save button if the user has not entered a description
@@ -121,7 +120,7 @@
 		NSLog(@"CDVC loading");
 		
 		[descriptField becomeFirstResponder];
-		//[priceField setKeyboardType:UIKeyboardTypeNumberPad];
+		[priceField setKeyboardType:UIKeyboardTypeNumberPad];
 
 }
 
@@ -140,6 +139,8 @@
 		NSLog(@"DISAPPEAR");
 }
 
+
+#pragma mark - UITextView delegates
 // TextView delegates for the description
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
@@ -161,13 +162,14 @@
 		[self numberOfWordsInDescription];
 		
 		if(descriptField.text.length == 0){
-				descriptField.text = @"Describe the deal...";
+		// Must leave a space/empty string after the period in the end
+		// so the next text starts off as a capital letter
+				descriptField.text = @"Describe the deal... ";
 				descriptField.textColor = [UIColor grayColor];
 				
 				// Disable the save button if the user has not entered a description
 				saveItem.enabled = FALSE;
 		}
-		
 		if (descriptField.textColor == [UIColor grayColor]) {
 				// Disable the save button if the user has not entered a description
 				saveItem.enabled = FALSE;
@@ -184,6 +186,13 @@
 		if (descriptField.textColor == [UIColor grayColor]) {
 				descriptField.text = @"";
 				descriptField.textColor = [UIColor blackColor];
+		
+		/* There was a bug where the first word of the autocorrect was in lower
+		 case instead of upper, so I had to resign and showed the descriptField
+		 responder to correct this.
+		*/
+				[descriptField resignFirstResponder];
+				[descriptField becomeFirstResponder];
 		}
 		
 		// Always allow the back space or delete key to go through
@@ -202,6 +211,7 @@
 		}
 }
 
+#pragma mark - UITextField delegates
 // TextField delegates for the price 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -217,14 +227,14 @@
 		return YES;
 }
 
+#pragma mark - UITextField helper methods
+
 /* UITexFieldDelegate does not have an equilavent textViewDidChange where
 you can respond directly after you entered a text so you manually create 
 a ibaction on the price button when the action Editing Change occurs
 */
 - (IBAction)priceTextFieldChanged:(id)sender {
-		
-		NSLog(@"Price changed");
-		
+
 		// Prevent a user from entering a empty price by reseting to $0
 		if ([priceField.text isEqualToString:@"$"]) {
 				[priceField setText:@"$0"];
