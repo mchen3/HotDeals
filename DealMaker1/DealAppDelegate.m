@@ -13,11 +13,14 @@
 #import "ItemStore.h"
 #import "Parse/Parse.h"
 #import "LocationDataManager.h"
+#import "WelcomeViewController.h"
 
 
 @implementation DealAppDelegate
 
 @synthesize window = _window;
+
+#pragma mark - Application Delegation
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -30,56 +33,37 @@
 		
 		
 		/* Parse Access Control */
-		[PFUser enableAutomaticUser];
+		//[PFUser enableAutomaticUser];
 		
 		// Optionally enable public read access by default.
     PFACL *defaultACL = [PFACL ACL];
 		[defaultACL setPublicReadAccess:YES];
+	  //[defaultACL setPublicWriteAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
 		
 		
-		// Start the location data for this device
-		[LocationDataManager sharedLocation];
-	
+		
+		[PFUser logOut];
+		
+		/* Check if there is a user logged in, if so go
+		 to the main screen otherwise go to  WelcomeViewController
+		 to log in or sign up user
+		*/
+		PFUser *currentUser = [PFUser currentUser];
+		if (currentUser) {
+				[self presentMainViewController];
+		}
+		else {
+				[self presentWelcomeViewController];
+		}
 		
 		
 		
-    // Set up a navigational controller and initialize with DealViewController
-    // Add DealViewController to a Navigational Controller
-    DealsViewController *dealViewController = [[DealsViewController alloc] init];
-    UINavigationController *dealNavController = [[UINavigationController alloc] initWithRootViewController:dealViewController];
-    // Set the tab name for the Deals View Controller
-    UITabBarItem *dealTabBar = [[UITabBarItem alloc] initWithTitle:@"Deal of the day" image:nil tag:nil];
-    [dealNavController setTabBarItem:dealTabBar];
 		
-		
-		// Create the UserViewController with its navController
-		// Set the User View based on the User Tab
-		UserViewController *userViewController = [[UserViewController alloc] initWithTab:@"UserTab"];
-		UINavigationController *userNavController = [[UINavigationController alloc]
-				initWithRootViewController:userViewController];
-		// Set the tab name for the UserViewController
-		UITabBarItem *userTabBar = [[UITabBarItem alloc]
-				initWithTitle:@"User" image:nil tag:nil];
-		[userNavController setTabBarItem:userTabBar];
-				
-    // Create the NewsViewController
-    NewsViewController *newsViewController = [[NewsViewController alloc] init];
-    // Set the tab name for the News View Controller
-    UITabBarItem *newsTabBar = [[UITabBarItem alloc]
-								initWithTitle:@"News" image:nil tag:nil];
-    [newsViewController setTabBarItem:newsTabBar];
-		
-		// Create the TabBarController and initialize with our controllers
-    UITabBarController *tarBarController = [[UITabBarController alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, newsViewController, nil];
-    [tarBarController setViewControllers:viewControllers];
-    [[self window] setRootViewController:tarBarController];
-    
-    // Override point for customization after application launch.
+		// Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+		    
     return YES;
 }
 
@@ -121,4 +105,85 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - Viewcontrollers
+
+- (void)presentMainViewController
+{
+		// Start the location data for this device
+		[LocationDataManager sharedLocation];
+
+    // Set up a navigational controller and initialize with DealViewController
+    // Add DealViewController to a Navigational Controller
+    DealsViewController *dealViewController = [[DealsViewController alloc] init];
+    UINavigationController *dealNavController = [[UINavigationController alloc] initWithRootViewController:dealViewController];
+    UITabBarItem *dealTabBar = [[UITabBarItem alloc] initWithTitle:@"Deal of the day" image:nil tag:nil];
+    [dealNavController setTabBarItem:dealTabBar];
+		
+		UserViewController *userViewController = [[UserViewController alloc] initWithTab:@"UserTab"];
+		UINavigationController *userNavController = [[UINavigationController alloc]
+												initWithRootViewController:userViewController];
+		UITabBarItem *userTabBar = [[UITabBarItem alloc] initWithTitle:@"User" image:nil tag:nil];
+		[userNavController setTabBarItem:userTabBar];
+		
+    NewsViewController *newsViewController = [[NewsViewController alloc] init];
+    UITabBarItem *newsTabBar = [[UITabBarItem alloc] initWithTitle:@"News" image:nil tag:nil];
+    [newsViewController setTabBarItem:newsTabBar];
+		
+    UITabBarController *tarBarController = [[UITabBarController alloc] init];
+    NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, newsViewController, nil];
+    [tarBarController setViewControllers:viewControllers];
+    [[self window] setRootViewController:tarBarController];
+    
+}
+
+- (void)presentWelcomeViewController
+{
+		WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] init];
+		welcomeViewController.title = @"Welcome to Hot Deals";
+		
+		UINavigationController *welcomeNavController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+		welcomeNavController.navigationBarHidden = YES;
+		
+		[[self window] setRootViewController:welcomeNavController];		
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

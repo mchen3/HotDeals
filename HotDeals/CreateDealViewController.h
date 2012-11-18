@@ -26,9 +26,7 @@
 
 }
 - (IBAction)priceTextFieldChanged:(id)sender;
-
 - (IBAction)deleteDeal:(id)sender;
-
 - (IBAction)editImage:(id)sender;
 
 @property (nonatomic, strong) PFObject *parseObject;

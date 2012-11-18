@@ -268,7 +268,7 @@ a ibaction on the price button when the action Editing Change occurs
 		// Add the HUD view over the keyboard
 		[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
 		[HUD showAnimated:YES whileExecutingBlock:^{
-				
+		
 				
 				// Set the price to parse the object
 				// Upload the price value to Parse but first remove the dollar sign

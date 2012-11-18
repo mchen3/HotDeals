@@ -166,14 +166,16 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
 		
-		
-		
 		// Return a query based upon a current locality of current user
 		if ([self.DealBasedOn isEqualToString:@"currentLocation"]) {
 				
+				
+				NSLog(@"inside current location");
+				
+				
 				// Pull the location data from LocationDataManager
 				NSString *usersCurrentLocality =
-				[LocationDataManager sharedLocation].currentPlacemark.locality;
+						[LocationDataManager sharedLocation].currentPlacemark.locality;
 				
 				// Check to see if locality is ready, if not return a empty table
 				if (usersCurrentLocality) {
@@ -430,6 +432,12 @@
 		self.DealBasedOn = @"currentLocation";
 		[self loadObjects];
 }
+
+
+/* The location manager has notified us that a location was found so now we
+update the DealsParseTableController based on "userEnterAddress"- which
+will query the parse table based on the user's address
+*/
 
 - (void)addressLocationReady {
 		NSLog(@"Notification recieved, update on user address");

@@ -26,6 +26,7 @@
 		605AC4AA161E5F710046245F /* DealsParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC4A1161E5ECE0046245F /* DealsParseTableController.m */; };
 		605AC4AB161E5F710046245F /* DealsItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC497161E5EC40046245F /* DealsItemViewController.m */; };
 		605AC4AC161E5F710046245F /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC499161E5EC40046245F /* NewsViewController.m */; };
+		608375D51657EAF60010FD72 /* PAWActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E37CB11657E84E0078E24D /* PAWActivityView.m */; };
 		60A91AFD15D953430068CCF2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91AFC15D953430068CCF2 /* AudioToolbox.framework */; };
 		60A91AFF15D9534C0068CCF2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91AFE15D9534C0068CCF2 /* CFNetwork.framework */; };
 		60A91B0115D953740068CCF2 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A91B0015D953740068CCF2 /* libz.1.1.3.dylib */; };
@@ -54,6 +55,12 @@
 		60F151A8163B04C9004527BD /* UserParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F151A7163B04C9004527BD /* UserParseTableController.m */; };
 		60F423D016389A91004EB95A /* LocationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F423CF16389A91004EB95A /* LocationDataManager.m */; };
 		60F423D716389BE8004EB95A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F423D616389BE8004EB95A /* CoreLocation.framework */; };
+		60F470DB1657429000AC1D02 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F470D91657429000AC1D02 /* WelcomeViewController.m */; };
+		60F470DC1657429000AC1D02 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F470DA1657429000AC1D02 /* WelcomeViewController.xib */; };
+		60F470E01657512900AC1D02 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F470DE1657512900AC1D02 /* NewUserViewController.m */; };
+		60F470E11657512900AC1D02 /* NewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F470DF1657512900AC1D02 /* NewUserViewController.xib */; };
+		60F470E51657514100AC1D02 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F470E31657514000AC1D02 /* LoginViewController.m */; };
+		60F470E61657514100AC1D02 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F470E41657514100AC1D02 /* LoginViewController.xib */; };
 		60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FD86A315BF23FC000BDCCB /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +130,8 @@
 		60C1076616448EC000B8379B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		60C1076816448EDD00B8379B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		60C1076A16448EF600B8379B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		60E37CB01657E84E0078E24D /* PAWActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PAWActivityView.h; path = HotDeals/PAWActivityView.h; sourceTree = "<group>"; };
+		60E37CB11657E84E0078E24D /* PAWActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PAWActivityView.m; path = HotDeals/PAWActivityView.m; sourceTree = "<group>"; };
 		60EA6FCA162749E600A1B765 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = HotDeals/UserViewController.h; sourceTree = "<group>"; };
 		60EA6FCB162749E600A1B765 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = HotDeals/UserViewController.m; sourceTree = "<group>"; };
 		60EA6FCC162749E600A1B765 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserViewController.xib; path = HotDeals/UserViewController.xib; sourceTree = "<group>"; };
@@ -131,6 +140,15 @@
 		60F423CE16389A91004EB95A /* LocationDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationDataManager.h; path = HotDeals/LocationDataManager.h; sourceTree = "<group>"; };
 		60F423CF16389A91004EB95A /* LocationDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationDataManager.m; path = HotDeals/LocationDataManager.m; sourceTree = "<group>"; };
 		60F423D616389BE8004EB95A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		60F470D81657429000AC1D02 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = HotDeals/WelcomeViewController.h; sourceTree = "<group>"; };
+		60F470D91657429000AC1D02 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = HotDeals/WelcomeViewController.m; sourceTree = "<group>"; };
+		60F470DA1657429000AC1D02 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = HotDeals/WelcomeViewController.xib; sourceTree = "<group>"; };
+		60F470DD1657512900AC1D02 /* NewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewUserViewController.h; path = HotDeals/NewUserViewController.h; sourceTree = "<group>"; };
+		60F470DE1657512900AC1D02 /* NewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewUserViewController.m; path = HotDeals/NewUserViewController.m; sourceTree = "<group>"; };
+		60F470DF1657512900AC1D02 /* NewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewUserViewController.xib; path = HotDeals/NewUserViewController.xib; sourceTree = "<group>"; };
+		60F470E21657514000AC1D02 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = HotDeals/LoginViewController.h; sourceTree = "<group>"; };
+		60F470E31657514000AC1D02 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = HotDeals/LoginViewController.m; sourceTree = "<group>"; };
+		60F470E41657514100AC1D02 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = HotDeals/LoginViewController.xib; sourceTree = "<group>"; };
 		60FD86A315BF23FC000BDCCB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -179,7 +197,7 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		602874ED16211F5100EE51B0 /* copy */ = {
+		602874ED16211F5100EE51B0 /* copy ??? */ = {
 			isa = PBXGroup;
 			children = (
 				605AC48A161E5EC40046245F /* DealViewController copy.h */,
@@ -187,7 +205,7 @@
 				602874EB16211F0D00EE51B0 /* ItemViewController copy.h */,
 				602874EC16211F0D00EE51B0 /* ItemViewController copy.m */,
 			);
-			name = copy;
+			name = "copy ???";
 			sourceTree = "<group>";
 		};
 		60B48F3715A892F000A52C2E = {
@@ -269,28 +287,61 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		60E37C7F165759EE0078E24D /* Deals */ = {
+			isa = PBXGroup;
+			children = (
+				605AC48C161E5EC40046245F /* DealsViewController.h */,
+				602874E716211E3C00EE51B0 /* DealsViewController.m */,
+				605AC49B161E5EC40046245F /* DealsParseTableController.h */,
+				605AC4A1161E5ECE0046245F /* DealsParseTableController.m */,
+				605AC496161E5EC40046245F /* DealsItemViewController.h */,
+				605AC497161E5EC40046245F /* DealsItemViewController.m */,
+			);
+			name = Deals;
+			sourceTree = "<group>";
+		};
+		60E37C8116575A260078E24D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				60EA6FCA162749E600A1B765 /* UserViewController.h */,
+				60EA6FCB162749E600A1B765 /* UserViewController.m */,
+				60F151A6163B04C9004527BD /* UserParseTableController.h */,
+				60F151A7163B04C9004527BD /* UserParseTableController.m */,
+				600118C91628AB5C009E019D /* UserPostViewController.h */,
+				600118CA1628AB5C009E019D /* UserPostViewController.m */,
+				60197AF4165005F000DF13A6 /* CreateDealViewController.h */,
+				60197AF5165005F000DF13A6 /* CreateDealViewController.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		60E37C8216575A2C0078E24D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				605AC4A0161E5ECE0046245F /* NewsViewController.h */,
+				605AC499161E5EC40046245F /* NewsViewController.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		60E37C8316575A6A0078E24D /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				60F423CE16389A91004EB95A /* LocationDataManager.h */,
+				60F423CF16389A91004EB95A /* LocationDataManager.m */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
 		60E5238215E1829000D532FA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				602874ED16211F5100EE51B0 /* copy */,
-				60197AF4165005F000DF13A6 /* CreateDealViewController.h */,
-				60197AF5165005F000DF13A6 /* CreateDealViewController.m */,
-				605AC49B161E5EC40046245F /* DealsParseTableController.h */,
-				605AC4A1161E5ECE0046245F /* DealsParseTableController.m */,
-				60F151A6163B04C9004527BD /* UserParseTableController.h */,
-				60F151A7163B04C9004527BD /* UserParseTableController.m */,
-				605AC48C161E5EC40046245F /* DealsViewController.h */,
-				602874E716211E3C00EE51B0 /* DealsViewController.m */,
-				605AC496161E5EC40046245F /* DealsItemViewController.h */,
-				605AC497161E5EC40046245F /* DealsItemViewController.m */,
-				60EA6FCA162749E600A1B765 /* UserViewController.h */,
-				60EA6FCB162749E600A1B765 /* UserViewController.m */,
-				600118C91628AB5C009E019D /* UserPostViewController.h */,
-				600118CA1628AB5C009E019D /* UserPostViewController.m */,
-				605AC4A0161E5ECE0046245F /* NewsViewController.h */,
-				605AC499161E5EC40046245F /* NewsViewController.m */,
-				60F423CE16389A91004EB95A /* LocationDataManager.h */,
-				60F423CF16389A91004EB95A /* LocationDataManager.m */,
+				602874ED16211F5100EE51B0 /* copy ??? */,
+				60E37C8316575A6A0078E24D /* Location */,
+				60F470D7165741E200AC1D02 /* User Creation/Login */,
+				60E37C7F165759EE0078E24D /* Deals */,
+				60E37C8116575A260078E24D /* User */,
+				60E37C8216575A2C0078E24D /* Profile */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -305,6 +356,9 @@
 				600118CB1628AB5C009E019D /* UserPostViewController.xib */,
 				605AC49A161E5EC40046245F /* NewsViewController.xib */,
 				60197AF6165005F000DF13A6 /* CreateDealViewController.xib */,
+				60F470DA1657429000AC1D02 /* WelcomeViewController.xib */,
+				60F470DF1657512900AC1D02 /* NewUserViewController.xib */,
+				60F470E41657514100AC1D02 /* LoginViewController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -312,6 +366,8 @@
 		60E5238515E182CA00D532FA /* MISC */ = {
 			isa = PBXGroup;
 			children = (
+				60E37CB01657E84E0078E24D /* PAWActivityView.h */,
+				60E37CB11657E84E0078E24D /* PAWActivityView.m */,
 				60197B361651AC1F00DF13A6 /* MBProgressHUD.h */,
 				60197B371651AC1F00DF13A6 /* MBProgressHUD.m */,
 				605AC487161E5EC40046245F /* CategoryPicker.h */,
@@ -321,6 +377,19 @@
 				605AC490161E5EC40046245F /* ItemCell.m */,
 			);
 			name = MISC;
+			sourceTree = "<group>";
+		};
+		60F470D7165741E200AC1D02 /* User Creation/Login */ = {
+			isa = PBXGroup;
+			children = (
+				60F470D81657429000AC1D02 /* WelcomeViewController.h */,
+				60F470D91657429000AC1D02 /* WelcomeViewController.m */,
+				60F470E21657514000AC1D02 /* LoginViewController.h */,
+				60F470E31657514000AC1D02 /* LoginViewController.m */,
+				60F470DD1657512900AC1D02 /* NewUserViewController.h */,
+				60F470DE1657512900AC1D02 /* NewUserViewController.m */,
+			);
+			name = "User Creation/Login";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +455,9 @@
 				60EA6FCE162749E600A1B765 /* UserViewController.xib in Resources */,
 				600118CD1628AB5C009E019D /* UserPostViewController.xib in Resources */,
 				60197AF8165005F000DF13A6 /* CreateDealViewController.xib in Resources */,
+				60F470DC1657429000AC1D02 /* WelcomeViewController.xib in Resources */,
+				60F470E11657512900AC1D02 /* NewUserViewController.xib in Resources */,
+				60F470E61657514100AC1D02 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				608375D51657EAF60010FD72 /* PAWActivityView.m in Sources */,
 				60197B381651AC5D00DF13A6 /* MBProgressHUD.m in Sources */,
 				605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */,
 				605AC4A3161E5F710046245F /* ItemCell.m in Sources */,
@@ -414,6 +487,9 @@
 				60F423D016389A91004EB95A /* LocationDataManager.m in Sources */,
 				60F151A8163B04C9004527BD /* UserParseTableController.m in Sources */,
 				60197AF7165005F000DF13A6 /* CreateDealViewController.m in Sources */,
+				60F470DB1657429000AC1D02 /* WelcomeViewController.m in Sources */,
+				60F470E01657512900AC1D02 /* NewUserViewController.m in Sources */,
+				60F470E51657514100AC1D02 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
