@@ -19,6 +19,7 @@
 		60197AF8165005F000DF13A6 /* CreateDealViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60197AF6165005F000DF13A6 /* CreateDealViewController.xib */; };
 		60197B381651AC5D00DF13A6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 60197B371651AC1F00DF13A6 /* MBProgressHUD.m */; };
 		602874E816211E3C00EE51B0 /* DealsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 602874E716211E3C00EE51B0 /* DealsViewController.m */; };
+		6051C797165D51C300F91C6E /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 6051C796165D51C300F91C6E /* test.png */; };
 		605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC488161E5EC40046245F /* CategoryPicker.m */; };
 		605AC4A3161E5F710046245F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC490161E5EC40046245F /* ItemCell.m */; };
 		605AC4A4161E5F710046245F /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC48F161E5EC40046245F /* ImageStore.m */; };
@@ -80,6 +81,7 @@
 		602874E716211E3C00EE51B0 /* DealsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DealsViewController.m; path = HotDeals/DealsViewController.m; sourceTree = "<group>"; };
 		602874EB16211F0D00EE51B0 /* ItemViewController copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ItemViewController copy.h"; path = "HotDeals/ItemViewController copy.h"; sourceTree = "<group>"; };
 		602874EC16211F0D00EE51B0 /* ItemViewController copy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ItemViewController copy.m"; path = "HotDeals/ItemViewController copy.m"; sourceTree = "<group>"; };
+		6051C796165D51C300F91C6E /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		605AC487161E5EC40046245F /* CategoryPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CategoryPicker.h; path = HotDeals/CategoryPicker.h; sourceTree = "<group>"; };
 		605AC488161E5EC40046245F /* CategoryPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CategoryPicker.m; path = HotDeals/CategoryPicker.m; sourceTree = "<group>"; };
 		605AC489161E5EC40046245F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = HotDeals/Constants.h; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 		60B48F7315A89E8200A52C2E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6051C796165D51C300F91C6E /* test.png */,
 				60B48F7415A89E8200A52C2E /* Hypno.png */,
 				60B48F7515A89E8200A52C2E /* Hypno@2x.png */,
 				60B48F7615A89E8200A52C2E /* Time.png */,
@@ -458,6 +461,7 @@
 				60F470E11657512900AC1D02 /* NewUserViewController.xib in Resources */,
 				60F470E61657514100AC1D02 /* LoginViewController.xib in Resources */,
 				6017F04D165C564400DB72EB /* ProfileViewController.xib in Resources */,
+				6051C797165D51C300F91C6E /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

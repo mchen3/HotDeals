@@ -242,16 +242,25 @@
 		// Set the thumbnail image
 		NSString *imageKey = [object objectForKey:@"imageKey"];
 		if (imageKey) {
+				
+				// Set the thumbnail image
+				/* We will LazyLoad the thumbnail images- meaning we will load the images
+				 asynchronously so the table will be more responsive i.e. the table will
+				 not delay if the images is not ready. Parse allows you to set the PFTableViewCell's
+				 property value PFImageView imageView and all you had to do was set the
+				 cell.imageView.file and the "loadInBackground" and "setImage" was done for you.
+				 I used my own TableCell implementation cell.thumbnailView which loaded the thumb images
+				 faster and I wrote out loafInBackground and setImage so I can see clearly how the
+				 thumbnnail image is being set.
+				 */
 				PFFile *thumbnailFile = [object objectForKey:@"thumbImage"];
-				NSData *imageData = [thumbnailFile getData];
-				UIImage *thumbnailImage = [UIImage imageWithData:imageData];
-				[[cell thumbnailView] setImage:thumbnailImage];
+				cell.thumbnailView.image = [UIImage imageNamed:@"test.png"];
+				cell.thumbnailView.file = thumbnailFile;
+				[[cell thumbnailView] loadInBackground:^(UIImage *image, NSError *error) {
+						[[cell thumbnailView] setImage:image];
+				}];
 		}
-		else {
-				[[cell thumbnailView] setImage:nil];
-		}
-		
-		
+				
 		return cell;
 }
 

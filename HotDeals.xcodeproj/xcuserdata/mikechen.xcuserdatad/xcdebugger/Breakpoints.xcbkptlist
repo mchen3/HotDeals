@@ -351,11 +351,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/DealsParseTableController.m"
-         timestampString = "375157800.558582"
+         timestampString = "375215932.557954"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "276"
-         endingLineNumber = "276"
+         startingLineNumber = "287"
+         endingLineNumber = "287"
          landmarkName = "-tableView:cellForRowAtIndexPath:object:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -377,11 +377,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/DealsParseTableController.m"
-         timestampString = "375157800.558582"
+         timestampString = "375215932.557954"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "271"
-         endingLineNumber = "271"
+         startingLineNumber = "279"
+         endingLineNumber = "279"
          landmarkName = "-tableView:cellForRowAtIndexPath:object:"
          landmarkType = "5">
       </FileBreakpoint>

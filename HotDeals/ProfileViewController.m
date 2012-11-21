@@ -72,7 +72,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 		if (buttonIndex == 0) {
 				
-				// Log out the user out and present the WelcomeViewController as out root controller
+				// Log out the user out and present the WelcomeViewController as our root controller
 				[PFUser logOut];
 				
 				WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] init];

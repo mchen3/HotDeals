@@ -15,9 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-
+@property (weak, nonatomic) IBOutlet PFImageView *thumbnailView;
 
 
 @end
