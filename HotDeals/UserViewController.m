@@ -10,7 +10,7 @@
 #import "DealsParseTableController.h"
 #import "DealsItemViewController.h"
 #import "UserPostViewController.h"
-#import "NewsViewController.h"
+#import "ProfileViewController.h"
 #import "UserParseTableController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CreateDealViewController.h"

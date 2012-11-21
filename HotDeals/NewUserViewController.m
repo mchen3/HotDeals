@@ -12,7 +12,7 @@
 #import "PAWActivityView.h"
 #import "DealsViewController.h"
 #import "UserViewController.h"
-#import "NewsViewController.h"
+#import "ProfileViewController.h"
 #import "LocationDataManager.h"
 
 @interface NewUserViewController ()
@@ -256,7 +256,7 @@ showDialog:
 		[userNavController setTabBarItem:userTabBar];
 		
 		
-    NewsViewController *newsViewController = [[NewsViewController alloc] init];
+    ProfileViewController *newsViewController = [[ProfileViewController alloc] init];
     UITabBarItem *newsTabBar = [[UITabBarItem alloc]
 																initWithTitle:@"News" image:nil tag:nil];
     [newsViewController setTabBarItem:newsTabBar];

@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "NewsViewController.h"
+#import "ProfileViewController.h"
 
-@interface NewsViewController ()
+@interface ProfileViewController ()
 
 @end
 
-@implementation NewsViewController
+@implementation ProfileViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

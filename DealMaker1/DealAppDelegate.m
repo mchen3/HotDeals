@@ -9,7 +9,7 @@
 #import "DealAppDelegate.h"
 #import "DealsViewController.h"
 #import "UserViewController.h"
-#import "NewsViewController.h"
+#import "ProfileViewController.h"
 #import "ItemStore.h"
 #import "Parse/Parse.h"
 #import "LocationDataManager.h"
@@ -125,7 +125,7 @@
 		UITabBarItem *userTabBar = [[UITabBarItem alloc] initWithTitle:@"User" image:nil tag:nil];
 		[userNavController setTabBarItem:userTabBar];
 		
-    NewsViewController *newsViewController = [[NewsViewController alloc] init];
+    ProfileViewController *newsViewController = [[ProfileViewController alloc] init];
     UITabBarItem *newsTabBar = [[UITabBarItem alloc] initWithTitle:@"News" image:nil tag:nil];
     [newsViewController setTabBarItem:newsTabBar];
 		

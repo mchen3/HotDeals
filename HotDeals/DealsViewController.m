@@ -9,7 +9,7 @@
 #import "DealsViewController.h"
 #import "Items.h"
 #import "ItemStore.h"
-#import "NewsViewController.h"
+#import "ProfileViewController.h"
 #import "DealsItemViewController.h"
 #import "ItemCell.h"
 #import "DealsParseTableController.h"

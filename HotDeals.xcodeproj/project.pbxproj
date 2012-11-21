@@ -13,8 +13,8 @@
 		6006FF46161FC715006E031C /* DealsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC48D161E5EC40046245F /* DealsViewController.xib */; };
 		6006FF47161FC71A006E031C /* DealsItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC498161E5EC40046245F /* DealsItemViewController.xib */; };
 		60146208161FCA30004FAB65 /* DealMaker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60146206161FCA30004FAB65 /* DealMaker.xcdatamodeld */; };
-		6017F04D165C564400DB72EB /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6017F04C165C564400DB72EB /* NewsViewController.xib */; };
-		6017F04E165C567C00DB72EB /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6017F04B165C563100DB72EB /* NewsViewController.m */; };
+		6017F04D165C564400DB72EB /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6017F04C165C564400DB72EB /* ProfileViewController.xib */; };
+		6017F04E165C567C00DB72EB /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6017F04B165C563100DB72EB /* ProfileViewController.m */; };
 		60197AF7165005F000DF13A6 /* CreateDealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60197AF5165005F000DF13A6 /* CreateDealViewController.m */; };
 		60197AF8165005F000DF13A6 /* CreateDealViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60197AF6165005F000DF13A6 /* CreateDealViewController.xib */; };
 		60197B381651AC5D00DF13A6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 60197B371651AC1F00DF13A6 /* MBProgressHUD.m */; };
@@ -69,9 +69,9 @@
 		600118CA1628AB5C009E019D /* UserPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPostViewController.m; path = HotDeals/UserPostViewController.m; sourceTree = "<group>"; };
 		600118CB1628AB5C009E019D /* UserPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserPostViewController.xib; path = HotDeals/UserPostViewController.xib; sourceTree = "<group>"; };
 		60146207161FCA30004FAB65 /* DealMaker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DealMaker.xcdatamodel; sourceTree = "<group>"; };
-		6017F04A165C563100DB72EB /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = HotDeals/NewsViewController.h; sourceTree = "<group>"; };
-		6017F04B165C563100DB72EB /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = HotDeals/NewsViewController.m; sourceTree = "<group>"; };
-		6017F04C165C564400DB72EB /* NewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsViewController.xib; path = HotDeals/NewsViewController.xib; sourceTree = "<group>"; };
+		6017F04A165C563100DB72EB /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = HotDeals/ProfileViewController.h; sourceTree = "<group>"; };
+		6017F04B165C563100DB72EB /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = HotDeals/ProfileViewController.m; sourceTree = "<group>"; };
+		6017F04C165C564400DB72EB /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileViewController.xib; path = HotDeals/ProfileViewController.xib; sourceTree = "<group>"; };
 		60197AF4165005F000DF13A6 /* CreateDealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateDealViewController.h; path = HotDeals/CreateDealViewController.h; sourceTree = "<group>"; };
 		60197AF5165005F000DF13A6 /* CreateDealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateDealViewController.m; path = HotDeals/CreateDealViewController.m; sourceTree = "<group>"; };
 		60197AF6165005F000DF13A6 /* CreateDealViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateDealViewController.xib; path = HotDeals/CreateDealViewController.xib; sourceTree = "<group>"; };
@@ -318,8 +318,8 @@
 		60E37C8216575A2C0078E24D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				6017F04A165C563100DB72EB /* NewsViewController.h */,
-				6017F04B165C563100DB72EB /* NewsViewController.m */,
+				6017F04A165C563100DB72EB /* ProfileViewController.h */,
+				6017F04B165C563100DB72EB /* ProfileViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 			children = (
 				605AC491161E5EC40046245F /* ItemCell.xib */,
 				605AC48D161E5EC40046245F /* DealsViewController.xib */,
-				6017F04C165C564400DB72EB /* NewsViewController.xib */,
+				6017F04C165C564400DB72EB /* ProfileViewController.xib */,
 				605AC498161E5EC40046245F /* DealsItemViewController.xib */,
 				60EA6FCC162749E600A1B765 /* UserViewController.xib */,
 				600118CB1628AB5C009E019D /* UserPostViewController.xib */,
@@ -457,7 +457,7 @@
 				60F470DC1657429000AC1D02 /* WelcomeViewController.xib in Resources */,
 				60F470E11657512900AC1D02 /* NewUserViewController.xib in Resources */,
 				60F470E61657514100AC1D02 /* LoginViewController.xib in Resources */,
-				6017F04D165C564400DB72EB /* NewsViewController.xib in Resources */,
+				6017F04D165C564400DB72EB /* ProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6017F04E165C567C00DB72EB /* NewsViewController.m in Sources */,
+				6017F04E165C567C00DB72EB /* ProfileViewController.m in Sources */,
 				608375D51657EAF60010FD72 /* PAWActivityView.m in Sources */,
 				60197B381651AC5D00DF13A6 /* MBProgressHUD.m in Sources */,
 				605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */,

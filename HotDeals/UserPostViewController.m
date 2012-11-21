@@ -13,7 +13,7 @@
 #import "CreateDealViewController.h"
 
 // DEl testing
-#import "NewsViewController.h"
+#import "ProfileViewController.h"
 #import "DealsItemViewController.h"
 
 

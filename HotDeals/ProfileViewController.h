@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsViewController : UIViewController
+@interface ProfileViewController : UIViewController
 
 @end
