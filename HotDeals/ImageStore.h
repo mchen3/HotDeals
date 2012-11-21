@@ -28,6 +28,7 @@
 @property (nonatomic, retain) NSString * imageKey;
 @property (nonatomic, strong) UIImage *parseImageReturned;
 
+@property (nonatomic, strong) PFImageView *lazyLoadPFImageView;
 
 @end
 

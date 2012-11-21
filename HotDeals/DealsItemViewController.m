@@ -176,16 +176,17 @@
 		//	NSString *imageKey = [item imageKey];
 		//NSLog(@"%@", imageKey);
 		
-		// Load image through imageKey
+		// Set the Image
 		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
 		if (imageKey) {
-				UIImage *image = 	[[ImageStore defaultImageStore] imageForKey:imageKey];
-				[imageView setImage:image];
+			
+				/* We want to load the big imageView asynchronously so the UI will be more
+				responsive. We will pass our PFImageView imageView and imageKey to the 
+				ImageStore so that class will take care of setting our image. */
+				[[ImageStore defaultImageStore] setLazyLoadPFImageView:imageView];
+				[[ImageStore defaultImageStore] imageForKey:imageKey];
 		}
-		else {
-				[imageView setImage:nil];
-		}
-				
+		
 		/* BNR
 		/* Previous implemenation before Parse using Core Data
     // The item object is passed through DealViewController

@@ -176,16 +176,17 @@
 		[descriptField setText:[self.parseObject objectForKey:@"description"]];
 		[priceField setText:[self.parseObject objectForKey:@"price"]];
 		
-		// Load image through imageKey
+		// Set the image
 		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
 		if (imageKey) {
-				UIImage *image = [[ImageStore defaultImageStore] imageForKey:imageKey];
-				[imageView setImage:image];
+				/* We want to load the big imageView asynchronously so the UI will be more
+				 responsive. We will pass our PFImageView imageView and imageKey to the
+				 ImageStore so that class will take care of setting the our image. */
+				[[ImageStore defaultImageStore] setLazyLoadPFImageView:imageView];
+				[[ImageStore defaultImageStore] imageForKey:imageKey];
 		}
-		else {
-				[imageView setImage:nil];
-		}
-		
+
+
 		
 		
 }

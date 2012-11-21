@@ -12,6 +12,7 @@
 @synthesize reloadBlock;
 @synthesize imageKey;
 @synthesize parseImageReturned;
+@synthesize lazyLoadPFImageView;
 
 + (id)allocWithZone:(NSZone *)zone
 {
@@ -119,90 +120,51 @@
 
 -(UIImage *)imageForKey:(NSString *) key
 {
-		
-		// Check to see if the image is available on our temporary storage
-		// to save us the trouble of loading from the Parse servers
-		UIImage *image = [dictionary objectForKey:key];
-		parseImageReturned = [dictionary objectForKey:key];
-
-		
-		//UIImage *image = nil;
-		if (!parseImageReturned) {
-		// Image is not available, must need connection to Parse servers.
-
-		PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
-		
-		[query whereKey:@"imageKey" equalTo:key];
-		
-		//Causing a warning from parse about running a long operation on
-		// the main thread. We want to use getobjectonbackground
-		PFObject *object = [query getFirstObject];
-		PFFile *parseFile = [object objectForKey:@"image"];
-		NSData *imageData = [parseFile getData];
-		parseImageReturned = [UIImage imageWithData:imageData];
-		
-		
-				
-		/* Query for the image in the background.
-		[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-				
-				PFFile *parseFile = [object objectForKey:@"image"];
-				NSData *imageData = [parseFile getData];
-				parseImageReturned = [UIImage imageWithData:imageData];
-		}];
-		*/
-		
-				
 		/*
-		[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-				if (!object) {
-						//
-				} else {
-						PFFile *parseFile = [object objectForKey:@"image"];
-						NSData *imageData = [parseFile getData];
-						parseImage = [UIImage imageWithData:imageData];
-						
-				//		dispatch_async(dispatch_get_main_queue(), reloadBlock);
-
-				}
-		}];
+		This method can return an image when you pass a key.
+		 
+		But it can also be used to asynchronously load a remote image to set a
+		PFImage, which we have our property as lazyLoadPFImageView.
+		We use this in DealsItemViewController and UserPostViewController which
+		both have a large PFImage that we want to lazy load / asynchronous load.
+		So in both classes their viewwillappear will call
+		 [[ImageStore defaultImageStore] setLazyLoadPFImageView:imageView];
+		 [[ImageStore defaultImageStore] imageForKey:imageKey];
 		*/
-
-		//return parseImage;
+		 
+		// Check to see if the image is available on our temporary dictionary
+		// storage to save us the trouble of loading from the Parse servers
+		parseImageReturned = [dictionary objectForKey:key];
+		
+		if (!parseImageReturned) {
+		
+				// Image is not available, must need connection to Parse servers.
+				PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
+				[query whereKey:@"imageKey" equalTo:key];
 				
-				if (parseImageReturned) {
-						[dictionary setObject:parseImageReturned forKey:key];
-				}
-				else {
-						NSLog(@"No image available from parse");
-				}
-				
+				// Get the object from Parse servers
+				[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+						
+						// Use PFImageView which will load and set the our image
+						PFFile *parseFile = [object objectForKey:@"image"];
+						self.lazyLoadPFImageView.file = parseFile;
+						[self.lazyLoadPFImageView loadInBackground:^(UIImage *image, NSError *error) {
+								
+								// Cache the image in our dictionary
+								if (image) {
+										[dictionary setObject:image forKey:key];
+								}
+						}];
+				 }];
+		}
+		else {
+		    // We have a image in our dictionary
+				[self.lazyLoadPFImageView setImage:parseImageReturned];
 		}
 		
 		return parseImageReturned;
-				
-		
-		
-		/* BNR
-     //return [dictionary objectForKey:key];
-		
-		// If possible, retrive the image from the dictionary
-		UIImage *image = [dictionary objectForKey:key];
-		
-		if (!image) {
-				// Create a image from the file system
-				image = [UIImage imageWithContentsOfFile:[self imagePathForKey:key]];	
-				if (image) {
-						[dictionary setObject:image forKey:key];
-				}
-				else {
-						NSLog(@"Error: unable to find %@", [self imagePathForKey:key]);
-				}
-		}		
-		return  image;
-		*/
 }
-    
+
 -(void)deleteImageForKey:(NSString *)key 
 {
     if (!key) {

@@ -19,7 +19,8 @@
 		
 		__weak IBOutlet UILabel *dateCreated;
 		
-		__weak IBOutlet UIImageView *imageView;
+		__weak IBOutlet PFImageView *imageView;
+		
 }
 
 -(id)initWithName:(BOOL)isNew;

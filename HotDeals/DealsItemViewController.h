@@ -17,7 +17,8 @@
     __weak IBOutlet UITextField *nameField;
     __weak IBOutlet UITextView *descriptField;
     __weak IBOutlet UILabel *dateCreated;
-    __weak IBOutlet UIImageView *imageView;
+    
+		__weak IBOutlet PFImageView *imageView;
 		__weak IBOutlet UIButton *categoryButton;
 		__weak IBOutlet UILabel *priceLabel;
 		
