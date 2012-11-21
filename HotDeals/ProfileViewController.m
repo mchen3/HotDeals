@@ -7,6 +7,9 @@
 //
 
 #import "ProfileViewController.h"
+#import "WelcomeViewController.h"
+#import <Parse/Parse.h>
+#import "DealAppDelegate.h"
 
 @interface ProfileViewController ()
 
@@ -27,12 +30,17 @@
     return self;
 }
 
+#pragma mark - View lifecycles
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 		
-
+		[self.imageView setImage:[UIImage imageNamed:@"Time.png"]];
+		
+		PFUser *currentUser = [PFUser currentUser];
+		[self.userNameLabel setText:currentUser.username];
 
 }
 
@@ -48,4 +56,60 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - Buttons
+
+- (IBAction)logOutButton:(id)sender {
+		[PFUser logOut];
+
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Log out of HotDeals?" message:nil delegate:self cancelButtonTitle:@"Log out" otherButtonTitles:@"Cancel", nil];
+		[alertView show];
+		
+}
+
+#pragma mark - UIAlertViewDelegate methods
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+		if (buttonIndex == 0) {
+				
+				// Log out the user out and present the WelcomeViewController as out root controller
+				[PFUser logOut];
+				
+				WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] init];
+				welcomeViewController.title = @"Welcome to Hot Deals";
+				UINavigationController *welcomeNavController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+				welcomeNavController.navigationBarHidden = YES;
+				
+				DealAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+				[[appDelegate window] setRootViewController:welcomeNavController];		
+		} 
+}
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

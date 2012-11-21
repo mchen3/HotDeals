@@ -43,7 +43,7 @@
 		
 		
 		
-		[PFUser logOut];
+		//[PFUser logOut];
 		
 		/* Check if there is a user logged in, if so go
 		 to the main screen otherwise go to  WelcomeViewController
@@ -125,14 +125,21 @@
 		UITabBarItem *userTabBar = [[UITabBarItem alloc] initWithTitle:@"User" image:nil tag:nil];
 		[userNavController setTabBarItem:userTabBar];
 		
-    ProfileViewController *newsViewController = [[ProfileViewController alloc] init];
-    UITabBarItem *newsTabBar = [[UITabBarItem alloc] initWithTitle:@"News" image:nil tag:nil];
-    [newsViewController setTabBarItem:newsTabBar];
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+		UINavigationController *profileNavController = [[UINavigationController alloc]
+												initWithRootViewController:profileViewController];
+    UITabBarItem *profileTabBar = [[UITabBarItem alloc] initWithTitle:@"Profile" image:nil tag:nil];
+    [profileNavController setTabBarItem:profileTabBar];
+		[profileNavController setNavigationBarHidden:YES];
+		
 		
     UITabBarController *tarBarController = [[UITabBarController alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, newsViewController, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, profileNavController, nil];
+		
     [tarBarController setViewControllers:viewControllers];
     [[self window] setRootViewController:tarBarController];
+		
+		
     
 }
 

@@ -243,15 +243,17 @@
 		[userNavController setTabBarItem:userTabBar];
 		
 		
-    ProfileViewController *newsViewController = [[ProfileViewController alloc] init];
-    UITabBarItem *newsTabBar = [[UITabBarItem alloc]
-																initWithTitle:@"News" image:nil tag:nil];
-    [newsViewController setTabBarItem:newsTabBar];
-		
+		ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+		UINavigationController *profileNavController = [[UINavigationController alloc]
+																										initWithRootViewController:profileViewController];
+    UITabBarItem *profileTabBar = [[UITabBarItem alloc] initWithTitle:@"Profile" image:nil tag:nil];
+    [profileNavController setTabBarItem:profileTabBar];
+		[profileNavController setNavigationBarHidden:YES];
+
 		
 		// Create the TabBarController and initialize with our controllers
     UITabBarController *tarBarController = [[UITabBarController alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, newsViewController, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, profileNavController, nil];
     [tarBarController setViewControllers:viewControllers];
 		
 		
