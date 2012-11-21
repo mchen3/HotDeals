@@ -43,7 +43,7 @@
 		
 		
 		
-		//[PFUser logOut];
+		[PFUser logOut];
 		
 		/* Check if there is a user logged in, if so go
 		 to the main screen otherwise go to  WelcomeViewController
@@ -138,6 +138,15 @@
 
 - (void)presentWelcomeViewController
 {
+		/*When the user loads the app for the first time, we will start the location manager
+		 which will prompt the user for location permissions. Note that we start searching for
+		 GPS locations and placemarks as soon as the singleton LocationDataManager is launched
+		 so we will return an error for locations at the very first launch. We re-start the 
+		 LocationDataManager to search for location and placemarks in NewUserViewController    
+		 and LoginViewController to correct this.
+		*/
+		[LocationDataManager sharedLocation];
+		
 		WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] init];
 		welcomeViewController.title = @"Welcome to Hot Deals";
 		

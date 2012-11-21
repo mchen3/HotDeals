@@ -41,6 +41,7 @@
         // The number of objects to show per page
         self.objectsPerPage = 50;
     }
+		
     return self;
 }
 
@@ -425,6 +426,9 @@
 
 #pragma mark - NSNotificationCenter notification handlers
 
+/* This is used when when you want to set the DPTC to query based
+ on currentLocation. Mostly when you press the currentLocation button
+*/
 - (void)currentLocationReady {
 		
 		// Query the parse server again now that location data is available
@@ -436,7 +440,8 @@
 
 /* The location manager has notified us that a location was found so now we
 update the DealsParseTableController based on "userEnterAddress"- which
-will query the parse table based on the user's address
+will query the parse table based on the user's address. Mostly when you
+press the addressLocation button.
 */
 
 - (void)addressLocationReady {
