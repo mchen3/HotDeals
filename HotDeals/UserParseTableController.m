@@ -23,6 +23,7 @@
 @implementation UserParseTableController
 @synthesize UserViewBasedOn;
 @synthesize userNameOfDeal;
+@synthesize parseImageReturned;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -469,28 +470,35 @@
 				
 				// Pass the object, image, and reloadUserTable block to CDVC
 				[createDealViewController setParseObject:object];
+				
+				
+				// Set the image
 				NSString *imageKey = [object objectForKey:@"imageKey"];
-				UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
-				[createDealViewController setImage:parseImage];
+				/* We want to set the image for CreateDealViewController but do it asynchronously.
+				We are presentingly UserPostViewController on top of CreateDealViewController so
+				 since they are both preented at the same time we need to leave the ImageStore 
+				 free for UPVC to use. The best way is just to query the photo object ourselves
+				 and use PFFile getData (instead of PFImageView) method to retrive the PFFile */
+				
+				PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
+				[query whereKey:@"imageKey" equalTo:imageKey];
+				
+				[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+						PFFile *parseFile = [object objectForKey:@"image"];
+						NSData *imageData = [parseFile getData];
+						parseImageReturned = [UIImage imageWithData:imageData];
+						[createDealViewController setImage:parseImageReturned];
+				}];
+				
 				
 				[createDealViewController setReloadUserTableBlock:^{
 						[self loadObjects];
 				}];
 				
-				
-				
-				
 				[self presentViewController:createDealNavController animated:NO completion:^{
 						[createDealViewController presentViewController:userPostNavController
 																									 animated:NO completion:nil];
-						
 				}];
-				
-				
-				
-				
-				
-				
 		}
 		
 }

@@ -14,6 +14,6 @@
 
 @property (nonatomic, readwrite) NSString *UserViewBasedOn;
 @property (nonatomic, strong) PFUser *userNameOfDeal;
-
+@property (nonatomic, strong) UIImage *parseImageReturned;
 
 @end

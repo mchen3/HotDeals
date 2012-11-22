@@ -25,6 +25,7 @@
 @synthesize reloadUserTableBlock;
 @synthesize hideDeleteButton;
 @synthesize storedPriceValue;
+@synthesize imageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

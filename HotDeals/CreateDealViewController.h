@@ -13,7 +13,6 @@
 {
 		
 		__weak IBOutlet UITextView *descriptField;
-		__weak IBOutlet UIImageView *imageView;
 		
 		__weak IBOutlet UITextField *priceField;
 		__weak IBOutlet UILabel *numberOfWords;
@@ -34,6 +33,7 @@
 @property (nonatomic, copy) void (^reloadUserTableBlock)(void);
 @property (nonatomic, readwrite) BOOL hideDeleteButton;
 @property (nonatomic, readwrite) NSString *storedPriceValue;
+@property (weak, nonatomic) IBOutlet PFImageView *imageView;
 
 @end
 
