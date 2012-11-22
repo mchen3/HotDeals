@@ -36,10 +36,10 @@
         self.pullToRefreshEnabled = YES;
         
         // Whether the built-in pagination is enabled
-        self.paginationEnabled = YES;
+        self.paginationEnabled = NO;
         
         // The number of objects to show per page
-        self.objectsPerPage = 50;
+        self.objectsPerPage = 25;
     }
 		
     return self;
@@ -366,11 +366,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-		
-		/* DEL
-		 NSString *hello = [object objectForKey:@"name"];
-		 NSLog(@"%@", hello);
-		 */
 		
 		PFObject *object = [self.objects objectAtIndex:[indexPath row]];
 		

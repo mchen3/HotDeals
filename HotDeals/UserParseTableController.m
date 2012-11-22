@@ -42,10 +42,10 @@
         self.pullToRefreshEnabled = YES;
         
         // Whether the built-in pagination is enabled
-        self.paginationEnabled = YES;
+        self.paginationEnabled = NO;
         
         // The number of objects to show per page
-        self.objectsPerPage = 50;
+        self.objectsPerPage = 5;
     }
     return self;
 }
@@ -202,6 +202,7 @@
 		//	NSLog(@"Outside");
     return query;
 }
+
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
