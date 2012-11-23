@@ -173,34 +173,33 @@
 				
 				NSLog(@"inside current location");
 				
-				
 				// Pull the location data from LocationDataManager
-				NSString *usersCurrentLocality =
-						[LocationDataManager sharedLocation].currentPlacemark.locality;
+				NSString *usersCurrentPostalCode =
+						[LocationDataManager sharedLocation].currentPlacemark.postalCode;
 				
-				// Check to see if locality is ready, if not return a empty table
-				if (usersCurrentLocality) {
-						NSLog(@"Current locality ready, query parse");
+				// Check to see if postal code is ready, if not return a empty table
+				if (usersCurrentPostalCode) {
+						NSLog(@"Current postal code ready, query parse");
 						[query orderByDescending:@"createdAt"];
-						[query whereKey:@"locality" equalTo:usersCurrentLocality];
+						[query whereKey:@"postalcode" equalTo:usersCurrentPostalCode];
 				} else {
-						NSLog(@"Current locality not ready, query empty parse");
-						[query whereKey:@"locality" equalTo:@""];
+						NSLog(@"Current postal code not ready, query empty parse");
+						[query whereKey:@"postalcode" equalTo:@""];
 				}
 		}
-		
+		 
 		// Return query based upon an address that the user entered
 		else if ([self.DealBasedOn isEqualToString:@"userEnteredAddress"]) {
 				
-				NSString *userEnteredLocality =
-				[LocationDataManager sharedLocation].addressPlacemark.locality;
-				if (userEnteredLocality) {
-						NSLog(@"Address locality ready, query parse");
+				NSString *userEnteredPostalCode =
+				[LocationDataManager sharedLocation].addressPlacemark.postalCode;
+				if (userEnteredPostalCode) {
+						NSLog(@"Address postal code ready, query parse");
 						[query orderByDescending:@"createdAt"];
-						[query whereKey:@"locality" equalTo:userEnteredLocality];
+						[query whereKey:@"postalcode" equalTo:userEnteredPostalCode];
 				} else {
-						NSLog(@"Address locality not ready, query empty parse");
-						[query whereKey:@"locality" equalTo:@""];
+						NSLog(@"Address postal code not ready, query empty parse");
+						[query whereKey:@"postalcode" equalTo:@""];
 				}
 				
 		}
@@ -238,8 +237,6 @@
 		 if (cell == nil) {
 		 cell = [[ItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		 }*/
-		
-		
 				
 		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
 		// Set the values for description and value

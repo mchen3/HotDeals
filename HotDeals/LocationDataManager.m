@@ -83,7 +83,7 @@
 		[self.locationManager stopUpdatingLocation];
 }
 
-
+/* Depreciated
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
@@ -91,8 +91,17 @@
 		NSLog(@"Delegate didUpdate location");
 		self.currentLocation = newLocation;
 		[self stopUpdatingCurrentLocation];
-		
 }
+*/
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+		NSLog(@"Delegate didUpdate location");
+
+		self.currentLocation = [locations lastObject];
+		[self stopUpdatingCurrentLocation];
+}
+
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
@@ -140,7 +149,7 @@
 				 CLPlacemark *placemark = [placemarks objectAtIndex:0];
 				 self.currentPlacemark = placemark;
 				 
-				 NSLog(@"Locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@ ", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country);
+				 NSLog(@"REVERSE Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
 				 
 				 // Notify DealViewController's subview DealsParseTableController
 				 // that the users' current location data is ready. The location
@@ -151,12 +160,13 @@
 		 }];
 } 
 /*
-We want a specific locality for the address the user has entered.
+We want a specific locality/postal code for the address the user has entered.
 We first forward geocode (findLocationByForwardGeocoding) the address string
 the user has entered to find a specific coordinate/location and then we use
 this location to reverse geocode (findPlacemarkByReverseGeocoding) to find a
-complete placemark. The placemark will contain the locality which will be 
-used by the DealsParseTableController to search deals based on locality
+complete placemark. The placemark will contain the locality/postal code which 
+will be used by the DealsParseTableController to search deals based on locality
+ / postal code
 */
 -(void)findLocationByForwardGeocoding:(NSString *)userEnteredAddress;
 {
@@ -170,6 +180,11 @@ used by the DealsParseTableController to search deals based on locality
 				
 				CLPlacemark *placemark = [placemarks objectAtIndex:0];
 				self.addressLocation = placemark.location;
+				
+		
+				
+				NSLog(@"FORWARD Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
+				
 				
 				// Find the complete placemark based on location
 				[self findPlacemarkByReverseGeocoding:self.addressLocation];
@@ -194,7 +209,7 @@ used by the DealsParseTableController to search deals based on locality
 		CLPlacemark *placemark = [placemarks objectAtIndex:0];
 		self.addressPlacemark = placemark;
 											 
-		NSLog(@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
+		NSLog(@"REVERSE Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
 											 
 		// Notify DealViewController subview DealsParseTableController
 		// that the address location data is ready

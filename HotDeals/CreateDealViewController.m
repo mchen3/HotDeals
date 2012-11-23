@@ -303,11 +303,16 @@ a ibaction on the price button when the action Editing Change occurs
 				
 				
 				// Set the location to the parse object
-				// Find the location for this user and save the locality to parse
-				//CLLocation *location = [LocationDataManager sharedLocation].currentLocation;
-				//CLLocationCoordinate2D coordinate = [LocationDataManager sharedLocation].currentLocation.coordinate;
+				// Postal code
+				NSString *postalcode = [LocationDataManager sharedLocation].currentPlacemark.postalCode;
+				[self.parseObject setObject:postalcode forKey:@"postalcode"];
+				
+				// Locality
 				NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
 				[self.parseObject setObject:locality forKey:@"locality"];
+				
+			
+				
 				
 				
 				// Set the image and thumbnail to the parse object
