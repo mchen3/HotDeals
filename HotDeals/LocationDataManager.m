@@ -39,7 +39,7 @@
 				sharedLocation = [[self alloc] init];
 		}
 		
-		NSLog(@"Location init");
+		NSLog(@"LocationDataManager init");
 		
 		return sharedLocation;
 }

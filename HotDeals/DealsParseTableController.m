@@ -179,7 +179,7 @@
 				
 				// Check to see if postal code is ready, if not return a empty table
 				if (usersCurrentPostalCode) {
-						NSLog(@"Current postal code ready, query parse");
+						NSLog(@"Current postal code ready, query parse %@", usersCurrentPostalCode);
 						[query orderByDescending:@"createdAt"];
 						[query whereKey:@"postalcode" equalTo:usersCurrentPostalCode];
 				} else {
@@ -458,12 +458,11 @@ press the addressLocation button.
 		
 		// Reload the table because a user has added a new deal,
 		// deleted a deal, or changed a deal.
+		NSLog(@"Notification UserDealChange");
 		[self loadObjects];
 }
 
-
 @end
-
 
 
 

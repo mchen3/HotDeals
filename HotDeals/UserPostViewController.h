@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) PFObject *parseObject;
 @property (nonatomic, copy) void (^dismissBlock)(void);
+- (IBAction)mapButton:(id)sender;
 
 
 @end

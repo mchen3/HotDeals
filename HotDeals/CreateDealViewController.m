@@ -311,8 +311,16 @@ a ibaction on the price button when the action Editing Change occurs
 				NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
 				[self.parseObject setObject:locality forKey:@"locality"];
 				
-			
-				
+				/* Placemark
+				CLPlacemark *placemark = [LocationDataManager sharedLocation].currentPlacemark;
+				NSArray *placemarkArray = [NSArray arrayWithObject:placemark];
+				[self.parseObject setObject:placemarkArray forKey:@"placemark"];
+				*/
+				 
+				// Geopoint
+				CLLocationCoordinate2D currentCoordinate = [LocationDataManager sharedLocation].currentPlacemark.location.coordinate;
+				PFGeoPoint *geopoint = [PFGeoPoint geoPointWithLatitude:currentCoordinate.latitude longitude:currentCoordinate.longitude];
+				[self.parseObject setObject:geopoint forKey:@"geopoint"];
 				
 				
 				// Set the image and thumbnail to the parse object

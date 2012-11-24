@@ -11,6 +11,7 @@
 #import "LocationDataManager.h"
 #import "UserViewController.h"
 #import "CreateDealViewController.h"
+#import "MapPostViewController.h"
 
 // DEl testing
 #import "ProfileViewController.h"
@@ -441,16 +442,18 @@
 		//NewsViewController *nvc = [[NewsViewController alloc] init];
 		//[self presentModalViewController:nvc animated:NO];
 		//}];
-		
-		
-		
-		
 }
 
+#pragma mark - Buttons
 
-
-
-
+- (IBAction)mapButton:(id)sender {
+		// Show the map of the deal 
+		MapPostViewController *mapPostViewController = [[MapPostViewController alloc] init];
+		// Pass our parse object
+		[mapPostViewController setParseObject:self.parseObject];
+		
+		[self.navigationController pushViewController:mapPostViewController animated:YES];
+}
 @end
 
 

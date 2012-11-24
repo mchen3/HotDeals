@@ -13,6 +13,7 @@
 #import "CategoryPicker.h"
 #import "Constants.h"
 #import "UserViewController.h"
+#import "MapPostViewController.h"
 
 @interface DealsItemViewController ()
 @end
@@ -382,6 +383,8 @@
     return YES;
 }
 
+#pragma mark - Buttons
+
 // Select button to see user profile
 - (IBAction)userButton:(id)sender {
 		
@@ -394,6 +397,16 @@
 		[userViewController setUserNameOfDeal:self.userNameOfDeal];
 		[self.navigationController pushViewController:userViewController animated:YES];
 		
+}
+
+- (IBAction)mapButton:(id)sender {
+		
+		// Display the exact location of this deal
+		MapPostViewController *mapPostViewController = [[MapPostViewController alloc] init];
+		// Pass our parse object
+		[mapPostViewController setParseObject:self.parseObject];
+		
+		[self.navigationController pushViewController:mapPostViewController animated:YES];
 }
 
 #pragma mark - Camera

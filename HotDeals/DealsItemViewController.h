@@ -30,6 +30,7 @@
 - (IBAction)backgroundTouched:(id)sender;
 - (id)initWithName:(BOOL)isNew;
 - (IBAction)userButton:(id)sender;
+- (IBAction)mapButton:(id)sender;
 
 
 @property (nonatomic, strong) Items *item;
