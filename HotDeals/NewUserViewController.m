@@ -242,9 +242,10 @@ showDialog:
 		 2) At the completion block of "currentLocationByReverseGeocoding", we will
 		 notifiy DealsParseTableController to reload its table
 		 */
+		NSLog(@"NewUser startUpdatingLocation");
 		LocationDataManager *locationDataManager = [LocationDataManager sharedLocation];
 		[locationDataManager startUpdatingCurrentLocation];
-		[locationDataManager currentLocationByReverseGeocoding];
+		//[locationDataManager currentLocationByReverseGeocoding];
 		
     // Set up a navigational controller and initialize with DealViewController
     // Add DealViewController to a Navigational Controller

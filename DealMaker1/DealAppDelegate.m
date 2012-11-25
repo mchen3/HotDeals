@@ -110,6 +110,7 @@
 - (void)presentMainViewController
 {
 		// Start the location data for this device
+		NSLog(@"App delegate sharedLocation");
 		[LocationDataManager sharedLocation];
 
     // Set up a navigational controller and initialize with DealViewController

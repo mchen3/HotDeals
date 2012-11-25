@@ -15,6 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CreateDealViewController.h"
 #import "ImageStore.h"
+#import "LocationDataManager.h"
 
 
 @interface UserViewController ()
@@ -82,7 +83,6 @@
     // Do any additional setup after loading the view from its nib.
 		
 		
-		NSLog(@"UVC LOAD");
 		
 		
 		
@@ -142,8 +142,13 @@
 
 -(void)addNewDeal:(id)sender
 {
-		// In order to create a new deal we must create a photo first
+		NSLog(@"XXXXX XXXXX Add New deal - startUpdating");
 		
+		// We are creating a new deal so let's find our current location
+		[[LocationDataManager sharedLocation] startUpdatingCurrentLocation];
+    //[[LocationDataManager sharedLocation] currentLocationByReverseGeocoding];
+		
+		// In order to create a new deal we must create a photo first
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 		
 		if ([UIImagePickerController isSourceTypeAvailable:
@@ -154,7 +159,6 @@
 		}
 		
 		[imagePicker setDelegate:self];
-		
 		[self presentViewController:imagePicker animated:YES completion:nil];
 		
 		

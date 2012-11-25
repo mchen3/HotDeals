@@ -86,7 +86,8 @@
 		
 		[self addChildViewController:self.dealsParseTableController];
 		[self.view addSubview:self.dealsParseTableController.view];
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 80.f, 320.f, 370.f);
+		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 80.f, 320.f, 370.f);
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 200.f, 320.f, 370.f);
 
 		
 		
@@ -98,16 +99,24 @@
 		// ??? Notifications
 		[[NSNotificationCenter defaultCenter] addObserver:self
 																						 selector:@selector(dealCreated:) name:kDealCreatedNotification object:nil];
+		
+		// DEBUGING
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedCurrentLocation) name:@"updatedCurrentLocation" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedAddressLocation) name:@"updatedAddressLocation" object:nil];
 }
 
 - (void)viewDidUnload
 {
 		addressField = nil;
-		placeMark = nil;
     [super viewDidUnload];
 		
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 																										name:kDealCreatedNotification object:nil];
+		// DEBUG
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+																										name:@"updatedCurrentLocation" object:nil];
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+																										name:@"updatedAddressLocation" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -128,6 +137,12 @@
 - (void)dealloc {
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 																										name:kDealCreatedNotification object:nil];
+		// DEBUG
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+																										name:@"updatedCurrentLocation" object:nil];
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+																										name:@"updatedAddressLocation" object:nil];
+
 }
 
 #pragma mark - Notification callback
@@ -336,11 +351,6 @@
 		NSString *userEnteredAddress = [addressField text];
 		if (userEnteredAddress ) {
 				[locationManager findLocationByForwardGeocoding:userEnteredAddress];
-
-				//DEBUG
-				CLPlacemark *placemark = locationManager.addressPlacemark;
-						NSString *location = [NSString stringWithFormat:@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode];
-						[placeMark setText:location];			
 		}
 		
 }
@@ -348,18 +358,53 @@
 // Search deals based on user's current location
 - (IBAction)dealsBasedOnUserLocation:(id)sender {
 		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
+		NSLog(@"Current location pressed - startUpdatingCurrentLocation");
 		[locationManager startUpdatingCurrentLocation];
-		[locationManager currentLocationByReverseGeocoding];
+		//[locationManager currentLocationByReverseGeocoding];
 		
-		//DEBUG
-		CLPlacemark *placemark = locationManager.currentPlacemark;
-		NSString *location = [NSString stringWithFormat:@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode];
-		[placeMark setText:location];
+		
 
 }
 
+// DEBUG
+- (void)updatedCurrentLocation {
+		
+		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
+		CLPlacemark *placemark = locationManager.currentPlacemark;
+		
+		NSString *location1 = [NSString stringWithFormat:@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode];
+		
+		//NSLog(@"Notification updatedLocation: %@", placemark.addressDictionary);
+		NSLog(@"Notification updatedLocation");
+
+		
+		NSString *location = [NSString stringWithFormat:@"updatedCurrentLocation: %@, dict:%@, locality: %@", placemark.location ,
+													placemark.addressDictionary   ,   placemark.locality];
+
+		
+		[placemarkView setText:location];
+		
+		
+}
+
+// DEBUG
+- (void)updatedAddressLocation {
+		
+		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
+		CLPlacemark *placemark = locationManager.addressPlacemark;
+		
+		NSLog(@"Notification addressLocation");
+
+		
+		NSString *location = [NSString stringWithFormat:@"updatedAddressLocation: %@, dict:%@, locality: %@", placemark.location ,
+													placemark.addressDictionary   ,   placemark.locality];
+		
+		
+		[placemarkView setText:location];
 
 
+		
+}
 @end
 
 

@@ -187,7 +187,6 @@
 						[query whereKey:@"user" equalTo:user];
 						//  Multiple contraints on a query
 						// [query whereKey:@"name" equalTo:@"second"];
-						NSLog(@"UUSSSSE");
 						
 				}
 				else {
