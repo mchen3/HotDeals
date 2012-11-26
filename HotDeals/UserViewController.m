@@ -34,7 +34,7 @@
 		
 		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
 				//??? Change to show the username of the random profile
-				[[self navigationItem] setTitle:@"UVC Random Profile"];
+				//[[self navigationItem] setTitle:@"UVC Random Profile"];
 		}
 		
 		if (self) {
@@ -82,9 +82,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 		
-		
-		
-		
+		/* Set the nav title depending on if the userView is in the
+		 DealTab, he's a random user, or if he's in the UserTab
+		 ie he's the current user	*/
+		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
+				// Set the UVC's random profile
+				PFUser *randomUser = self.userNameOfDeal;
+				[[self navigationItem] setTitle:randomUser.username];
+		}
+		else {
+				PFUser *currentUser = [PFUser currentUser];
+				[[self navigationItem] setTitle:currentUser.username];
+		}
+			
 		
 		// DealsParseTableController for the UserViewController
 		

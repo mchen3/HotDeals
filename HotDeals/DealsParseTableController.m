@@ -376,7 +376,6 @@
 		PFUser *userNameOfDeal = [object objectForKey:@"user"];
 		[dealsItemViewController setUserNameOfDeal:userNameOfDeal];
 		
-		
 		// Set dismiss block for didselectrowatindexpath
 		// Previous bug, when you select row and then return it crashed
 		// you set it for for addnewitem in DVC but you didn't for didselectrow

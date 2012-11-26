@@ -85,8 +85,6 @@
 		 [object setObject:[nameField text] forKey:@"name"];
 		 */
 		
-		// A new parse parseobject was created and passed from [DVC add]
-		[self.parseObject setObject:[nameField text] forKey:@"name"];
 		
 		// Set ACLs
 		
@@ -337,6 +335,22 @@
     
     // Set the background color of the item view to the table view color
     [[self view] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+		
+		// Show the date the deal was created
+		NSDate *dateData = self.parseObject.createdAt;
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"MM-dd-yyyy"];
+		NSString *dateString = [formatter  stringFromDate:dateData];
+		[dateLabel setText:dateString];
+		
+		/* Show the username of the person who created the deal. We must
+		fetch for the user data of the random PFUser to make it available
+		*/ 
+		PFUser *user = self.userNameOfDeal;
+		[user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+				NSString *userString = user.username;
+				[userButtonLabel setTitle:userString forState:UIControlStateNormal];
+		}];
 }
 
 - (void)viewDidUnload
@@ -453,7 +467,7 @@
 				[[ImageStore defaultImageStore] deleteImageForKey:oldImage];
 		}
 		*/
-		
+
     // Get picked image from info dictionary
    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];		
 		

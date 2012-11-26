@@ -55,6 +55,7 @@
 		60C1076716448EC000B8379B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C1076616448EC000B8379B /* AdSupport.framework */; };
 		60C1076916448EDD00B8379B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C1076816448EDD00B8379B /* libsqlite3.dylib */; };
 		60C1076B16448EF600B8379B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C1076A16448EF600B8379B /* Social.framework */; };
+		60DDD1B21664055A0018EA8B /* mappin.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DDD1B11664055A0018EA8B /* mappin.png */; };
 		60EA6FCD162749E600A1B765 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6FCB162749E600A1B765 /* UserViewController.m */; };
 		60EA6FCE162749E600A1B765 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA6FCC162749E600A1B765 /* UserViewController.xib */; };
 		60F151A8163B04C9004527BD /* UserParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F151A7163B04C9004527BD /* UserParseTableController.m */; };
@@ -142,6 +143,7 @@
 		60C1076616448EC000B8379B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		60C1076816448EDD00B8379B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		60C1076A16448EF600B8379B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		60DDD1B11664055A0018EA8B /* mappin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mappin.png; path = ../../../mappin.png; sourceTree = "<group>"; };
 		60E37CB01657E84E0078E24D /* PAWActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PAWActivityView.h; path = HotDeals/PAWActivityView.h; sourceTree = "<group>"; };
 		60E37CB11657E84E0078E24D /* PAWActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PAWActivityView.m; path = HotDeals/PAWActivityView.m; sourceTree = "<group>"; };
 		60EA6FCA162749E600A1B765 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = HotDeals/UserViewController.h; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 		60B48F7315A89E8200A52C2E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				60DDD1B11664055A0018EA8B /* mappin.png */,
 				6051C796165D51C300F91C6E /* test.png */,
 				60B48F7415A89E8200A52C2E /* Hypno.png */,
 				60B48F7515A89E8200A52C2E /* Hypno@2x.png */,
@@ -480,6 +483,7 @@
 				6017F04D165C564400DB72EB /* ProfileViewController.xib in Resources */,
 				6051C797165D51C300F91C6E /* test.png in Resources */,
 				6051C7FF16602FE300F91C6E /* MapPostViewController.xib in Resources */,
+				60DDD1B21664055A0018EA8B /* mappin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

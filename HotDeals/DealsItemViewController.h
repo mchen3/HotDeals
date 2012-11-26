@@ -14,13 +14,18 @@
 , UITextViewDelegate>
 {
     
-    __weak IBOutlet UITextField *nameField;
     __weak IBOutlet UITextView *descriptField;
     __weak IBOutlet UILabel *dateCreated;
     
 		__weak IBOutlet PFImageView *imageView;
 		__weak IBOutlet UIButton *categoryButton;
 		__weak IBOutlet UILabel *priceLabel;
+		
+		__weak IBOutlet UIButton *mapButtonLabel;
+		
+		__weak IBOutlet UILabel *dateLabel;
+		
+		__weak IBOutlet UIButton *userButtonLabel;
 		
 		UIImage *imageTest;
 		NSString *tempImageKey;

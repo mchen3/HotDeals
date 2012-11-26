@@ -301,11 +301,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HotDeals/UserViewController.m"
-         timestampString = "375544833.949353"
+         timestampString = "375658820.845841"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "372"
-         endingLineNumber = "372">
+         startingLineNumber = "382"
+         endingLineNumber = "382">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -487,6 +487,58 @@
          startingLineNumber = "47"
          endingLineNumber = "47"
          landmarkName = "-viewWillAppear:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "HotDeals/DealsItemViewController.m"
+         timestampString = "375658820.845841"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "343"
+         endingLineNumber = "343"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "HotDeals/DealsItemViewController.m"
+         timestampString = "375658820.845841"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "353"
+         endingLineNumber = "353"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "HotDeals/ProfileViewController.m"
+         timestampString = "375656516.003519"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "HotDeals/DealsParseTableController.m"
+         timestampString = "375658066.376918"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "377"
+         endingLineNumber = "377"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
