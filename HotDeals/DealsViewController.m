@@ -29,7 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Set the title of the nav bar
-        [[self navigationItem] setTitle:@"DVC Deals"];
+				//  [[self navigationItem] setTitle:@"DVC Deals"];
         
 				/* DEL
 				 There is no edit or delete for the DVC
@@ -46,6 +46,7 @@
 				 // setEditing:animated method
 				 [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 				 */
+				
 		}
     return self;
 }
@@ -56,15 +57,17 @@
 {
     [super viewDidLoad];
 		
-    // Do any additional setup after loading the view from its nib.
-    
-    /*** DEL
-		 table that was created in BNR
-		 // Set background image of the table view
-		 UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Image.png"]];
-		 [image setFrame:table.frame];
-		 // [table setBackgroundView:image];
-		 */
+		
+    // Do any additional setup after loading the view from its nib
+		
+		// Set the values for the enterAddress and currentAddress buttons
+		[enterAddressButton.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+		[enterAddressButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+		[enterAddressButton setTitle:@"Enter\nAddress" forState:UIControlStateNormal];
+		[currentAddressButton.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+		[enterAddressButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+		[currentAddressButton setTitle:@"Current\nAddress" forState:UIControlStateNormal];
+		
 		
 		// Load the lib for the table cell and register it to the tableView
 		UINib *nib = [UINib nibWithNibName:@"ItemCell" bundle:nil];
@@ -79,28 +82,23 @@
 		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor darkGrayColor]];
 		// Use custom ItemCell
 		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
-		 
+		
 		
 		// Configure parse table to display based on location
 		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 		
 		[self addChildViewController:self.dealsParseTableController];
 		[self.view addSubview:self.dealsParseTableController.view];
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 80.f, 320.f, 370.f);
+		// COnfig just at the edge, showing a little
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 50.f, 320.f, 408.f);
 		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 200.f, 320.f, 370.f);
-
-		
-		
-		
-		
-		
+		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 0.f, 320.f, 370.f);
 		
 		
 		// ??? Notifications
 		[[NSNotificationCenter defaultCenter] addObserver:self
 																						 selector:@selector(dealCreated:) name:kDealCreatedNotification object:nil];
 		
-		// DEBUGING
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedCurrentLocation) name:@"updatedCurrentLocation" object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedAddressLocation) name:@"updatedAddressLocation" object:nil];
 }
@@ -112,7 +110,6 @@
 		
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 																										name:kDealCreatedNotification object:nil];
-		// DEBUG
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 																										name:@"updatedCurrentLocation" object:nil];
 		[[NSNotificationCenter defaultCenter] removeObserver:self
@@ -137,12 +134,11 @@
 - (void)dealloc {
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 																										name:kDealCreatedNotification object:nil];
-		// DEBUG
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 																										name:@"updatedCurrentLocation" object:nil];
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 																										name:@"updatedAddressLocation" object:nil];
-
+		
 }
 
 #pragma mark - Notification callback
@@ -361,48 +357,37 @@
 		NSLog(@"Current location pressed - startUpdatingCurrentLocation");
 		[locationManager startUpdatingCurrentLocation];
 		//[locationManager currentLocationByReverseGeocoding];
-		
-		
-
 }
 
-// DEBUG
+#pragma mark - NSNotification handlers
 - (void)updatedCurrentLocation {
 		
+		// A notification was recieved, we have updated to user's current location
+		// Update the title bar to reflect the new address
 		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
 		CLPlacemark *placemark = locationManager.currentPlacemark;
 		
-		NSString *location1 = [NSString stringWithFormat:@"Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode];
+		NSArray *formattedAddressLines = [placemark.addressDictionary valueForKey:@"FormattedAddressLines"];
+		NSString *address = [formattedAddressLines objectAtIndex:1];
+		[[self navigationItem] setTitle:address];
 		
-		//NSLog(@"Notification updatedLocation: %@", placemark.addressDictionary);
-		NSLog(@"Notification updatedLocation");
-
-		
-		NSString *location = [NSString stringWithFormat:@"updatedCurrentLocation: %@, dict:%@, locality: %@", placemark.location ,
-													placemark.addressDictionary   ,   placemark.locality];
-
-		
-		[placemarkView setText:location];
-		
-		
+		// Release the keyobard after you found an address
+		[addressField resignFirstResponder];
 }
 
-// DEBUG
 - (void)updatedAddressLocation {
 		
+		// A notification was recieved, we have updated to a location that the user
+		// has specified. Update the title bar to reflect the address
 		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
 		CLPlacemark *placemark = locationManager.addressPlacemark;
 		
-		NSLog(@"Notification addressLocation");
-
+		NSArray *formattedAddressLines = [placemark.addressDictionary valueForKey:@"FormattedAddressLines"];
+		NSString *address = [formattedAddressLines objectAtIndex:1];
+		[[self navigationItem] setTitle:address];
 		
-		NSString *location = [NSString stringWithFormat:@"updatedAddressLocation: %@, dict:%@, locality: %@", placemark.location ,
-													placemark.addressDictionary   ,   placemark.locality];
-		
-		
-		[placemarkView setText:location];
-
-
+		// Release the keyobard after you found an address
+		[addressField resignFirstResponder];
 		
 }
 @end

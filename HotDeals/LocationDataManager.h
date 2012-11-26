@@ -5,12 +5,10 @@
 //  Created by Mike Chen on 10/24/12.
 //
 //
-
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
 @interface LocationDataManager : NSObject <CLLocationManagerDelegate>
-
 
 + (LocationDataManager *)sharedLocation;
 -(void)findLocationByForwardGeocoding:(NSString *)userEnteredAddress;
