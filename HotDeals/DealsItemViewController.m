@@ -343,9 +343,9 @@
 		NSString *dateString = [formatter  stringFromDate:dateData];
 		[dateLabel setText:dateString];
 		
-		/* Show the username of the person who created the deal. We must
-		fetch for the user data of the random PFUser to make it available
-		*/ 
+		/* Show the username of the person who created the deal. 
+		 The user data for PFUser is only available for the current user
+		 so we must fetch for the user data of the random PFUser*/ 
 		PFUser *user = self.userNameOfDeal;
 		[user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
 				NSString *userString = user.username;

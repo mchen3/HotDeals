@@ -12,16 +12,15 @@
 @interface UserPostViewController : UIViewController <UITextFieldDelegate,  UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
 		
-		__weak IBOutlet UITextField *nameField;
+		
 		__weak IBOutlet UITextView *descriptField;
-		
-		__weak IBOutlet UITextField *priceField;
-		
-		__weak IBOutlet UILabel *dateCreated;
 		
 		__weak IBOutlet PFImageView *imageView;
 		
-}
+		__weak IBOutlet UILabel *priceLabel;
+		
+		__weak IBOutlet UILabel *dateLabel;
+	}
 
 -(id)initWithName:(BOOL)isNew;
 - (IBAction)takePicture:(id)sender;

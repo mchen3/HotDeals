@@ -171,24 +171,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-		// Load the Parse objects
-		//[nameField setText:[self.parseObject objectForKey:@"name"]];
-		// Set the values for description and price
-		[descriptField setText:[self.parseObject objectForKey:@"description"]];
-		[priceField setText:[self.parseObject objectForKey:@"price"]];
-		
-		// Set the image
-		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
-		if (imageKey) {
-				/* We want to load the big imageView asynchronously so the UI will be more
-				 responsive. We will pass our PFImageView imageView and imageKey to the
-				 ImageStore so that class will take care of setting the our image. */
-				[[ImageStore defaultImageStore] setLazyLoadPFImageView:imageView];
-				[[ImageStore defaultImageStore] imageForKey:imageKey];
-		}
-
-
-		
+				
 		
 }
 
@@ -272,6 +255,33 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+		
+		// Load the Parse objects
+		//[nameField setText:[self.parseObject objectForKey:@"name"]];
+		// Set the values for description and price
+		[descriptField setText:[self.parseObject objectForKey:@"description"]];
+		
+		// Set the image
+		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
+		if (imageKey) {
+				/* We want to load the big imageView asynchronously so the UI will be more
+				 responsive. We will pass our PFImageView imageView and imageKey to the
+				 ImageStore so that class will take care of setting the our image. */
+				[[ImageStore defaultImageStore] setLazyLoadPFImageView:imageView];
+				[[ImageStore defaultImageStore] imageForKey:imageKey];
+		}
+		
+		// Show the date the deal was created
+		NSDate *dateData = self.parseObject.createdAt;
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"MM-dd-yyyy"];
+		NSString *dateString = [formatter  stringFromDate:dateData];
+		[dateLabel setText:dateString];
+
+		// Set the price
+		NSString *price = [self.parseObject objectForKey:@"price"];
+		[priceLabel setText:price];
+		
 }
 
 - (void)viewDidUnload
@@ -282,9 +292,6 @@
 		
 		
 		descriptField = nil;
-		nameField = nil;
-		priceField = nil;
-		dateCreated = nil;
 		imageView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
