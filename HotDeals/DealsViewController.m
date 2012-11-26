@@ -86,8 +86,8 @@
 		
 		[self addChildViewController:self.dealsParseTableController];
 		[self.view addSubview:self.dealsParseTableController.view];
-		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 80.f, 320.f, 370.f);
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 200.f, 320.f, 370.f);
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 80.f, 320.f, 370.f);
+		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 200.f, 320.f, 370.f);
 
 		
 		
