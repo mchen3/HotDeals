@@ -26,6 +26,7 @@
 		__weak IBOutlet UILabel *dateLabel;
 		
 		__weak IBOutlet UIButton *userButtonLabel;
+		__weak IBOutlet UIImageView *mapPinView;
 		
 		UIImage *imageTest;
 		NSString *tempImageKey;

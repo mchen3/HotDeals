@@ -15,6 +15,7 @@
 #import "DealsParseTableController.h"
 #import "Constants.h"
 #import "LocationDataManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DealsViewController ()
 @property (nonatomic, strong) DealsParseTableController *dealsParseTableController;
@@ -53,17 +54,44 @@
 
 #pragma mark - View lifecycle
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-		
-		
+
     // Do any additional setup after loading the view from its nib
 		
+		// Set the nav bar to black
+		[[self navigationController].navigationBar setTintColor:[UIColor blackColor]];
+
+		// Add a little padding next to the search icon inside the address field
+		UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+		addressField.leftView = paddingView;
+		addressField.leftViewMode = UITextFieldViewModeAlways;
+		
 		// Set the values for the enterAddress and currentAddress buttons
+		/* Customize the background color of our UIbuttons. Currently the only way
+		   to set the background color of UIButton is to set an image. We use our
+		   method imageFromColor to set the color */
+		[enterAddressButton setBackgroundImage:[DealsViewController imageFromColor:[UIColor darkGrayColor]]forState:UIControlStateNormal];
+		enterAddressButton.layer.cornerRadius = 8.0;
+		enterAddressButton.layer.masksToBounds = YES;
+		enterAddressButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		enterAddressButton.layer.borderWidth = 1;
+		// Set the font type and size
+		[enterAddressButton.titleLabel setFont:		[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0]];
+		// Customize our button to include line breaks so words are on top of each other
 		[enterAddressButton.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
 		[enterAddressButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
 		[enterAddressButton setTitle:@"Enter\nAddress" forState:UIControlStateNormal];
+		
+		[currentAddressButton setBackgroundImage:[DealsViewController imageFromColor:[UIColor darkGrayColor]] forState:UIControlStateNormal];
+		currentAddressButton.layer.cornerRadius = 8.0;
+		currentAddressButton.layer.masksToBounds = YES;
+		currentAddressButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		currentAddressButton.layer.borderWidth = 1;
+		[enterAddressButton.titleLabel setFont:		[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0]];
 		[currentAddressButton.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
 		[enterAddressButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
 		[currentAddressButton setTitle:@"Current\nAddress" forState:UIControlStateNormal];
@@ -90,7 +118,7 @@
 		[self addChildViewController:self.dealsParseTableController];
 		[self.view addSubview:self.dealsParseTableController.view];
 		// COnfig just at the edge, showing a little
-		self.dealsParseTableController.view.frame = CGRectMake(0.f, 50.f, 320.f, 408.f);
+		self.dealsParseTableController.view.frame = CGRectMake(0.f, 58.f, 320.f, 408.f);
 		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 200.f, 320.f, 370.f);
 		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 0.f, 320.f, 370.f);
 		
@@ -359,6 +387,19 @@
 		//[locationManager currentLocationByReverseGeocoding];
 }
 
+// Class method we used to customize the color of our UIButton
++ (UIImage *) imageFromColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    //  [[UIColor colorWithRed:222./255 green:227./255 blue: 229./255 alpha:1] CGColor]) ;
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
 #pragma mark - NSNotification handlers
 - (void)updatedCurrentLocation {
 		
@@ -367,11 +408,12 @@
 		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
 		CLPlacemark *placemark = locationManager.currentPlacemark;
 		
+		// Set the nav title to the address dictionary of our current placemark
 		NSArray *formattedAddressLines = [placemark.addressDictionary valueForKey:@"FormattedAddressLines"];
 		NSString *address = [formattedAddressLines objectAtIndex:1];
 		[[self navigationItem] setTitle:address];
 		
-		// Release the keyobard after you found an address
+		// Release the keyboard after you found an address
 		[addressField resignFirstResponder];
 }
 
@@ -382,6 +424,7 @@
 		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
 		CLPlacemark *placemark = locationManager.addressPlacemark;
 		
+		// Set the nav title to the address dictionary of our current placemark
 		NSArray *formattedAddressLines = [placemark.addressDictionary valueForKey:@"FormattedAddressLines"];
 		NSString *address = [formattedAddressLines objectAtIndex:1];
 		[[self navigationItem] setTitle:address];

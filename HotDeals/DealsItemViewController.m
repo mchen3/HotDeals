@@ -336,6 +336,8 @@
     // Set the background color of the item view to the table view color
     [[self view] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		
+		
+		
 		// Show the date the deal was created
 		NSDate *dateData = self.parseObject.createdAt;
 		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -357,6 +359,7 @@
 {
     imageView = nil;
 		
+    mapPinView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

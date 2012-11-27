@@ -231,37 +231,36 @@
     // Add DealViewController to a Navigational Controller
     DealsViewController *dealViewController = [[DealsViewController alloc] init];
     UINavigationController *dealNavController = [[UINavigationController alloc] initWithRootViewController:dealViewController];
-    // Set the tab name for the Deals View Controller
-    UITabBarItem *dealTabBar = [[UITabBarItem alloc]
-																initWithTitle:@"Deal of the day" image:nil tag:nil];
+		
+		// Customize our tab image and text attributes
+		UIImage *dealTabImage = [UIImage imageNamed:@"dealtabimage.png"];
+    UITabBarItem *dealTabBar = [[UITabBarItem alloc] initWithTitle:@"Find Deals" image:dealTabImage tag:1];
+		[dealTabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,[NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
     [dealNavController setTabBarItem:dealTabBar];
 		
 		UserViewController *userViewController = [[UserViewController alloc] initWithTab:@"UserTab"];
 		UINavigationController *userNavController = [[UINavigationController alloc]
 																								 initWithRootViewController:userViewController];
-		UITabBarItem *userTabBar = [[UITabBarItem alloc]
-																initWithTitle:@"User" image:nil tag:nil];
+		UIImage *userTabImage = [UIImage imageNamed:@"usertabimage.png"];
+		UITabBarItem *userTabBar = [[UITabBarItem alloc] initWithTitle:@"User" image:userTabImage tag:2];
+		[userTabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,[NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
 		[userNavController setTabBarItem:userTabBar];
 		
-		
-		ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
 		UINavigationController *profileNavController = [[UINavigationController alloc]
 																										initWithRootViewController:profileViewController];
-    UITabBarItem *profileTabBar = [[UITabBarItem alloc] initWithTitle:@"Profile" image:nil tag:nil];
+		UIImage *profileTabImage = [UIImage imageNamed:@"profiletabimage.png"];
+    UITabBarItem *profileTabBar = [[UITabBarItem alloc] initWithTitle:@"Profile" image:profileTabImage tag:3];
+		[profileTabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,[NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
     [profileNavController setTabBarItem:profileTabBar];
 		[profileNavController setNavigationBarHidden:YES];
-
 		
-		// Create the TabBarController and initialize with our controllers
     UITabBarController *tarBarController = [[UITabBarController alloc] init];
     NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, profileNavController, nil];
+		
     [tarBarController setViewControllers:viewControllers];
-		
-		
 		[(UINavigationController *)self.presentingViewController pushViewController:
 		 tarBarController animated:NO];
-		
-		
 		[self.presentingViewController dismissViewControllerAnimated:YES
 																											completion:^{}];
     
