@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "UserViewController.h"
 #import "MapPostViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DealsItemViewController ()
 @end
@@ -31,7 +32,7 @@
 		self = [super initWithNibName:@"DealsItemViewController" bundle:nil];
 		
 		// Hide the tab bar
-		self.hidesBottomBarWhenPushed = YES;
+		//self.hidesBottomBarWhenPushed = YES;
 		
 		if (self) {
 				if (isNew) {
@@ -333,10 +334,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // Set the background color of the item view to the table view color
-    [[self view] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-		
-		
+		// Make the description field rounded on the corners
+		descriptField.layer.cornerRadius = 7.5;
 		
 		// Show the date the deal was created
 		NSDate *dateData = self.parseObject.createdAt;

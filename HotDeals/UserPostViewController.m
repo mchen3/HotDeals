@@ -29,8 +29,6 @@
 @synthesize dismissBlock;
 @synthesize parseObject;
 
-
-
 #pragma mark - Init
 
 - (id)initWithName:(BOOL)isNew
