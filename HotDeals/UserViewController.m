@@ -45,11 +45,12 @@
 				if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
 						
 						// Set the title of the nav bar to be the user
-						[[self navigationItem] setTitle:@"UVC User Profile"];
+						//[[self navigationItem] setTitle:@"UVC User Profile"];
 						
 						// Add a right bar button of type 'ADD' programmically
 						// to add items to the table
 						UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addNewDeal:)];
+						[button setTintColor:[UIColor lightGrayColor]];
 						
 						// Add a image to the button
 						[[self navigationItem] setRightBarButtonItem:button];

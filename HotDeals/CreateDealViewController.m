@@ -38,10 +38,12 @@
 				saveItem = [[UIBarButtonItem alloc]
 																		 initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 				[[self navigationItem] setRightBarButtonItem:saveItem];
+				[saveItem setTintColor:[UIColor blueColor]];
 				
 				UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
 																			 initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:
 																			 @selector(cancel:)];
+				[cancelItem setTintColor:[UIColor darkGrayColor]];
 				[[self navigationItem] setLeftBarButtonItem:cancelItem];
 				
 		}
@@ -124,12 +126,12 @@
 		[deleteDealButton setBackgroundImage:[CreateDealViewController imageFromColor:[UIColor lightGrayColor]]forState:UIControlStateNormal];
 		deleteDealButton.layer.cornerRadius = 8.0;
 		deleteDealButton.layer.masksToBounds = YES;
-		deleteDealButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		deleteDealButton.layer.borderColor = [UIColor blackColor].CGColor;
 		deleteDealButton.layer.borderWidth = 1;
 		[editImageButton setBackgroundImage:[CreateDealViewController imageFromColor:[UIColor lightGrayColor]]forState:UIControlStateNormal];
 		editImageButton.layer.cornerRadius = 8.0;
 		editImageButton.layer.masksToBounds = YES;
-		editImageButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		editImageButton.layer.borderColor = [UIColor blackColor].CGColor;
 		editImageButton.layer.borderWidth = 1;
 		
 		[deleteDealButton setTitle:@"Delete" forState:UIControlStateNormal];

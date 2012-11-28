@@ -57,7 +57,7 @@ CLLocationCoordinate2D location;
     // Do any additional setup after loading the view from its nib.
 		
 		// Make the description field rounded on the corners
-		// Must import the Quartz class to implement this
+		// Must import the QuartzCore class to implement this
     self.descriptionLabel.layer.cornerRadius = 7.5;
 		
 		self.navigationItem.title = @"Map Location";

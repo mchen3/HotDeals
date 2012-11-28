@@ -10,6 +10,7 @@
 #import "WelcomeViewController.h"
 #import <Parse/Parse.h>
 #import "DealAppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ProfileViewController ()
 
@@ -37,7 +38,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 		
-		//NSLog(@"TAG integer %i", self.navigationController.tabBarItem.tag);
+		// Set the values for the enterAddress and currentAddress buttons
+		/* Customize the background color of our UIbuttons. Currently the only way
+		 to set the background color of UIButton is to set an image. We use our
+		 method imageFromColor to set the color. Must import QuartzCore */
+		[self.logOutButton setBackgroundImage:[ProfileViewController imageFromColor:[UIColor lightGrayColor]]forState:UIControlStateNormal];
+		self.logOutButton.layer.cornerRadius = 7.5;
+		self.logOutButton.layer.masksToBounds = YES;
+		self.logOutButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		self.logOutButton.layer.borderWidth = 1;
 		
 		[self.imageView setImage:[UIImage imageNamed:@"Time.png"]];
 		
@@ -48,6 +57,7 @@
 
 - (void)viewDidUnload
 {
+		[self setLogOutButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -60,12 +70,11 @@
 
 #pragma mark - Buttons
 
-- (IBAction)logOutButton:(id)sender {
+- (IBAction)logOutButtonSelected:(id)sender {
 		[PFUser logOut];
-
+		
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Log out of HotDeals?" message:nil delegate:self cancelButtonTitle:@"Log out" otherButtonTitles:@"Cancel", nil];
 		[alertView show];
-		
 }
 
 #pragma mark - UIAlertViewDelegate methods
@@ -86,6 +95,22 @@
 				[[appDelegate window] setRootViewController:welcomeNavController];		
 		} 
 }
+
+#pragma mark - User Interface
+
+// Class method we used to customize the color of our UIButton
++ (UIImage *) imageFromColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    //  [[UIColor colorWithRed:222./255 green:227./255 blue: 229./255 alpha:1] CGColor]) ;
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
 
 
 @end

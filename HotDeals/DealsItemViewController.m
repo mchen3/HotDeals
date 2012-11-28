@@ -334,9 +334,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-
+		// Set the color of the nav items back button and all other buttons
+		// for viewcontrollers that get pushed onto the stack
+		[[UIBarButtonItem appearance] setTintColor:[UIColor darkGrayColor]];
+		
 		// Make the description field and image rounded on the corners,
-		// must import the Quartz class
+		// must import the QuartzCore class
 		descriptField.layer.cornerRadius = 7.5;
 		imageView.layer.cornerRadius = 10;
 

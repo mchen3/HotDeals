@@ -66,36 +66,42 @@
 		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 
 		// Add a little padding next to the search icon inside the address field
-		UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+		UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 20)];
 		addressField.leftView = paddingView;
 		addressField.leftViewMode = UITextFieldViewModeAlways;
+		// Change the color of the border line. Must import QuartzCore
+    addressField.layer.masksToBounds=YES;
+    addressField.layer.borderColor=[[UIColor darkGrayColor]CGColor];
+    addressField.layer.borderWidth= 1;
 		
 		// Set the values for the enterAddress and currentAddress buttons
 		/* Customize the background color of our UIbuttons. Currently the only way
 		   to set the background color of UIButton is to set an image. We use our
-		   method imageFromColor to set the color */
-		[enterAddressButton setBackgroundImage:[DealsViewController imageFromColor:[UIColor darkGrayColor]]forState:UIControlStateNormal];
-		enterAddressButton.layer.cornerRadius = 8.0;
+		   method imageFromColor to set the color. Must import QuartzCore class */
+		// Set the color to light blue with heavy transparancy
+		[enterAddressButton setBackgroundImage:[DealsViewController imageFromColor:[UIColor colorWithRed:31.0/255.0 green:90.0/255.0 blue:255.0/255.0 alpha:.3]]forState:UIControlStateNormal];
+		enterAddressButton.layer.cornerRadius = 7.5;
 		enterAddressButton.layer.masksToBounds = YES;
-		enterAddressButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		// Set the border color to be the same as the background	
+		// 	Will create a light blue transparent line around the edge of the button
+		enterAddressButton.layer.borderColor = [UIColor colorWithRed:31.0/255.0 green:90.0/255.0 blue:255.0/255.0 alpha:.3].CGColor;
 		enterAddressButton.layer.borderWidth = 1;
-		// Set the font type and size
-		[enterAddressButton.titleLabel setFont:		[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0]];
 		// Customize our button to include line breaks so words are on top of each other
 		[enterAddressButton.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
 		[enterAddressButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
 		[enterAddressButton setTitle:@"Enter\nAddress" forState:UIControlStateNormal];
-		
-		[currentAddressButton setBackgroundImage:[DealsViewController imageFromColor:[UIColor darkGrayColor]] forState:UIControlStateNormal];
-		currentAddressButton.layer.cornerRadius = 8.0;
+		[enterAddressButton.titleLabel setTextColor:[UIColor blueColor]];
+
+		[currentAddressButton setBackgroundImage:[DealsViewController imageFromColor:[UIColor colorWithRed:31.0/255.0 green:90.0/255.0 blue:255.0/255.0 alpha:.3]]forState:UIControlStateNormal];
+		currentAddressButton.layer.cornerRadius = 7.5;
 		currentAddressButton.layer.masksToBounds = YES;
-		currentAddressButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		currentAddressButton.layer.borderColor = [UIColor colorWithRed:31.0/255.0 green:90.0/255.0 blue:255.0/255.0 alpha:.3].CGColor;
 		currentAddressButton.layer.borderWidth = 1;
-		[enterAddressButton.titleLabel setFont:		[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0]];
 		[currentAddressButton.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
 		[enterAddressButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
 		[currentAddressButton setTitle:@"Current\nAddress" forState:UIControlStateNormal];
-		
+		[currentAddressButton.titleLabel setTextColor:[UIColor blueColor]];
+
 		
 		// Load the lib for the table cell and register it to the tableView
 		UINib *nib = [UINib nibWithNibName:@"ItemCell" bundle:nil];

@@ -13,7 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionField;
+- (IBAction)logOutButtonSelected:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *logOutButton;
 
-- (IBAction)logOutButton:(id)sender;
+
 
 @end

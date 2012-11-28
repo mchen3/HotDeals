@@ -53,6 +53,7 @@
 				// add a save and cancel button to the nav bar
 				UIBarButtonItem *editItem = [[UIBarButtonItem alloc]
 																		 initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
+				[editItem setTintColor:[UIColor darkGrayColor]];
 				[[self navigationItem] setRightBarButtonItem:editItem];
 				
 				
@@ -60,6 +61,7 @@
 				UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
 																		 initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:
 																		 @selector(done:)];
+				[doneItem setTintColor:[UIColor darkGrayColor]];
 				[[self navigationItem] setLeftBarButtonItem:doneItem];
 				
 				//	}
@@ -257,7 +259,8 @@
 		
 		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 
-		// Make the corner of the description and image rounded, must import Quartz class
+		// Make the corner of the description and image
+		// rounded, must import QuartzCore class
 		descriptField.layer.cornerRadius = 7.5;
 		imageView.layer.cornerRadius = 10.0;
 		
