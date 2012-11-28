@@ -299,7 +299,7 @@
 		
     Items *item = [[[ItemStore sharedStore] allItems] objectAtIndex:[indexPath row]];
 		
-		[[cell nameLabel] setText:[item itemName]];
+		
 		[[cell descriptionLabel] setText:[item descriptions]];
 		[[cell priceLabel] setText:[NSString stringWithFormat:@"%d", [item valueInDollars]]];
 		

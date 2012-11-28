@@ -240,26 +240,44 @@
 				
 		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
 		// Set the values for description and value
-		[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
-		[[cell priceLabel] setText:[object objectForKey:@"price"]];
+		//[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
+		//[[cell priceLabel] setText:[object objectForKey:@"price"]];
 		 
-		
-		// Set the image
-		NSString *imageKey = [object objectForKey:@"imageKey"];
-		if (imageKey) {
-				
+		// Set the description
+		/* Retrieve the description string from Parse
+		   If the description text is greater than 70 characters than we will cut it short */
+		NSString *parseDescriptionString = [object objectForKey:@"description"];
+		NSMutableString *descriptionString = [parseDescriptionString copy];
+		int descriptionLength = parseDescriptionString.length;
+		int maxCharacters = 70;
+		int charactersToSubstract = descriptionLength - maxCharacters;
+		if (charactersToSubstract > 0) {
+				NSString *newDescriptionString = [descriptionString
+						substringToIndex:descriptionLength -charactersToSubstract];
+				NSMutableString *copyString = [newDescriptionString copy];
+				NSString *finalDescriptString = [NSString stringWithFormat:@"%@...",copyString];
+				[[cell descriptionLabel] setText:finalDescriptString];
+		}
+		else {
 				[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
-				[[cell priceLabel] setText:[object objectForKey:@"price"]];
+		}
+		// Push the description text to the left upper edge, ie, elimate the padding view
+		[cell descriptionLabel].contentInset = UIEdgeInsetsMake(-8,-8,0,0);
+		
+		// Set the price
+		[[cell dollarLabel] setText:@"$"];
+		[[cell priceLabel] setText:[object objectForKey:@"price"]];
 				
-				// Add a $ label sign next to the price but wait until the price
-				// value is returned from the parse server before you show the $
-				if ([cell priceLabel]) {
-						UILabel *dollarLabel = [[UILabel alloc] init];
-						dollarLabel.frame = CGRectMake(250, 54, 20, 20);
-						dollarLabel.text = @"$";
-						dollarLabel.backgroundColor = [UIColor clearColor];
-						[cell.contentView addSubview:dollarLabel];
-				}
+		// Set the date
+		// Show the date the deal was created
+		NSDate *dateData = object.createdAt;
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"MM-dd-yyyy"];
+		NSString *dateString = [formatter  stringFromDate:dateData];
+		[[cell dateLabel] setFont:[UIFont
+										fontWithName:@"Arial Rounded MT Bold" size:10.0]];
+		[[cell dateLabel] setTextColor:[UIColor grayColor]];
+		[[cell dateLabel] setText:dateString];
 				
 				// Set the thumbnail image
 				/* We will LazyLoad the thumbnail images- meaning we will load the images
@@ -281,7 +299,7 @@
 				}];
 				
 				
-		}
+		
 		return cell;
 }
 

@@ -11,9 +11,9 @@
 
 @interface ItemCell : PFTableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dollarLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *thumbnailView;

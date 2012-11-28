@@ -9,7 +9,6 @@
 #import "ItemCell.h"
 
 @implementation ItemCell
-@synthesize nameLabel;
 @synthesize descriptionLabel;
 @synthesize dateLabel;
 @synthesize thumbnailView;
