@@ -31,10 +31,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 		
-    //???
-		[[self navigationItem] setTitle:@"CDVC"];
-		
-		
 		if (self) {
 				
 				// If you are creating a new item, then
@@ -118,11 +114,35 @@
 // factor in all posibilites for entering text into descriptField
 - (void)viewDidLoad{
 		
-		NSLog(@"CDVC loading");
+		[[self navigationItem] setTitle:@"EDIT"];
+		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+		
+		// Customize the background color of editImageButton and deleteDealButton
+		/* Customize the background color of our UIbuttons. Currently the only way
+		 to set the background color of UIButton is to set an image. We use our
+		 method imageFromColor to set the color */
+		[deleteDealButton setBackgroundImage:[CreateDealViewController imageFromColor:[UIColor lightGrayColor]]forState:UIControlStateNormal];
+		deleteDealButton.layer.cornerRadius = 8.0;
+		deleteDealButton.layer.masksToBounds = YES;
+		deleteDealButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		deleteDealButton.layer.borderWidth = 1;
+		[editImageButton setBackgroundImage:[CreateDealViewController imageFromColor:[UIColor lightGrayColor]]forState:UIControlStateNormal];
+		editImageButton.layer.cornerRadius = 8.0;
+		editImageButton.layer.masksToBounds = YES;
+		editImageButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		editImageButton.layer.borderWidth = 1;
+		
+		[deleteDealButton setTitle:@"Delete" forState:UIControlStateNormal];
+		[editImageButton setTitle:@"Edit Pic" forState:UIControlStateNormal];
 		
 		[descriptField becomeFirstResponder];
 		[priceField setKeyboardType:UIKeyboardTypeNumberPad];
 
+}
+
+- (void)viewDidUnload {
+		editImageButton = nil;
+		[super viewDidUnload];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -606,7 +626,20 @@ a ibaction on the price button when the action Editing Change occurs
 		
 }
 
+#pragma mark - User Interface
 
+// Class method we used to customize the color of our UIButton
++ (UIImage *) imageFromColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    //  [[UIColor colorWithRed:222./255 green:227./255 blue: 229./255 alpha:1] CGColor]) ;
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 
 
 @end

@@ -19,6 +19,7 @@
 		
 		__weak IBOutlet UIButton *deleteDealButton;
 			
+		__weak IBOutlet UIButton *editImageButton;
 		//__weak IBOutlet UIButton *editButton;
 		
 		NSString *storedPriceValue;
