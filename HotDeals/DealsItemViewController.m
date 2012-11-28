@@ -61,7 +61,7 @@
     if (self) {
 				
 				//???
-				[[self navigationItem] setTitle:@"DIVC"];
+				//[[self navigationItem] setTitle:@"DIVC"];
 
         // Custom initialization
         
@@ -334,9 +334,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-		// Make the description field rounded on the corners
+
+		// Make the description field and image rounded on the corners,
+		// must import the Quartz class
 		descriptField.layer.cornerRadius = 7.5;
-		
+		imageView.layer.cornerRadius = 10;
+
 		// Show the date the deal was created
 		NSDate *dateData = self.parseObject.createdAt;
 		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -352,6 +355,7 @@
 				NSString *userString = user.username;
 				[userButtonLabel setTitle:userString forState:UIControlStateNormal];
 		}];
+		
 }
 
 - (void)viewDidUnload

@@ -88,24 +88,12 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText"/>
-								<object class="NSColor" key="IBUITextColor" id="238028698">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
-								</object>
+								<nil key="IBUITextColor"/>
 								<reference key="IBUIHighlightedColor" ref="148235186"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">ArialRoundedMTBold</string>
-									<string key="family">Arial Rounded MT Bold</string>
-									<int key="traits">0</int>
-									<double key="pointSize">20</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">ArialRoundedMTBold</string>
-									<double key="NSSize">20</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="1055779873"/>
+								<reference key="IBUIFont" ref="648143598"/>
 							</object>
 							<object class="IBUIImageView" id="417696420">
 								<reference key="NSNextResponder" ref="419780317"/>
@@ -153,21 +141,31 @@
 							<object class="IBUILabel" id="496091363">
 								<reference key="NSNextResponder" ref="419780317"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 59}, {23, 21}}</string>
+								<string key="NSFrame">{{218, 58}, {23, 21}}</string>
 								<reference key="NSSuperview" ref="419780317"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="352927297"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText"/>
-								<reference key="IBUITextColor" ref="238028698"/>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
+								</object>
 								<reference key="IBUIHighlightedColor" ref="148235186"/>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">2</int>
-								<reference key="IBUIFontDescription" ref="1055779873"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<string key="name">Helvetica</string>
+									<string key="family">Helvetica</string>
+									<int key="traits">0</int>
+									<double key="pointSize">17</double>
+								</object>
 								<reference key="IBUIFont" ref="648143598"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>

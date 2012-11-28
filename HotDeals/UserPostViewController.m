@@ -12,6 +12,7 @@
 #import "UserViewController.h"
 #import "CreateDealViewController.h"
 #import "MapPostViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 // DEl testing
 #import "ProfileViewController.h"
@@ -36,7 +37,7 @@
 		self = [self initWithNibName:@"UserPostViewController" bundle:nil];
 		
 		//???
-		[[self navigationItem] setTitle:@"UPVC"];
+		//[[self navigationItem] setTitle:@"UPVC"];
 		
 		// ? hide the tab bar
 		self.hidesBottomBarWhenPushed = YES;
@@ -253,6 +254,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+		
+		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+
+		// Make the corner of the description and image rounded, must import Quartz class
+		descriptField.layer.cornerRadius = 7.5;
+		imageView.layer.cornerRadius = 10.0;
 		
 		// Load the Parse objects
 		//[nameField setText:[self.parseObject objectForKey:@"name"]];

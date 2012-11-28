@@ -63,7 +63,7 @@
     // Do any additional setup after loading the view from its nib
 		
 		// Set the nav bar to black
-		[[self navigationController].navigationBar setTintColor:[UIColor blackColor]];
+		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 
 		// Add a little padding next to the search icon inside the address field
 		UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];

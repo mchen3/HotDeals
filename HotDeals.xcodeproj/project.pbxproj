@@ -63,8 +63,6 @@
 		60ED9ED8166539D3005D8DD6 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9ED6166539D3005D8DD6 /* search.png */; };
 		60ED9EDB16653B06005D8DD6 /* dealtabimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9ED916653B06005D8DD6 /* dealtabimage@2x.png */; };
 		60ED9EEA166540D6005D8DD6 /* dealtabimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9EE9166540D6005D8DD6 /* dealtabimage.png */; };
-		60ED9F0D16655033005D8DD6 /* profiletabimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9F0B16655033005D8DD6 /* profiletabimage@2x.png */; };
-		60ED9F0E16655033005D8DD6 /* profiletabimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9F0C16655033005D8DD6 /* profiletabimage.png */; };
 		60ED9F2116655A7C005D8DD6 /* usertabimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9F1F16655A7C005D8DD6 /* usertabimage.png */; };
 		60ED9F2216655A7C005D8DD6 /* usertabimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9F2016655A7C005D8DD6 /* usertabimage@2x.png */; };
 		60F151A8163B04C9004527BD /* UserParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F151A7163B04C9004527BD /* UserParseTableController.m */; };
@@ -76,6 +74,8 @@
 		60F470E11657512900AC1D02 /* NewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F470DF1657512900AC1D02 /* NewUserViewController.xib */; };
 		60F470E51657514100AC1D02 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F470E31657514000AC1D02 /* LoginViewController.m */; };
 		60F470E61657514100AC1D02 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F470E41657514100AC1D02 /* LoginViewController.xib */; };
+		60F620F616667C5700368E10 /* profiletabimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F620F416667C5700368E10 /* profiletabimage.png */; };
+		60F620F716667C5700368E10 /* profiletabimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F620F516667C5700368E10 /* profiletabimage@2x.png */; };
 		60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FD86A315BF23FC000BDCCB /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,8 +163,6 @@
 		60ED9ED6166539D3005D8DD6 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		60ED9ED916653B06005D8DD6 /* dealtabimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dealtabimage@2x.png"; sourceTree = "<group>"; };
 		60ED9EE9166540D6005D8DD6 /* dealtabimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealtabimage.png; sourceTree = "<group>"; };
-		60ED9F0B16655033005D8DD6 /* profiletabimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profiletabimage@2x.png"; sourceTree = "<group>"; };
-		60ED9F0C16655033005D8DD6 /* profiletabimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profiletabimage.png; sourceTree = "<group>"; };
 		60ED9F1F16655A7C005D8DD6 /* usertabimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usertabimage.png; sourceTree = "<group>"; };
 		60ED9F2016655A7C005D8DD6 /* usertabimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usertabimage@2x.png"; sourceTree = "<group>"; };
 		60F151A6163B04C9004527BD /* UserParseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserParseTableController.h; path = HotDeals/UserParseTableController.h; sourceTree = "<group>"; };
@@ -181,6 +179,8 @@
 		60F470E21657514000AC1D02 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = HotDeals/LoginViewController.h; sourceTree = "<group>"; };
 		60F470E31657514000AC1D02 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = HotDeals/LoginViewController.m; sourceTree = "<group>"; };
 		60F470E41657514100AC1D02 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = HotDeals/LoginViewController.xib; sourceTree = "<group>"; };
+		60F620F416667C5700368E10 /* profiletabimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profiletabimage.png; sourceTree = "<group>"; };
+		60F620F516667C5700368E10 /* profiletabimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profiletabimage@2x.png"; sourceTree = "<group>"; };
 		60FD86A315BF23FC000BDCCB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -313,10 +313,10 @@
 		60B48F7315A89E8200A52C2E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				60F620F416667C5700368E10 /* profiletabimage.png */,
+				60F620F516667C5700368E10 /* profiletabimage@2x.png */,
 				60ED9F1F16655A7C005D8DD6 /* usertabimage.png */,
 				60ED9F2016655A7C005D8DD6 /* usertabimage@2x.png */,
-				60ED9F0B16655033005D8DD6 /* profiletabimage@2x.png */,
-				60ED9F0C16655033005D8DD6 /* profiletabimage.png */,
 				60ED9EE9166540D6005D8DD6 /* dealtabimage.png */,
 				60ED9ED916653B06005D8DD6 /* dealtabimage@2x.png */,
 				60ED9ED5166539D3005D8DD6 /* search@2x.png */,
@@ -516,10 +516,10 @@
 				60ED9ED8166539D3005D8DD6 /* search.png in Resources */,
 				60ED9EDB16653B06005D8DD6 /* dealtabimage@2x.png in Resources */,
 				60ED9EEA166540D6005D8DD6 /* dealtabimage.png in Resources */,
-				60ED9F0D16655033005D8DD6 /* profiletabimage@2x.png in Resources */,
-				60ED9F0E16655033005D8DD6 /* profiletabimage.png in Resources */,
 				60ED9F2116655A7C005D8DD6 /* usertabimage.png in Resources */,
 				60ED9F2216655A7C005D8DD6 /* usertabimage@2x.png in Resources */,
+				60F620F616667C5700368E10 /* profiletabimage.png in Resources */,
+				60F620F716667C5700368E10 /* profiletabimage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

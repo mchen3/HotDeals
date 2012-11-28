@@ -49,7 +49,7 @@
 						
 						// Add a right bar button of type 'ADD' programmically
 						// to add items to the table
-						UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewDeal:)];
+						UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addNewDeal:)];
 						
 						// Add a image to the button
 						[[self navigationItem] setRightBarButtonItem:button];
@@ -81,6 +81,31 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+		
+		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+		
+		
+		// Show the "Post a Deal" label to the current user only, but
+	
+		
+		/* Our tab bars have tag integers that identify which tab you are in. If the
+		tag is 1 that you are in the "Find Deals"/DealTab so you disable the two
+		functions: Adding a new deal and editing a deal. If the tag integer is 2, then 
+		it is the current user viewing their own profile in the "User"/UserTab. We 
+		will then enable the two functions to add and edit a deal.
+		 
+		Right now we are using our own flag, a string called UserDealBasedOn, to decide
+		which tab you are in. 
+		*/
+		NSInteger tabInteger = self.navigationController.tabBarItem.tag;
+		// Deal tab
+		if (tabInteger == 1) {
+				[self.postADealLabel setText:@"Hot Deals"];
+		}
+    // User tab
+		else if (tabInteger == 2) {
+				[self.postADealLabel setText:@"Post a deal"];
+		}
 		
 		/* Set the nav title depending on if the userView is in the
 		 DealTab, he's a random user, or if he's in the UserTab
@@ -117,16 +142,17 @@
 		
 		[self addChildViewController:self.userParseTableController];
 		[self.view addSubview:self.userParseTableController.view];
-		self.userParseTableController.view.frame = CGRectMake(0.f, 70.f, 320.f, 380.f);
+		self.userParseTableController.view.frame = CGRectMake(0.f, 47.f, 320.f, 420.f);
 		
 		[self.userParseTableController.tableView setRowHeight:80];
-		[self.userParseTableController.tableView setSeparatorColor:[UIColor redColor]];
+		[self.userParseTableController.tableView setSeparatorColor:[UIColor darkGrayColor]];
 		// Use custom cell ItemCell
 		[self.userParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 }
 
 - (void)viewDidUnload
 {
+		[self setPostADealLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

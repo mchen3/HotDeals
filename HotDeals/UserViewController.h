@@ -14,6 +14,7 @@
 - (id)initWithTab:(NSString *)TabBasedOn;
 @property (nonatomic, readwrite) NSString *UserViewBasedOn;
 @property (nonatomic, strong) PFUser *userNameOfDeal;
+@property (weak, nonatomic) IBOutlet UILabel *postADealLabel;
 
 
 @end

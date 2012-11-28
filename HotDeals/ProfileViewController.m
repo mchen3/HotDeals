@@ -37,6 +37,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 		
+		//NSLog(@"TAG integer %i", self.navigationController.tabBarItem.tag);
+		
 		[self.imageView setImage:[UIImage imageNamed:@"Time.png"]];
 		
 		PFUser *currentUser = [PFUser currentUser];
