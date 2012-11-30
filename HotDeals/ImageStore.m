@@ -105,7 +105,6 @@
 		//  [dictionary setObject:image forKey:key];
 		
 		/* BNR
-		/* Writing to the FileSystem with NSData
 		// Save the image through a binary write to the file system
 		// Create full path for image
 		NSString *path = [self imagePathForKey:key];
@@ -212,13 +211,13 @@
 						//}];
 						
 						
-						PFObject *saveImage = [PFObject objectWithClassName:@"TestObject"];
+						PFObject *saveImage = [PFObject objectWithClassName:@"Posts"];
 						//	[jobApplication setObject:@"Joe Smith" forKey:@"applicantName"];
 						[saveImage setObject:imageFile         forKey:@"image"];
 						[saveImage saveInBackground];
 						
 						
-						PFObject *test = [PFObject objectWithClassName:@"TestObject"];
+						PFObject *test = [PFObject objectWithClassName:@"Posts"];
 						[test setObject:@"re" forKey:@"java"];
 						[test save];
 						

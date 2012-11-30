@@ -82,7 +82,7 @@
 		// Create a new Parse object, when IVC gets dimissed, the table will
 		// reload to server with this new Parse object
 		/*
-		 PFObject *object = [PFObject objectWithClassName:@"TestObject"];
+		 PFObject *object = [PFObject objectWithClassName:@"Posts"];
 		 [object setObject:[nameField text] forKey:@"name"];
 		 */
 		
@@ -101,8 +101,7 @@
 		 
 		 
 		 if (succeeded) {
-		 /*
-		 NSLog(@"Successfully saved!");
+		 		 NSLog(@"Successfully saved!");
 		 dispatch_async(dispatch_get_main_queue(), ^{
 		 [[NSNotificationCenter defaultCenter]
 		 postNotificationName:kDealCreatedNotification object:nil];
@@ -188,7 +187,6 @@
 		}
 		
 		/* BNR
-		/* Previous implemenation before Parse using Core Data
     // The item object is passed through DealViewController
     // on TableView:didselectRow    
     
@@ -291,8 +289,7 @@
 						[alertView show];
 				}
 				if (succeeded) {
-						/*
-						 NSLog(@"Successfully saved!");
+												 NSLog(@"Successfully saved!");
 						 dispatch_async(dispatch_get_main_queue(), ^{
 						 [[NSNotificationCenter defaultCenter]
 						 postNotificationName:kDealCreatedNotification object:nil];
@@ -451,7 +448,13 @@
     // otherwise you will get a warning
     [imagePicker setDelegate:self];
 		
-    [self presentModalViewController:imagePicker animated:YES];
+    //[self presentModalViewController:imagePicker animated:YES];
+		
+		
+		[self presentViewController:imagePicker animated:YES completion:^{
+		}];
+		
+		
 }
 							
 // Delegate for UIImagePickerController

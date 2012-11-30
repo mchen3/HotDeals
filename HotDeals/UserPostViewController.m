@@ -92,7 +92,7 @@
 		
 		NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
 		if (imageKey) {
-				UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
+				//UIImage *parseImage = [[ImageStore defaultImageStore] imageForKey:imageKey];
 				
 				/*
 				 CreateDealViewController *createDealViewController =
@@ -360,7 +360,10 @@
 		
 		[imagePicker setDelegate:self];
 		
-		[self presentModalViewController:imagePicker animated:YES];
+		//[self presentModalViewController:imagePicker animated:YES];
+		
+		[self presentViewController:imagePicker animated:YES completion:^{
+		}];
 }
 
 
@@ -439,7 +442,6 @@
 		//[self.view.layer addAnimation:animation forKey:kCATransition];
 		
 		
-		
 		// Must use the parent to dismiss because [self dismissViewController
 		// was causing to many issues
 		[self.parentViewController dismissViewControllerAnimated:NO completion:^{
@@ -448,9 +450,10 @@
 				
 				
 				DealsItemViewController *dvc = [[DealsItemViewController alloc] init];
-				[self presentModalViewController:dvc animated:NO];
+				//[self presentModalViewController:dvc animated:NO];
+	
+				[self presentViewController:dvc animated:NO completion:^{}];
 		}];
-		
 		
 		//DEL
 		//[self dismissViewControllerAnimated:YES completion:^{

@@ -102,14 +102,14 @@
 		
 
 		
-		PFObject *test = [PFObject objectWithClassName:@"TestObject"];
+		PFObject *test = [PFObject objectWithClassName:@"Posts"];
 		[test setObject:@"Mon" forKey:@"name"];
 		//[test save];
 
 		
 		
 		/*
-		PFObject *object = [PFObject objectWithClassName:@"TestObject"];
+		PFObject *object = [PFObject objectWithClassName:@"Posts"];
 		//[object setValue:@"9" forKey:@"foo"];
 		
 	//	[object setObject:@"10" forKey:@"foo"];
@@ -123,8 +123,8 @@
 		
 		/*
 		// Query
-	 // PFObject *object = [PFObject objectWithClassName:@"TestObject"];
- 		PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
+	 // PFObject *object = [PFObject objectWithClassName:@"Posts"];
+ 		PFQuery *query = [PFQuery queryWithClassName:@"Posts"];
 		PFObject *object = [query getObjectWithId:@"NNp9tFiGWR"];
 		[object setValue:@"1" forKey:@"foo"];
 		[object setValue:@"2" forKey:@"name"];

@@ -357,7 +357,7 @@ a ibaction on the price button when the action Editing Change occurs
 				NSString *key = (__bridge NSString *)newUniqueIDString;
 				
 				// Add a new Parse object and pass it to dealsItemViewController
-				//PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
+				//PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
 				
 				// Save key, image, and thumbnail
 				// If this is a new item parseObject has not been created

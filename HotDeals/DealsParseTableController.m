@@ -27,7 +27,7 @@
         // Custom the table
         
         // The className to query on
-        self.className = @"TestObject";
+        self.className = @"Posts";
         
         // The key of the PFObject to display in the label of the default cell style
 				//   self.keyToDisplay = @"text";

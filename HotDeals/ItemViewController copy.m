@@ -73,7 +73,7 @@
 		// Create a new Parse object, when IVC gets dimissed, the table will
 		// reload to server with this new Parse object
 		/*
-		 PFObject *object = [PFObject objectWithClassName:@"TestObject"];
+		 PFObject *object = [PFObject objectWithClassName:@"Posts"];
 		 [object setObject:[nameField text] forKey:@"name"];
 		 */
 		

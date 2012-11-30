@@ -205,7 +205,7 @@
 		
 		/* PREV
 		 // Add a new Parse object and pass it to dealsItemViewController
-		 PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
+		 PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
 		 
 		 
 		 UserPostViewController *userPostViewController = [[UserPostViewController alloc]
@@ -276,7 +276,7 @@
 		
 		
 		// Add a new Parse object and pass it to dealsItemViewController
-		//PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
+		//PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
 		
 		
 		
@@ -332,7 +332,7 @@
 				CreateDealViewController *createDealViewController = [[CreateDealViewController alloc] init];
 				
 				// Create a new parse object
-				PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
+				PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
 				// Get picked image from info dictionary
 				UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 				// Pass the newly created parse object and image to createDealViewController

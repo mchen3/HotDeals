@@ -204,7 +204,6 @@
  
  -(IBAction)addNewItem:(id)sender
  {
- /*** DEL
  BNR
  // Create a item
  Items *lastItem = [[ItemStore sharedStore] createItem];
@@ -225,7 +224,7 @@
 
 /*
  // Add a new Parse object and pass it to ItemViewController
- PFObject *parseObject = [PFObject objectWithClassName:@"TestObject"];
+ PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
  DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] initWithName:YES];
  [dealsItemViewController setParseObject:parseObject];
  
