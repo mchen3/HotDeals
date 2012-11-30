@@ -69,15 +69,15 @@
 							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="65240213">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="625516302">
 							<string key="name">ArialRoundedMTBold</string>
 							<string key="family">Arial Rounded MT Bold</string>
 							<int key="traits">0</int>
-							<double key="pointSize">50</double>
+							<double key="pointSize">20</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="449416671">
+						<object class="NSFont" key="IBUIFont" id="664424954">
 							<string key="NSName">ArialRoundedMTBold</string>
-							<double key="NSSize">50</double>
+							<double key="NSSize">20</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -110,8 +110,8 @@
 							<bool key="IBUISecureTextEntry">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="65240213"/>
-						<reference key="IBUIFont" ref="449416671"/>
+						<reference key="IBUIFontDescription" ref="625516302"/>
+						<reference key="IBUIFont" ref="664424954"/>
 					</object>
 					<object class="IBUITextField" id="998379755">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -119,6 +119,7 @@
 						<string key="NSFrame">{{76, 183}, {169, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -141,8 +142,8 @@
 							<bool key="IBUISecureTextEntry">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="65240213"/>
-						<reference key="IBUIFont" ref="449416671"/>
+						<reference key="IBUIFontDescription" ref="625516302"/>
+						<reference key="IBUIFont" ref="664424954"/>
 					</object>
 					<object class="IBUINavigationBar" id="610847847">
 						<reference key="NSNextResponder" ref="191373211"/>

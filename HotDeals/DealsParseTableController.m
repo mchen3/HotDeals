@@ -205,7 +205,7 @@
 		}
 		
 		//	NSLog(@"Outside");
-		NSLog(@"DealsBasedon --->>>> %@", self.DealBasedOn);
+		NSLog(@"Query DealsBasedon --->>>> %@", self.DealBasedOn);
     return query;
 }
 // Override to customize the look of a cell representing an object. The default is to display
@@ -291,7 +291,7 @@
 				 */
 				PFFile *thumbnailFile = [object objectForKey:@"thumbImage"];
 				// You can set a temporary placeholder image
-				cell.thumbnailView.image = [UIImage imageNamed:@"test.png"];
+				cell.thumbnailView.image = [UIImage imageNamed:@"placeholderimage.png"];
 				cell.thumbnailView.file = thumbnailFile;
 				[[cell thumbnailView] loadInBackground:^(UIImage *image, NSError *error) {
 						//Parse automically sets the image

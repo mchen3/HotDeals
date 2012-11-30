@@ -279,7 +279,7 @@
 				 thumbnnail image are being set.
 				 */
 				PFFile *thumbnailFile = [object objectForKey:@"thumbImage"];
-				cell.thumbnailView.image = [UIImage imageNamed:@"test.png"];
+				cell.thumbnailView.image = [UIImage imageNamed:@"placeholderimage.png"];
 				cell.thumbnailView.file = thumbnailFile;
 				[[cell thumbnailView] loadInBackground:^(UIImage *image, NSError *error) {
 						//Parse automically sets the image

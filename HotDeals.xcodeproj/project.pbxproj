@@ -76,6 +76,8 @@
 		60F470E61657514100AC1D02 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F470E41657514100AC1D02 /* LoginViewController.xib */; };
 		60F620F616667C5700368E10 /* profiletabimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F620F416667C5700368E10 /* profiletabimage.png */; };
 		60F620F716667C5700368E10 /* profiletabimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F620F516667C5700368E10 /* profiletabimage@2x.png */; };
+		60F621061666DA5600368E10 /* placeholderimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F621041666DA5600368E10 /* placeholderimage@2x.png */; };
+		60F621071666DA5600368E10 /* placeholderimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F621051666DA5600368E10 /* placeholderimage.png */; };
 		60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FD86A315BF23FC000BDCCB /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +183,8 @@
 		60F470E41657514100AC1D02 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = HotDeals/LoginViewController.xib; sourceTree = "<group>"; };
 		60F620F416667C5700368E10 /* profiletabimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profiletabimage.png; sourceTree = "<group>"; };
 		60F620F516667C5700368E10 /* profiletabimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profiletabimage@2x.png"; sourceTree = "<group>"; };
+		60F621041666DA5600368E10 /* placeholderimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholderimage@2x.png"; sourceTree = "<group>"; };
+		60F621051666DA5600368E10 /* placeholderimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholderimage.png; sourceTree = "<group>"; };
 		60FD86A315BF23FC000BDCCB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -313,6 +317,8 @@
 		60B48F7315A89E8200A52C2E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				60F621041666DA5600368E10 /* placeholderimage@2x.png */,
+				60F621051666DA5600368E10 /* placeholderimage.png */,
 				60F620F416667C5700368E10 /* profiletabimage.png */,
 				60F620F516667C5700368E10 /* profiletabimage@2x.png */,
 				60ED9F1F16655A7C005D8DD6 /* usertabimage.png */,
@@ -520,6 +526,8 @@
 				60ED9F2216655A7C005D8DD6 /* usertabimage@2x.png in Resources */,
 				60F620F616667C5700368E10 /* profiletabimage.png in Resources */,
 				60F620F716667C5700368E10 /* profiletabimage@2x.png in Resources */,
+				60F621061666DA5600368E10 /* placeholderimage@2x.png in Resources */,
+				60F621071666DA5600368E10 /* placeholderimage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,7 +634,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DealMaker1/DealMaker1-Prefix.pch";
 				INFOPLIST_FILE = "DealMaker1/DealMaker1-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -643,7 +651,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DealMaker1/DealMaker1-Prefix.pch";
 				INFOPLIST_FILE = "DealMaker1/DealMaker1-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

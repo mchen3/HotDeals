@@ -48,7 +48,6 @@
 		self.logOutButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
 		self.logOutButton.layer.borderWidth = 1;
 		
-		[self.imageView setImage:[UIImage imageNamed:@"Time.png"]];
 		
 		PFUser *currentUser = [PFUser currentUser];
 		[self.userNameLabel setText:currentUser.username];

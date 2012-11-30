@@ -60,11 +60,11 @@
 							<string key="name">ChalkboardSE-Bold</string>
 							<string key="family">Chalkboard SE</string>
 							<int key="traits">0</int>
-							<double key="pointSize">28</double>
+							<double key="pointSize">25</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">28</double>
+							<double key="NSSize">25</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -73,7 +73,6 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC44NTg2OTU2NTIyIDAuODgwNDM0NzgyNiAwLjg4MDQzNDc4MjYAA</bytes>

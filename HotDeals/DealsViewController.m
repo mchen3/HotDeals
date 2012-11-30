@@ -66,7 +66,7 @@
 		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 
 		// Add a little padding next to the search icon inside the address field
-		UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 20)];
+		UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 28, 20)];
 		addressField.leftView = paddingView;
 		addressField.leftViewMode = UITextFieldViewModeAlways;
 		// Change the color of the border line. Must import QuartzCore
@@ -111,15 +111,15 @@
 		
 		
 		self.dealsParseTableController = [[DealsParseTableController alloc] initWithStyle:UITableViewStylePlain];
+		NSLog(@"DPTC init");
+		// Configure parse table to display based on location
 		
+		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 		[self.dealsParseTableController.tableView setRowHeight:80];
-		[self.dealsParseTableController.tableView setSeparatorColor:[UIColor darkGrayColor]];
+		[self.dealsParseTableController.tableView
+								setSeparatorColor:[UIColor darkGrayColor]];
 		// Use custom ItemCell
 		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
-		
-		
-		// Configure parse table to display based on location
-		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 		
 		[self addChildViewController:self.dealsParseTableController];
 		[self.view addSubview:self.dealsParseTableController.view];
