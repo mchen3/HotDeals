@@ -38,7 +38,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 		
-		// Set the values for the enterAddress and currentAddress buttons
+
+		
 		/* Customize the background color of our UIbuttons. Currently the only way
 		 to set the background color of UIButton is to set an image. We use our
 		 method imageFromColor to set the color. Must import QuartzCore */
@@ -47,6 +48,9 @@
 		self.logOutButton.layer.masksToBounds = YES;
 		self.logOutButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
 		self.logOutButton.layer.borderWidth = 1;
+		
+		self.descriptionField.layer.cornerRadius = 7.5;
+		self.descriptionField.layer.borderColor = [UIColor blueColor].CGColor;
 		
 		
 		PFUser *currentUser = [PFUser currentUser];

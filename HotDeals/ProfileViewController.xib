@@ -40,7 +40,7 @@
 					<object class="IBUILabel" id="744725366">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 70}, {280, 27}}</string>
+						<string key="NSFrame">{{20, 73}, {280, 27}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="507775717"/>
@@ -50,7 +50,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">mike</string>
+						<string key="IBUIText"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -78,7 +78,6 @@
 						<string key="NSFrame">{{121, 339}, {79, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -113,20 +112,24 @@
 					<object class="IBUITextView" id="507775717">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{29, 112}, {262, 197}}</string>
+						<string key="NSFrame">{{22, 120}, {277, 189}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="77767894"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
+							<bytes key="NSRGB">MSAxIDAuOAA</bytes>
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIEditable">NO</bool>
-						<string key="IBUIText">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+						<string type="base64-UTF8" key="IBUIText">V2VsY29tZSB0byBIb3QgRGVhbHMuCkEgcGhvdG8gc2hhcmluZyBhcHAgd2hlcmUgeW91IGNhbiBwb3N0
+IGFuZCBmaW5kIHRoZSBiZXN0IGJhcmdhaW5zIGluIHlvdXIgYXJlYS4gCi1HbyB0byBVc2VycyB0byB0
+YWtlIGEgcGljdHVyZSBhbmQgcG9zdCBhIGRlYWwuCi1HbyB0byBGaW5kIERlYWxzIHRvIHNlYXJjaCBm
+b3IgdGhlIGhvdHRlc3Qgc2F2aW5ncyBpbiB5b3VyIGxvY2F0aW9uIG9yIGluIGFuIGFyZWEgd2hlcmUg
+eW91IHNlYXJjaCBmb3IuA</string>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -246,10 +249,10 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="507775717"/>
 							<reference ref="271454579"/>
 							<reference ref="77767894"/>
 							<reference ref="744725366"/>
+							<reference ref="507775717"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

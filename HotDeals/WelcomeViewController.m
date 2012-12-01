@@ -39,15 +39,17 @@
 		 method imageFromColor to set the color. Must imort QuartzCore class */
 		[self.logInButton setBackgroundImage:[WelcomeViewController imageFromColor:[UIColor colorWithRed:69.0/255.0 green:71.0/255.0 blue:78.0/255.0 alpha:1.0]]forState:UIControlStateNormal];
 		self.logInButton.layer.cornerRadius = 8.0;
-		self.logInButton.layer.masksToBounds = YES;
-		self.logInButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		self.logInButton.layer.masksToBounds = YES;		
+		self.logInButton.layer.borderColor = [UIColor colorWithRed:69.0/255.0 green:71.0/255.0 blue:78.0/255.0 alpha:1.0].CGColor;
 		self.logInButton.layer.borderWidth = 1;
 		
 		[self.signUpButton setBackgroundImage:[WelcomeViewController imageFromColor:[UIColor colorWithRed:69.0/255.0 green:71.0/255.0 blue:78.0/255.0 alpha:1.0]]forState:UIControlStateNormal];
 		self.signUpButton.layer.cornerRadius = 8.0;
 		self.signUpButton.layer.masksToBounds = YES;
-		self.signUpButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		self.signUpButton.layer.borderColor = [UIColor colorWithRed:69.0/255.0 green:71.0/255.0 blue:78.0/255.0 alpha:1.0].CGColor;
 		self.signUpButton.layer.borderWidth = 1;
+		
+		
 }
 
 - (void)didReceiveMemoryWarning
