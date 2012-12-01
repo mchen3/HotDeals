@@ -3,8 +3,6 @@
 //  HotDeals
 //
 //  Created by Mike Chen on 10/11/12.
-//
-//
 
 #import "UserViewController.h"
 #import "DealsParseTableController.h"
@@ -16,7 +14,6 @@
 #import "CreateDealViewController.h"
 #import "ImageStore.h"
 #import "LocationDataManager.h"
-
 
 @interface UserViewController ()
 @property (nonatomic, strong) UserParseTableController *userParseTableController;
@@ -64,18 +61,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-				
-				
 		}
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-		// Make sure the flag DealBasedOn is always set to "user" for the
-		// UserViewController when you use DealsParseTableController
-		//[self.dealsParseTableController setDealBasedOn:@"user"];
-	  // [self.dealsParseTableController loadObjects];
 }
 
 - (void)viewDidLoad
@@ -197,116 +188,14 @@
 		
 		[imagePicker setDelegate:self];
 		[self presentViewController:imagePicker animated:YES completion:nil];
-		
-		
-		
-		
-		
-		
-		/* PREV
-		 // Add a new Parse object and pass it to dealsItemViewController
-		 PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
-		 
-		 
-		 UserPostViewController *userPostViewController = [[UserPostViewController alloc]
-		 initWithName:YES];
-		 [userPostViewController setParseObject:parseObject];
-		 
-		 
-		 // Why add a navController?
-		 // Because the modal view needs some way to dismiss itself
-		 UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:userPostViewController];
-		 [navController setModalPresentationStyle:UIModalPresentationFormSheet];
-		 [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-		 
-		 // Pass a block to reload the table to the DealsItemViewController
-		 // Need a dismiss block to reload data for the iPad but not for iPhone
-		 // 13.5 for explantion
-		 [userPostViewController setDismissBlock:^{
-		 [self.userParseTableController loadObjects];
-		 }];
-		 
-		 [self presentViewController:navController animated:YES completion:nil];
-		 */
-		
 }
-
-
-
 
 
 #pragma mark - Camera
 
-- (IBAction)takePicture:(id)sender {
-		
-		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-		
-		if ([UIImagePickerController isSourceTypeAvailable:
-				 UIImagePickerControllerSourceTypeCamera]) {
-				[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-		} else {
-				[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-		}
-		
-		[imagePicker setDelegate:self];
-		
-		
-		[self presentViewController:imagePicker animated:YES completion:nil];
-}
-
-
-
 // Delegate for UIImagePickerController
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-		/*
-		 // Get picked image from info dictionary
-		 UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-		 
-		 // Create a CFUUID object - it knows how to create a unique identifier strings
-		 CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
-		 
-		 // Create a string from unique identifier
-		 CFStringRef newUniqueIDString =
-		 CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-		 
-		 // Need to bridge CFStringRef to NSString
-		 NSString *key = (__bridge NSString *)newUniqueIDString;
-		 */
-		
-		
-		// Add a new Parse object and pass it to dealsItemViewController
-		//PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
-		
-		
-		
-		// Save key, image, and thumbnail
-		// If this is a new item parseObject has not been created
-		// can't set any values to nil
-		//[parseObject setObject:key forKey:@"imageKey"];
-		
-		// Store image in the ImageStore and on Parse servers with this key
-		//[[ImageStore defaultImageStore] setImage:image forKey:key];
-		
-		
-		// Resize the image and get a PFFile associated with it
-		//PFFile *thumbnailFile = [[ImageStore defaultImageStore] getThumbnailFileFromImage:image];
-		/*
-		 We will save the thumbnail file with this parse object inside the
-		 same table instead of the separate ImageStore/Photo table. It will
-		 be much more efficent this way when we later try to pull the
-		 thumbnail image to display inside of a table cell.
-		 */
-		//[parseObject setObject:thumbnailFile forKey:@"thumbImage"];
-		
-		//CFRelease(newUniqueIDString);
-		//CFRelease(newUniqueID);
-		
-		
-		
-		
-		
-		
 		// Customize to dismiss the modal view, image picker, from right to left
 		CATransition *transition = [CATransition animation];
 		transition.duration = 0.30;
@@ -323,12 +212,6 @@
 		//[self.parentViewController dismissViewControllerAnimated:NO completion:^{
 		[self dismissViewControllerAnimated:NO completion:^{
 				
-				
-				
-				NSLog(@"Parent %@  ", self.parentViewController.nibName);
-				NSLog(@"Self %@", self.nibName);
-				
-			  
 				CreateDealViewController *createDealViewController = [[CreateDealViewController alloc] init];
 				
 				// Create a new parse object
@@ -350,53 +233,8 @@
 				// Create a nav controller so the CDVC can add nav items
 				UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createDealViewController];
 				[self presentViewController:navController animated:NO completion:nil];
-				
-				
-				
-				
-				
-				//[self.navigationController pushViewController:createDealViewController animated:NO];
-				// ERROR [self.navigationController pushViewController:navController animated:NO];
-				
-				
-				
-				//[self.parentViewController presentViewController:navController
-				//animated:NO completion:nil];
-				//[self.parentViewController.navigationController
-				//pushViewController:navController animated:NO];
 		}];
-		
-		
-		
-		
-		/*
-		 DealsItemViewController *dvc = [[DealsItemViewController alloc] init];
-		 [self presentModalViewController:dvc animated:NO];
-		 */
-		
-		/*
-		 UserPostViewController *upvc = [[UserPostViewController alloc] initWithName:YES];
-		 
-		 UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:upvc];
-		 */
-		
-		
-		//DEL
-		//[self dismissViewControllerAnimated:YES completion:^{
-		//NewsViewController *nvc = [[NewsViewController alloc] init];
-		//[self presentModalViewController:nvc animated:NO];
-		//}];
-		
-		
-		
-		
 }
-
-
-
-
-
-
 @end
 
 

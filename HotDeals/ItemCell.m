@@ -14,8 +14,4 @@
 @synthesize thumbnailView;
 @synthesize priceLabel;
 
-
-
-
-
 @end

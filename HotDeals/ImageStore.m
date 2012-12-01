@@ -19,7 +19,6 @@
     return [self defaultImageStore];
 }
 								
-
 // Create a singleton     
 + (ImageStore *)defaultImageStore
 {
@@ -52,18 +51,8 @@
 
 -(void)setImage:(UIImage *)image forKey:(NSString *)key
 {
-		
 		// Save the image to a temporary storage 
 		[dictionary setObject:image forKey:key];
-		
-		
-		// Upload the image with key to Parse Servers for permanent storage
-		/*
-		UIGraphicsBeginImageContext(CGSizeMake(360, 360));
-		[image drawInRect:CGRectMake(0, 0, 360, 360)];
-		UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-		 */
 		
 		// Save the image to Parse
 		NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
@@ -76,45 +65,7 @@
 		[userPhoto setObject:imageFile forKey:@"image"];
 		[userPhoto setObject:key forKey:@"imageKey"];
 		[userPhoto setObject:[PFUser currentUser] forKey:@"user"];
-		[userPhoto saveInBackground];
-		
-		/*
-		// Save PFFile
-		[imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-				if (!error) {
-						
-						// Create a PFObject around a PFFile and associate it with the current user
-						PFObject *userPhoto = [PFObject objectWithClassName:@"Photos"];
-						[userPhoto setObject:imageFile forKey:@"image"];
-						[userPhoto setObject:key forKey:@"imageKey"];
-						[userPhoto setObject:[PFUser currentUser] forKey:@"user"];
-						
-						// Set the access control list to current user for security reasons
-						//userPhoto.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-					//	userPhoto.ACL = [PFACL ACLWithUser:user];
-
-						//PFUser *user1 = [PFUser currentUser];
-						//[userPhoto setObject:user forKey:@"user"];
-						
-						[userPhoto save];
-				}
-		}];
-		*/
-		
-		
-		//  [dictionary setObject:image forKey:key];
-		
-		/* BNR
-		// Save the image through a binary write to the file system
-		// Create full path for image
-		NSString *path = [self imagePathForKey:key];
-		
-		// Turn image into JPEG data
-		NSData *d = UIImageJPEGRepresentation(image, 0.5);
-		
-		// Write to full path
-		[d writeToFile:path atomically:YES];
-		*/
+		[userPhoto saveInBackground];		
 }
 
 -(UIImage *)imageForKey:(NSString *) key
@@ -136,14 +87,12 @@
 		parseImageReturned = [dictionary objectForKey:key];
 		
 		if (!parseImageReturned) {
-		
 				// Image is not available, must need connection to Parse servers.
 				PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
 				[query whereKey:@"imageKey" equalTo:key];
 				
 				// Get the object from Parse servers
 				[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-						
 						// Use PFImageView which will load and set the our image
 						PFFile *parseFile = [object objectForKey:@"image"];
 						self.lazyLoadPFImageView.file = parseFile;
@@ -160,7 +109,6 @@
 		    // We have a image in our dictionary
 				[self.lazyLoadPFImageView setImage:parseImageReturned];
 		}
-		
 		return parseImageReturned;
 }
 
@@ -169,7 +117,6 @@
     if (!key) {
         return;
     }
-		
 		[dictionary removeObjectForKey:key];
 		
 		// Delete the image from the parse servers
@@ -177,16 +124,6 @@
 		[query whereKey:@"imageKey" equalTo:key];
 		PFObject *object = [query getFirstObject];
 		[object delete];
-		
-		
-		/*
-    [dictionary removeObjectForKey:key];
-		
-		// Delete the image from the file system
-		NSString *path = [self imagePathForKey:key];
-		[[NSFileManager defaultManager] removeItemAtPath:path
-																							 error:NULL];
-		*/
 }
 
 -(void)uploadImage:(NSData *)imageData {
@@ -196,47 +133,21 @@
 		
 		[imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 				if (!error) {
-						// Create a PFObject around a PFFile and associate it with the current user
-						//	PFObject *userPhoto = [PFObject objectWithClassName:@"UserPhoto"];
-						//	[userPhoto setObject:imageFile forKey:@"imageFile"];
-						
-						// Set the access control list to current user for security reasons
-						//	userPhoto.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-						
-						//	PFUser *user = [PFUser currentUser];
-						//	[userPhoto setObject:user forKey:@"user"];
-						
-						//	[userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-						
-						//}];
-						
-						
 						PFObject *saveImage = [PFObject objectWithClassName:@"Posts"];
-						//	[jobApplication setObject:@"Joe Smith" forKey:@"applicantName"];
-						[saveImage setObject:imageFile         forKey:@"image"];
+						[saveImage setObject:imageFile forKey:@"image"];
 						[saveImage saveInBackground];
-						
-						
-						PFObject *test = [PFObject objectWithClassName:@"Posts"];
-						[test setObject:@"re" forKey:@"java"];
-						[test save];
-						
 				}
 		}];
-		
 }
 
-    
 - (NSString *)imagePathForKey:(NSString *)key
 {
 		NSArray *documentDirectories =
 				NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
 																						NSUserDomainMask, YES);
 		NSString *documentDirectory = [documentDirectories objectAtIndex:0];
-		
 		return [documentDirectory stringByAppendingPathComponent:key];
 }
-
 
 #pragma mark - Thumbnail
 
@@ -287,10 +198,7 @@
 		[thumbnailFile save];
 		
 		return thumbnailFile;
-		
 }
-
-
 @end
 
 

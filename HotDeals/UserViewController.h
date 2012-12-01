@@ -16,5 +16,4 @@
 @property (nonatomic, strong) PFUser *userNameOfDeal;
 @property (weak, nonatomic) IBOutlet UILabel *postADealLabel;
 
-
 @end

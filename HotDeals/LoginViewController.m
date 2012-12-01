@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-
 #import <Parse/Parse.h>
 #import "PAWActivityView.h"
 #import "DealsViewController.h"
@@ -48,7 +47,6 @@
     // Do any additional setup after loading the view from its nib.
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:usernameField];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:passwordField];
-		
 		doneButton.enabled = NO;
 }
 
@@ -76,9 +74,7 @@
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:passwordField];
 }
 
-
 #pragma mark - Buttons
-
 
 - (IBAction)done:(id)sender {
 		[usernameField resignFirstResponder];
@@ -118,12 +114,10 @@
 				[passwordField resignFirstResponder];
 				[self validateEntries];
 		}
-		
 		return YES;
 }
 
 #pragma mark - Private methods:
-
 #pragma mark Field validation
 
 - (void)validateEntries {
@@ -263,10 +257,7 @@
 		 tarBarController animated:NO];
 		[self.presentingViewController dismissViewControllerAnimated:YES
 																											completion:^{}];
-    
 }
-
-
 @end
 
 

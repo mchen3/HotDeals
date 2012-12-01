@@ -7,7 +7,6 @@
 //
 
 #import "NewUserViewController.h"
-
 #import <Parse/Parse.h>
 #import "PAWActivityView.h"
 #import "DealsViewController.h"
@@ -233,10 +232,8 @@ showDialog:
 		}];
 }
 
-
 - (void)presentMainViewController
 {
-		
 		/* Start the initial methods for the singleton locationDataManager which will
 		 1) Search for location and placemark just in case it wasn't received
 		 2) At the completion block of "currentLocationByReverseGeocoding", we will
@@ -283,11 +280,7 @@ showDialog:
 		 tarBarController animated:NO];
 		[self.presentingViewController dismissViewControllerAnimated:YES
 																											completion:^{}];
-    
 }
-
-
-
 @end
 
 

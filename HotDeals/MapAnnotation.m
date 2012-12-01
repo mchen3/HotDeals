@@ -7,12 +7,10 @@
 //
 
 #import "MapAnnotation.h"
-
 @interface MapAnnotation ()
 @end
 
 @implementation MapAnnotation
-
 @synthesize coordinate, title, subtitle ;
 
 - (id)initWithCoordinates:(CLLocationCoordinate2D)location title:(NSString *)titleString subtitle:(NSString *)subtitleString
@@ -23,13 +21,8 @@
 				self.title = titleString;
 				self.subtitle = subtitleString;
 		}
-		
 		return self;
 }
-
-
-
-
 @end
 
 

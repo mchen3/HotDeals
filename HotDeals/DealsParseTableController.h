@@ -12,7 +12,6 @@
 {
 		NSString *DealBasedOn;
 }
-
 @property (nonatomic, readwrite) NSString *DealBasedOn;
 
 @end

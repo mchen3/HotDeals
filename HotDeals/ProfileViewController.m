@@ -13,20 +13,13 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface ProfileViewController ()
-
 @end
 
 @implementation ProfileViewController
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Get the tab bar item
-        //UITabBarItem *tbi = [self tabBarItem];
-       // [tbi setTitle:@"News"];
-
-				
     }
     return self;
 }
@@ -37,8 +30,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-		
-
 		
 		/* Customize the background color of our UIbuttons. Currently the only way
 		 to set the background color of UIButton is to set an image. We use our
@@ -52,10 +43,8 @@
 		self.descriptionField.layer.cornerRadius = 7.5;
 		self.descriptionField.layer.borderColor = [UIColor blueColor].CGColor;
 		
-		
 		PFUser *currentUser = [PFUser currentUser];
 		[self.userNameLabel setText:currentUser.username];
-
 }
 
 - (void)viewDidUnload
@@ -80,8 +69,7 @@
 		[alertView show];
 }
 
-#pragma mark - UIAlertViewDelegate methods
-
+#pragma mark - UIAlertViewDelegate method
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 		if (buttonIndex == 0) {
@@ -113,8 +101,6 @@
     UIGraphicsEndImageContext();
     return img;
 }
-
-
 
 @end
 

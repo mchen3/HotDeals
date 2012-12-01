@@ -15,9 +15,8 @@
 @property (nonatomic, readwrite) NSString *title;
 @property (nonatomic, readwrite) NSString *subtitle;
 
-- (id)initWithCoordinates:(CLLocationCoordinate2D)location title:(NSString *)title subtitle:(NSString *)subtitle;
-
-
+- (id)initWithCoordinates:(CLLocationCoordinate2D)location title:(NSString *)title
+								 subtitle:(NSString *)subtitle;
 @end
 
 

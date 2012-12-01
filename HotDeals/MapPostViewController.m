@@ -37,18 +37,15 @@ CLLocationCoordinate2D location;
 		location = CLLocationCoordinate2DMake(geopoint.latitude, geopoint.longitude);
 		MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location, 0.5*1609.344, 0.5*1609.344);
 		[self.dealMapView setRegion:viewRegion animated:YES];
-		
 
 		// Add Annotation
 		MapAnnotation *pin = [[MapAnnotation alloc] initWithCoordinates:location title:@"Here's the deal" subtitle:nil];
 		[self.dealMapView addAnnotation:pin];
-		
 
 		// Show the description
 		NSString *description = [self.parseObject objectForKey:@"description"];
 		[descriptionLabel setText:description];
 		
-
 }
 
 - (void)viewDidLoad
@@ -59,7 +56,6 @@ CLLocationCoordinate2D location;
 		// Make the description field rounded on the corners
 		// Must import the QuartzCore class to implement this
     self.descriptionLabel.layer.cornerRadius = 7.5;
-		
 		self.navigationItem.title = @"Map Location";
 		
 }
@@ -69,9 +65,6 @@ CLLocationCoordinate2D location;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 @end
 

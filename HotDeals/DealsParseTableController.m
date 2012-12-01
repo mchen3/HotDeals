@@ -86,37 +86,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-		// Reload the table data just in case changes were made in
-    // the IVC edits, will reload the PFobjects in the array objects
-		// but it doesn't actually save to Parse backend
-	  //	 [self.tableView reloadData];
-		
-	  //	NSLog(@"Parse will appear: DealsBasedon:%@", self.DealBasedOn);
-		
-		// Clear to prevent previous Parse table caches from appearing
-		//[self clear];
-		
-		// If you switch tabs back and forth, the parse table will not
-		// be up to date so you must reload to make sure the data is right.
-		// [self loadObjects];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-		//	[self.tableView reloadData];
-		//	[self loadObjects];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-		
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
-		
+    [super viewDidDisappear:animated];	
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -147,7 +130,6 @@
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     // This method is called every time objects are loaded from Parse via the PFQuery
-		
 }
 
 - (void)objectsWillLoad {
@@ -210,38 +192,11 @@
 }
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-		//static NSString *CellIdentifier = @"Cell";
-		
-		/* Parse cell
-		 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-		 if (cell == nil) {
-		 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-		 }
-		 
-		 // Configure the cell
-		 cell.textLabel.text = [object objectForKey:@"name"];
-		 // cell.detailTextLabel.text = [NSString stringWithFormat:@"Priority: %@", [object objectForKey:@"priority"]];
-		 
-		 return cell;
-		 */
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {		
 		
 		// Cell has been created in ViewDidLoad, so just grab the cell
 		ItemCell *cell =
 		[tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
-		
-		/*
-		 static NSString *CellIdentifier = @"ItemCell";
-		 ItemCell *cell = [tableView
-		 dequeueReusableCellWithIdentifier:CellIdentifier];
-		 if (cell == nil) {
-		 cell = [[ItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-		 }*/
-				
-		//[[cell nameLabel] setText:[object objectForKey:@"name"]];
-		// Set the values for description and value
-		//[[cell descriptionLabel] setText:[object objectForKey:@"description"]];
-		//[[cell priceLabel] setText:[object objectForKey:@"price"]];
 		 
 		// Set the description
 		/* Retrieve the description string from Parse
@@ -297,8 +252,6 @@
 						//Parse automically sets the image
 						//[[cell thumbnailView] setImage:image];
 				}];
-				
-				
 		
 		return cell;
 }
@@ -401,28 +354,14 @@
 		// to reload a table
 		[dealsItemViewController setDismissBlock: ^{
 				
-				//    DVC's table
-				//		[table reloadData];
-				
-				//		[ParseTVC.tableView reloadData];
-				
 				// Load the parse objects after you create a new Parse object
 				// Only reload the block if the save was successful.
 				[self loadObjects];
-				
-				
 		}];
-		
 		
 		// ???? Customize the animation of when hiding the toolbar
     dealsItemViewController.hidesBottomBarWhenPushed = YES;
-		
-		
 		[self.navigationController pushViewController:dealsItemViewController animated:YES];
-		
-		
-		
-		
 }
 
 // For editing / deleting from Parse Table
@@ -436,12 +375,8 @@
 						// [tableView deleteRowsAtIndexPaths:withRowAnimation]
 						[self loadObjects];
 				}];
-				
-				
 				// This causes a error with rows not matching up
 				//	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-				
-				
 		}
 }
 
@@ -451,20 +386,16 @@
  on currentLocation. Mostly when you press the currentLocation button
 */
 - (void)currentLocationReady {
-		
 		// Query the parse server again now that location data is available
 		NSLog(@"Notification recieved, update table on current location");
 		self.DealBasedOn = @"currentLocation";
 		[self loadObjects];
 }
-
-
 /* The location manager has notified us that a location was found so now we
 update the DealsParseTableController based on "userEnterAddress"- which
 will query the parse table based on the user's address. Mostly when you
 press the addressLocation button.
 */
-
 - (void)addressLocationReady {
 		NSLog(@"Notification recieved, update on user address");
 		self.DealBasedOn = @"userEnteredAddress";

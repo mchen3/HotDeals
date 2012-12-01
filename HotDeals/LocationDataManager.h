@@ -16,7 +16,6 @@
 - (void)currentLocationByReverseGeocoding;
 - (void)stopUpdatingCurrentLocation;
 
-
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLPlacemark *currentPlacemark;
 @property (nonatomic, strong) CLLocation *addressLocation;

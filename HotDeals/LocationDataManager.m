@@ -6,24 +6,15 @@
 //
 //
 
-/*
- 
- Singleton class to manage location data
- 
- */
 
 #import "LocationDataManager.h"
 
 @interface LocationDataManager ()
-
 @property (nonatomic, strong) CLLocationManager *locationManager;
-
 @end
 
 #pragma mark
-
 @implementation LocationDataManager
-
 @synthesize locationManager;
 @synthesize currentLocation;
 @synthesize currentPlacemark;
@@ -31,15 +22,12 @@
 @synthesize addressPlacemark;
 
 #pragma mark - Singleton methods
-
 + (LocationDataManager *)sharedLocation {
 		static LocationDataManager *sharedLocation = nil;
 		
 		if (!sharedLocation) {
 				sharedLocation = [[self alloc] init];
 		}
-		
-		
 		return sharedLocation;
 }
 
@@ -67,15 +55,11 @@
 		NSLog(@"Start updating current location");
 		[self.locationManager startUpdatingLocation];
 		
-		
-		
 		CLLocation *location = self.locationManager.location;
 		if (location) {
 				NSLog(@"locationManager.location");
 				self.currentLocation = location;
 		}
-		
-		
 }
 
 - (void)stopUpdatingCurrentLocation
@@ -96,7 +80,6 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-
 		CLLocation *lastLocation = [locations lastObject];
 		// Check the locations timestamp, if the location is greater
 		// than 3 seconds, it is a old cached location that we will ignore
@@ -111,7 +94,6 @@
 		[self stopUpdatingCurrentLocation];
 }
 
-
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
 		NSLog(@"Error: %@", [error description]);
@@ -123,10 +105,7 @@
 				// set a timer for five seconds to cycle location, and if it fails again, bail and tell the user.
 		} else {
 				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error retrieving location"
-																												message:[error description]
-																											 delegate:nil
-																							cancelButtonTitle:nil
-																							otherButtonTitles:@"Ok", nil];
+						message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
 				[alert show];
 		}
 }
@@ -200,10 +179,7 @@ will be used by the DealsParseTableController to search deals based on locality
 				CLPlacemark *placemark = [placemarks objectAtIndex:0];
 				self.addressLocation = placemark.location;
 				
-		
-				
 				NSLog(@"FORWARD Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
-				
 				
 				// Find the complete placemark based on location
 				[self findPlacemarkByReverseGeocoding:self.addressLocation];
@@ -245,8 +221,6 @@ will be used by the DealsParseTableController to search deals based on locality
 						});
 		}];
 }
-
-
 @end
 
 

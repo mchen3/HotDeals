@@ -7,15 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface ProfileViewController : UIViewController
-
 
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionField;
 - (IBAction)logOutButtonSelected:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *logOutButton;
-
-
 
 @end

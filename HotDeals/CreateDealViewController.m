@@ -76,12 +76,6 @@
 		
 		// Settings for the description field
 		NSString *description = [self.parseObject objectForKey:@"description"];
-		
-		
-		//NSLog(@"CDVC View will appear");
-		//NSLog(@"descrp  %@", description);
-		
-		
 		if (description) {
 				[descriptField setText:description];
 		}
@@ -99,17 +93,13 @@
 		
 		// Settings for the price field
 		NSString *price = [self.parseObject objectForKey:@"price"];
-
 		if (price) {
 				price = [NSString stringWithFormat:@"$%@", price];
 				[priceField setText:price];
-				
 		}
 		else {
 				priceField.text = @"$0";
 		}
-		
-		
 }
 
 // UITextView has no placeholder option, so you create one manually and
@@ -148,34 +138,18 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-		
-		NSLog(@"viewDidAppear");
-		
 		[imageView setImage:self.image];
-		
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
-		
-		
-		
-		NSLog(@"DISAPPEAR");
+
 }
 
 
 #pragma mark - UITextView delegates
 // TextView delegates for the description
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
-{
-		/* Unnecassary 
-		if (descriptField.textColor == [UIColor grayColor]) {
-				descriptField.text = @"Describe the deal...";
-		}
-		else {
-				descriptField.textColor = [UIColor blackColor];
-		}
-		 */
-		
+{		
 		return YES;
 }
 
@@ -542,13 +516,6 @@ a ibaction on the price button when the action Editing Change occurs
 		else if (buttonIndex == 1) {
 				saveItem.enabled = TRUE;
 		}
-		
-		
-		
-		
-		
-		
-		
 }
 
 - (IBAction)editImage:(id)sender {
@@ -578,28 +545,20 @@ a ibaction on the price button when the action Editing Change occurs
 		
 		
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-		
 		if ([UIImagePickerController isSourceTypeAvailable:
 				 UIImagePickerControllerSourceTypeCamera]) {
 				[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
 		} else {
 				[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
 		}
-		
 		[imagePicker setDelegate:self];
-		
 		[self presentViewController:imagePicker animated:YES completion:nil];
 		
 }
 
-
-
-
 // Delegate for UIImagePickerController
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-		
-		
 		// Customize to dismiss the modal view, image picker, from right to left
 		CATransition *transition = [CATransition animation];
 		transition.duration = 0.30;
@@ -610,22 +569,15 @@ a ibaction on the price button when the action Editing Change occurs
 		UIView *containerView = picker.view.window;
 		[containerView.layer addAnimation:transition forKey:nil];
 		
-		
 		// Must use the parent to dismiss because [self dismissViewController
 		// was causing to many issues
 		//[self.parentViewController dismissViewControllerAnimated:NO completion:^{
 		[self dismissViewControllerAnimated:NO completion:^{
-				
-				
 				// Get picked image from info dictionary
 				UIImage *editImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 				[imageView setImage:editImage];
 				self.image = editImage;
 		}];
-		
-		
-		
-		
 }
 
 #pragma mark - User Interface
@@ -642,8 +594,6 @@ a ibaction on the price button when the action Editing Change occurs
     UIGraphicsEndImageContext();
     return img;
 }
-
-
 @end
 
 

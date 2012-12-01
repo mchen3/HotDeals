@@ -12,11 +12,9 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface WelcomeViewController ()
-
 @end
 
 @implementation WelcomeViewController
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,8 +46,6 @@
 		self.signUpButton.layer.masksToBounds = YES;
 		self.signUpButton.layer.borderColor = [UIColor colorWithRed:69.0/255.0 green:71.0/255.0 blue:78.0/255.0 alpha:1.0].CGColor;
 		self.signUpButton.layer.borderWidth = 1;
-		
-		
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,7 +87,6 @@
     UIGraphicsEndImageContext();
     return img;
 }
-
 
 - (void)viewDidUnload {
 		[self setLogInButton:nil];

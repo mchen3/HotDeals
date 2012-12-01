@@ -23,11 +23,8 @@
 		6051C7FF16602FE300F91C6E /* MapPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6051C7FD16602FE300F91C6E /* MapPostViewController.xib */; };
 		6051C80A166034F000F91C6E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6051C808166034A700F91C6E /* MapKit.framework */; };
 		6051C8251660536700F91C6E /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6051C8241660536700F91C6E /* MapAnnotation.m */; };
-		605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC488161E5EC40046245F /* CategoryPicker.m */; };
 		605AC4A3161E5F710046245F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC490161E5EC40046245F /* ItemCell.m */; };
 		605AC4A4161E5F710046245F /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC48F161E5EC40046245F /* ImageStore.m */; };
-		605AC4A6161E5F710046245F /* Items.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC49E161E5ECE0046245F /* Items.m */; };
-		605AC4A7161E5F710046245F /* ItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC49F161E5ECE0046245F /* ItemStore.m */; };
 		605AC4AA161E5F710046245F /* DealsParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC4A1161E5ECE0046245F /* DealsParseTableController.m */; };
 		605AC4AB161E5F710046245F /* DealsItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AC497161E5EC40046245F /* DealsItemViewController.m */; };
 		608375D51657EAF60010FD72 /* PAWActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E37CB11657E84E0078E24D /* PAWActivityView.m */; };
@@ -100,36 +97,23 @@
 		60197B361651AC1F00DF13A6 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = HotDeals/MBProgressHUD.h; sourceTree = "<group>"; };
 		60197B371651AC1F00DF13A6 /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = HotDeals/MBProgressHUD.m; sourceTree = "<group>"; };
 		602874E716211E3C00EE51B0 /* DealsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DealsViewController.m; path = HotDeals/DealsViewController.m; sourceTree = "<group>"; };
-		602874EB16211F0D00EE51B0 /* ItemViewController copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ItemViewController copy.h"; path = "HotDeals/ItemViewController copy.h"; sourceTree = "<group>"; };
-		602874EC16211F0D00EE51B0 /* ItemViewController copy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ItemViewController copy.m"; path = "HotDeals/ItemViewController copy.m"; sourceTree = "<group>"; };
 		6051C7FB16602FE300F91C6E /* MapPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapPostViewController.h; path = HotDeals/MapPostViewController.h; sourceTree = "<group>"; };
 		6051C7FC16602FE300F91C6E /* MapPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapPostViewController.m; path = HotDeals/MapPostViewController.m; sourceTree = "<group>"; };
 		6051C7FD16602FE300F91C6E /* MapPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MapPostViewController.xib; path = HotDeals/MapPostViewController.xib; sourceTree = "<group>"; };
 		6051C808166034A700F91C6E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6051C8231660536700F91C6E /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAnnotation.h; path = HotDeals/MapAnnotation.h; sourceTree = "<group>"; };
 		6051C8241660536700F91C6E /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapAnnotation.m; path = HotDeals/MapAnnotation.m; sourceTree = "<group>"; };
-		605AC487161E5EC40046245F /* CategoryPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CategoryPicker.h; path = HotDeals/CategoryPicker.h; sourceTree = "<group>"; };
-		605AC488161E5EC40046245F /* CategoryPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CategoryPicker.m; path = HotDeals/CategoryPicker.m; sourceTree = "<group>"; };
-		605AC489161E5EC40046245F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = HotDeals/Constants.h; sourceTree = "<group>"; };
-		605AC48A161E5EC40046245F /* DealViewController copy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DealViewController copy.h"; path = "HotDeals/DealViewController copy.h"; sourceTree = "<group>"; };
-		605AC48B161E5EC40046245F /* DealViewController copy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DealViewController copy.m"; path = "HotDeals/DealViewController copy.m"; sourceTree = "<group>"; };
 		605AC48C161E5EC40046245F /* DealsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DealsViewController.h; path = HotDeals/DealsViewController.h; sourceTree = "<group>"; };
 		605AC48D161E5EC40046245F /* DealsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DealsViewController.xib; path = HotDeals/DealsViewController.xib; sourceTree = "<group>"; };
 		605AC48E161E5EC40046245F /* ImageStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImageStore.h; path = HotDeals/ImageStore.h; sourceTree = "<group>"; };
 		605AC48F161E5EC40046245F /* ImageStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ImageStore.m; path = HotDeals/ImageStore.m; sourceTree = "<group>"; };
 		605AC490161E5EC40046245F /* ItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ItemCell.m; path = HotDeals/ItemCell.m; sourceTree = "<group>"; };
 		605AC491161E5EC40046245F /* ItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ItemCell.xib; path = HotDeals/ItemCell.xib; sourceTree = "<group>"; };
-		605AC492161E5EC40046245F /* Items.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Items.h; path = HotDeals/Items.h; sourceTree = "<group>"; };
-		605AC493161E5EC40046245F /* ItemsArchive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ItemsArchive.h; path = HotDeals/ItemsArchive.h; sourceTree = "<group>"; };
-		605AC494161E5EC40046245F /* ItemsArchive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ItemsArchive.m; path = HotDeals/ItemsArchive.m; sourceTree = "<group>"; };
-		605AC495161E5EC40046245F /* ItemStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ItemStore.h; path = HotDeals/ItemStore.h; sourceTree = "<group>"; };
 		605AC496161E5EC40046245F /* DealsItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DealsItemViewController.h; path = HotDeals/DealsItemViewController.h; sourceTree = "<group>"; };
 		605AC497161E5EC40046245F /* DealsItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DealsItemViewController.m; path = HotDeals/DealsItemViewController.m; sourceTree = "<group>"; };
 		605AC498161E5EC40046245F /* DealsItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DealsItemViewController.xib; path = HotDeals/DealsItemViewController.xib; sourceTree = "<group>"; };
 		605AC49B161E5EC40046245F /* DealsParseTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DealsParseTableController.h; path = HotDeals/DealsParseTableController.h; sourceTree = "<group>"; };
 		605AC49D161E5ECE0046245F /* ItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ItemCell.h; path = HotDeals/ItemCell.h; sourceTree = "<group>"; };
-		605AC49E161E5ECE0046245F /* Items.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Items.m; path = HotDeals/Items.m; sourceTree = "<group>"; };
-		605AC49F161E5ECE0046245F /* ItemStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ItemStore.m; path = HotDeals/ItemStore.m; sourceTree = "<group>"; };
 		605AC4A1161E5ECE0046245F /* DealsParseTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DealsParseTableController.m; path = HotDeals/DealsParseTableController.m; sourceTree = "<group>"; };
 		60A91AFC15D953430068CCF2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		60A91AFE15D9534C0068CCF2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -237,25 +221,8 @@
 				60146206161FCA30004FAB65 /* DealMaker.xcdatamodeld */,
 				605AC48E161E5EC40046245F /* ImageStore.h */,
 				605AC48F161E5EC40046245F /* ImageStore.m */,
-				605AC492161E5EC40046245F /* Items.h */,
-				605AC49E161E5ECE0046245F /* Items.m */,
-				605AC493161E5EC40046245F /* ItemsArchive.h */,
-				605AC494161E5EC40046245F /* ItemsArchive.m */,
-				605AC495161E5EC40046245F /* ItemStore.h */,
-				605AC49F161E5ECE0046245F /* ItemStore.m */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		602874ED16211F5100EE51B0 /* copy ??? */ = {
-			isa = PBXGroup;
-			children = (
-				605AC48A161E5EC40046245F /* DealViewController copy.h */,
-				605AC48B161E5EC40046245F /* DealViewController copy.m */,
-				602874EB16211F0D00EE51B0 /* ItemViewController copy.h */,
-				602874EC16211F0D00EE51B0 /* ItemViewController copy.m */,
-			);
-			name = "copy ???";
 			sourceTree = "<group>";
 		};
 		60B48F3715A892F000A52C2E = {
@@ -412,7 +379,6 @@
 		60E5238215E1829000D532FA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				602874ED16211F5100EE51B0 /* copy ??? */,
 				60E37C8316575A6A0078E24D /* Location */,
 				60F470D7165741E200AC1D02 /* User Creation/Login */,
 				60E37C7F165759EE0078E24D /* Deals */,
@@ -447,9 +413,6 @@
 				60E37CB11657E84E0078E24D /* PAWActivityView.m */,
 				60197B361651AC1F00DF13A6 /* MBProgressHUD.h */,
 				60197B371651AC1F00DF13A6 /* MBProgressHUD.m */,
-				605AC487161E5EC40046245F /* CategoryPicker.h */,
-				605AC488161E5EC40046245F /* CategoryPicker.m */,
-				605AC489161E5EC40046245F /* Constants.h */,
 				605AC49D161E5ECE0046245F /* ItemCell.h */,
 				605AC490161E5EC40046245F /* ItemCell.m */,
 			);
@@ -567,11 +530,8 @@
 				6017F04E165C567C00DB72EB /* ProfileViewController.m in Sources */,
 				608375D51657EAF60010FD72 /* PAWActivityView.m in Sources */,
 				60197B381651AC5D00DF13A6 /* MBProgressHUD.m in Sources */,
-				605AC4A2161E5F710046245F /* CategoryPicker.m in Sources */,
 				605AC4A3161E5F710046245F /* ItemCell.m in Sources */,
 				605AC4A4161E5F710046245F /* ImageStore.m in Sources */,
-				605AC4A6161E5F710046245F /* Items.m in Sources */,
-				605AC4A7161E5F710046245F /* ItemStore.m in Sources */,
 				605AC4AA161E5F710046245F /* DealsParseTableController.m in Sources */,
 				605AC4AB161E5F710046245F /* DealsItemViewController.m in Sources */,
 				60B48F5315A892F000A52C2E /* main.m in Sources */,

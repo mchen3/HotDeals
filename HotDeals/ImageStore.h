@@ -12,22 +12,18 @@
 @interface ImageStore : NSObject 
 {
     NSMutableDictionary *dictionary;		
-		//UIImage *parseImage;
 }
 + (ImageStore *)defaultImageStore;
 
 - (void)setImage:(UIImage *)image forKey:(NSString *)key;
 - (UIImage *)imageForKey:(NSString *)key;
 - (PFFile *)getThumbnailFileFromImage:(UIImage *)image;
-
-
 - (void)deleteImageForKey:(NSString *)key;
 - (NSString *)imagePathForKey:(NSString *)key;
 
 @property (nonatomic, copy) void (^reloadBlock)(void);
 @property (nonatomic, retain) NSString * imageKey;
 @property (nonatomic, strong) UIImage *parseImageReturned;
-
 @property (nonatomic, strong) PFImageView *lazyLoadPFImageView;
 
 @end

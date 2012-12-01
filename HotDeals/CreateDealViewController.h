@@ -13,15 +13,10 @@
 {
 		
 		__weak IBOutlet UITextView *descriptField;
-		
 		__weak IBOutlet UITextField *priceField;
 		__weak IBOutlet UILabel *numberOfWords;
-		
 		__weak IBOutlet UIButton *deleteDealButton;
-			
-		__weak IBOutlet UIButton *editImageButton;
-		//__weak IBOutlet UIButton *editButton;
-		
+		__weak IBOutlet UIButton *editImageButton;		
 		NSString *storedPriceValue;
 
 }

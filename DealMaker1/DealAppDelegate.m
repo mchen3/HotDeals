@@ -10,11 +10,9 @@
 #import "DealsViewController.h"
 #import "UserViewController.h"
 #import "ProfileViewController.h"
-#import "ItemStore.h"
 #import "Parse/Parse.h"
 #import "LocationDataManager.h"
 #import "WelcomeViewController.h"
-
 
 @implementation DealAppDelegate
 
@@ -28,9 +26,6 @@
 
 		// Parse configuration
 		[Parse setApplicationId:@"OVEj0O0vxy0Moy3COwIkFGCDUYNcBDhrY54NnzYD" clientKey:@"jxiwzGxKF9Sa47YxlcpksL4RdVVX50dkKpqhiS7h"];		
-		
-		
-		
 		
 		/* Parse Access Control */
 		//[PFUser enableAutomaticUser];
@@ -143,9 +138,6 @@
 		
     [tarBarController setViewControllers:viewControllers];
     [[self window] setRootViewController:tarBarController];
-		
-		
-    
 }
 
 - (void)presentWelcomeViewController

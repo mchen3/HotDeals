@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Items.h"
 #import <Parse/Parse.h>
 
 @interface DealsItemViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate
@@ -15,21 +14,16 @@
 {
     
     __weak IBOutlet UITextView *descriptField;
-    
 		__weak IBOutlet PFImageView *imageView;
 		__weak IBOutlet UIButton *categoryButton;
 		__weak IBOutlet UILabel *priceLabel;
-		
 		__weak IBOutlet UIButton *mapButtonLabel;
-		
 		__weak IBOutlet UILabel *dateLabel;
-		
 		__weak IBOutlet UIButton *userButtonLabel;
 		__weak IBOutlet UIImageView *mapPinView;
 		
 		UIImage *imageTest;
 		NSString *tempImageKey;
-		Items *item;
 }
 
 - (IBAction)backgroundTouched:(id)sender;
@@ -37,8 +31,6 @@
 - (IBAction)userButton:(id)sender;
 - (IBAction)mapButton:(id)sender;
 
-
-@property (nonatomic, strong) Items *item;
 @property (nonatomic, copy) void (^dismissBlock)(void);
 @property (nonatomic, strong) PFObject *parseObject;
 @property (nonatomic, strong) PFUser *userNameOfDeal;
