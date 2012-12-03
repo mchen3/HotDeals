@@ -19,7 +19,6 @@
 @end
 
 @implementation DealsViewController
-
 @synthesize dealsParseTableController = _dealsParseTableController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -77,18 +76,11 @@
 		[currentAddressButton setTitle:@"Current\nAddress" forState:UIControlStateNormal];
 		[currentAddressButton.titleLabel setTextColor:[UIColor blueColor]];
 
-		
 		// Load the lib for the table cell and register it to the tableView
 		UINib *nib = [UINib nibWithNibName:@"ItemCell" bundle:nil];
-		//[table registerNib:nib forCellReuseIdentifier:@"ItemCell"];
-		
-		// Add the wall posts tableview as a subview with view containment (new in iOS 5.0):
-		
 		
 		self.dealsParseTableController = [[DealsParseTableController alloc] initWithStyle:UITableViewStylePlain];
-		NSLog(@"DPTC init");
-		// Configure parse table to display based on location
-		
+		// Configure the parse table to display based on current location
 		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
 		[self.dealsParseTableController.tableView setRowHeight:80];
 		[self.dealsParseTableController.tableView
@@ -96,14 +88,13 @@
 		// Use custom ItemCell
 		[self.dealsParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
 		
+		// Add the wall posts tableview as a subview with view containment (new in iOS 5.0):
 		[self addChildViewController:self.dealsParseTableController];
 		[self.view addSubview:self.dealsParseTableController.view];
 		// COnfig just at the edge, showing a little
 		self.dealsParseTableController.view.frame = CGRectMake(0.f, 58.f, 320.f, 408.f);
-		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 200.f, 320.f, 370.f);
-		//self.dealsParseTableController.view.frame = CGRectMake(0.f, 0.f, 320.f, 370.f);
-		
-		
+				
+		// We will use these two notifications to update our nav. title bar
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedCurrentLocation) name:@"updatedCurrentLocation" object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedAddressLocation) name:@"updatedAddressLocation" object:nil];
 }
@@ -112,21 +103,15 @@
 {
 		addressField = nil;
     [super viewDidUnload];
-		
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"updatedCurrentLocation" object:nil];
+														name:@"updatedCurrentLocation" object:nil];
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"updatedAddressLocation" object:nil];
+														name:@"updatedAddressLocation" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-		// ???
-    // Reload the table data just in case changes were made in
-    // another view controller
-    // [table reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -136,12 +121,12 @@
 
 - (void)dealloc {
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"updatedCurrentLocation" object:nil];
+														name:@"updatedCurrentLocation" object:nil];
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"updatedAddressLocation" object:nil];		
+														name:@"updatedAddressLocation" object:nil];		
 }
 
-#pragma mark - Interface
+#pragma mark - Interface actions and helper
 
 - (IBAction)backgroundTouched:(id)sender {
 		[[self view] endEditing:YES];
@@ -153,42 +138,39 @@
 		return true;
 }
 
-// Search for deals based on the address the user has entered
-- (IBAction)dealsBasedOnAddress:(id)sender {
-		
-		NSLog(@"Address pressed");
-		
-		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
-		
-		// Validate user address
-		NSString *userEnteredAddress = [addressField text];
-		if (userEnteredAddress ) {
-				[locationManager findLocationByForwardGeocoding:userEnteredAddress];
-		}
-}
-
-// Search deals based on user's current location
-- (IBAction)dealsBasedOnUserLocation:(id)sender {
-		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
-		NSLog(@"Current location pressed - startUpdatingCurrentLocation");
-		[locationManager startUpdatingCurrentLocation];
-		//[locationManager currentLocationByReverseGeocoding];
-}
-
 // Class method we used to customize the color of our UIButton
 + (UIImage *) imageFromColor:(UIColor *)color {
     CGRect rect = CGRectMake(0, 0, 1, 1);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
-    //  [[UIColor colorWithRed:222./255 green:227./255 blue: 229./255 alpha:1] CGColor]) ;
     CGContextFillRect(context, rect);
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
 }
 
-#pragma mark - NSNotification handlers
+#pragma mark - Button actions
+
+// Search for deals based on the address the user has entered
+- (IBAction)dealsBasedOnAddress:(id)sender {
+		
+		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
+		// Validate user address
+		NSString *userEnteredAddress = [addressField text];
+		if (userEnteredAddress ) {
+				[locationManager findLocationByForwardGeocoding:userEnteredAddress];
+		}
+		
+}
+
+// Search deals based on user's current location
+- (IBAction)dealsBasedOnUserLocation:(id)sender {
+		LocationDataManager *locationManager = [LocationDataManager sharedLocation];
+		[locationManager startUpdatingCurrentLocation];
+}
+
+#pragma mark - NSNotification callbacks
 - (void)updatedCurrentLocation {
 		
 		// A notification was recieved, we have updated to user's current location
@@ -203,6 +185,7 @@
 		
 		// Release the keyboard after you found an address
 		[addressField resignFirstResponder];
+		
 }
 
 - (void)updatedAddressLocation {
@@ -219,6 +202,7 @@
 		
 		// Release the keyobard after you found an address
 		[addressField resignFirstResponder];
+		
 }
 @end
 

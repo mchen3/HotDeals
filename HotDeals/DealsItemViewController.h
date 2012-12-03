@@ -15,7 +15,6 @@
     
     __weak IBOutlet UITextView *descriptField;
 		__weak IBOutlet PFImageView *imageView;
-		__weak IBOutlet UIButton *categoryButton;
 		__weak IBOutlet UILabel *priceLabel;
 		__weak IBOutlet UIButton *mapButtonLabel;
 		__weak IBOutlet UILabel *dateLabel;

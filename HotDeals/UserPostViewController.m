@@ -13,8 +13,6 @@
 #import "CreateDealViewController.h"
 #import "MapPostViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
-// DEl testing
 #import "ProfileViewController.h"
 #import "DealsItemViewController.h"
 
@@ -31,15 +29,9 @@
 {
 		self = [self initWithNibName:@"UserPostViewController" bundle:nil];
 		
-				// ? hide the tab bar
-		self.hidesBottomBarWhenPushed = YES;
-		
+		self.hidesBottomBarWhenPushed = YES;		
 		if (self) {
-				
-				NSLog(@"UserPost INIT");
-				
-				// If you are creating a new item, then
-				// add a save and cancel button to the nav bar
+				// Add two buttons, Edit and Done
 				UIBarButtonItem *editItem = [[UIBarButtonItem alloc]
 						initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
 				[editItem setTintColor:[UIColor darkGrayColor]];
@@ -53,10 +45,11 @@
 		return self;
 }
 
-#pragma mark - ()
+#pragma mark - Button actions
 
 - (void)edit:(id)sender
 {
+		//Customize to dismiss the current modal view, UserPostViewController, from left to right
 		CATransition *transition = [CATransition animation];
 		transition.duration = 0.30;
 		transition.timingFunction =
@@ -72,7 +65,6 @@
 
 -(void)done:(id)sender
 {
-		
 		//Customize to dismiss the current modal view, UserPostViewController, from left to right
 		CATransition *transition = [CATransition animation];
 		transition.duration = 0.30;
@@ -88,12 +80,6 @@
 }
 
 #pragma mark - View lifecycle
-
-- (void)viewWillAppear:(BOOL)animated
-{
-		
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
 		[super viewWillDisappear:animated];
@@ -151,7 +137,7 @@
     // e.g. self.myOutlet = nil;
 }
 
-#pragma mark - Interface
+#pragma mark - Interface methods
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -184,14 +170,13 @@
     return YES;
 }
 
-#pragma mark - Buttons
+#pragma mark - Button actions
 
 - (IBAction)mapButton:(id)sender {
 		// Show the map of the deal 
 		MapPostViewController *mapPostViewController = [[MapPostViewController alloc] init];
 		// Pass our parse object
 		[mapPostViewController setParseObject:self.parseObject];
-		
 		[self.navigationController pushViewController:mapPostViewController animated:YES];
 }
 @end

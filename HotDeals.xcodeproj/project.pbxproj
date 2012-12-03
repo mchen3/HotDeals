@@ -215,25 +215,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		601B096815B74220000AC5C0 /* Model */ = {
+		601B096815B74220000AC5C0 /* Model objects */ = {
 			isa = PBXGroup;
 			children = (
 				60146206161FCA30004FAB65 /* DealMaker.xcdatamodeld */,
 				605AC48E161E5EC40046245F /* ImageStore.h */,
 				605AC48F161E5EC40046245F /* ImageStore.m */,
+				60F423CE16389A91004EB95A /* LocationDataManager.h */,
+				60F423CF16389A91004EB95A /* LocationDataManager.m */,
 			);
-			name = Model;
+			name = "Model objects";
 			sourceTree = "<group>";
 		};
 		60B48F3715A892F000A52C2E = {
 			isa = PBXGroup;
 			children = (
-				60E5238515E182CA00D532FA /* MISC */,
-				601B096815B74220000AC5C0 /* Model */,
-				60E5238415E182AD00D532FA /* View */,
-				60E5238215E1829000D532FA /* Controllers */,
-				60B48F7315A89E8200A52C2E /* Images */,
+				60E5238515E182CA00D532FA /* Custom Views */,
+				601B096815B74220000AC5C0 /* Model objects */,
+				60E5238415E182AD00D532FA /* XIB */,
+				60E5238215E1829000D532FA /* View Controllers */,
 				60B48F4C15A892F000A52C2E /* DealMaker1 */,
+				60B48F7315A89E8200A52C2E /* Images */,
 				60B48F4515A892F000A52C2E /* Frameworks */,
 				60B48F4315A892F000A52C2E /* Products */,
 			);
@@ -286,14 +288,7 @@
 		60B48F4D15A892F000A52C2E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				60E5E8781669CC86006070B8 /* Default.png */,
-				60E5E8771669CC86006070B8 /* Default@2x.png */,
-				60E5E8811669E5A1006070B8 /* Icon.png */,
-				60E5E85B1669A6C5006070B8 /* Icon@2x.png */,
-				60E5E8831669E5D6006070B8 /* Icon-Small.png */,
-				60E5E8841669E5D6006070B8 /* Icon-Small@2x.png */,
-				60E5E8871669E5DB006070B8 /* iTunesArtwork */,
-				60E5E8881669E5DC006070B8 /* iTunesArtwork@2x */,
+				60B9EE67166D49D200DDED76 /* Assets */,
 				60B48F4E15A892F000A52C2E /* DealMaker1-Info.plist */,
 				60B48F4F15A892F000A52C2E /* InfoPlist.strings */,
 				60B48F5215A892F000A52C2E /* main.m */,
@@ -324,6 +319,21 @@
 				60B48F7715A89E8200A52C2E /* Time@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		60B9EE67166D49D200DDED76 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				60E5E8781669CC86006070B8 /* Default.png */,
+				60E5E8771669CC86006070B8 /* Default@2x.png */,
+				60E5E8811669E5A1006070B8 /* Icon.png */,
+				60E5E85B1669A6C5006070B8 /* Icon@2x.png */,
+				60E5E8831669E5D6006070B8 /* Icon-Small.png */,
+				60E5E8841669E5D6006070B8 /* Icon-Small@2x.png */,
+				60E5E8871669E5DB006070B8 /* iTunesArtwork */,
+				60E5E8881669E5DC006070B8 /* iTunesArtwork@2x */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		60E37C7F165759EE0078E24D /* Deals */ = {
@@ -366,17 +376,13 @@
 		60E37C8316575A6A0078E24D /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				60F423CE16389A91004EB95A /* LocationDataManager.h */,
-				60F423CF16389A91004EB95A /* LocationDataManager.m */,
 				6051C7FB16602FE300F91C6E /* MapPostViewController.h */,
 				6051C7FC16602FE300F91C6E /* MapPostViewController.m */,
-				6051C8231660536700F91C6E /* MapAnnotation.h */,
-				6051C8241660536700F91C6E /* MapAnnotation.m */,
 			);
 			name = Location;
 			sourceTree = "<group>";
 		};
-		60E5238215E1829000D532FA /* Controllers */ = {
+		60E5238215E1829000D532FA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				60E37C8316575A6A0078E24D /* Location */,
@@ -385,10 +391,10 @@
 				60E37C8116575A260078E24D /* User */,
 				60E37C8216575A2C0078E24D /* Profile */,
 			);
-			name = Controllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		60E5238415E182AD00D532FA /* View */ = {
+		60E5238415E182AD00D532FA /* XIB */ = {
 			isa = PBXGroup;
 			children = (
 				605AC491161E5EC40046245F /* ItemCell.xib */,
@@ -403,20 +409,22 @@
 				60F470E41657514100AC1D02 /* LoginViewController.xib */,
 				6051C7FD16602FE300F91C6E /* MapPostViewController.xib */,
 			);
-			name = View;
+			name = XIB;
 			sourceTree = "<group>";
 		};
-		60E5238515E182CA00D532FA /* MISC */ = {
+		60E5238515E182CA00D532FA /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				60E37CB01657E84E0078E24D /* PAWActivityView.h */,
 				60E37CB11657E84E0078E24D /* PAWActivityView.m */,
 				60197B361651AC1F00DF13A6 /* MBProgressHUD.h */,
 				60197B371651AC1F00DF13A6 /* MBProgressHUD.m */,
+				6051C8231660536700F91C6E /* MapAnnotation.h */,
+				6051C8241660536700F91C6E /* MapAnnotation.m */,
 				605AC49D161E5ECE0046245F /* ItemCell.h */,
 				605AC490161E5EC40046245F /* ItemCell.m */,
 			);
-			name = MISC;
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		60F470D7165741E200AC1D02 /* User Creation/Login */ = {

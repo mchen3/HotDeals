@@ -29,29 +29,17 @@
 		self = [super initWithNibName:@"UserViewController" bundle:nil];
 		self.UserViewBasedOn = TabBasedOn;
 		
-		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
-				//??? Change to show the username of the random profile
-				//[[self navigationItem] setTitle:@"UVC Random Profile"];
-		}
-		
 		if (self) {
+
 				// If this UserViewController is inside the user tab then
 				// this user is viewing his own profile. Allow editing and
 				// posting new deals.
-				
 				if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
-						
-						// Set the title of the nav bar to be the user
-						//[[self navigationItem] setTitle:@"UVC User Profile"];
-						
 						// Add a right bar button of type 'ADD' programmically
 						// to add items to the table
 						UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addNewDeal:)];
 						[button setTintColor:[UIColor lightGrayColor]];
-						
-						// Add a image to the button
 						[[self navigationItem] setRightBarButtonItem:button];
-						//[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 				}
 		}
 		return self;
@@ -65,10 +53,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -76,9 +60,6 @@
 		
 		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 		
-		
-		// Show the "Post a Deal" label to the current user only, but
-	
 		
 		/* Our tab bars have tag integers that identify which tab you are in. If the
 		tag is 1 that you are in the "Find Deals"/DealTab so you disable the two
@@ -112,16 +93,11 @@
 				[[self navigationItem] setTitle:currentUser.username];
 		}
 			
-		
 		// DealsParseTableController for the UserViewController
-		
 		// Load the lib for the table cell and register it to the tableView
-		UINib *nib = [UINib nibWithNibName:@"ItemCell" bundle:nil];
-		//[table registerNib:nib forCellReuseIdentifier:@"ItemCell"];
-		
+		UINib *nib = [UINib nibWithNibName:@"ItemCell" bundle:nil];		
 		// Add the wall posts tableView as a subview with view containment (new in iOS 5.0);
 		self.userParseTableController = [[UserParseTableController alloc] initWithStyle:UITableViewStylePlain];
-		
 		// Pass the flag UserViewBasedOn which tells the UserParseTableController
 		// what tab (Deal or User) you are in
 		[self.userParseTableController setUserViewBasedOn:self.UserViewBasedOn];
@@ -129,17 +105,14 @@
 		// the username of the deal if you are in the Deals Tab
 		[self.userParseTableController setUserNameOfDeal:self.userNameOfDeal];
 		
-		// Configure parse to display deals based on UserID
-		//[self.dealsParseTableController setDealBasedOn:@"user"];
-		
 		[self addChildViewController:self.userParseTableController];
 		[self.view addSubview:self.userParseTableController.view];
 		self.userParseTableController.view.frame = CGRectMake(0.f, 47.f, 320.f, 420.f);
-		
 		[self.userParseTableController.tableView setRowHeight:80];
 		[self.userParseTableController.tableView setSeparatorColor:[UIColor darkGrayColor]];
 		// Use custom cell ItemCell
-		[self.userParseTableController.tableView registerNib:nib forCellReuseIdentifier:@"ItemCell"];
+		[self.userParseTableController.tableView registerNib:nib
+																	forCellReuseIdentifier:@"ItemCell"];
 }
 
 - (void)viewDidUnload
@@ -169,31 +142,23 @@
 }
 
 -(void)addNewDeal:(id)sender
-{
-		NSLog(@"XXXXX XXXXX Add New deal - startUpdating");
-		
+{		
 		// We are creating a new deal so let's find our current location
 		[[LocationDataManager sharedLocation] startUpdatingCurrentLocation];
-    //[[LocationDataManager sharedLocation] currentLocationByReverseGeocoding];
 		
 		// In order to create a new deal we must create a photo first
 		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-		
 		if ([UIImagePickerController isSourceTypeAvailable:
 				 UIImagePickerControllerSourceTypeCamera]) {
 				[imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
 		} else {
 				[imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
 		}
-		
 		[imagePicker setDelegate:self];
 		[self presentViewController:imagePicker animated:YES completion:nil];
 }
 
-
-#pragma mark - Camera
-
-// Delegate for UIImagePickerController
+#pragma mark - UIImagePickerController delegate methods
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 		// Customize to dismiss the modal view, image picker, from right to left
@@ -206,14 +171,12 @@
 		UIView *containerView = picker.view.window;
 		[containerView.layer addAnimation:transition forKey:nil];
 		
-		
-		// Must use the parent to dismiss because [self dismissViewController
+		// Must use the parent to dismiss because [self dismissViewController]
 		// was causing to many issues
-		//[self.parentViewController dismissViewControllerAnimated:NO completion:^{
 		[self dismissViewControllerAnimated:NO completion:^{
 				
-				CreateDealViewController *createDealViewController = [[CreateDealViewController alloc] init];
-				
+				CreateDealViewController *createDealViewController =
+														[[CreateDealViewController alloc] init];
 				// Create a new parse object
 				PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
 				// Get picked image from info dictionary
@@ -221,18 +184,16 @@
 				// Pass the newly created parse object and image to createDealViewController
 				[createDealViewController setImage:image];
 				[createDealViewController setParseObject:parseObject];
-				
 				// Pass a block to reload the User table
 				[createDealViewController setReloadUserTableBlock:^{
 						[self.userParseTableController loadObjects];
 				}];
 				// Disable the delete button when you first create a delete
 				[createDealViewController setHideDeleteButton:TRUE];
-				
-				
 				// Create a nav controller so the CDVC can add nav items
 				UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createDealViewController];
 				[self presentViewController:navController animated:NO completion:nil];
+				
 		}];
 }
 @end

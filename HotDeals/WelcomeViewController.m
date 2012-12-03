@@ -48,6 +48,13 @@
 		self.signUpButton.layer.borderWidth = 1;
 }
 
+- (void)viewDidUnload {
+		[self setLogInButton:nil];
+		[self setSignUpButton:nil];
+		[super viewDidUnload];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -59,7 +66,7 @@
 		return (interfaceOrientation = UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Buttons
+#pragma mark - Button actions
 
 - (IBAction)loginButtonSelected:(id)sender {
 		LoginViewController *loginViewController = [[LoginViewController alloc] init];
@@ -73,7 +80,7 @@
 														completion:^{}];
 }
 
-#pragma mark - User Interface
+#pragma mark - User Interface helper methods
 
 // Class method we used to customize the color of our UIButton
 + (UIImage *) imageFromColor:(UIColor *)color {
@@ -81,18 +88,12 @@
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
-    //  [[UIColor colorWithRed:222./255 green:227./255 blue: 229./255 alpha:1] CGColor]) ;
     CGContextFillRect(context, rect);
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
 }
 
-- (void)viewDidUnload {
-		[self setLogInButton:nil];
-		[self setSignUpButton:nil];
-		[super viewDidUnload];
-}
 @end
 
 

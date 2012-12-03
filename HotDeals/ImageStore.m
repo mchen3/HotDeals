@@ -43,14 +43,17 @@
 
 // Clear cache when you recieve the low memory warning
 -(void)clearCache:(NSNotification *)note;
-{
-		
+{		
 		[dictionary removeAllObjects];
 }
 
+#pragma mark - Image methods
 
 -(void)setImage:(UIImage *)image forKey:(NSString *)key
 {
+		// Save our image to the Parse servers, while associating it 
+		// with the key that is passed through with this image
+		
 		// Save the image to a temporary storage 
 		[dictionary setObject:image forKey:key];
 		
@@ -58,9 +61,11 @@
 		NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
 		PFFile *imageFile = [PFFile fileWithName:@"Parse.jpg" data:imageData];
 		
-		// Save without waiting
+		// Save PFFile without waiting
 		[imageFile save];
 		
+		// We will save a image in a separate "Photos" table on parse
+		// instead of the main table, "Posts"
 		PFObject *userPhoto = [PFObject objectWithClassName:@"Photos"];
 		[userPhoto setObject:imageFile forKey:@"image"];
 		[userPhoto setObject:key forKey:@"imageKey"];
@@ -71,7 +76,7 @@
 -(UIImage *)imageForKey:(NSString *) key
 {
 		/*
-		This method can return an image when you pass a key.
+		This method can return back an image when you pass a key.
 		 
 		But it can also be used to asynchronously load a remote image to set a
 		PFImage, which we have our property as lazyLoadPFImageView.
@@ -94,15 +99,17 @@
 				// Get the object from Parse servers
 				[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
 						// Use PFImageView which will load and set the our image
-						PFFile *parseFile = [object objectForKey:@"image"];
-						self.lazyLoadPFImageView.file = parseFile;
-						[self.lazyLoadPFImageView loadInBackground:^(UIImage *image, NSError *error) {
-								
-								// Cache the image in our dictionary
-								if (image) {
-										[dictionary setObject:image forKey:key];
-								}
-						}];
+						if (!error) {
+								PFFile *parseFile = [object objectForKey:@"image"];
+								self.lazyLoadPFImageView.file = parseFile;
+								[self.lazyLoadPFImageView loadInBackground:^(UIImage *image, NSError *error) {
+										
+										// Cache the image in our dictionary
+										if (image) {
+												[dictionary setObject:image forKey:key];
+										}
+								}];
+						}
 				 }];
 		}
 		else {
@@ -126,33 +133,10 @@
 		[object delete];
 }
 
--(void)uploadImage:(NSData *)imageData {
-		
-		// Save PFFile onto Parse servers
-		PFFile *imageFile = [PFFile fileWithName:@"Image1.jpg" data:imageData];
-		
-		[imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-				if (!error) {
-						PFObject *saveImage = [PFObject objectWithClassName:@"Posts"];
-						[saveImage setObject:imageFile forKey:@"image"];
-						[saveImage saveInBackground];
-				}
-		}];
-}
+#pragma mark - Resize Image to thumbnail
 
-- (NSString *)imagePathForKey:(NSString *)key
-{
-		NSArray *documentDirectories =
-				NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-																						NSUserDomainMask, YES);
-		NSString *documentDirectory = [documentDirectories objectAtIndex:0];
-		return [documentDirectory stringByAppendingPathComponent:key];
-}
-
-#pragma mark - Thumbnail
-
-// Takes the full size image and resizes it to a thumb image
-// and returns a PFFile associated with it
+// Takes a full size image and resizes it to a thumb 
+// image and returns a PFFile associated with it
 - (PFFile *)getThumbnailFileFromImage:(UIImage *)image
 {
 		CGSize origImageSize = [image size];

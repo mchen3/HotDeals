@@ -19,7 +19,6 @@
 - (UIImage *)imageForKey:(NSString *)key;
 - (PFFile *)getThumbnailFileFromImage:(UIImage *)image;
 - (void)deleteImageForKey:(NSString *)key;
-- (NSString *)imagePathForKey:(NSString *)key;
 
 @property (nonatomic, copy) void (^reloadBlock)(void);
 @property (nonatomic, retain) NSString * imageKey;

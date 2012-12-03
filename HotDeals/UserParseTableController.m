@@ -16,7 +16,6 @@
 #import "CreateDealViewController.h"
 
 @interface UserParseTableController ()
-
 @end
 
 #pragma mark -
@@ -24,7 +23,6 @@
 @synthesize UserViewBasedOn;
 @synthesize userNameOfDeal;
 @synthesize parseImageReturned;
-
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -72,8 +70,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-		
-		
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -130,7 +126,7 @@
 		
 }
 
-#pragma mark - Parse
+#pragma mark - PFQueryTableViewController methods
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
@@ -154,10 +150,7 @@
     if ([self.objects count] == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
-		
-		//  [query orderByAscending:@"createdAt"];
-		
-		
+
 		/* If you are in the Deals Tab then return the query for
 		 random user, else you are in the User Tab and you will
 		 return the query for the current user */
@@ -168,18 +161,12 @@
 				PFUser *user = self.userNameOfDeal;
 				[query whereKey:@"user" equalTo:user];
 		}
-		
-		
 		// Return the query for the current user
 		else if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
 				
-				// Return a query based on a current Users ID
-				//if ([self.DealBasedOn isEqualToString:@"user"]) {
-				
 				[query orderByDescending:@"createdAt"];
-				
 				PFUser *user = [PFUser currentUser];
-				
+		
 				// If user.objectId is nil, then the user hasn't been saved
 				// on the Parse server. There will be an exception if you query
 				// with a user.objectId that is nil i.e. unsaved
@@ -187,39 +174,20 @@
 						[query whereKey:@"user" equalTo:user];
 						//  Multiple contraints on a query
 						// [query whereKey:@"name" equalTo:@"second"];
-						
 				}
 				else {
 						// Else user hasn't been saved to the
 						// Parse server, return a empty table
 						[query whereKey:@"user" equalTo:@""];
-						NSLog(@"EMMMMMMPTTYYYY");
 				}
-				
 		}
-		
-		//	NSLog(@"Outside");
-    return query;
+		return query;
 }
 
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-		//static NSString *CellIdentifier = @"Cell";
-		
-		/* Parse cell
-		 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-		 if (cell == nil) {
-		 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-		 }
-		 
-		 // Configure the cell
-		 cell.textLabel.text = [object objectForKey:@"name"];
-		 // cell.detailTextLabel.text = [NSString stringWithFormat:@"Priority: %@", [object objectForKey:@"priority"]];
-		 
-		 return cell;
-		 */
-		
+
 		// Cell has been created in ViewDidLoad, so just grab the cell
 		ItemCell *cell =
 		[tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
@@ -260,14 +228,9 @@
 		[[cell dateLabel] setTextColor:[UIColor grayColor]];
 		[[cell dateLabel] setText:dateString];
 		
-		
-		
-		
-
 		// Set the thumbnail image
 		NSString *imageKey = [object objectForKey:@"imageKey"];
 		if (imageKey) {
-				
 				// Set the thumbnail image
 				/* We will LazyLoad the thumbnail images- meaning we will load the images
 				 asynchronously so the table will be more responsive i.e. the table will
@@ -289,7 +252,6 @@
 				
 		return cell;
 }
-
 
 /*
  // Override if you need to change the ordering of objects in the table.
@@ -370,12 +332,8 @@
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 		
-		
 		PFObject *object = [self.objects objectAtIndex:[indexPath row]];
-		//NSString *hello = [object objectForKey:@"name"];
-		//NSLog(@"%@", hello);
-		
-		
+
 		/* If this UserViewController is inside the Deals Tab Bar Controller
 		 then selecting on a table will bring up a DealsItemViewController
 		 which cannot not be edited.
@@ -384,11 +342,9 @@
 		 up the UserPostViewController which will allow a user to edit
 		 his own deals.
 		 */
-		
-		
-		//??? Clean up later
-		// If you are in the Deals Tab, selecting a row will bring up DealsItemViewController
-		// If you are in the User Tab, selecting a row will bring up UserPostViewController
+				
+		// In the Deals Tab, selecting a row will bring up DealsItemViewController
+		// and in the User Tab, selecting a row will bring up UserPostViewController
 		if ([self.UserViewBasedOn isEqualToString:@"DealTab"]) {
 				
 				DealsItemViewController *dealsItemViewController =
@@ -404,72 +360,19 @@
 				// so when IVC viewdisappears, (it'll save and run dismiss block
 				// to reload a table
 				[dealsItemViewController setDismissBlock: ^{
-						
-						//    DVC's table
-						//		[table reloadData];
-						
-						//		[ParseTVC.tableView reloadData];
-						
 						// Load the parse objects after you create a new Parse object
-						// Only reload the block if the save was successful.
 						[self loadObjects];
 				}];
-				// ???? Customize the animation of when hiding the toolbar
-				dealsItemViewController.hidesBottomBarWhenPushed = YES;
-				
+				dealsItemViewController.hidesBottomBarWhenPushed = YES;				
 				[self.navigationController pushViewController:dealsItemViewController animated:YES];
 		}
 		
 		// You are in the User Tab so allow the user to edit his own deals
 		else if ([self.UserViewBasedOn isEqualToString:@"UserTab"]) {
-				
-				// Pass the parse object onto to the ItemViewController
-				// when it is pushed
-				// DEL changed DIVC to UPVC for
-				//DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] init];
-				//[dealsItemViewController setParseObject:object];
-				
-				UserPostViewController *userPostViewController = [[UserPostViewController alloc] initWithName:NO];
+
+				UserPostViewController *userPostViewController =
+												[[UserPostViewController alloc] initWithName:NO];
 				[userPostViewController setParseObject:object];
-				
-				// Set dismiss block for didselectrowatindexpath
-				// Previous bug, when you select row and then return it crashed
-				// you set it for for addnewitem in DVC but you didn't for didselectrow
-				// so when IVC viewdisappears, (it'll save and run dismiss block
-				// to reload a table
-				
-				/* Cancel the dismiss block when you select a row and bring up UPVC
-				 you don't directly edit UPVC
-				 [userPostViewController setDismissBlock: ^{
-				 
-				 //    DVC's table
-				 //		[table reloadData];
-				 
-				 //		[ParseTVC.tableView reloadData];
-				 
-				 // Load the parse objects after you create a new Parse object
-				 // Only reload the block if the save was successful.
-				 // Did select on a
-				 [self loadObjects];
-				 
-				 // Notify the DealViewController parse table to reload
-				 // because a post may have been changed
-				 dispatch_async(dispatch_get_main_queue(), ^{
-				 [[NSNotificationCenter defaultCenter]
-				 postNotificationName:@"userDealChange" object:nil];
-				 });
-				 }];
-				 
-				 Cancel dismiss block
-				 */
-				
-				// ???? Customize the animation of when hiding the toolbar
-				//userPostViewController.hidesBottomBarWhenPushed = YES;
-				
-				
-				//[self.navigationController pushViewController:userPostViewController animated:YES];
-				// Change to modal view instead of pushView
-				
 				
 				// Customize to present the modal view from right to left
 				CATransition *transition = [CATransition animation];
@@ -481,32 +384,26 @@
 				UIView *containerView = self.view.window;
 				[containerView.layer addAnimation:transition forKey:nil];
 				
-				
 				// Create a nav controller so userPostViewController can add nav items to return
 				UINavigationController *userPostNavController = [[UINavigationController alloc] initWithRootViewController:userPostViewController];
 				
-				
-				// We want to present a modal view which already presents a modal view itself
 				CreateDealViewController *createDealViewController =
-				[[CreateDealViewController alloc] init];
+												[[CreateDealViewController alloc] init];
 				UINavigationController *createDealNavController = [[UINavigationController alloc] initWithRootViewController:createDealViewController];
-				
-				
+		
 				// Pass the object, image, and reloadUserTable block to CDVC
 				[createDealViewController setParseObject:object];
-				
 				
 				// Set the image
 				NSString *imageKey = [object objectForKey:@"imageKey"];
 				/* We want to set the image for CreateDealViewController but do it asynchronously.
 				We are presentingly UserPostViewController on top of CreateDealViewController so
-				 since they are both preented at the same time we need to leave the ImageStore 
+				 since they are both presented at the same time we need to leave the ImageStore 
 				 free for UPVC to use. The best way is just to query the photo object ourselves
 				 and use PFFile getData (instead of PFImageView) method to retrive the PFFile */
 				
 				PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
 				[query whereKey:@"imageKey" equalTo:imageKey];
-				
 				[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
 						PFFile *parseFile = [object objectForKey:@"image"];
 						NSData *imageData = [parseFile getData];
@@ -514,17 +411,17 @@
 						[createDealViewController setImage:parseImageReturned];
 				}];
 				
-				
 				[createDealViewController setReloadUserTableBlock:^{
 						[self loadObjects];
 				}];
 				
+				// Present a modal view, createDealNavController, with another modal
+				// view, userPostNavController on top of it already
 				[self presentViewController:createDealNavController animated:NO completion:^{
 						[createDealViewController presentViewController:userPostNavController
 																									 animated:NO completion:nil];
 				}];
 		}
-		
 }
 
 // For editing / deleting from Parse Table
@@ -533,11 +430,9 @@
 		if (editingStyle == UITableViewCellEditingStyleDelete) {
 				PFObject *object = [self.objects objectAtIndex:[indexPath row]];
 				[object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-						
 						if (error) {
 								return;
 						}
-						
 						//  Reload the Parse Table, this function relaces
 						// [tableView deleteRowsAtIndexPaths:withRowAnimation]
 						[self loadObjects];
@@ -548,18 +443,10 @@
 								 postNotificationName:@"userDealChange" object:nil];
 						});
 				}];
-				
-				
 				// This causes a error with rows not matching up
 				//	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-				
-				
 		}
 }
-
-
-
-
 @end
 
 

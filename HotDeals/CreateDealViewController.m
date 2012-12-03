@@ -32,9 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 		
 		if (self) {
-				
-				// If you are creating a new item, then
-				// add a save and cancel button to the nav bar
+				// Add a save and cancel button to the nav bar
 				saveItem = [[UIBarButtonItem alloc]
 																		 initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 				[[self navigationItem] setRightBarButtonItem:saveItem];
@@ -69,10 +67,7 @@
 		 deleteDealButton.hidden = NO;
 		}
 		
-		//[priceField setKeyboardType:UIKeyboardTypeNumberPad];
 		[imageView setImage:self.image];
-		
-		
 		
 		// Settings for the description field
 		NSString *description = [self.parseObject objectForKey:@"description"];
@@ -89,8 +84,7 @@
 				saveItem.enabled = FALSE;
 		}
 		[self numberOfWordsInDescription];
-		
-		
+
 		// Settings for the price field
 		NSString *price = [self.parseObject objectForKey:@"price"];
 		if (price) {
@@ -104,12 +98,11 @@
 
 // UITextView has no placeholder option, so you create one manually and
 // factor in all posibilites for entering text into descriptField
-- (void)viewDidLoad{
-		
+- (void)viewDidLoad
+{
 		[[self navigationItem] setTitle:@"EDIT"];
 		[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 		
-		// Customize the background color of editImageButton and deleteDealButton
 		/* Customize the background color of our UIbuttons. Currently the only way
 		 to set the background color of UIButton is to set an image. We use our
 		 method imageFromColor to set the color */
@@ -132,19 +125,16 @@
 
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
 		editImageButton = nil;
 		[super viewDidUnload];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated
+{
 		[imageView setImage:self.image];
 }
-
-- (void) viewDidDisappear:(BOOL)animated {
-
-}
-
 
 #pragma mark - UITextView delegates
 // TextView delegates for the description
@@ -155,7 +145,6 @@
 
 -(void) textViewDidChange:(UITextView *)textView
 {
-
 		[self numberOfWordsInDescription];
 		
 		if(descriptField.text.length == 0){
@@ -178,7 +167,6 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
 {
-		
 		// If text color is gray, then clear the text and start entering words as black text
 		if (descriptField.textColor == [UIColor grayColor]) {
 				descriptField.text = @"";
@@ -208,7 +196,7 @@
 		}
 }
 
-#pragma mark - UITextField delegates
+#pragma mark - UITextField delegates and helpers
 // TextField delegates for the price 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -223,15 +211,12 @@
 		}
 		return YES;
 }
-
-#pragma mark - UITextField helper methods
-
 /* UITexFieldDelegate does not have an equilavent textViewDidChange where
 you can respond directly after you entered a text so you manually create 
 a ibaction on the price button when the action Editing Change occurs
 */
-- (IBAction)priceTextFieldChanged:(id)sender {
-
+- (IBAction)priceTextFieldChanged:(id)sender
+{
 		// Prevent a user from entering a empty price by reseting to $0
 		if ([priceField.text isEqualToString:@"$"]) {
 				[priceField setText:@"$0"];
@@ -250,7 +235,7 @@ a ibaction on the price button when the action Editing Change occurs
 		}
 }
 
-#pragma mark - ()
+#pragma mark - Button actions and helpers
 
 - (void)save:(id)sender
 {
@@ -281,8 +266,6 @@ a ibaction on the price button when the action Editing Change occurs
 		// Add the HUD view over the keyboard
 		[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
 		[HUD showAnimated:YES whileExecutingBlock:^{
-		
-				
 				// Set the price to parse the object
 				// Upload the price value to Parse but first remove the dollar sign
 				// from the string which is at the zero index. Create a mutable
@@ -297,7 +280,6 @@ a ibaction on the price button when the action Editing Change occurs
 				PFUser *user = [PFUser currentUser];
 				[self.parseObject setObject:user forKey:@"user"];
 				
-				
 				// Set the location to the parse object
 				// Postal code
 				NSString *postalcode = [LocationDataManager sharedLocation].currentPlacemark.postalCode;
@@ -307,40 +289,30 @@ a ibaction on the price button when the action Editing Change occurs
 				NSString *locality = [LocationDataManager sharedLocation].currentPlacemark.locality;
 				[self.parseObject setObject:locality forKey:@"locality"];
 				
-				/* Placemark
+				/* Will eventually save a object of type Placemark to our backend
 				CLPlacemark *placemark = [LocationDataManager sharedLocation].currentPlacemark;
 				NSArray *placemarkArray = [NSArray arrayWithObject:placemark];
 				[self.parseObject setObject:placemarkArray forKey:@"placemark"];
 				*/
-				 
+
 				// Geopoint
 				CLLocationCoordinate2D currentCoordinate = [LocationDataManager sharedLocation].currentPlacemark.location.coordinate;
 				PFGeoPoint *geopoint = [PFGeoPoint geoPointWithLatitude:currentCoordinate.latitude longitude:currentCoordinate.longitude];
 				[self.parseObject setObject:geopoint forKey:@"geopoint"];
 				
-				
 				// Set the image and thumbnail to the parse object
-				// Create a CFUUID object - it knows how to create a unique identifier strings
+				// Create a unique key to identify our image and thumbnail				
 				CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
-				
 				// Create a string from unique identifier
 				CFStringRef newUniqueIDString =
 				CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-				
 				// Need to bridge CFStringRef to NSString
 				NSString *key = (__bridge NSString *)newUniqueIDString;
 				
-				// Add a new Parse object and pass it to dealsItemViewController
-				//PFObject *parseObject = [PFObject objectWithClassName:@"Posts"];
-				
 				// Save key, image, and thumbnail
-				// If this is a new item parseObject has not been created
-				// can't set any values to nil
 				[self.parseObject setObject:key forKey:@"imageKey"];
-				
 				// Store image in the ImageStore and on Parse servers with this key
 				[[ImageStore defaultImageStore] setImage:self.image forKey:key];
-				
 				// Resize the image and get a PFFile associated with it
 				PFFile *thumbnailFile = [[ImageStore defaultImageStore]
 																 getThumbnailFileFromImage:self.image];
@@ -355,8 +327,6 @@ a ibaction on the price button when the action Editing Change occurs
 				// Release the objects used for creating a unique key
 				CFRelease(newUniqueIDString);
 				CFRelease(newUniqueID);
-				
-				
 				
 				// Save the parse object
 				[self.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -376,12 +346,12 @@ a ibaction on the price button when the action Editing Change occurs
 										[[NSNotificationCenter defaultCenter]
 										 postNotificationName:@"userDealChange" object:nil];
 								});
-								
-								
+						
 								// Enable the delete button in CDVC after a deal is created
 								self.hideDeleteButton = FALSE;
 								
-								//Customize to dismiss the modal view, CreateDealViewController, from right to left
+								// Customize to dismiss the modal view, CreateDealViewController,
+								// from right to left
 								CATransition *transition = [CATransition animation];
 								transition.duration = 0.30;
 								transition.timingFunction =
@@ -390,7 +360,6 @@ a ibaction on the price button when the action Editing Change occurs
 								transition.subtype = kCATransitionFromRight;
 								UIView *containerView = self.view.window;
 								[containerView.layer addAnimation:transition forKey:nil];
-								
 								
 								UserPostViewController *userPostViewController =
 								[[UserPostViewController alloc] initWithName:YES];
@@ -404,14 +373,11 @@ a ibaction on the price button when the action Editing Change occurs
 				
 		} completionBlock:^{
 				[HUD removeFromSuperview];
-			//	[priceField becomeFirstResponder];
-
 		}];
 }
 
 -(void)cancel:(id)sender
 {
-		
 		//Customize to dismiss the current modal view, present view controller, from left to right
 		CATransition *transition = [CATransition animation];
 		transition.duration = 0.30;
@@ -423,10 +389,7 @@ a ibaction on the price button when the action Editing Change occurs
 		UIView *containerView = self.view.window;
 		[containerView.layer addAnimation:transition forKey:nil];
 		
-		//[[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
 		[self dismissViewControllerAnimated:NO completion:nil];
-		
-		//[self.navigationController popViewControllerAnimated:NO];
 }
 
 // Calculate the amount of words that are left to enter in the description field,
@@ -445,19 +408,14 @@ a ibaction on the price button when the action Editing Change occurs
 				numberRemaining = 150 - number;
 				numberOfWords.text = [NSString stringWithFormat:@"%d",numberRemaining];
 		}
-		
 		return numberRemaining;
 }
 
-
-
-- (IBAction)deleteDeal:(id)sender {
-		
+- (IBAction)deleteDeal:(id)sender
+{		
 		// Disable the save button to prevent the user from 
 		// pressing save right after he deletes a deal
 		saveItem.enabled = FALSE;
-
-		
 		UIActionSheet *deleteDealMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete listing"
 																				otherButtonTitles: nil];
 		[deleteDealMenu showInView:self.view];
@@ -466,13 +424,10 @@ a ibaction on the price button when the action Editing Change occurs
 // Delegate for the deleteDeal action sheet.
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-
 		// User has pressed the delete button
 		if (buttonIndex == 0) {
-				
-				
+		
 		// Delete the deal from the Parse servers
-				
 		// Show a loading HUD while you are deleting the data from the Parse servers.
 		MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
 		HUD.labelText = @"Deleting data";
@@ -480,7 +435,6 @@ a ibaction on the price button when the action Editing Change occurs
 		// Add the HUD view over the keyboard
 		[[[UIApplication sharedApplication].windows objectAtIndex:1] addSubview:HUD];
 		[HUD showAnimated:YES whileExecutingBlock:^{
-						
 				// Delete the image from the Photo table on parse
 				NSString *imageKey = [self.parseObject objectForKey:@"imageKey"];
 				[[ImageStore defaultImageStore] deleteImageForKey:imageKey];
@@ -556,7 +510,7 @@ a ibaction on the price button when the action Editing Change occurs
 		
 }
 
-// Delegate for UIImagePickerController
+#pragma mark - UIImagePickerController delegate method
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 		// Customize to dismiss the modal view, image picker, from right to left
@@ -580,7 +534,7 @@ a ibaction on the price button when the action Editing Change occurs
 		}];
 }
 
-#pragma mark - User Interface
+#pragma mark - User Interface methods
 
 // Class method we used to customize the color of our UIButton
 + (UIImage *) imageFromColor:(UIColor *)color {

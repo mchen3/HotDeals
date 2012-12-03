@@ -74,7 +74,7 @@
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:passwordField];
 }
 
-#pragma mark - Buttons
+#pragma mark - Button actions
 
 - (IBAction)done:(id)sender {
 		[usernameField resignFirstResponder];
@@ -208,18 +208,17 @@
 		}];
 }
 
+#pragma mark - Viewcontroller methods
+
 - (void)presentMainViewController
 {
-		
 		/* Start the initial methods for the singleton locationDataManager which will 
 		 1) Search for location and placemark just in case it wasn't received
 		 2) At the completion block of "currentLocationByReverseGeocoding", we will
 		 notifiy DealsParseTableController to reload its table
 		*/
-		NSLog(@"LogIn startUpdatingLocation");
 		LocationDataManager *locationDataManager = [LocationDataManager sharedLocation];
 		[locationDataManager startUpdatingCurrentLocation];
-		//[locationDataManager currentLocationByReverseGeocoding];
 		
     // Set up a navigational controller and initialize with DealViewController
     // Add DealViewController to a Navigational Controller

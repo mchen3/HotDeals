@@ -113,7 +113,7 @@
 		doneButton.enabled = [self shouldEnableDoneButton];
 }
 
-#pragma mark - Buttons
+#pragma mark - Button actions
 - (IBAction)done:(id)sender {
 		[usernameField resignFirstResponder];
 		[passwordField resignFirstResponder];
@@ -231,6 +231,8 @@ showDialog:
 				
 		}];
 }
+
+#pragma mark - Viewcontroller methods
 
 - (void)presentMainViewController
 {

@@ -17,7 +17,6 @@
 
 #pragma mark -
 @implementation DealsParseTableController
-
 @synthesize DealBasedOn;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -59,11 +58,9 @@
 		
 		// Register to be notified when the location data is ready.
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentLocationReady) name:@"currentLocationReady" object:nil];
-		
 		// Register to be notified when the user has supplied a address
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addressLocationReady) name:@"addressLocationReady" object:nil];
-		
-		// Register to be notified when a user has added a new deal to his locality
+		// Register to be notified when a user has added a new deal 
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector
 		 (userDealChange) name:@"userDealChange" object:nil];
 }
@@ -118,14 +115,14 @@
 
 - (void)dealloc {
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"currentLocationReady" object:nil];
+														name:@"currentLocationReady" object:nil];
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"addressLocationReady" object:nil];
+														name:@"addressLocationReady" object:nil];
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-																										name:@"userDealChange" object:nil];
+														name:@"userDealChange" object:nil];
 }
 
-#pragma mark - Parse
+#pragma mark - PFQueryTableViewController methods
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
@@ -149,46 +146,36 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
 		
-		// Return a query based upon a current locality of current user
+		/*Our table will return deals based on a user's current 
+		 location or a address  that a user has entered
+		*/
+		
+		// Return a query based upon a current postal code of current user
 		if ([self.DealBasedOn isEqualToString:@"currentLocation"]) {
-				
-				
-				NSLog(@"inside current location");
-				
 				// Pull the location data from LocationDataManager
 				NSString *usersCurrentPostalCode =
 						[LocationDataManager sharedLocation].currentPlacemark.postalCode;
-				
 				// Check to see if postal code is ready, if not return a empty table
 				if (usersCurrentPostalCode) {
-						NSLog(@"Current postal code ready, query parse %@", usersCurrentPostalCode);
 						[query orderByDescending:@"createdAt"];
 						[query whereKey:@"postalcode" equalTo:usersCurrentPostalCode];
 				} else {
-						NSLog(@"Current postal code not ready, query empty parse");
 						[query whereKey:@"postalcode" equalTo:@""];
 				}
 		}
 		 
 		// Return query based upon an address that the user entered
 		else if ([self.DealBasedOn isEqualToString:@"userEnteredAddress"]) {
-				
 				NSString *userEnteredPostalCode =
-				[LocationDataManager sharedLocation].addressPlacemark.postalCode;
+						[LocationDataManager sharedLocation].addressPlacemark.postalCode;
 				if (userEnteredPostalCode) {
-						NSLog(@"Address postal code ready, query parse");
 						[query orderByDescending:@"createdAt"];
 						[query whereKey:@"postalcode" equalTo:userEnteredPostalCode];
 				} else {
-						NSLog(@"Address postal code not ready, query empty parse");
 						[query whereKey:@"postalcode" equalTo:@""];
 				}
-				
 		}
-		
-		//	NSLog(@"Outside");
-		NSLog(@"Query DealsBasedon --->>>> %@", self.DealBasedOn);
-    return query;
+		return query;
 }
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
@@ -248,10 +235,7 @@
 				// You can set a temporary placeholder image
 				cell.thumbnailView.image = [UIImage imageNamed:@"placeholderimage.png"];
 				cell.thumbnailView.file = thumbnailFile;
-				[[cell thumbnailView] loadInBackground:^(UIImage *image, NSError *error) {
-						//Parse automically sets the image
-						//[[cell thumbnailView] setImage:image];
-				}];
+				[[cell thumbnailView] loadInBackground:^(UIImage *image, NSError *error) {}];
 		
 		return cell;
 }
@@ -336,7 +320,6 @@
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 		
 		PFObject *object = [self.objects objectAtIndex:[indexPath row]];
-		
 		DealsItemViewController *dealsItemViewController = [[DealsItemViewController alloc] init];
 		
 		// Pass the parse object onto to the DealsItemViewController
@@ -353,13 +336,12 @@
 		// so when IVC viewdisappears, (it'll save and run dismiss block
 		// to reload a table
 		[dealsItemViewController setDismissBlock: ^{
-				
 				// Load the parse objects after you create a new Parse object
 				// Only reload the block if the save was successful.
 				[self loadObjects];
 		}];
 		
-		// ???? Customize the animation of when hiding the toolbar
+		// Customize the animation when hiding the toolbar
     dealsItemViewController.hidesBottomBarWhenPushed = YES;
 		[self.navigationController pushViewController:dealsItemViewController animated:YES];
 }
@@ -370,7 +352,6 @@
 		if (editingStyle == UITableViewCellEditingStyleDelete) {
 				PFObject *object = [self.objects objectAtIndex:[indexPath row]];
 				[object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-						
 						//  Reload the Parse Table, this function relaces
 						// [tableView deleteRowsAtIndexPaths:withRowAnimation]
 						[self loadObjects];
@@ -380,7 +361,7 @@
 		}
 }
 
-#pragma mark - NSNotificationCenter notification handlers
+#pragma mark - NSNotification callbacks
 
 /* This is used when when you want to set the DPTC to query based
  on currentLocation. Mostly when you press the currentLocation button
@@ -403,7 +384,6 @@ press the addressLocation button.
 }
 
 - (void)userDealChange {
-		
 		// Reload the table because a user has added a new deal,
 		// deleted a deal, or changed a deal.
 		NSLog(@"Notification UserDealChange");

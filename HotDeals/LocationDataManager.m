@@ -6,7 +6,6 @@
 //
 //
 
-
 #import "LocationDataManager.h"
 
 @interface LocationDataManager ()
@@ -40,7 +39,7 @@
 		return self;
 }
 
-#pragma mark - CLLocationManagerDelegate
+#pragma mark - CLLocationManagerDelegate methods and helpers
 
 - (void)startUpdatingCurrentLocation{
 		if (nil == self.locationManager) {
@@ -66,17 +65,6 @@
 {
 		[self.locationManager stopUpdatingLocation];
 }
-
-/* Depreciated
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {
-		
-		NSLog(@"Delegate didUpdate location");
-		self.currentLocation = newLocation;
-		[self stopUpdatingCurrentLocation];
-}
-*/
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
@@ -110,7 +98,7 @@
 		}
 }
 
-#pragma mark - Geocoding
+#pragma mark - Geocoding methods
 
 // Reverse geocode to find the user's placemark based
 // on the device's current GPS location
@@ -118,42 +106,28 @@
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init ];
 		
 		NSLog(@"currentLocationByReverseGeocoding init");
-		/*Testing locations
-		 CLLocationCoordinate2D coord =
-		 CLLocationCoordinate2DMake(41.527111, -99.810728);
-		 CLLocation *testLocation = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
-		 NSString *lat = [[NSNumber numberWithDouble:self.currentPlacemark.location.coordinate.latitude] stringValue];
-		 
-		 NSString *lon = [[NSNumber numberWithDouble:self.currentPlacemark.location.coordinate.longitude]stringValue];
-		 */
-		
 		[geocoder reverseGeocodeLocation:self.currentLocation completionHandler:
 		 ^(NSArray *placemarks, NSError *error) {
 				 if (error) {
 						 NSLog(@"Error in geocode");
 						 return ;
 				 }
-				 
 				 CLPlacemark *placemark = [placemarks objectAtIndex:0];
 				 self.currentPlacemark = placemark;
 				 
-				 /*
-				 NSLog(@"REVERSE Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
-				 */
-				 
-				 NSLog(@" 1 REVERSE GEOCODE Address locality: %@, zipcode: %@, location:%@, diction: %@", placemark.locality , placemark.postalCode,
+				 NSLog(@"REVERSE GEOCODE Address locality: %@, zipcode: %@, location:%@, diction: %@", placemark.locality , placemark.postalCode,
 							 placemark.location   ,   placemark.addressDictionary);
 				 
 				 
-				 // Notify DealViewController's subview DealsParseTableController
-				 // that the users' current location data is ready. The location
-				 // data is needed when you query the parse server.
 				 dispatch_async(dispatch_get_main_queue(), ^{
-						 [[NSNotificationCenter defaultCenter] postNotificationName:@"currentLocationReady" object:nil];
-						 
-						 // DEBUG
+						 // Notify DealViewController's subview DealsParseTableController
+						 // that the users' current location data is ready. The location
+						 // data is needed when you query the parse server.
 						 [[NSNotificationCenter defaultCenter]
-							postNotificationName:@"updatedCurrentLocation" object:nil];
+												postNotificationName:@"currentLocationReady" object:nil];
+						 // Notify DealViewController to update its nav title bar to the new current location
+						 [[NSNotificationCenter defaultCenter]
+												postNotificationName:@"updatedCurrentLocation" object:nil];
 				 });
 		 }];
 } 
@@ -169,13 +143,11 @@ will be used by the DealsParseTableController to search deals based on locality
 -(void)findLocationByForwardGeocoding:(NSString *)userEnteredAddress;
 {
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-		
 		[geocoder geocodeAddressString:userEnteredAddress completionHandler:^(NSArray *placemarks, NSError *error) {
 				if (error) {
 						NSLog(@"Forward geocode address error");
 						return;
 				}
-				
 				CLPlacemark *placemark = [placemarks objectAtIndex:0];
 				self.addressLocation = placemark.location;
 				
@@ -190,35 +162,30 @@ will be used by the DealsParseTableController to search deals based on locality
 {
 		// Finding placemarks by reverse
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-		
 		NSLog(@"findPlacemarkByReverseGeocoding");
 		[geocoder reverseGeocodeLocation:userAddressLocation
 									 completionHandler:^(NSArray *placemarks, NSError *error) {
+				if (error) {
+						NSLog(@"Reverse geocode address error");
+						return;
+				}
 											 
-		if (error) {
-				NSLog(@"Reverse geocode address error");
-				return;
-		}
+				CLPlacemark *placemark = [placemarks objectAtIndex:0];
+		    self.addressPlacemark = placemark;
 											 
-		//NSLog(@"Reverse geocode address");
+	    	NSLog(@"REVERSE Geo Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
 											 
-		CLPlacemark *placemark = [placemarks objectAtIndex:0];
-		self.addressPlacemark = placemark;
-											 
-		NSLog(@"2 REVERSE Geo Address locality: %@, administrativeArea: %@, subAdministrativeArea: %@, country: %@, zip: %@", placemark.locality ,placemark.administrativeArea, placemark.subAdministrativeArea, placemark.country, placemark.postalCode);
-											 
-		// Notify DealViewController subview DealsParseTableController
-		// that the address location data is ready
-		dispatch_async(dispatch_get_main_queue(), ^{
+		   
+	     	dispatch_async(dispatch_get_main_queue(), ^{
+						// Notify DealViewController subview DealsParseTableController
+						// that the address location data is ready
 						[[NSNotificationCenter defaultCenter]
 						postNotificationName:@"addressLocationReady" object:nil];
-				
-				
-				// DEBUG
-				[[NSNotificationCenter defaultCenter]
-				 postNotificationName:@"updatedAddressLocation" object:nil];
-				
-						});
+			    	// Notify DealViewController's nav title to update 
+						// to the address that the user has entered
+						[[NSNotificationCenter defaultCenter]
+				     postNotificationName:@"updatedAddressLocation" object:nil];
+				});
 		}];
 }
 @end

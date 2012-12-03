@@ -29,16 +29,10 @@
 		
 		/* Parse Access Control */
 		//[PFUser enableAutomaticUser];
-		
-		// Optionally enable public read access by default.
     PFACL *defaultACL = [PFACL ACL];
 		[defaultACL setPublicReadAccess:YES];
 	  //[defaultACL setPublicWriteAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
-		
-		
-		
-		//[PFUser logOut];
 		
 		/* Check if there is a user logged in, if so go
 		 to the main screen otherwise go to  WelcomeViewController
@@ -97,26 +91,27 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - Viewcontrollers
+#pragma mark - Viewcontroller methods
 
 - (void)presentMainViewController
 {
 		// Start the location data for this device
-		NSLog(@"App delegate sharedLocation");
 		[LocationDataManager sharedLocation];
 
-    // Set up a navigational controller and initialize with DealViewController
-    // Add DealViewController to a Navigational Controller
-    DealsViewController *dealViewController = [[DealsViewController alloc] init];
+		// Prepare the three viewcontrollers Deal, User, and Profile for the opening tab controller
+		DealsViewController *dealViewController = [[DealsViewController alloc] init];
     UINavigationController *dealNavController = [[UINavigationController alloc] initWithRootViewController:dealViewController];
-		
 		// Customize our tab image and text attributes
 		UIImage *dealTabImage = [UIImage imageNamed:@"dealtabimage.png"];
+		// We will set the deal tab as tag integer "1", user as "2", profile as "3"
     UITabBarItem *dealTabBar = [[UITabBarItem alloc] initWithTitle:@"Find Deals" image:dealTabImage tag:1];
 		[dealTabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,[NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
     [dealNavController setTabBarItem:dealTabBar];
 		
-		UserViewController *userViewController = [[UserViewController alloc] initWithTab:@"UserTab"];
+		// Set a flag value "UserTab" so the UserViewController can know it is the 
+		// current user accessing its own profile, hence we allow them to edit
+		UserViewController *userViewController = [[UserViewController alloc]
+																							initWithTab:@"UserTab"];
 		UINavigationController *userNavController = [[UINavigationController alloc]
 												initWithRootViewController:userViewController];
 		UIImage *userTabImage = [UIImage imageNamed:@"usertabimage.png"];
@@ -128,7 +123,8 @@
 		UINavigationController *profileNavController = [[UINavigationController alloc]
 												initWithRootViewController:profileViewController];
 		UIImage *profileTabImage = [UIImage imageNamed:@"profiletabimage.png"];
-    UITabBarItem *profileTabBar = [[UITabBarItem alloc] initWithTitle:@"Profile" image:profileTabImage tag:3];
+    UITabBarItem *profileTabBar = [[UITabBarItem alloc] initWithTitle:@"Profile"
+																																image:profileTabImage tag:3];
 		[profileTabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,[NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
     [profileNavController setTabBarItem:profileTabBar];
 		[profileNavController setNavigationBarHidden:YES];
@@ -153,10 +149,8 @@
 		
 		WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] init];
 		welcomeViewController.title = @"Welcome to Hot Deals";
-		
 		UINavigationController *welcomeNavController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
 		welcomeNavController.navigationBarHidden = YES;
-		
 		[[self window] setRootViewController:welcomeNavController];		
 }
 

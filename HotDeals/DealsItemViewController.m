@@ -53,8 +53,6 @@
     return self;
 }
 
-#pragma mark - ()
-
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated
@@ -124,7 +122,7 @@
     // e.g. self.myOutlet = nil;
 }
 
-#pragma mark - Interface
+#pragma mark - Interface methods
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -149,7 +147,6 @@
     // for pressing the return key like UITextView
     // so you use this delegate method, textView:shouldChange
     // to dimiss yhe keyboard when you press return 
-    
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
@@ -157,7 +154,7 @@
     return YES;
 }
 
-#pragma mark - Buttons
+#pragma mark - Button actions
 // Select button to see user profile
 - (IBAction)userButton:(id)sender {
 		// Call UserViewController and set its format based on the Deals Tab
@@ -170,12 +167,10 @@
 }
 
 - (IBAction)mapButton:(id)sender {
-		
 		// Display the exact location of this deal
 		MapPostViewController *mapPostViewController = [[MapPostViewController alloc] init];
 		// Pass our parse object
 		[mapPostViewController setParseObject:self.parseObject];
-		
 		[self.navigationController pushViewController:mapPostViewController animated:YES];
 }
 			

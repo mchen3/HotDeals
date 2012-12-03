@@ -11,7 +11,6 @@
 @interface DealsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
     NSArray *itemArray;
-		__weak IBOutlet UITableView *table;
 		__weak IBOutlet UITextField *addressField;
 		__weak IBOutlet UIButton *currentAddressButton;
 		__weak IBOutlet UIButton *enterAddressButton;
@@ -20,7 +19,5 @@
 - (IBAction)backgroundTouched:(id)sender;
 - (IBAction)dealsBasedOnAddress:(id)sender;
 - (IBAction)dealsBasedOnUserLocation:(id)sender;
-
-
 
 @end
