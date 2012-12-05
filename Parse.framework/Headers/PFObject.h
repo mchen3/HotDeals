@@ -154,7 +154,6 @@
  @param key The key.
  */
 - (id)objectForKeyedSubscript:(NSString *)key;
-
 /*!
  * In LLVM 4.0 (XCode 4.5) or higher allows myObject[key] = value
  @param object The object.

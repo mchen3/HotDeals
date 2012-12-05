@@ -103,7 +103,6 @@
 								PFFile *parseFile = [object objectForKey:@"image"];
 								self.lazyLoadPFImageView.file = parseFile;
 								[self.lazyLoadPFImageView loadInBackground:^(UIImage *image, NSError *error) {
-										
 										// Cache the image in our dictionary
 										if (image) {
 												[dictionary setObject:image forKey:key];

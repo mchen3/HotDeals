@@ -57,7 +57,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-		
 		[descriptField setText: [self.parseObject objectForKey:@"description"]];
 		[priceLabel setText:[self.parseObject objectForKey:@"price"]];
 		
@@ -102,14 +101,30 @@
 		NSString *dateString = [formatter  stringFromDate:dateData];
 		[dateLabel setText:dateString];
 		
-		/* Show the username of the person who created the deal. 
+		/* Show the username and profile image of the person who created the deal. 
 		 The user data for PFUser is only available for the current user
 		 so we must fetch for the user data of the random PFUser*/ 
 		PFUser *user = self.userNameOfDeal;
 		[user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-				NSString *userString = user.username;
-				[userButtonLabel setTitle:userString forState:UIControlStateNormal];
-		}];		
+				if (!error) {
+						NSString *userString = user.username;
+						//IF the username is too long, auto shrink
+						userButtonLabel.titleLabel.adjustsFontSizeToFitWidth = TRUE;
+						[userButtonLabel setTitle:userString forState:UIControlStateNormal];
+										
+						PFFile *profileImageFile = [object objectForKey:@"profileImage"];
+						if (profileImageFile) {
+								NSData *profileImageData = [profileImageFile getData];
+								UIImage *profileImage = [UIImage imageWithData:profileImageData];
+								[self.profileImageView setImage:profileImage];
+						}else{
+								UIImage *tempProfileImage = [UIImage imageNamed:@"Time.png"];
+								[self.profileImageView  setImage:tempProfileImage];
+						}
+				}
+		}];
+		
+		
 }
 
 - (void)viewDidUnload

@@ -33,6 +33,7 @@
 @property (nonatomic, copy) void (^dismissBlock)(void);
 @property (nonatomic, strong) PFObject *parseObject;
 @property (nonatomic, strong) PFUser *userNameOfDeal;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
 @end
 
