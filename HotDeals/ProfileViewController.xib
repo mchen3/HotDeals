@@ -201,7 +201,6 @@ eW91IHNlYXJjaCBmb3IuA</string>
 						<reference key="NSNextKeyView" ref="271454579"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
-						<float key="IBUIAlpha">0.30000001192092896</float>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">2</int>
@@ -211,6 +210,7 @@ eW91IHNlYXJjaCBmb3IuA</string>
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
+						<string key="IBUINormalTitle">Add Pic</string>
 						<reference key="IBUIHighlightedTitleColor" ref="568610234"/>
 						<object class="NSColor" key="IBUIDisabledTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -223,18 +223,18 @@ eW91IHNlYXJjaCBmb3IuA</string>
 							<string key="name">ArialRoundedMTBold</string>
 							<string key="family">Arial Rounded MT Bold</string>
 							<int key="traits">0</int>
-							<double key="pointSize">11</double>
+							<double key="pointSize">9</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">ArialRoundedMTBold</string>
-							<double key="NSSize">11</double>
+							<double key="NSSize">9</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
 					<object class="IBUIButton" id="822400665">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{26, 88}, {73, 28}}</string>
+						<string key="NSFrame">{{22, 84}, {80, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="507775717"/>
@@ -255,11 +255,11 @@ eW91IHNlYXJjaCBmb3IuA</string>
 							<string key="name">Baskerville-Bold</string>
 							<string key="family">Baskerville</string>
 							<int key="traits">2</int>
-							<double key="pointSize">17</double>
+							<double key="pointSize">13</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Baskerville-Bold</string>
-							<double key="NSSize">17</double>
+							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>

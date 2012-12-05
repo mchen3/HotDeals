@@ -118,7 +118,7 @@
 								UIImage *profileImage = [UIImage imageWithData:profileImageData];
 								[self.profileImageView setImage:profileImage];
 						}else{
-								UIImage *tempProfileImage = [UIImage imageNamed:@"Time.png"];
+								UIImage *tempProfileImage = [UIImage imageNamed:@"tempProfileImage.png"];
 								[self.profileImageView  setImage:tempProfileImage];
 						}
 				}

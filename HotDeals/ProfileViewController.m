@@ -33,6 +33,8 @@
 		
 		//Hide the edit image button because the user hasn't selected an image
 		[self.editImageButton setHidden:TRUE];
+		//Hide the profileImageButton text "Add Image" until our temp image is set
+		[self.profileImageButton setHidden:TRUE];
 		
 		PFUser *currentUser = [PFUser currentUser];
 		[self.userNameLabel setText:currentUser.username];
@@ -47,8 +49,9 @@
 								[self.profileImageView setImage:profileImage];
 								[self.editImageButton setHidden:FALSE];
 						}else{
-								UIImage *tempProfileImage = [UIImage imageNamed:@"Hypno.png"];
+								UIImage *tempProfileImage = [UIImage imageNamed:@"tempProfileImage.png"];
 								[self.profileImageView  setImage:tempProfileImage];
+								[self.profileImageButton setHidden:FALSE];
 						}
 				}
 		}];
@@ -63,7 +66,7 @@
 		self.logOutButton.layer.borderWidth = 1;
 		
 		[self.editImageButton setBackgroundImage:[ProfileViewController imageFromColor:[UIColor lightGrayColor]]forState:UIControlStateNormal];
-		self.editImageButton.layer.cornerRadius = 7.5;
+		//self.editImageButton.layer.cornerRadius = 7.5;
 		self.editImageButton.layer.masksToBounds = YES;
 		self.editImageButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
 		self.editImageButton.layer.borderWidth = 1;
@@ -223,6 +226,7 @@
 						// Set our new thumnail
 						[self.profileImageView setImage:profileImage];
 						// Disable our initial profile Image button
+						[self.profileImageButton setHidden:TRUE];
 						[self.profileImageButton setEnabled:NO];
 						// Show our editImageButton now that a user has selected image
 						[self.editImageButton setHidden:FALSE];
