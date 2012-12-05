@@ -123,8 +123,6 @@
 						}
 				}
 		}];
-		
-		
 }
 
 - (void)viewDidUnload

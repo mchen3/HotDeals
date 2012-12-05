@@ -31,11 +31,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 		
-		//Hide the edit image button because the user hasn't selected an image
-		[self.editImageButton setHidden:TRUE];
-		//Hide the profileImageButton text "Add Image" until our temp image is set
-		[self.profileImageButton setHidden:TRUE];
-		
 		PFUser *currentUser = [PFUser currentUser];
 		[self.userNameLabel setText:currentUser.username];
 		
@@ -47,11 +42,9 @@
 								NSData *profileImageData = [profileImageFile getData];
 								UIImage *profileImage = [UIImage imageWithData:profileImageData];
 								[self.profileImageView setImage:profileImage];
-								[self.editImageButton setHidden:FALSE];
 						}else{
 								UIImage *tempProfileImage = [UIImage imageNamed:@"tempProfileImage.png"];
 								[self.profileImageView  setImage:tempProfileImage];
-								[self.profileImageButton setHidden:FALSE];
 						}
 				}
 		}];
@@ -65,18 +58,9 @@
 		self.logOutButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
 		self.logOutButton.layer.borderWidth = 1;
 		
-		[self.editImageButton setBackgroundImage:[ProfileViewController imageFromColor:[UIColor lightGrayColor]]forState:UIControlStateNormal];
-		//self.editImageButton.layer.cornerRadius = 7.5;
-		self.editImageButton.layer.masksToBounds = YES;
-		self.editImageButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-		self.editImageButton.layer.borderWidth = 1;
-		
 		self.descriptionField.layer.cornerRadius = 7.5;
 		self.descriptionField.layer.borderColor = [UIColor blueColor].CGColor;
 }
-
-
-
 
 - (void)viewDidUnload
 {
@@ -168,12 +152,6 @@
 		[profileImageMenu showInView:[UIApplication sharedApplication].keyWindow];
 		
 }
-- (IBAction)editImageButtonSelected:(id)sender {
-		UIActionSheet *profileImageMenu = [[UIActionSheet alloc] initWithTitle:nil
-						delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Take a Picture"
-						otherButtonTitles:@"Use Photo from Libarary", nil];
-		[profileImageMenu showInView:[UIApplication sharedApplication].keyWindow];
-}
 
 - (IBAction)logOutButtonSelected:(id)sender {
 		[PFUser logOut];
@@ -225,11 +203,6 @@
 				if (!error) {
 						// Set our new thumnail
 						[self.profileImageView setImage:profileImage];
-						// Disable our initial profile Image button
-						[self.profileImageButton setHidden:TRUE];
-						[self.profileImageButton setEnabled:NO];
-						// Show our editImageButton now that a user has selected image
-						[self.editImageButton setHidden:FALSE];
 				}
 		}];
 }

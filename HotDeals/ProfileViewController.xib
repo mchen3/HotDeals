@@ -44,7 +44,7 @@
 						<string key="NSFrame">{{124, 58}, {173, 27}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="822400665"/>
+						<reference key="NSNextKeyView" ref="507775717"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -161,6 +161,7 @@ eW91IHNlYXJjaCBmb3IuA</string>
 						<string key="NSFrame">{{110, 359}, {79, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -168,7 +169,7 @@ eW91IHNlYXJjaCBmb3IuA</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Log out</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="853850865">
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -176,7 +177,7 @@ eW91IHNlYXJjaCBmb3IuA</string>
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zNzQ3MjIwMDYgMC4xNzkyMjEyMjc3IDEAA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="988017941">
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
@@ -206,18 +207,19 @@ eW91IHNlYXJjaCBmb3IuA</string>
 						<int key="IBUIContentVerticalAlignment">2</int>
 						<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
 						<bool key="IBUIAdjustsImageWhenDisabled">NO</bool>
-						<object class="NSColor" key="IBUITintColor" id="568610234">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="568610234">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
-						<string key="IBUINormalTitle">Add Pic</string>
-						<reference key="IBUIHighlightedTitleColor" ref="568610234"/>
 						<object class="NSColor" key="IBUIDisabledTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
 						<reference key="IBUISelectedTitleColor" ref="568610234"/>
-						<reference key="IBUINormalTitleColor" ref="568610234"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4zNzQ3MjIwMDYgMC4xNzkyMjEyMjc3IDEAA</bytes>
+						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="568610234"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">ArialRoundedMTBold</string>
@@ -228,38 +230,6 @@ eW91IHNlYXJjaCBmb3IuA</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">ArialRoundedMTBold</string>
 							<double key="NSSize">9</double>
-							<int key="NSfFlags">16</int>
-						</object>
-					</object>
-					<object class="IBUIButton" id="822400665">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{22, 84}, {80, 23}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="507775717"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Edit </string>
-						<reference key="IBUIHighlightedTitleColor" ref="853850865"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4zNzQ3MjIwMDYgMC4xNzkyMjEyMjc3IDEAA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="988017941"/>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">Baskerville-Bold</string>
-							<string key="family">Baskerville</string>
-							<int key="traits">2</int>
-							<double key="pointSize">13</double>
-						</object>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Baskerville-Bold</string>
-							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -327,14 +297,6 @@ eW91IHNlYXJjaCBmb3IuA</string>
 					<int key="connectionID">17</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">editImageButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="822400665"/>
-					</object>
-					<int key="connectionID">36</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">logOutButtonSelected:</string>
 						<reference key="source" ref="77767894"/>
@@ -351,15 +313,6 @@ eW91IHNlYXJjaCBmb3IuA</string>
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">27</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">editImageButtonSelected:</string>
-						<reference key="source" ref="822400665"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">38</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -380,7 +333,6 @@ eW91IHNlYXJjaCBmb3IuA</string>
 							<reference ref="777340823"/>
 							<reference ref="77767894"/>
 							<reference ref="744725366"/>
-							<reference ref="822400665"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -421,11 +373,6 @@ eW91IHNlYXJjaCBmb3IuA</string>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">34</int>
-						<reference key="object" ref="822400665"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
 						<reference key="object" ref="77767894"/>
 						<reference key="parent" ref="191373211"/>
@@ -442,8 +389,7 @@ eW91IHNlYXJjaCBmb3IuA</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="25.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="34.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="3" key="25.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -459,15 +405,10 @@ eW91IHNlYXJjaCBmb3IuA</string>
 					<string key="className">ProfileViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="editImageButtonSelected:">id</string>
 						<string key="logOutButtonSelected:">id</string>
 						<string key="profileImageButtonSelected:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="editImageButtonSelected:">
-							<string key="name">editImageButtonSelected:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="logOutButtonSelected:">
 							<string key="name">logOutButtonSelected:</string>
 							<string key="candidateClassName">id</string>
@@ -479,7 +420,6 @@ eW91IHNlYXJjaCBmb3IuA</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="descriptionField">UITextView</string>
-						<string key="editImageButton">UIButton</string>
 						<string key="logOutButton">UIButton</string>
 						<string key="profileImageButton">UIButton</string>
 						<string key="profileImageView">UIImageView</string>
@@ -489,10 +429,6 @@ eW91IHNlYXJjaCBmb3IuA</string>
 						<object class="IBToOneOutletInfo" key="descriptionField">
 							<string key="name">descriptionField</string>
 							<string key="candidateClassName">UITextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="editImageButton">
-							<string key="name">editImageButton</string>
-							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="logOutButton">
 							<string key="name">logOutButton</string>

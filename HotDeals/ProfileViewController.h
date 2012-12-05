@@ -17,7 +17,4 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UIButton *profileImageButton;
 - (IBAction)profileImageButtonSelected:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *editImageButton;
-- (IBAction)editImageButtonSelected:(id)sender;
-
 @end
