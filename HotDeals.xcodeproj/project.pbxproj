@@ -52,6 +52,10 @@
 		60C1076916448EDD00B8379B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C1076816448EDD00B8379B /* libsqlite3.dylib */; };
 		60C1076B16448EF600B8379B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C1076A16448EF600B8379B /* Social.framework */; };
 		60DDD1C616641CF50018EA8B /* mappin.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DDD1C516641CF50018EA8B /* mappin.png */; };
+		60E0E5CB16C94BB7008D5F1A /* 1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 60E0E5C716C94BB7008D5F1A /* 1.PNG */; };
+		60E0E5CC16C94BB7008D5F1A /* 2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 60E0E5C816C94BB7008D5F1A /* 2.PNG */; };
+		60E0E5CD16C94BB7008D5F1A /* 3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 60E0E5C916C94BB7008D5F1A /* 3.PNG */; };
+		60E0E5CE16C94BB7008D5F1A /* 4.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 60E0E5CA16C94BB7008D5F1A /* 4.PNG */; };
 		60E5E85C1669A6C5006070B8 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60E5E85B1669A6C5006070B8 /* Icon@2x.png */; };
 		60E5E8791669CC86006070B8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60E5E8771669CC86006070B8 /* Default@2x.png */; };
 		60E5E87A1669CC86006070B8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 60E5E8781669CC86006070B8 /* Default.png */; };
@@ -145,6 +149,10 @@
 		60C1076816448EDD00B8379B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		60C1076A16448EF600B8379B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		60DDD1C516641CF50018EA8B /* mappin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mappin.png; sourceTree = "<group>"; };
+		60E0E5C716C94BB7008D5F1A /* 1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.PNG; sourceTree = "<group>"; };
+		60E0E5C816C94BB7008D5F1A /* 2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.PNG; sourceTree = "<group>"; };
+		60E0E5C916C94BB7008D5F1A /* 3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.PNG; sourceTree = "<group>"; };
+		60E0E5CA16C94BB7008D5F1A /* 4.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.PNG; sourceTree = "<group>"; };
 		60E37CB01657E84E0078E24D /* PAWActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PAWActivityView.h; path = HotDeals/PAWActivityView.h; sourceTree = "<group>"; };
 		60E37CB11657E84E0078E24D /* PAWActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PAWActivityView.m; path = HotDeals/PAWActivityView.m; sourceTree = "<group>"; };
 		60E5E85B1669A6C5006070B8 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Images/Icon@2x.png"; sourceTree = "<group>"; };
@@ -234,6 +242,7 @@
 		60B48F3715A892F000A52C2E = {
 			isa = PBXGroup;
 			children = (
+				60E0E5C616C94BB7008D5F1A /* profileImage */,
 				60E5238515E182CA00D532FA /* Custom Views */,
 				601B096815B74220000AC5C0 /* Model objects */,
 				60E5238415E182AD00D532FA /* XIB */,
@@ -340,6 +349,17 @@
 				60E5E8881669E5DC006070B8 /* iTunesArtwork@2x */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		60E0E5C616C94BB7008D5F1A /* profileImage */ = {
+			isa = PBXGroup;
+			children = (
+				60E0E5C716C94BB7008D5F1A /* 1.PNG */,
+				60E0E5C816C94BB7008D5F1A /* 2.PNG */,
+				60E0E5C916C94BB7008D5F1A /* 3.PNG */,
+				60E0E5CA16C94BB7008D5F1A /* 4.PNG */,
+			);
+			path = profileImage;
 			sourceTree = "<group>";
 		};
 		60E37C7F165759EE0078E24D /* Deals */ = {
@@ -533,6 +553,10 @@
 				60E5E8861669E5D6006070B8 /* Icon-Small@2x.png in Resources */,
 				60ED9C26166EEE2D004FE754 /* tempProfileImage@2x.png in Resources */,
 				60ED9C27166EEE2D004FE754 /* tempProfileImage.png in Resources */,
+				60E0E5CB16C94BB7008D5F1A /* 1.PNG in Resources */,
+				60E0E5CC16C94BB7008D5F1A /* 2.PNG in Resources */,
+				60E0E5CD16C94BB7008D5F1A /* 3.PNG in Resources */,
+				60E0E5CE16C94BB7008D5F1A /* 4.PNG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

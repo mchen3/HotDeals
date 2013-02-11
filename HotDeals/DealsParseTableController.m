@@ -29,7 +29,7 @@
         self.className = @"Posts";
         
         // The key of the PFObject to display in the label of the default cell style
-				//   self.keyToDisplay = @"text";
+				//  self.keyToDisplay = @"text";
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -131,6 +131,7 @@
 
 - (void)objectsWillLoad {
     [super objectsWillLoad];
+		
 		
     // This method is called before a PFQuery is fired to get more objects
 }

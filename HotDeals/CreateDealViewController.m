@@ -171,13 +171,14 @@
 		if (descriptField.textColor == [UIColor grayColor]) {
 				descriptField.text = @"";
 				descriptField.textColor = [UIColor blackColor];
-		
+
 		/* There was a bug where the first word of the autocorrect was in lower
 		 case instead of upper, so I had to resign and showed the descriptField
 		 responder to correct this.
 		*/
 				[descriptField resignFirstResponder];
 				[descriptField becomeFirstResponder];
+				
 		}
 		
 		// Always allow the back space or delete key to go through

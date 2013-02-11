@@ -144,8 +144,8 @@
 - (IBAction)profileImageButtonSelected:(id)sender {
 		
 		UIActionSheet *profileImageMenu = [[UIActionSheet alloc] initWithTitle:nil
-				delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Take a Picture"
-				otherButtonTitles:@"Use Photo from Libarary", nil];
+				delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
+				otherButtonTitles:@"Take a Picture",@"Use Photo from Libarary", nil];
 		/* Place your ActionSheet above all views, instead of just your self.view
 		 because your viewcontroller is within a tab controller and this will prevent
 		 the "Cancel" button, which is beneath your tab controller to be selected */
