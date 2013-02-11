@@ -13,7 +13,7 @@ discover.
 
 
 ## Screenshots
-![](https://github.com/mchen3/HotDeals/raw/master/profileImage/1a.PNG)
+![](https://github.com/mchen3/HotDeals/raw/master/profileImage/1a.png)
 
 ![](https://github.com/mchen3/HotDeals/tree/master/profileImage/2.PNG)
 
