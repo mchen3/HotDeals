@@ -9,7 +9,7 @@ discover around their location.
 ## Features
 -Photosharing
 
--Location GPS data
+-Location data
 
 -[Parse](https://parse.com) mobile backend services
 

@@ -32,6 +32,8 @@ CLLocationCoordinate2D location;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+
+		
 		// Each parse object from our "Posts" table contains a geopoint for the deal
 		// Set the region on our map to be that coordinate
 		PFGeoPoint *geopoint = [self.parseObject objectForKey:@"geopoint"];
@@ -66,6 +68,7 @@ CLLocationCoordinate2D location;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+
 }
 
 @end

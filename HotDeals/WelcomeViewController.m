@@ -52,6 +52,7 @@
 		[self setLogInButton:nil];
 		[self setSignUpButton:nil];
 		[super viewDidUnload];
+		
 }
 
 
