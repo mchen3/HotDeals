@@ -125,7 +125,7 @@
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 														name:@"updatedAddressLocation" object:nil];		
 }
-
+//Test git
 #pragma mark - Interface actions and helper
 
 - (IBAction)backgroundTouched:(id)sender {
