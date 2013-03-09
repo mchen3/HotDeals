@@ -77,7 +77,6 @@
 																										name:@"addressLocationReady" object:nil];
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 																										name:@"userDealChange" object:nil];
-		
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -237,7 +236,7 @@
 				cell.thumbnailView.image = [UIImage imageNamed:@"placeholderimage.png"];
 				cell.thumbnailView.file = thumbnailFile;
 				[[cell thumbnailView] loadInBackground:^(UIImage *image, NSError *error) {}];
-		
+
 		return cell;
 }
 

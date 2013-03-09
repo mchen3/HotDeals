@@ -79,6 +79,9 @@
 		// Load the lib for the table cell and register it to the tableView
 		UINib *nib = [UINib nibWithNibName:@"ItemCell" bundle:nil];
 		
+		
+		//
+		
 		self.dealsParseTableController = [[DealsParseTableController alloc] initWithStyle:UITableViewStylePlain];
 		// Configure the parse table to display based on current location
 		[self.dealsParseTableController setDealBasedOn:@"currentLocation"];
