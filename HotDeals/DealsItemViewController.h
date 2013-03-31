@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 
 @interface DealsItemViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate
-, UITextViewDelegate>
+, UITextViewDelegate, UIActionSheetDelegate>
 {
     
     __weak IBOutlet UITextView *descriptField;
@@ -29,6 +29,7 @@
 - (id)initWithName:(BOOL)isNew;
 - (IBAction)userButton:(id)sender;
 - (IBAction)mapButton:(id)sender;
+- (IBAction)flagButton:(id)sender;
 
 @property (nonatomic, copy) void (^dismissBlock)(void);
 @property (nonatomic, strong) PFObject *parseObject;

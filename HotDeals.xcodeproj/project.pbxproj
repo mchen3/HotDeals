@@ -12,6 +12,7 @@
 		6006FF45161FC711006E031C /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC491161E5EC40046245F /* ItemCell.xib */; };
 		6006FF46161FC715006E031C /* DealsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC48D161E5EC40046245F /* DealsViewController.xib */; };
 		6006FF47161FC71A006E031C /* DealsItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605AC498161E5EC40046245F /* DealsItemViewController.xib */; };
+		6007A0111707402500B3891B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6007A0101707402500B3891B /* MessageUI.framework */; };
 		60146208161FCA30004FAB65 /* DealMaker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60146206161FCA30004FAB65 /* DealMaker.xcdatamodeld */; };
 		6017F04D165C564400DB72EB /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6017F04C165C564400DB72EB /* ProfileViewController.xib */; };
 		6017F04E165C567C00DB72EB /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6017F04B165C563100DB72EB /* ProfileViewController.m */; };
@@ -74,6 +75,8 @@
 		60ED9F2116655A7C005D8DD6 /* usertabimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9F1F16655A7C005D8DD6 /* usertabimage.png */; };
 		60ED9F2216655A7C005D8DD6 /* usertabimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED9F2016655A7C005D8DD6 /* usertabimage@2x.png */; };
 		60F151A8163B04C9004527BD /* UserParseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F151A7163B04C9004527BD /* UserParseTableController.m */; };
+		60F1CC1217064E6C00B4E229 /* FlagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1CC1017064E6C00B4E229 /* FlagViewController.m */; };
+		60F1CC1317064E6C00B4E229 /* FlagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F1CC1117064E6C00B4E229 /* FlagViewController.xib */; };
 		60F423D016389A91004EB95A /* LocationDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F423CF16389A91004EB95A /* LocationDataManager.m */; };
 		60F423D716389BE8004EB95A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F423D616389BE8004EB95A /* CoreLocation.framework */; };
 		60F470DB1657429000AC1D02 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F470D91657429000AC1D02 /* WelcomeViewController.m */; };
@@ -86,6 +89,12 @@
 		60F620F716667C5700368E10 /* profiletabimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F620F516667C5700368E10 /* profiletabimage@2x.png */; };
 		60F621061666DA5600368E10 /* placeholderimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F621041666DA5600368E10 /* placeholderimage@2x.png */; };
 		60F621071666DA5600368E10 /* placeholderimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F621051666DA5600368E10 /* placeholderimage.png */; };
+		60F9DA2F1707297B00884017 /* flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F9DA2D1707297B00884017 /* flag@2x.png */; };
+		60F9DA301707297B00884017 /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F9DA2E1707297B00884017 /* flag.png */; };
+		60F9DA3417072BD700884017 /* checkboxUncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F9DA3317072BD700884017 /* checkboxUncheck@2x.png */; };
+		60F9DA3717072E7200884017 /* checkboxCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F9DA3517072E7200884017 /* checkboxCheck@2x.png */; };
+		60F9DA3817072E7200884017 /* checkboxCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F9DA3617072E7200884017 /* checkboxCheck.png */; };
+		60F9DA3A17072E8700884017 /* checkboxUncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F9DA3917072E8700884017 /* checkboxUncheck.png */; };
 		60FD86A415BF23FC000BDCCB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FD86A315BF23FC000BDCCB /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +102,7 @@
 		600118C91628AB5C009E019D /* UserPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPostViewController.h; path = HotDeals/UserPostViewController.h; sourceTree = "<group>"; };
 		600118CA1628AB5C009E019D /* UserPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPostViewController.m; path = HotDeals/UserPostViewController.m; sourceTree = "<group>"; };
 		600118CB1628AB5C009E019D /* UserPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserPostViewController.xib; path = HotDeals/UserPostViewController.xib; sourceTree = "<group>"; };
+		6007A0101707402500B3891B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		60146207161FCA30004FAB65 /* DealMaker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DealMaker.xcdatamodel; sourceTree = "<group>"; };
 		6017F04A165C563100DB72EB /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = HotDeals/ProfileViewController.h; sourceTree = "<group>"; };
 		6017F04B165C563100DB72EB /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = HotDeals/ProfileViewController.m; sourceTree = "<group>"; };
@@ -178,6 +188,9 @@
 		60ED9F2016655A7C005D8DD6 /* usertabimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usertabimage@2x.png"; sourceTree = "<group>"; };
 		60F151A6163B04C9004527BD /* UserParseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserParseTableController.h; path = HotDeals/UserParseTableController.h; sourceTree = "<group>"; };
 		60F151A7163B04C9004527BD /* UserParseTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserParseTableController.m; path = HotDeals/UserParseTableController.m; sourceTree = "<group>"; };
+		60F1CC0F17064E6C00B4E229 /* FlagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlagViewController.h; path = HotDeals/FlagViewController.h; sourceTree = "<group>"; };
+		60F1CC1017064E6C00B4E229 /* FlagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlagViewController.m; path = HotDeals/FlagViewController.m; sourceTree = "<group>"; };
+		60F1CC1117064E6C00B4E229 /* FlagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FlagViewController.xib; path = HotDeals/FlagViewController.xib; sourceTree = "<group>"; };
 		60F423CE16389A91004EB95A /* LocationDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationDataManager.h; path = HotDeals/LocationDataManager.h; sourceTree = "<group>"; };
 		60F423CF16389A91004EB95A /* LocationDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationDataManager.m; path = HotDeals/LocationDataManager.m; sourceTree = "<group>"; };
 		60F423D616389BE8004EB95A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -194,6 +207,12 @@
 		60F620F516667C5700368E10 /* profiletabimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profiletabimage@2x.png"; sourceTree = "<group>"; };
 		60F621041666DA5600368E10 /* placeholderimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholderimage@2x.png"; sourceTree = "<group>"; };
 		60F621051666DA5600368E10 /* placeholderimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholderimage.png; sourceTree = "<group>"; };
+		60F9DA2D1707297B00884017 /* flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flag@2x.png"; sourceTree = "<group>"; };
+		60F9DA2E1707297B00884017 /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
+		60F9DA3317072BD700884017 /* checkboxUncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxUncheck@2x.png"; sourceTree = "<group>"; };
+		60F9DA3517072E7200884017 /* checkboxCheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxCheck@2x.png"; sourceTree = "<group>"; };
+		60F9DA3617072E7200884017 /* checkboxCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxCheck.png; sourceTree = "<group>"; };
+		60F9DA3917072E8700884017 /* checkboxUncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxUncheck.png; sourceTree = "<group>"; };
 		60FD86A315BF23FC000BDCCB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -202,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6007A0111707402500B3891B /* MessageUI.framework in Frameworks */,
 				6051C80A166034F000F91C6E /* MapKit.framework in Frameworks */,
 				60C1076B16448EF600B8379B /* Social.framework in Frameworks */,
 				60C1076916448EDD00B8379B /* libsqlite3.dylib in Frameworks */,
@@ -242,6 +262,7 @@
 		60B48F3715A892F000A52C2E = {
 			isa = PBXGroup;
 			children = (
+				6007A0101707402500B3891B /* MessageUI.framework */,
 				60E0E5C616C94BB7008D5F1A /* profileImage */,
 				60E5238515E182CA00D532FA /* Custom Views */,
 				601B096815B74220000AC5C0 /* Model objects */,
@@ -314,6 +335,12 @@
 		60B48F7315A89E8200A52C2E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				60F9DA3517072E7200884017 /* checkboxCheck@2x.png */,
+				60F9DA3617072E7200884017 /* checkboxCheck.png */,
+				60F9DA3317072BD700884017 /* checkboxUncheck@2x.png */,
+				60F9DA3917072E8700884017 /* checkboxUncheck.png */,
+				60F9DA2D1707297B00884017 /* flag@2x.png */,
+				60F9DA2E1707297B00884017 /* flag.png */,
 				60ED9C24166EEE2D004FE754 /* tempProfileImage@2x.png */,
 				60ED9C25166EEE2D004FE754 /* tempProfileImage.png */,
 				60F621041666DA5600368E10 /* placeholderimage@2x.png */,
@@ -411,6 +438,7 @@
 		60E5238215E1829000D532FA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				60F1CC0917064DE100B4E229 /* MISC */,
 				60E37C8316575A6A0078E24D /* Location */,
 				60F470D7165741E200AC1D02 /* User Creation/Login */,
 				60E37C7F165759EE0078E24D /* Deals */,
@@ -434,6 +462,7 @@
 				60F470DF1657512900AC1D02 /* NewUserViewController.xib */,
 				60F470E41657514100AC1D02 /* LoginViewController.xib */,
 				6051C7FD16602FE300F91C6E /* MapPostViewController.xib */,
+				60F1CC1117064E6C00B4E229 /* FlagViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -451,6 +480,15 @@
 				605AC490161E5EC40046245F /* ItemCell.m */,
 			);
 			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		60F1CC0917064DE100B4E229 /* MISC */ = {
+			isa = PBXGroup;
+			children = (
+				60F1CC0F17064E6C00B4E229 /* FlagViewController.h */,
+				60F1CC1017064E6C00B4E229 /* FlagViewController.m */,
+			);
+			name = MISC;
 			sourceTree = "<group>";
 		};
 		60F470D7165741E200AC1D02 /* User Creation/Login */ = {
@@ -557,6 +595,13 @@
 				60E0E5D516C953F4008D5F1A /* 4a.png in Resources */,
 				60E0E5D616C953F4008D5F1A /* 2a.png in Resources */,
 				60E0E5D716C953F4008D5F1A /* 3a.png in Resources */,
+				60F1CC1317064E6C00B4E229 /* FlagViewController.xib in Resources */,
+				60F9DA2F1707297B00884017 /* flag@2x.png in Resources */,
+				60F9DA301707297B00884017 /* flag.png in Resources */,
+				60F9DA3417072BD700884017 /* checkboxUncheck@2x.png in Resources */,
+				60F9DA3717072E7200884017 /* checkboxCheck@2x.png in Resources */,
+				60F9DA3817072E7200884017 /* checkboxCheck.png in Resources */,
+				60F9DA3A17072E8700884017 /* checkboxUncheck.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +633,7 @@
 				60F470E51657514100AC1D02 /* LoginViewController.m in Sources */,
 				6051C7FE16602FE300F91C6E /* MapPostViewController.m in Sources */,
 				6051C8251660536700F91C6E /* MapAnnotation.m in Sources */,
+				60F1CC1217064E6C00B4E229 /* FlagViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +657,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chai-Chun Chen (385E4FL8UW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -626,6 +673,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PROVISIONING_PROFILE = "B6BD682E-C6C4-414D-B686-6EC01C39D2C4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -636,6 +684,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chai-Chun Chen (385E4FL8UW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -645,6 +694,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "B6BD682E-C6C4-414D-B686-6EC01C39D2C4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

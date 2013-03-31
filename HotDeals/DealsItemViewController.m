@@ -11,6 +11,7 @@
 #import "UserViewController.h"
 #import "MapPostViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FlagViewController.h"
 
 @interface DealsItemViewController ()
 @end
@@ -185,6 +186,34 @@
 		// Pass our parse object
 		[mapPostViewController setParseObject:self.parseObject];
 		[self.navigationController pushViewController:mapPostViewController animated:YES];
+}
+
+- (IBAction)flagButton:(id)sender {
+		
+		NSString *title = @"Inappropriate content";
+		NSString *cancel = @"Cancel";
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:cancel destructiveButtonTitle:title otherButtonTitles:nil, nil];
+		[actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+		NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+		if ([buttonTitle isEqualToString:@"Inappropriate content"]) {
+				UIViewController *test = [[UIViewController alloc] init];
+				//[self.navigationController pushViewController:test animated:UIViewAnimationCurveEaseIn];
+				
+				//[self.navigationController presentViewController:test animated:UIViewAnimationOptionTransitionFlipFromBottom completion:^{
+				//}];
+				
+				FlagViewController *flagViewController = [[FlagViewController alloc] init];
+				
+				[flagViewController setParseObject:self.parseObject];
+				[flagViewController setUserNameOfDeal:self.userNameOfDeal];
+				
+				[self.navigationController pushViewController:flagViewController animated:
+				 YES];
+				
+		}
 }
 			
 @end

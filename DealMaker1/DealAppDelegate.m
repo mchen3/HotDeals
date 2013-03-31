@@ -13,6 +13,7 @@
 #import "Parse/Parse.h"
 #import "LocationDataManager.h"
 #import "WelcomeViewController.h"
+#import "FlagViewController.h"
 
 @implementation DealAppDelegate
 
@@ -133,7 +134,11 @@
     NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, profileNavController, nil];
 		
     [tarBarController setViewControllers:viewControllers];
-    [[self window] setRootViewController:tarBarController];
+   [[self window] setRootViewController:tarBarController];
+		
+		FlagViewController *test =[[FlagViewController alloc]init];
+	//	[[self window] setRootViewController:test];
+		
 }
 
 - (void)presentWelcomeViewController
