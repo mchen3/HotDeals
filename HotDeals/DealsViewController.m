@@ -16,7 +16,7 @@
 
 @interface DealsViewController ()
 @property (nonatomic, strong) DealsParseTableController *dealsParseTableController;
-@end
+@end 
 
 @implementation DealsViewController
 @synthesize dealsParseTableController = _dealsParseTableController;

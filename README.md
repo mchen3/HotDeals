@@ -19,4 +19,4 @@ discover around their location.
 
 
 ## Comments
-Waiting for App Store approval
+

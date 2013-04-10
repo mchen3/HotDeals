@@ -115,7 +115,9 @@
 																							initWithTab:@"UserTab"];
 		UINavigationController *userNavController = [[UINavigationController alloc]
 												initWithRootViewController:userViewController];
-		UIImage *userTabImage = [UIImage imageNamed:@"usertabimage.png"];
+		UIImage *userTabImage = [UIImage imageNamed:@"Icon.png"];
+		
+		
 		UITabBarItem *userTabBar = [[UITabBarItem alloc] initWithTitle:@"User" image:userTabImage tag:2];
 		[userTabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,[NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,[UIFont fontWithName:@"Arial Rounded MT Bold" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
 		[userNavController setTabBarItem:userTabBar];
@@ -132,6 +134,7 @@
 		
     UITabBarController *tarBarController = [[UITabBarController alloc] init];
     NSArray *viewControllers = [NSArray arrayWithObjects:dealNavController, userNavController, profileNavController, nil];
+
 		
     [tarBarController setViewControllers:viewControllers];
    [[self window] setRootViewController:tarBarController];
