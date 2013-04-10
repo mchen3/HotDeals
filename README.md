@@ -5,6 +5,7 @@
 An iOS app that allows users to share photos of the best local deals that they
 discover around their location. 
 
+Here's the App Store [link](https://itunes.apple.com/us/app/hot-deal$/id583619810?ls=1&mt=8)
 
 ## Features
 -Photosharing
